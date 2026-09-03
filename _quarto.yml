@@ -3,24 +3,48 @@ project:
   output-dir: docs
 
 book:
-  title: "portfolio_compbio_clean"
-  author: "Norah Jones"
-  date: "3-9-2026"
+  title: "Portfolio Computationele Biologie"
+  author: "Jouw naam"
+  date: today
+  description: "September 2026 – Februari 2027"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
+    - stochastische_var.qmd
+    - Port_logpH_Theory.qmd
+    - Regressie_theorie.qmd
+    - Differentiaalvergelijkingen_theorie.qmd
+    - sepia_standaardfout_theorie.qmd
+    - genetic_drift.qmd
+    - meta-populaties.qmd
     - references.qmd
+  appendices:
+    - mais_pract.qmd
+    - Port_logpH_Pract.qmd
+    - Bradford_statistiek.qmd
+    - Sepia_Mantel.qmd  
 
 bibliography: references.bib
 
+link-citations: true
+
+number-sections: true
+    
 format:
   html:
-    theme:
-      - cosmo
-      - brand
-  pdf:
-    documentclass: scrreprt
+    css: styles.css
+
+crossref:
+  chapters: true
+  exr-prefix: "Vraag"
+  eq-prefix: "Vergelijking"
+  fig-prefix: "Figuur"
+  sec-prefix: "Hoofdstuk"
 
 editor: visual
+language:
+  ui:
+    chapter_name: ""
+  crossref-exr-title: "Vraag"
+  crossref-ch-title: "Hoofdstuk"
+  crossref-sec-prefix: "Hoofdstuk"
 

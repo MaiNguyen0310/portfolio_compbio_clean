@@ -10,5 +10,44 @@
   },
   "references.qmd": {
     "references.html": "f7883fab"
+  },
+  "Port2_Theory.qmd": {
+    "Port2_Theory.html": "ee936df7"
+  },
+  "Port_logpH_Theory.qmd": {
+    "Port_logpH_Theory.html": "366c218f"
+  },
+  "Regressie_theorie.qmd": {
+    "Regressie_theorie.html": "ba3d7252"
+  },
+  "Differentiaalvergelijkingen_theorie.qmd": {
+    "Differentiaalvergelijkingen_theorie.html": "60d4710d"
+  },
+  "sepia_standaardfout_theorie.qmd": {
+    "sepia_standaardfout_theorie.html": "45abdb9f"
+  },
+  "genetic_drift.qmd": {
+    "genetic_drift.html": "6cb98f93"
+  },
+  "meta-populaties.qmd": {
+    "meta-populaties.html": "ae691ea7"
+  },
+  "Port2_Pract.qmd": {
+    "Port2_Pract.html": "721caae8"
+  },
+  "Port_logpH_Pract.qmd": {
+    "Port_logpH_Pract.html": "a58eb5bf"
+  },
+  "Bradford_statistiek.qmd": {
+    "Bradford_statistiek.html": "37433f66"
+  },
+  "Sepia_Mantel.qmd": {
+    "Sepia_Mantel.html": "ecbcfc20"
+  },
+  "stochastische_var.qmd": {
+    "stochastische_var.html": "13fd5a43"
+  },
+  "mais_pract.qmd": {
+    "mais_pract.html": "6e284eda"
   }
 }

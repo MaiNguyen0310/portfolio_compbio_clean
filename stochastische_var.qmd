@@ -117,14 +117,21 @@ We hebben entropie leren kennen als een maat voor onzekerheid of verrassing: hoe
 
 Wanneer we hetzelfde gen van verschillende soorten onder elkaar leggen, ontstaat een *alignment*: overeenkomstige posities staan in dezelfde kolom. Hieronder staat een klein voorbeeld voor zes soorten en zeven posities.
 
-```         
-positie:   1  2  3  4  5  6  7
-soort 1:   A  T  G  C  A  A  T
-soort 2:   A  T  G  T  A  G  T
-soort 3:   A  T  G  A  A  C  T
-soort 4:   A  T  G  G  A  A  T
-soort 5:   A  T  G  C  A  T  T
-soort 6:   A  T  G  A  A  G  T
+```{r}
+# Het alignment als data frame: elke RIJ een soort, elke KOLOM een positie
+alignment <- data.frame(
+  positie_1 = c("A", "A", "A", "A", "A", "A"),
+  positie_2 = c("T", "T", "T", "T", "T", "T"),
+  positie_3 = c("G", "G", "G", "G", "G", "G"),
+  positie_4 = c("C", "T", "A", "G", "C", "A"),
+  positie_5 = c("A", "A", "A", "A", "A", "A"),
+  positie_6 = c("A", "G", "G", "A", "T", "G"),
+  positie_7 = c("T", "T", "T", "T", "T", "T"),
+  row.names = c("soort 1", "soort 2", "soort 3",
+                "soort 4", "soort 5", "soort 6")
+)
+
+alignment
 ```
 
 Bekijk de kolommen (posities) van boven naar beneden, niet de rijen. Elke kolom vertelt hoe gevarieerd die positie is over de zes soorten.
@@ -142,8 +149,21 @@ Stel je sluit je ogen en iemand wijst een willekeurige soort aan. Bij welke posi
 > jouw antwoord:
 
 ::: {#exr-tabel_entropie}
-Berekenin de entropy van kollom 
+Bereken met de code hieronder de entropie van de verschillende kolommen door op het kleine driehoekje recht boven deze chunk te klikken. Welke van deze posities zijn het meest geconserveerd (constrained) tussen de soorten, en welke het minst? Leg uit hoe je tot je antwoord komt.
+
+Probeer de code te begrijpen als je tijd hebt, maar dat is niet het eerste doel van deze opdracht. Hint: we hebben hier zelf een functie gemaakt. 
+Waarom gebruiken we de logaritme met grondtal 2? Hadden we deze vraag ook kunnen beantwoorden met grondtal 10, of met de natuurlijke logaritme?
 :::
+
+```{r}
+entropie <- function(kolom) {
+  p <- table(kolom) / length(kolom)
+  -sum(p * log2(p))
+}
+
+sapply(alignment, entropie)
+```
+
 
 > jouw antwoord:
 
@@ -153,6 +173,7 @@ Een positie die bij alle soorten identiek is, is door de evolutie heen nauwelijk
 
 > jouw antwoord:
 
+
 ::: {#exr-entropie_evo}
 De genen die de vroege ontwikkeling van een lichaam sturen, behoren tot de meest geconserveerde in het hele dierenrijk: dieren die honderden miljoenen jaren geleden een gemeenschappelijke voorouder deelden, hebben op die posities nog steeds dezelfde bouwstenen. Wat zegt lage entropie op die posities over het belang van die genen voor de ontwikkeling? En waarom is lage entropie hier een spoor van diepe verwantschap tussen soorten?
 :::
@@ -161,21 +182,23 @@ De genen die de vroege ontwikkeling van een lichaam sturen, behoren tot de meest
 
 ### Entropie is optelbaar
 
-Er is iets vreemds aan de levende wereld. Aan de ene kant wordt ze steeds complexer, histories een groei in biodiversiteit, een rijkdom aan vorm en functie. Aan de andere kant herkennen we juist heldere structuur: soorten, genera en families laten zich netjes onderscheiden. Meer variatie en meer ordening tegelijk; dat lijkt een tegenspraak.
+We gaan nu gebruik maken van een belangrijke eigenschap van het logarithm. Er is iets vreemds aan de levende wereld. Aan de ene kant wordt ze steeds complexer, histories een groei in biodiversiteit, een rijkdom aan vorm en functie. Aan de andere kant herkennen we juist heldere structuur: soorten, genera en families laten zich netjes onderscheiden. Meer variatie en meer ordening tegelijk; dat lijkt een tegenspraak.
 
 Om die schijnbare tegenspraak te ontleden, gebruiken we een belangrijke eigenschap van de logaritme:
 
 $$\log(A \times B) = \log(A) + \log(B)$$ {#eq-optelbaar-def}
 
-De logaritme maakt van een vermenigvuldiging een optelling. Dat is precies wat we nodig hebben, want kansen worden vermenigvuldigd, terwijl entropie een *som* is. De logaritme is de brug tussen die twee: hij vertaalt het vermenigvuldigen van kansen naar het optellen van termen, en maakt zo het somteken ($\sum$) in de entropie mogelijk.
+De logaritme maakt van een vermenigvuldiging een optelling. Dat is precies wat we nodig hebben, want kansen worden vermenigvuldigd, terwijl entropie een *som* is. De logaritme is de brug tussen die twee: hij vertaalt het vermenigvuldigen van kansen naar het optellen van termen, en maakt zo het somteken ($\sum$) in de entropie mogelijk. 
 
-## Surprisal: informatie als $-\log(p)$
+Waarom doen we dit? Optellingen zijn niet alleen voor ons brein makkelijker dan vermenigvuldigingen, ze zijn ook rekenkundig veel stabieler: kansen die je met elkaar vermenigvuldigt worden razendsnel extreem klein, terwijl hun logaritmen hanteerbare getallen blijven die je gewoon kunt optellen. Dit is een terugkerende methode in de wetenschap: maten maken die stabiel zijn bij berekeningen en cognitief makkelijker om mee te werken.
 
-De grootheid $-\log(p)$ heeft een eigen naam: *informatie*, ook wel *surprisal* (verrassing). Een onwaarschijnlijke uitkomst (kleine $p$) levert veel informatie op; een vrijwel zekere uitkomst (grote $p$) weinig. De entropie
+## Informatie als $-\log(p)$
+
+De grootheid $-\log(p)$ heeft een eigen naam: *informatie*, ook wel *surprisal* (verrassing). Een onwaarschijnlijke uitkomst (kleine kans $p$) levert veel informatie op; een vrijwel zekere uitkomst (grote $p$) weinig. De entropie
 
 $$H(X) = -\sum_i p_i \log(p_i)$$ {#eq-entropie2-def}
 
-is dan niets anders dan het gemiddelde van die informatie over alle uitkomsten, de *verwachtingswaarde* van de surprisal. Vandaar de naam *informatie-entropie*, of kortweg weer *informatie*.
+is dan niets anders dan het gemiddelde van die informatie over alle uitkomsten, de *verwachtingswaarde* van de surprisal. Vandaar de naam *informatie-entropie*, of kortweg weer *informatie* als afkorting van *Shannon-informatie*; deze laatste zul je nog vaker tegenkomen in je studie.
 
 ::: aside
 Dat één begrip zowel "surprisal" als "informatie" als "entropie" heet, is een voorbeeld van hoe naamgeving in de wetenschap tot verwarring kan leiden. Toepasselijk genoeg gaat entropie hier nu juist over.
@@ -183,7 +206,7 @@ Dat één begrip zowel "surprisal" als "informatie" als "entropie" heet, is een 
 
 ### De Complexiteit van de natuur valt uiteen in twee vragen
 
-Dankzij de logaritme kunnen we de entropie *ontleden*. Meet je de vorm van een willekeurig organisme in de biosfeer, dan valt de onzekerheid over die vorm uiteen in twee vragen: *welke soort is dit?* en *hoe ziet dit individu eruit, gegeven die soort?* In formulevorm:
+Dankzij de logaritme kunnen we dus de entropie *ontleden*. Meet je de vorm van een willekeurig organisme in de biosfeer, dan valt de onzekerheid over die vorm uiteen in twee vragen: *welke soort is dit?* en *hoe ziet dit individu eruit, gegeven die soort?*, niet alle organisme in een soort zien er identiek uit. In formulevorm ziet deze partitie er als volgt uit:
 
 $$H(\text{fenotype}) = H(\text{soort}) + H(\text{fenotype} \mid \text{soort})$$ {#eq-ontleden-def}
 
@@ -193,7 +216,7 @@ Deze opsplitsing lost de schijnbare tegenspraak op.
 
 *Tussen* soorten stijgt de entropie. Er komen soorten bij, de biodiversiteit groeit, en de linkerterm $H(\text{soort})$ wordt groter.
 
-Er is dus geen paradox: het gaat om twee verschillende termen, die onafhankelijk van elkaar kunnen bewegen. Sterker nog, de twee versterken elkaar. Juist doordat de vorm binnen een soort strak gebufferd is, worden soorten scherpe, telbare eenheden — en pas over zulke eenheden kun je überhaupt sommeren om biodiversiteit te meten.
+Er is dus geen paradox: het gaat om twee verschillende termen, die onafhankelijk van elkaar kunnen bewegen. Sterker nog, de twee versterken elkaar. Juist doordat de vorm binnen een soort strak gebufferd is, worden soorten scherpe, telbare eenheden, en pas over zulke eenheden kun je überhaupt sommeren om biodiversiteit te meten. Daarmee begrijpen we nu waarom de natuur tegelijk complexer en gevarieerder wordt en een herkenbare structuur vertoont, en het is juist die structuur die de biologische wetenschap mogelijk maakt.
 
 **Canalisatie** is het vermogen van de ontwikkeling om, ondanks variatie in genotype of omgeving, steeds hetzelfde fenotype voort te brengen.
 
@@ -203,15 +226,17 @@ Welke van de twee termen wordt beïnvloed door canalisatie, en welke door het on
 
 **Jouw antwoord:**
 
-Al deze vragen illustreren dat een relatief eenvoudige functie zoals entropie ons veel theoretische inzichten kan verschaffen, zowel kwalitatief als kwantitatief, die anders niet of erg moeilijk zijn. Dat geldt niet alleen voor de biologie, maar ook voor andere wetenschappelijke disciplines.
+Al deze vragen illustreren dat een relatief eenvoudige functie zoals entropie ons veel theoretische inzichten kan verschaffen, zowel kwalitatief als kwantitatief, die anders niet of erg moeilijk zijn of erg moeilijk. In de ecologie maakt entropie het bovendien mogelijk verschillende bronnen van biodiversiteit afzonderlijk te meten: de diversiteit binnen een gebied (alfadiversiteit), tussen gebieden (bètadiversiteit) en over het geheel (gammadiversiteit); precies dezelfde opsplitsing in een "binnen"- en een "tussen"-term die we hierboven tegenkwamen.
+
+Dat geldt niet alleen voor de biologie, maar ook voor andere wetenschappelijke disciplines.
 
 In dit theoretische deel stond de interpretatie centraal; code en wiskunde hebben we bewust op de achtergrond gehouden en conceptueel begrip voorop. In de komende delen keren die juist terug, en gaan we meer rekenen en met wiskundige regels werken
 
 ## Slotopdracht: jouw eigen synthese
 
-Deze laatste opdracht is anders dan de vorige. Er is geen goed of fout antwoord, mogelijk alleen slecht geformuleerd, en je hoeft niets te berekenen. We vragen je om terug te kijken op alles wat in deze portfolio-opdracht langskwam, zowel het practicum als het theoretische deel, en er in je eigen woorden een samenhangend verhaal van te maken.
+Deze laatste opdracht is anders dan de vorige. Er is geen goed of fout antwoord, mogelijk alleen slecht geformuleerd, en je hoeft niets te berekenen. We vragen je om terug te kijken op alles wat in deze portfolio-opdracht langskwam, zowel het practicum als het theoretische deel, en er in je eigen woorden een samenhangend verhaal van te maken. Dit is niet makkelijk en je zult ervaren je eigen worden nu vinden *nog* erg moeilijk is, we dagen jullie dus uit. 
 
-Belangrijk: dit is een *momentopname*. De hypothesen en verbanden die je nu zlef formuleert, mag je gedurende het jaar vrij aanpassen, verwerpen of uitbreiden naarmate je nieuwe kennis opdoet, bijvoorbeeld na nieuwe inzichten met allometrische schaling in de komende colleges. Je legt hier dus geen eindantwoord vast, maar je huidige denken. Durf daarom te speculeren. We helpen je een beetje met een set vragen.
+Belangrijk: dit is een *momentopname*. De hypothesen en verbanden die je nu zelf formuleert, mag je gedurende het jaar vrij aanpassen, verwerpen of uitbreiden naarmate je nieuwe inzichten opdoet, bijvoorbeeld na nieuwe inzichten met allometrische schaling in de komende colleges. Je legt hier dus geen eindantwoord vast, maar je huidige denken. Durf daarom te speculeren. We helpen je een beetje met een set vragen. 
 
 **Vraag 1 — Rode draad.** Vat in je eigen woorden samen welke theoretische elementen vandaag zijn langsgekomen, en hoe ze met elkaar samenhangen. Denk aan de begrippen die telkens terugkeerden: de nulhypothese en het verwerpen daarvan, de $\chi^2$-toets en de p-waarde, stochastische variabelen en hun verdeling, surprisal en entropie, en de opsplitsing van entropie in canalisatie en biodiversiteit. Probeer niet elk begrip los te beschrijven, maar te laten zien hoe ze in elkaar grijpen.
 
@@ -230,7 +255,7 @@ Belangrijk: dit is een *momentopname*. De hypothesen en verbanden die je nu zlef
 > jouw antwoord:
 
 ::: aside
-Als je klaar bent, kun je deze file plaatsen in je persoonlijke locker in Brightspace
+Als je klaar bent, kun je deze file plaatsen in bijbehorende assignment in Brightspace. De mais practicum opdracht is niet nodig maar sla deze wel goed op met een back-up. 
 :::
 
 ::: {.callout-tip collapse="true"}
@@ -242,11 +267,11 @@ In het honoursonderdeel graven we dieper. Een paar vragen die we gaan verkennen:
 
 - Waarom juist deze formule? Entropie is niet zomaar één van de vele mogelijke maten voor onzekerheid. Onder een handvol redelijke eisen — bijvoorbeeld dat onafhankelijke gebeurtenissen optelbare informatie geven — is $-\sum p_i \log p_i$ de *enige* die overblijft. We leiden dat zelf af.
 
-- De brug naar de natuurkunde. Dezelfde grootheid die wij op zaadverhoudingen loslaten, bepaalt in de thermodynamica de richting van de tijd: de entropie van een gesloten systeem neemt toe. We bekijken hoe Boltzmanns $S = k \log W$ en Shannons $H$ in wezen dezelfde vergelijking zijn, en wat dat betekent.
+- De brug naar de natuurkunde. Dezelfde grootheid die wij op zaadverhoudingen loslaten, bepaalt in de thermodynamica de richting van de tijd en van biochemische processen. De tweede hoofdwet van de thermodynamica stelt namelijk dat de entropie van een gesloten systeem altijd naar een maximum gaat. We bekijken hoe Boltzmanns $S = k \log W$ en Shannons $H$ in wezen dezelfde vergelijking zijn, en wat dat betekent. Dat levende cellen tóch geordende structuren opbouwen, lijkt daarmee in tegenspraak, hoe dat kan, is precies een van de vragen die we gaan verkennen.
 
-- Continue verdelingen. Tot nu toe telden we discrete uitkomsten. Wat gebeurt er als de variabele continu wordt? Dan wordt de som een integraal, $h(X) = -\int f(x)\log f(x)\,dx$, en blijkt de normale verdeling een bijzondere eigenschap te hebben: van alle verdelingen met een gegeven variantie heeft zij de hoogste entropie.
+- Continue verdelingen. Tot nu toe telden we discrete uitkomsten. Wat gebeurt er als de variabele continu wordt? Dan wordt de som een integraal, $h(X) = -\int f(x)\log f(x)\,dx$, en blijkt de normale verdeling een bijzondere eigenschap te hebben: van alle verdelingen met een gegeven variantie heeft zij de hoogste entropie en dat wordt later belangrijk in de statistiek en AI.
 
-- Maximale entropie als principe. Als je niets weet behalve een paar constraints, welke kansverdeling moet je dan kiezen? Het antwoord — die met de hoogste entropie — blijkt een verrassend krachtig recept, van statistische fysica tot machine learning.
+- Maximale entropie als principe. Als je niets weet behalve een paar constraints, welke kansverdeling moet je dan kiezen? Het antwoord — die met de hoogste entropie — blijkt een verrassend krachtig recept, van statistische fysica tot machine learning and AI.
 
-Wie hiermee verder wil, krijgt een glimp van hoe één wiskundige vorm de taal van onzekerheid, informatie én de tweede hoofdwet van de thermodynamica tegelijk spreekt.
+Wie hiermee verder wil, krijgt een glimp van hoe één wiskundige vorm de taal van onzekerheid, informatie én de tweede hoofdwet van de thermodynamica tegelijk spreekt en is volgens vele de belangrijkste wetenschappelijke inzich dat er is. Kippenvel !!
 :::

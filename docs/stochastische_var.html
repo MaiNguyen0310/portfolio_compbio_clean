@@ -330,10 +330,18 @@ window.Quarto = {
 <h2 data-number="1.2" class="anchored" data-anchor-id="de-toetsgrootheid-is-zelf-een-stochastische-variabele"><span class="header-section-number">1.2</span> De toetsgrootheid is zelf een stochastische variabele</h2>
 <p>Jullie hebben de resultaten van jullie metingen ingevoerd in het online formulier. Hieronder zie je de verdeling van de berekende <span class="math inline">\(\chi^2\)</span>-waarden op basis van jullie individuele metingen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code die een histogram geeft van de chi^2 waarden</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Maizz <span class="ot">&lt;-</span> <span class="fu">read.delim2</span>(<span class="st">"Maizz.txt"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Maizz<span class="sc">$</span>Chi.<span class="fl">2.</span>waarde)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stochastische_var_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div id="exr-chi2_waarden" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 1.1</strong></span> Stel dat maïs zich precies aan de verwachte 3:1-verdeling houdt, dus dat <span class="math inline">\(H_0\)</span> waar is. Verwacht je dan dat alle studenten dezelfde <span class="math inline">\(\chi^2\)</span>-waarden vinden, of nog steeds verschillende? Met andere woorden: ontstaat er ook onder <span class="math inline">\(H_0\)</span> een verdeling van <span class="math inline">\(\chi^2\)</span>-waarden? Zo ja, dan is dat een speciale verdeling. Waarom zou een goede naam voor die specifieke verdeling zijn?</p>
+<p><span class="theorem-title"><strong>Vraag 1.1</strong></span> Stel dat maïs zich precies aan de verwachte 3:1-verdeling houdt, dus dat <span class="math inline">\(H_0\)</span> waar is. Verwacht je dan dat alle studenten dezelfde <span class="math inline">\(\chi^2\)</span>-waarden vinden, of nog steeds verschillende? Met andere woorden: ontstaat er ook onder <span class="math inline">\(H_0\)</span> een verdeling van <span class="math inline">\(\chi^2\)</span>-waarden? Zo ja, dan is dat een speciale verdeling. Wat zou een goede naam voor die specifieke verdeling zijn?</p>
 </div>
 <p><strong>Jouw antwoord:</strong></p>
 <p>Wat onze waargenomen verdeling laat zien, is een voorbeeld van een stochastische variabele: een grootheid waarvan de waarde door toeval wordt bepaald. Ze heeft drie kenmerkende eigenschappen:</p>
@@ -348,14 +356,21 @@ window.Quarto = {
 <p>De <span class="math inline">\(\chi^2\)</span>-waarde voldoet aan alle drie: ze ligt pas vast na het tellen en berekenen (2), verschilt van student tot student door toeval in de steekproef (3), en volgt daarmee een kansverdeling (1). Er is dus onzekerheid over welke <span class="math inline">\(\chi^2\)</span>-waarde een meting oplevert.</p>
 <p>Dit is bovendien geen toeval, maar een noodzakelijk gevolg: <span class="math inline">\(\chi^2\)</span>is een functie van stochastische variabelen, zoals het aantal zaden, en is daardoor zelf ook een stochastische variabele, die dus per definitie een eigen kansverdeling bezit. Wiskundigen hebben die <span class="math inline">\(\chi^2\)</span>-verdeling onder bepaalde <strong>aannamen</strong> kunnen afleiden:</p>
 <p><span class="math display">\[f(x; k) = \frac{1}{2^{k/2}\,\Gamma(k/2)}\, x^{k/2 - 1} e^{-x/2}, \quad x &gt; 0\]</span></p>
-<p>Dit is een ingewikkelde functie die jullie niet uit je hoofd hoeven te kennen. Het belangrijke deel is de zinsnede <em>onder bepaalde aannamen</em>. Een cruciale aanname bv is dat <span class="math inline">\(H_0\)</span> correct is. Dat lijkt merkwaardig, we willen <span class="math inline">\(H_0\)</span> juist toetsen, en toch nemen we haar even als waar aan. Maar precies dat is de geniale zet: alleen door een concrete hypothese als “precies <span class="math inline">\(3:1\)</span>” aan te nemen, kunnen we exact uitrekenen hoe onwaarschijnlijk onze data zouden zijn als <span class="math inline">\(H_0\)</span> klopt. Het alternatief, “er is een afwijking”, is te vaag om mee te rekenen: het kan oneindig veel vormen aannemen. Door <span class="math inline">\(H_0\)</span> als vertrekpunt te nemen, krijgen we een rekenbaar model, en daar komt de <span class="math inline">\(\chi^2\)</span>-verdeling vandaan. We komen hier later dit jaar in Statistiek 1 op terug.</p>
+<p>Dit is een ingewikkelde functie die jullie niet uit je hoofd hoeven te kennen. Het belangrijke deel is de zinsnede <em>onder bepaalde aannamen</em>. Een cruciale aanname bv is dat <span class="math inline">\(H_0\)</span> correct is. Dat lijkt merkwaardig, we willen <span class="math inline">\(H_0\)</span> juist verwerpen, en toch nemen we haar even als waar aan. Maar precies dat is de geniale zet: alleen door een concrete hypothese als “precies <span class="math inline">\(3:1\)</span>” aan te nemen, kunnen we exact uitrekenen hoe onwaarschijnlijk onze data zouden zijn als <span class="math inline">\(H_0\)</span> klopt. Het alternatief, “er is een afwijking”, is te vaag om mee te rekenen: het kan oneindig veel vormen aannemen. Door <span class="math inline">\(H_0\)</span> als vertrekpunt te nemen, krijgen we een rekenbaar model, en daar komt de <span class="math inline">\(\chi^2\)</span>-verdeling vandaan. We komen hier later dit jaar in Statistiek 1 in het algemeen op terug.</p>
 <p>Meer algemeen geldt dat we bij statistische toetsen en wiskundige modellen aannamen altijd expliciet moeten benoemen en controleren.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>De wetenschap kan niet zonder <strong>aannamen</strong>: alleen onder bepaalde condities kunnen we een theorie of model formuleren. Van die aannamen moet je je altijd bewust zijn.</p>
 </div></div><p>Deze onzekerheid wordt nog beter voelbaar bij de p-waarde waarmee we het behouden van <span class="math inline">\(H_O\)</span> op baseren, die op haar beurt een functie van de stochatische variabele <span class="math inline">\(\chi^2\)</span> is. Hieronder zie je de verdeling van de p-waarden over de groepen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code die een histrogram geeft van de p waarden</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Maizz<span class="sc">$</span>p.waarde)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stochastische_var_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div id="exr-p_waarden" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 1.2</strong></span> Als de p-waarde zelf ook een stochastische variabele is, wat betekent dat dan voor onze uitspraak over <span class="math inline">\(H_0\)</span>?</p>

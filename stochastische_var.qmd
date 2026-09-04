@@ -15,11 +15,12 @@ In het dagelijks leven gebruiken we kans en waarschijnlijkheid vaak door elkaar.
 Jullie hebben de resultaten van jullie metingen ingevoerd in het online formulier. Hieronder zie je de verdeling van de berekende $\chi^2$-waarden op basis van jullie individuele metingen.
 
 ```{r}
-# code die een histogram geeft van de chi^2 waarden
+Maizz <- read.delim2("Maizz.txt")
+hist(Maizz$Chi.2.waarde)
 ```
 
 ::: {#exr-chi2_waarden}
-Stel dat maïs zich precies aan de verwachte 3:1-verdeling houdt, dus dat $H_0$ waar is. Verwacht je dan dat alle studenten dezelfde $\chi^2$-waarden vinden, of nog steeds verschillende? Met andere woorden: ontstaat er ook onder $H_0$ een verdeling van $\chi^2$-waarden? Zo ja, dan is dat een speciale verdeling. Waarom zou een goede naam voor die specifieke verdeling zijn?
+Stel dat maïs zich precies aan de verwachte 3:1-verdeling houdt, dus dat $H_0$ waar is. Verwacht je dan dat alle studenten dezelfde $\chi^2$-waarden vinden, of nog steeds verschillende? Met andere woorden: ontstaat er ook onder $H_0$ een verdeling van $\chi^2$-waarden? Zo ja, dan is dat een speciale verdeling. Wat zou een goede naam voor die specifieke verdeling zijn?
 :::
 
 **Jouw antwoord:**
@@ -40,7 +41,7 @@ Dit is bovendien geen toeval, maar een noodzakelijk gevolg: $\chi^2$is een funct
 
 $$f(x; k) = \frac{1}{2^{k/2}\,\Gamma(k/2)}\, x^{k/2 - 1} e^{-x/2}, \quad x > 0$$
 
-Dit is een ingewikkelde functie die jullie niet uit je hoofd hoeven te kennen. Het belangrijke deel is de zinsnede *onder bepaalde aannamen*. Een cruciale aanname bv is dat $H_0$ correct is. Dat lijkt merkwaardig, we willen $H_0$ juist toetsen, en toch nemen we haar even als waar aan. Maar precies dat is de geniale zet: alleen door een concrete hypothese als "precies $3:1$" aan te nemen, kunnen we exact uitrekenen hoe onwaarschijnlijk onze data zouden zijn als $H_0$ klopt. Het alternatief, "er is een afwijking", is te vaag om mee te rekenen: het kan oneindig veel vormen aannemen. Door $H_0$ als vertrekpunt te nemen, krijgen we een rekenbaar model, en daar komt de $\chi^2$-verdeling vandaan. We komen hier later dit jaar in Statistiek 1 op terug.
+Dit is een ingewikkelde functie die jullie niet uit je hoofd hoeven te kennen. Het belangrijke deel is de zinsnede *onder bepaalde aannamen*. Een cruciale aanname bv is dat $H_0$ correct is. Dat lijkt merkwaardig, we willen $H_0$ juist verwerpen, en toch nemen we haar even als waar aan. Maar precies dat is de geniale zet: alleen door een concrete hypothese als "precies $3:1$" aan te nemen, kunnen we exact uitrekenen hoe onwaarschijnlijk onze data zouden zijn als $H_0$ klopt. Het alternatief, "er is een afwijking", is te vaag om mee te rekenen: het kan oneindig veel vormen aannemen. Door $H_0$ als vertrekpunt te nemen, krijgen we een rekenbaar model, en daar komt de $\chi^2$-verdeling vandaan. We komen hier later dit jaar in Statistiek 1 in het algemeen op terug.
 
 Meer algemeen geldt dat we bij statistische toetsen en wiskundige modellen aannamen altijd expliciet moeten benoemen en controleren.
 
@@ -51,7 +52,7 @@ De wetenschap kan niet zonder **aannamen**: alleen onder bepaalde condities kunn
 Deze onzekerheid wordt nog beter voelbaar bij de p-waarde waarmee we het behouden van $H_O$ op baseren, die op haar beurt een functie van de stochatische variabele $\chi^2$ is. Hieronder zie je de verdeling van de p-waarden over de groepen.
 
 ```{r}
-# code die een histrogram geeft van de p waarden
+hist(Maizz$p.waarde)
 ```
 
 ::: {#exr-p_waarden}
@@ -60,7 +61,7 @@ Als de p-waarde zelf ook een stochastische variabele is, wat betekent dat dan vo
 
 Antwoord:
 
-Nemen een kritieke waarde van 0.05 waarbij we de nulhypothese verwerpen, dan blijkt iets opmerkelijks: ook de conclusie, verwerpen of niet, wordt bepaald door een stochastische variabele. Of een student de nulhypothese verwerpt, hangt af van een p-waarde die zelf door toeval varieert. Daarmee erf ook de uitspraak over de hypothese onzekerheid. Een tweede opmerkelijk gevolg is dat zelfs wanneer de 3:1-hypothese correct is, sommige groepen haar toch zullen verwerpen, puur door toeval in de steekproef; bijvoorbeeld als ze teveel rode of gele korrels hebben gemeten. Dit noemen we later een type-I-fout en we weten precies de kans daarop. Voor nu is het genoeg om te zien dat de onzekerheid zich overerft tot in de conclusie zelf.
+Nemen we een kritieke waarde $\alpha$ van 0.05 waarbij we de nulhypothese verwerpen, dan blijkt iets opmerkelijks: ook de conclusie, verwerpen of niet, wordt bepaald door een stochastische variabele. Of een student de nulhypothese verwerpt, hangt af van een p-waarde die zelf door toeval varieert. Daarmee erft ook de uitspraak over de hypothese onzekerheid. Een tweede opmerkelijk gevolg is dat zelfs wanneer de 3:1-hypothese correct is, sommige groepen haar toch zullen verwerpen, puur door toeval in de steekproef; bijvoorbeeld als ze teveel rode of gele korrels hebben gemeten. Dit noemen we later een type-I-fout en we weten precies de kans daarop. Voor nu is het genoeg om te zien dat de onzekerheid zich overerft tot in de conclusie zelf.
 
 ## Maat voor onzekerheid: Entropie.
 
@@ -68,13 +69,13 @@ Nemen een kritieke waarde van 0.05 waarbij we de nulhypothese te verwerpen, dan 
 
 ## Maat voor onzekerheid: Entropie.
 
-Er bestaan verschillende maten in de statistiek welke de hoeveelheid onzekerheid kunnen duiden. Later in het jaar komen we bijvoorbeeld de standaard fout (SE) tegen. Nu wil ik kijken naar een andere zeer belangrijke wetenschappelijke maat voor onzekerheid, namelijk `entropie.` Entropie kan worden opgevat naast een maat voor onzekerheid, ook als willekeurigheid of wanorde en zoals we zullen zien ook biodiversiteit en positie-specifieke entropie in moleculaire biologie, en is alleen gebaseerd op de kansverdeling.
+Er bestaan verschillende maten in de statistiek welke de hoeveelheid onzekerheid kunnen duiden. Later in het jaar komen we bijvoorbeeld de standaard fout (SE) tegen. Nu wil ik kijken naar een andere zeer belangrijke wetenschappelijke maat voor onzekerheid, namelijk `entropie.` Entropie kan worden opgevat naast een maat voor onzekerheid, ook als een maat voor willekeur of wanorde en zoals we zullen zien ook biodiversiteit en positie-specifieke entropie in moleculaire biologie, en is alleen een functie van een kansverdeling.
 
 De entropie van een discrete kansverdeling zoals voor biodiversiteit en positie-specifieke entropie wordt gedefinieerd als:
 
 $$H(p) = -\sum_i p_i \log(p_i)$$ {#eq-entropie-def}
 
-waarbij $p_i$ de kans is op uitkomst $i$.
+waarbij $p_i$ de kans is op uitkomst $i$ die een bepaalde verdeling volgt.
 
 ### Interpretatie
 
@@ -97,7 +98,7 @@ De betekenis van entropie hangt af van het toepassingsgebied:
 3.  in de **sociale wetenschappen** en economie kan entropie worden gebruikt als maat voor economische of sociale ongelijkheid.
 
 ::: {#exr-entropie_sociaal}
-Leg uit waarom zou entropie een maat zijn voor kunnen zijn voor ongelijkheid in punt 3. Wordt de waarden van de entropie groter of kleiner bij ongelijkheid?
+Leg uit waarom entropie een maat kan zijn voor ongelijkheid in punt 3. Wordt de waarden van de entropie groter of kleiner bij sociale ongelijkheid (Thiel-index)?
 :::
 
 **Jouw antwoord:**
@@ -141,7 +142,7 @@ Stel je sluit je ogen en iemand wijst een willekeurige soort aan. Bij welke posi
 > jouw antwoord:
 
 ::: {#exr-tabel_entropie}
-Leg uit welke positie de hoogste entropie heeft en welke de laagste. Gebruik daarbij dat entropie alleen afhangt van hoe de bouwstenen over de soorten verdeeld zijn, niet van welke bouwsteen het is.
+Berekenin de entropy van kollom 
 :::
 
 > jouw antwoord:

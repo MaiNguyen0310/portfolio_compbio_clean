@@ -312,7 +312,7 @@ window.Quarto = {
 <p>Dit is de eerste portfolio-opdracht, gekoppeld aan een specifieke cursus. We beginnen bij de statistiek: de berekeningen voeren jullie uit in R, zowel “met de hand” gecodeerd als met de ingebouwde R-functies. Zo doorgronden jullie niet alleen wat er onder de motorkap gebeurt, maar leren jullie ook hoe je dezelfde analyse efficiënt uitvoert met de functies die R al biedt.</p>
 <p>Na het practicum volgt het theoretische deel. Daarin onderzoeken we hoe wiskunde en statistiek binnen de biologie worden gebruikt, waarom dat zo is, en waarom dat ertoe doet.</p>
 <p>In dit theoretisch deel laten we expliciet zien dat de wiskunde achter de gebruikte statistische toets ook opduikt in heel andere contexten: biodiversiteit, onzekerheid, machine learning en AI; één wiskundige vorm, telkens opnieuw geïnterpreteerd. Daarmee willen we duidelijk maken dat uiteenlopende biologische concepten kunnen samenvallen in dezelfde onderliggende wiskunde.</p>
-<p>Dat geldt ook binnen de statistiek zelf die op de wiskunde is gebaseerd: verschillende methoden en toetsen die jullie als losse recepten leren, rusten vaak op één en dezelfde onderliggende redenering. Wat verandert is de context, niet de wiskunde. Het is ook jullie taak deze zelf te ontdekken, met behulp van ons natuurlijk.</p>
+<p>Dat geldt ook binnen de statistiek zelf die op de wiskunde is gebaseerd: verschillende methoden en toetsen die jullie als losse recepten leren, rusten vaak op één en dezelfde onderliggende redenering. Wat verandert is de context, niet de wiskunde. Het is ook jullie taak deze <strong>zelf</strong> te ontdekken, met behulp van ons natuurlijk.</p>
 </section>
 <section id="opdracht-van-vandaag" class="level2 page-columns page-full" data-number="A.2">
 <h2 data-number="A.2" class="anchored" data-anchor-id="opdracht-van-vandaag"><span class="header-section-number">A.2</span> Opdracht van vandaag:</h2>
@@ -371,7 +371,7 @@ window.Quarto = {
 <li><strong>B. Of is de afwijking systematisch, en kan het verschil niet meer verklaard worden door toeval alleen?</strong>
 <ol type="1">
 <li>De hypothese van de 1:1 verhouding is <code>onaannemelijk</code>.</li>
-<li>We verwerpen de nulhypothese we hebben een effect aangetoond.</li>
+<li>We verwerpen de nulhypothese we hebben een verschil aangetoond.</li>
 </ol></li>
 </ul>
 <p>Dit is precies de vraag waarmee de statistiek zich bezighoudt. Het is daarbij belangrijk om te beseffen dat we niet bewijzen dat de verdeling gelijk of ongelijk is. In plaats daarvan onderzoeken we of de metingen de nulhypothese ondersteunen of juist minder aannemelijk maken.</p>
@@ -406,7 +406,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
-<p>Deze laatste vraag is een mooi voorbeeld van hoe een eenvoudig wiskunde stap je automatisch het correcte inzicht geeft.</p>
+<p>Deze laatste vraag is een mooi voorbeeld van hoe een eenvoudig wiskunde stap je automatisch het correcte inzicht geeft over de werking van een statistische hypothese test.</p>
 </section>
 <section id="voorbeeld-in-r-sex-ratio-berekenen" class="level2 page-columns page-full" data-number="A.5">
 <h2 data-number="A.5" class="anchored" data-anchor-id="voorbeeld-in-r-sex-ratio-berekenen"><span class="header-section-number">A.5</span> Voorbeeld in R: Sex ratio berekenen</h2>
@@ -425,7 +425,7 @@ window.Quarto = {
 <pre><code>[1] 1.25</code></pre>
 </div>
 </div>
-<p>R beschikt over een ingebouwde functie om de <span class="math inline">\(\chi^2\)</span>$\chi^2$-kwadraattoets direct uit te voeren: chisq.test(). Deze gebruik je voor deze data als volgt:</p>
+<p>R beschikt over een ingebouwde functie om de <span class="math inline">\(\chi^2\)</span>-kwadraattoets direct uit te voeren: chisq.test(). Deze gebruik je voor deze data als volgt:</p>
 <p><code>chisq.test(c(45, 35), p = c(1/2, 1/2))</code></p>
 <div id="exr-chi2_code" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag A.4</strong></span> Vertaal deze code naar de context van het experiment en leg in je eigen woorden uit wat elk onderdeel van de code betekent.</p>
@@ -465,10 +465,10 @@ X-squared = 1.25, df = 1, p-value = 0.2636</code></pre>
 <p>De Nulhypothese (<span class="math inline">\(H_0\)</span>) stelt in dit geval dat er géén verschil is aangetoond tussen de waargenomen verdeling en de theoretisch verwachte verdeling van (1/2, 1/2).</p>
 <p>De algemene statistische stelregel is:</p>
 <ul>
-<li>Als <span class="math inline">\(p &lt; 0.05\)</span>, verwerpen we de nulhypothese: de waargenomen afwijking is dan te groot om door toeval alleen te worden verklaard; <em>de kans dat we deze data waarnemen als de nulhypothese correct is is klein</em>.</li>
+<li>Als <span class="math inline">\(p &lt; 0.05\)</span>, verwerpen we de nulhypothese: de waargenomen afwijking is dan te groot om door toeval alleen te worden verklaard; <em>de kans dat we deze data waarnemen als de nulhypothese correct is klein</em>.</li>
 <li>Als <span class="math inline">\(p \ge 0.05\)</span>, is er onvoldoende grond om de nulhypothese te verwerpen; <em>toeval blijft dan een aannemelijke verklaring voor de waargenomen afwijking</em>.</li>
 </ul>
-<p>In ons voorbeeld is de p-waarde 0.263, dit is groter dan 0.05; is er onvoldoende grond om <span class="math inline">\(H_0\)</span> te verwerpen: <em>we kunnen de 1:1 verhouding niet uitsluiten</em>. Het waargenomen verschil (gekwantificeerd in <span class="math inline">\(\chi^2\)</span>) is hoogstwaarschijnlijk het gevolg van toeval en dus niet systematisch.</p>
+<p>In ons voorbeeld is de p-waarde 0.263, dit is groter dan 0.05; er is onvoldoende grond om <span class="math inline">\(H_0\)</span> te verwerpen; <em>we kunnen de 1:1 verhouding niet uitsluiten</em>. Het waargenomen verschil (gekwantificeerd in <span class="math inline">\(\chi^2\)</span>) is hoogstwaarschijnlijk het gevolg van toeval en dus niet systematisch; het is aannemelijk dat de sex ratio 1:1 is.</p>
 <div id="exr-chi2_steekproef" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag A.5</strong></span> Wat gebeurt er met de <span class="math inline">\(\chi ^{2}\)</span>-waarde en de p-waarde als onze steekproefomvang groter wordt (bijvoorbeeld van 350 naar 450)? Leid dit eerst theoretisch af, voer daarna de berekening uit in R en interpreteer ten slotte het resultaat.</p>
 </div>
@@ -495,7 +495,8 @@ X-squared = 1.25, df = 1, p-value = 0.2636</code></pre>
 </ul></li>
 </ul>
 </div></div><p>Let op: Neem deze bevindingen en berekeningen netjes op in je labjournaal!</p>
-<p>Als laatste actie kunnen jullie de gevonden <span class="math inline">\(\chi^2\)</span> waarden en p-waarden invoeren in dit formulier. Het resultaat daarvan zullen we gebruiken in het volgende theoretische deel.</p>
+<p>Als laatste actie kunnen jullie de gevonden <span class="math inline">\(\chi^2\)</span> - en p-waarden invoeren met <a href="https://forms.gle/T1jEWueUrZrqH62o8">dit formulier</a></p>
+<p>Het resultaat daarvan zullen we gebruiken in het volgende theoretische deel.</p>
 <p>In het theoretische deel van het portfolio gaan we dieper in op het concept van een kansverdeling met name die van <span class="math inline">\(\chi^2\)</span>, en in het bijzonder de daarmee verbonden onzekerheid van je uiteindelijke uitspraak. Vervolgens leggen we een verband tussen het concept onzekerheid, biodiversiteit, en Evo-Devo.</p>
 
 

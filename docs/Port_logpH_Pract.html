@@ -497,7 +497,7 @@ window.Quarto = {
 <section id="ph-berekeningen" class="level2" data-number="B.3">
 <h2 data-number="B.3" class="anchored" data-anchor-id="ph-berekeningen"><span class="header-section-number">B.3</span> pH berekeningen</h2>
 <p>De zuurgraad van een oplossing wordt bepaald door de concentratie protonen (<span class="math inline">\([\text{H}^+]\)</span>). Deze kan sterk verschillen tussen oplossingen. Het is niet handig om met extreem grote of kleine concentraties te werken. In de praktijk wordt deze concentratie daarom, zoals besproken, op een logaritmische schaal geplaatst.</p>
-<p>De pH van een oplossing wordt als volgt gedefinieerd: <span class="math display">\[\text{pH} = -\log_{10}[\text{H}^+].\]</span></p>
+<p>De pH van een oplossing wordt als volgt gedefinieerd: <span class="math display">\[\text{pH} = -\log_{10}[\text{H}^+].\]</span>$$\text{pH} = -\log_{10}[\text{H}^+].$$</p>
 <p>Om uit de pH de concentratie te bepalen, gebruiken we de exponentiële functie: <span class="math display">\[[\text{H}^+] = 10^{-\text{pH}}\]</span></p>
 <!-- ### Voorbeeld: pH metingen -->
 <!-- Stel dat een oplossing pH 3 heeft. Dan geldt: $$[\text{H}^+] = 10^{-3} = 0.001 ~\text{mol/L}.$$ Als de pH daalt naar 2, volgt: $$[\text{H}^+] = 10^{-2} = 0.01 ~\text{mol/L}.$$ De concentratie wordt dus 10× groter, omdat exponentiële en logaritmische functies elkaars inverse zijn. -->
@@ -536,7 +536,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>massa_gewogen <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> massa_nodig, <span class="at">sd =</span> <span class="fl">0.05</span>)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>massa_gewogen</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.08378856</code></pre>
+<pre><code>[1] 0.0001437015</code></pre>
 </div>
 </div>
 <div id="exr-massa_gw" class="theorem exercise">
@@ -579,8 +579,8 @@ window.Quarto = {
 <pre><code>[1] 1e-07</code></pre>
 </div>
 </div>
-<div id="exr-pkz" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag B.7</strong></span> Codeer nu zelf de algemene uitdrukking die je gebruikt om de pKz van oplossing A te bepalen.</p>
+<div>
+<p>Codeer nu zelf de algemene uitdrukking die je gebruikt om de pKz van oplossing A te bepalen.</p>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>pKz_A <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># vervang met je berekening!</span></span>
@@ -595,13 +595,13 @@ window.Quarto = {
 <p>Je hebt de pKz nu berekend uit één meting. Maar bekijk de formule eens goed:</p>
 <p><span class="math display">\[\text{pH} = \text{pKz} + \log_{10}\left(\frac{[\text{Z}^-]}{[\text{HZ}]}\right)\]</span></p>
 <div id="exr-pH_lineaire_reg" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag B.8</strong></span> Als je <span class="math inline">\(x = \log_{10}([\text{Z}^-]/[\text{HZ}])\)</span> noemt, welke bekende vorm (<span class="math inline">\(y = a + bx\)</span>) herken je dan in deze formule? Wat stellen <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> en <span class="math inline">\(y\)</span> hier voor? Welke waarden verwacht je dat deze aannemen?</p>
+<p><span class="theorem-title"><strong>Vraag B.7</strong></span> Als je <span class="math inline">\(x = \log_{10}([\text{Z}^-]/[\text{HZ}])\)</span> noemt, welke bekende vorm (<span class="math inline">\(y = a + bx\)</span>) herken je dan in deze formule? Wat stellen <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span> en <span class="math inline">\(y\)</span> hier voor? Welke waarden verwacht je dat deze aannemen?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
 <div id="exr-lin_interpretatie" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag B.9</strong></span> Leg in eigen woorden uit waarom dit verband inzichtelijk is. Koppel de formule aan het doel en de methode van het practicum: wat verander je? Wat meet je? En wat voor inzichten geeft het verband?</p>
+<p><span class="theorem-title"><strong>Vraag B.8</strong></span> Leg in eigen woorden uit waarom dit verband inzichtelijk is. Koppel de formule aan het doel en de methode van het practicum: wat verander je? Wat meet je? En wat voor inzichten geeft het verband?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
@@ -638,13 +638,13 @@ window.Quarto = {
 </div>
 </div>
 <div id="exr-pKz_lijn" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag B.10</strong></span> Waarom geeft het schatten van de pKz uit een lijn door meerdere punten waarschijnlijk een betrouwbaardere waarde dan het berekenen van de pKz uit slechts één meting?</p>
+<p><span class="theorem-title"><strong>Vraag B.9</strong></span> Waarom geeft het schatten van de pKz uit een lijn door meerdere punten waarschijnlijk een betrouwbaardere waarde dan het berekenen van de pKz uit slechts één meting?</p>
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Denk aan het statistiekportfolio! Wat was bij de vorige opdracht de meerwaarde van een grotere steekproefgrootte?</p>
 </div></div><div id="exr-eig_log" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag B.11</strong></span> Je hebt nu nog een nuttige eigenschap van de logaritme gezien. Beschrijf deze eigenschap in eigen woorden, en leg uit hoe we deze kunnen toepassen in practica.</p>
+<p><span class="theorem-title"><strong>Vraag B.10</strong></span> Je hebt nu nog een nuttige eigenschap van de logaritme gezien. Beschrijf deze eigenschap in eigen woorden, en leg uit hoe we deze kunnen toepassen in practica.</p>
 </div>
 <!-- Zoals in de introductie van dit portfolio beschreven, zullen onderdelen uit dit portfolio gekoppeld worden aan practicumopdrachten. Voor dit portfolio-onderdeel hoef je nog niet zelf een hoofdstuk toe te voegen aan het portfoliobestand, zoals dat later wel zal moeten. Met deze app oefen je op een laagdrempelige manier met de logica achter coderen. Je kunt de berekeningen die je hierbij uitvoert ook gebruiken bij het schrijven van je labjournaal. -->
 <!-- # ```{r, echo = FALSE} -->

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.37">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -321,34 +321,34 @@ window.Quarto = {
 <p><strong>Tabel 3.1: Kruising van twee heterozygote ouders.</strong></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 7%">
+<col style="width: 46%">
+<col style="width: 46%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
-<th style="text-align: center;"><span class="math inline">\(R\)</span></th>
-<th style="text-align: center;"><span class="math inline">\(r\)</span></th>
+<th style="text-align: center;">R</th>
+<th style="text-align: center;">r</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(R\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(RR\)</span> (<span style="color:red;">rood</span>)</td>
-<td style="text-align: center;"><span class="math inline">\(Rr\)</span> (<span style="color:red;">rood</span>)</td>
+<td style="text-align: center;"><strong>R</strong></td>
+<td style="text-align: center;">RR <span style="color:red;">(rood)</span></td>
+<td style="text-align: center;">Rr <span style="color:red;">(rood)</span></td>
 </tr>
 <tr class="even">
-<td style="text-align: center;"><span class="math inline">\(r\)</span></td>
-<td style="text-align: center;"><span class="math inline">\(rR\)</span> (<span style="color:red;">rood</span>)</td>
-<td style="text-align: center;"><span class="math inline">\(rr\)</span> (<span style="color:#e6cd10;">geel</span>)</td>
+<td style="text-align: center;"><strong>r</strong></td>
+<td style="text-align: center;">rR <span style="color:red;">(rood)</span></td>
+<td style="text-align: center;">rr <span style="color:#e6cd10;">(geel)</span></td>
 </tr>
 </tbody>
 </table>
 <p>Als beide ouders daadwerkelijk <span class="math inline">\(Rr\)</span> zijn, dan verwachten we in de nakomelingen een verhouding van rood : geel = 3:1; dus drie rode voor elke gele dus een <strong>proportie van (3/4, 1/4)</strong>; de vier mogelijk genetische combinaties worden 2 fenotypen (rood en geel).</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p><strong>Opmerking</strong>: De verhouding is een veelvouden van 1/4; er vier mogelijke combinaties zijn van R en r(<span class="math inline">\(2^2\)</span>).</p>
+<p><strong>Opmerking</strong>: De verhouding is een veelvoud van 1/4; er zijn vier mogelijke combinaties van R en r(<span class="math inline">\(2^2\)</span>).</p>
 </div></div><p>Een statistische toets vertrekt vanuit de aanname dat er geen verschil is tussen de theoretische en waargenomen verdeling (de Null-hypothese) en onderzoekt vervolgens of het <code>aannemelijk</code> is om deze aanname te <strong>verwerpen</strong>. Voor de <span class="math inline">\(\chi^2\)</span>-kwadraattoets (spreek uit als chi-kwadraat) betekent dit dat we de waargenomen verdeling vergelijken met de verdeling die we zouden verwachten bij een 3:1-verhouding.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
@@ -388,6 +388,7 @@ window.Quarto = {
 </ul>
 <p>Voor ons sex ratio voorbeeld ziet de vergelijking er als volgt uit:</p>
 <p><span class="math display">\[X^2 = \frac{(O_m - E_m)^2}{E_m} + \frac{(O_v - E_v)^2}{E_v}\]</span></p>
+<p>We splitsen hierbij onze verzameling waarnemingen op in de twee groepen van interesse: mannelijke en vrouwelijke individuen, die we indexeren met <span class="math inline">\(m\)</span> en <span class="math inline">\(v\)</span>.</p>
 <div id="exr-chi2_uitleg" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag A.1</strong></span> Leg uit dat deze formule het verschil meet tussen de verdeling van de verwachte waarden (E) en de geobserveerde waarden (O) en welke waarde <span class="math inline">\(\chi^2\)</span> aanneemt als de hypothese exact overeenkomt met de meting. Leg uit waarom deze waarde logisch is in deze context.</p>
 </div>
@@ -466,7 +467,7 @@ X-squared = 1.25, df = 1, p-value = 0.2636</code></pre>
 <p>De algemene statistische stelregel is:</p>
 <ul>
 <li>Als <span class="math inline">\(p &lt; 0.05\)</span>, verwerpen we de nulhypothese: de waargenomen afwijking is dan te groot om door toeval alleen te worden verklaard; <em>de kans dat we deze data waarnemen als de nulhypothese correct is klein</em>.</li>
-<li>Als <span class="math inline">\(p \ge 0.05\)</span>, is er onvoldoende grond om de nulhypothese te verwerpen; <em>toeval blijft dan een aannemelijke verklaring voor de waargenomen afwijking</em>.</li>
+<li>Als <span class="math inline">\(p &gt; 0.05\)</span>, is er onvoldoende grond om de nulhypothese te verwerpen; <em>toeval blijft dan een aannemelijke verklaring voor de waargenomen afwijking</em>.</li>
 </ul>
 <p>In ons voorbeeld is de p-waarde 0.263, dit is groter dan 0.05; er is onvoldoende grond om <span class="math inline">\(H_0\)</span> te verwerpen; <em>we kunnen de 1:1 verhouding niet uitsluiten</em>. Het waargenomen verschil (gekwantificeerd in <span class="math inline">\(\chi^2\)</span>) is hoogstwaarschijnlijk het gevolg van toeval en dus niet systematisch; het is aannemelijk dat de sex ratio 1:1 is.</p>
 <div id="exr-chi2_steekproef" class="theorem exercise">

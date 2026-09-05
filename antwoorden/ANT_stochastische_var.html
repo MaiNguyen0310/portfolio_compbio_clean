@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ant_stochastische_var</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="ANT_stochastische_var_files/libs/clipboard/clipboard.min.js"></script>
+<script src="ANT_stochastische_var_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="ANT_stochastische_var_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="ANT_stochastische_var_files/libs/quarto-html/popper.min.js"></script>
+<script src="ANT_stochastische_var_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="ANT_stochastische_var_files/libs/quarto-html/anchor.min.js"></script>
+<link href="ANT_stochastische_var_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="ANT_stochastische_var_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="ANT_stochastische_var_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="ANT_stochastische_var_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="ANT_stochastische_var_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+</div>
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+
+
+<section id="sec-stoch" class="level1 page-columns page-full">
+<h1>Stochastische variabelen, kansverdelingen en entropie</h1>
+<section id="onzekerheid" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="onzekerheid">Onzekerheid</h2>
+<p>In het praktische gedeelte bij deze opdracht wordt de stelling geponeerd dat we geen zekerheid ten aanzien van een hypothese kunnen krijgen in de empirische wetenschap. Dit is niet volledig correct. Denk aan het bekende voorbeeld van de zwarte zwaan. Stel dat we uitsluitend witte zwanen waarnemen. Daaruit kunnen we <strong>niet</strong> afleiden dat alle zwanen wit zijn; er kan immers een anders gekleurde zwaan bestaan die we simpelweg nog niet hebben waargenomen. De hypothese blijft dus onzeker, hoeveel witte zwanen we ook tellen. Maar één enkele niet-witte zwaan volstaat om haar te weerleggen, en de onzekerheid ten aanzien van de hypothese verdwijnt, we kunnen haar ontkennen. Dit is het geval voor logische hypotheses.</p>
+<p>Het maïsexperiment is fundamenteel anders, omdat de hypothese zelf een kansuitspraak is; een 3:1-kansverdeling verbiedt geen enkele uitkomst, maar maakt sommige aannemelijker dan andere. Zelfs als de hypothese klopt, is de waargenomen verhouding door toeval bijna nooit exact 3:1, zoals we zagen. Eén afwijking weerlegt hier dus niets; de vraag is of de afwijking groter is dan we redelijkerwijs aan toeval kunnen toeschrijven. De logica verschuift van zekerheid naar kans en waarschijnlijkheid, en de onzekerheid blijft altijd bestaan.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>In het dagelijks leven gebruiken we kans en waarschijnlijkheid vaak door elkaar. In de wiskunde (kansrekening) bestaat er echter een subtiel verschil, dat we later dit jaar bespreken.</p>
+</div></div></section>
+<section id="de-toetsgrootheid-is-zelf-een-stochastische-variabele" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="de-toetsgrootheid-is-zelf-een-stochastische-variabele">De toetsgrootheid is zelf een stochastische variabele</h2>
+<p>Jullie hebben de resultaten van jullie metingen ingevoerd in het online formulier. Hieronder zie je de verdeling van de berekende <span class="math inline">\(\chi^2\)</span>-waarden op basis van jullie individuele metingen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Maizz <span class="ot">&lt;-</span> <span class="fu">read.delim2</span>(<span class="st">"Maizz.txt"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Maizz<span class="sc">$</span>Chi.<span class="fl">2.</span>waarde)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANT_stochastische_var_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="exr-chi2_waarden" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 1</strong></span> Stel dat de maïskolven precies aan de verwachte 3:1-verdeling voldoen, dus dat <span class="math inline">\(H_0\)</span> waar is. Verwacht je dan dat alle studenten dezelfde <span class="math inline">\(\chi^2\)</span>-waarden vinden, of nog steeds verschillende? Met andere woorden: ontstaat er ook onder <span class="math inline">\(H_0\)</span> een verdeling van <span class="math inline">\(\chi^2\)</span>-waarden? Zo ja, dan is dat een speciale verdeling. Wat zou een goede naam voor die specifieke verdeling zijn?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-chi2_waarden" class="quarto-xref">Exercise&nbsp;1</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Als alle maïskolven precies een 3:1-verdeling hebben, dan zijn alle <span class="math inline">\(\chi^2\)</span>-waarden precies 0 (onder de niet-zo-realistische aanname dat geen enkele student een telfout maakt).</p>
+</div>
+</div>
+</div>
+<p>Wat onze waargenomen verdeling laat zien, is een voorbeeld van een stochastische variabele: een grootheid waarvan de waarde door toeval wordt bepaald. Ze heeft drie kenmerkende eigenschappen:</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Biologie zit vol met toeval en variatie; het is een essentiële eigenschap van het leven zelf. Juist doordat de onderliggende grootheden stochastisch zijn, ontstaat de variatie die we bv als genetische diversiteit en biodiversiteit herkennen.</p>
+</div></div><ul>
+<li>ze wordt gekarakteriseerd door een kansverdeling;</li>
+<li>haar concrete waarde, of realisatie, is pas bekend na uitvoering van een experiment of meting;</li>
+<li>ze drukt inherente onzekerheid uit.</li>
+</ul>
+<p>De <span class="math inline">\(\chi^2\)</span>-waarde voldoet aan alle drie: ze ligt pas vast na het tellen en berekenen (2), verschilt van student tot student door toeval in de steekproef (3), en volgt daarmee een kansverdeling (1). Er is dus onzekerheid over welke <span class="math inline">\(\chi^2\)</span>-waarde een meting oplevert.</p>
+<p>Dit is bovendien geen toeval, maar een noodzakelijk gevolg: <span class="math inline">\(\chi^2\)</span> is een functie van stochastische variabelen, zoals in dit geval het aantal zaden, en is daardoor zelf ook een stochastische variabele, die dus per definitie een eigen kansverdeling bezit. Wiskundigen hebben die <span class="math inline">\(\chi^2\)</span>-verdeling onder bepaalde <strong>aannamen</strong> kunnen afleiden:</p>
+<p><span class="math display">\[f(x; k) = \frac{1}{2^{k/2}\,\Gamma(k/2)}\, x^{k/2 - 1} e^{-x/2}, \quad x &gt; 0\]</span></p>
+<p>Dit is een ingewikkelde functie die jullie niet uit je hoofd hoeven te kennen. Het belangrijke deel is de zinsnede <em>onder bepaalde aannamen</em>. Een cruciale aanname bv is dat <span class="math inline">\(H_0\)</span> correct is. Dat lijkt merkwaardig, we willen <span class="math inline">\(H_0\)</span> juist verwerpen, en toch nemen we haar even als waar aan. Maar precies dat is de geniale zet: alleen door een concrete hypothese als “precies <span class="math inline">\(3:1\)</span>” aan te nemen, kunnen we exact uitrekenen hoe onwaarschijnlijk onze data zouden zijn als <span class="math inline">\(H_0\)</span> klopt. Het alternatief, “er is een afwijking”, is te vaag om mee te rekenen: het kan oneindig veel vormen aannemen. Door <span class="math inline">\(H_0\)</span> als vertrekpunt te nemen, krijgen we een rekenbaar model, en daar komt de <span class="math inline">\(\chi^2\)</span>-verdeling vandaan. We komen hier later dit jaar bij het vak <code>Statistiek 1</code> in het algemeen op terug.</p>
+<p>Meer algemeen geldt dat we bij statistische toetsen en wiskundige modellen aannamen altijd expliciet moeten benoemen en controleren.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>De wetenschap kan niet zonder <strong>aannamen</strong>: alleen onder bepaalde condities kunnen we een theorie of model formuleren. Van die aannamen moet je je altijd bewust zijn.</p>
+</div></div><p>Deze onzekerheid wordt nog beter voelbaar bij de p-waarde waarmee we het behouden van <span class="math inline">\(H_0\)</span> op baseren, die op haar beurt een functie van de stochastische variabele <span class="math inline">\(\chi^2\)</span> is. Hieronder zie je de verdeling van de p-waarden over de groepen.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Maizz<span class="sc">$</span>p.waarde)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ANT_stochastische_var_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="exr-p_waarden" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 2</strong></span> Als de p-waarde zelf ook een stochastische variabele is, wat betekent dat dan voor onze uitspraak over <span class="math inline">\(H_0\)</span>?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-p_waarden" class="quarto-xref">Exercise&nbsp;2</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Omdat de p-waarde zelf stochastisch is, is ook onze conclusie (verwerpen of niet) afhankelijk van toeval in de steekproef. Eén p-waarde is dus geen hard, definitief bewijs, maar een uitkomst die van steekproef tot steekproef kan variëren.</p>
+</div>
+</div>
+</div>
+<p>Nemen we een kritieke waarde <span class="math inline">\(\alpha\)</span> van 0.05 waarbij we de nulhypothese verwerpen, dan blijkt iets opmerkelijks: ook de conclusie, verwerpen of niet, wordt bepaald door een stochastische variabele. Of een student de nulhypothese verwerpt, hangt af van een p-waarde die zelf door toeval varieert. Daarmee erft ook de uitspraak over de hypothese onzekerheid. Een tweede opmerkelijk gevolg is dat zelfs wanneer de 3:1-hypothese correct is, sommige groepen haar toch zullen verwerpen, puur door toeval in de steekproef; bijvoorbeeld als ze teveel rode of gele korrels hebben gemeten. Dit noemen we later een type-I-fout en we weten precies de kans daarop. Voor nu is het genoeg om te zien dat de onzekerheid zich overerft tot in de conclusie zelf.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Merk dus op dat we zelf bepalen hoe groot de type-I-fout is door de kritieke waarde <span class="math inline">\(\alpha\)</span> te kiezen! Wegens historische redenen kiezen we over het algemeen <span class="math inline">\(\alpha=0.05\)</span>, maar als het in bepaalde situaties extra belangrijk is om extra zekerheid te hebben, kunnen we de waarde verlagen.</p>
+</div></div></section>
+<section id="maat-voor-onzekerheid-entropie." class="level2">
+<h2 class="anchored" data-anchor-id="maat-voor-onzekerheid-entropie.">Maat voor onzekerheid: Entropie.</h2>
+<p>Er bestaan verschillende maten in de statistiek die de hoeveelheid onzekerheid kunnen duiden. Later in het jaar komen we bijvoorbeeld de standaardfout (SE) tegen. Nu gaan we kijken naar een andere zeer belangrijke wetenschappelijke maat voor onzekerheid, namelijk <code>entropie</code>. Entropie kan worden opgevat naast een maat voor onzekerheid, ook als een maat voor willekeur of wanorde en zoals we zullen zien ook biodiversiteit en positie-specifieke entropie in moleculaire biologie, en is alleen een functie van een kansverdeling.</p>
+<p>De entropie van een discrete kansverdeling zoals voor biodiversiteit en positie-specifieke entropie wordt gedefinieerd als:</p>
+<p><span id="eq-entropie-def"><span class="math display">\[H(p) = -\sum_i p_i \log(p_i) \tag{1}\]</span></span></p>
+<p>waarbij <span class="math inline">\(p_i\)</span> de kans is op uitkomst <span class="math inline">\(i\)</span> die een bepaalde verdeling volgt.</p>
+<section id="interpretatie" class="level3">
+<h3 class="anchored" data-anchor-id="interpretatie">Interpretatie</h3>
+<p>Een hoge entropie wijst op grote onzekerheid. Dit treedt op wanneer de kansen relatief gelijk verdeeld zijn over de mogelijke uitkomsten zoals de zuivere dobbelsteen.</p>
+<p>Een lagere entropie wijst op minder onzekerheid. Dit treedt op wanneer kansen geconcentreerd zijn rond één of enkele uitkomsten. Bijvoorbeeld een oneerlijke dobbelsteen met een grotere kans op een 6; we zijn minder verrast als we een 6 gooien, de uitkomst is meer voorspelbaar</p>
+<div id="exr-entropie_uitleg" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 3</strong></span> Leg uit waarom de entropie afneemt bij een meer voorspelbare uitkomst.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-entropie_uitleg" class="quarto-xref">Exercise&nbsp;3</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bij een voorspelbare uitkomst is de kans geconcentreerd op één (of enkele) uitkomsten, dus is <span class="math inline">\(p_i\)</span> (bijna) 1 voor een bepaalde uitkomst <span class="math inline">\(i\)</span>. Dit betekent dat <span class="math inline">\(-log(p_i)\)</span> voor deze uitkomst klein is. Hierdoor wordt ook de som in <a href="#eq-entropie-def" class="quarto-xref">Equation&nbsp;1</a> klein.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="contextafhankelijkheid" class="level3">
+<h3 class="anchored" data-anchor-id="contextafhankelijkheid">Contextafhankelijkheid</h3>
+<p>De betekenis van entropie hangt af van het toepassingsgebied:</p>
+<ol type="1">
+<li>In de <strong>informatietheorie</strong> is entropie een maat voor informatie-inhoud;</li>
+<li>In de <strong>natuurkunde</strong>, met name de thermodynamica, is entropie een maat voor wanorde en bepaald via de wetten van de thermodynamica, die de richting van een proces bepalen dat streeft naar wanorde;</li>
+<li>In de <strong>sociale wetenschappen</strong> en economie kan entropie worden gebruikt als maat voor economische of sociale ongelijkheid.</li>
+</ol>
+<div id="exr-entropie_sociaal" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 4</strong></span> Leg uit waarom entropie een maat kan zijn voor ongelijkheid in punt 3. Wordt de waarde van de entropie groter of kleiner bij sociale ongelijkheid (Thiel-index)?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-entropie_uitleg" class="quarto-xref">Exercise&nbsp;3</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bij grote gelijkheid is inkomen/welvaart gelijk verdeeld over de bevolking, wat lastig te voorspellen maakt wie welk aandeel heeft. Dat komt overeen met hoge entropie. Bij ongelijkheid concentreert het inkomen zich bij een klein aantal mensen, dus daalt de entropie.</p>
+</div>
+</div>
+</div>
+<div id="exr-entropie_biodiv" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 5</strong></span> Leg uit waarom zou entropie dan een maat zou zijn voor biodiversiteit? Heeft een hogere biodiversiteit een kleinere of grotere entropie?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-entropie_biodiv" class="quarto-xref">Exercise&nbsp;5</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Hoge biodiversiteit betekent dat veel soorten ongeveer even vaak voorkomend. Het is dan moeilijk te voorspellen welke soort je tegenkomt, dus is er een hoge mate van verassing, oftewel entropie. Bij een lage biodiversiteit domineert één (of enkele) soort(en) het gebied, waardoor de uitkomst voorspelbaarder is en de entropie lager is.</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="opdrachten" class="level2">
+<h2 class="anchored" data-anchor-id="opdrachten">Opdrachten</h2>
+<section id="positie-specifieke-entropie" class="level3">
+<h3 class="anchored" data-anchor-id="positie-specifieke-entropie">Positie-specifieke entropie</h3>
+<p>We hebben entropie leren kennen als een maat voor onzekerheid of verrassing: hoe moeilijker de uitkomst vooraf te voorspellen is, hoe hoger de entropie. Diezelfde gedachte kunnen we toepassen op DNA.</p>
+<p>Wanneer we hetzelfde gen van verschillende soorten onder elkaar leggen, ontstaat een <em>alignment</em>: overeenkomstige posities staan in dezelfde kolom. Hieronder staat een klein voorbeeld voor zes soorten en zeven posities.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Het alignment als data frame: elke RIJ een soort, elke KOLOM een positie</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>alignment <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_1 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_2 =</span> <span class="fu">c</span>(<span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_3 =</span> <span class="fu">c</span>(<span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_4 =</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"T"</span>, <span class="st">"A"</span>, <span class="st">"G"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_5 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_6 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"A"</span>, <span class="st">"T"</span>, <span class="st">"G"</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_7 =</span> <span class="fu">c</span>(<span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="fu">c</span>(<span class="st">"soort 1"</span>, <span class="st">"soort 2"</span>, <span class="st">"soort 3"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"soort 4"</span>, <span class="st">"soort 5"</span>, <span class="st">"soort 6"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>alignment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        positie_1 positie_2 positie_3 positie_4 positie_5 positie_6 positie_7
+soort 1         A         T         G         C         A         A         T
+soort 2         A         T         G         T         A         G         T
+soort 3         A         T         G         A         A         G         T
+soort 4         A         T         G         G         A         A         T
+soort 5         A         T         G         C         A         T         T
+soort 6         A         T         G         A         A         G         T</code></pre>
+</div>
+</div>
+<p>Bekijk de kolommen (posities) van boven naar beneden, niet de rijen. Elke kolom vertelt hoe gevarieerd die positie is over de zes soorten.</p>
+<div id="exr-tabel_pos" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 6</strong></span> Op welke posities staat bij alle soorten dezelfde bouwsteen? En op welke positie verschillen de soorten het sterkst? Beschrijf in woorden.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-tabel_pos" class="quarto-xref">Exercise&nbsp;6</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Op posities 1, 2, 3, 5 en 7 hebben alle zes soorten dezelfde bouwsteen. Positie 4 verschilt het sterkst (bijna elke soort heeft er een andere letter), met positie 6 als tweede meest variabele positie.</p>
+</div>
+</div>
+</div>
+<div id="exr-tabel_verassing" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 7</strong></span> Stel je sluit je ogen en iemand wijst een willekeurige soort aan. Bij welke positie kun je met zekerheid voorspellen welke bouwsteen daar staat, nog vóór je kijkt? Bij welke positie is dat vrijwel onmogelijk? Koppel je antwoord aan het begrip <em>voorspelbaar</em>.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-tabel_verassing" class="quarto-xref">Exercise&nbsp;7</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Bij posities 1, 2, 3, 5 en 7 kun je met zekerheid voorspellen welke bouwsteen er staat. Voor positie 4 staat er bij bijna elke soort een andere bouwsteen. Deze positie is dus onvoorspelbaar.</p>
+</div>
+</div>
+</div>
+<div id="exr-tabel_entropie" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 8</strong></span> Bereken met de code hieronder de entropie van de verschillende kolommen door op het kleine driehoekje recht boven deze chunk te klikken. Welke van deze posities zijn het meest geconserveerd (constrained) tussen de soorten, en welke het minst? Leg uit hoe je tot je antwoord komt.</p>
+<p>Probeer de code te begrijpen als je tijd hebt, maar dat is niet het eerste doel van deze opdracht. Hint: we hebben hier zelf een functie gemaakt. Waarom gebruiken we de logaritme met grondtal 2? Hadden we deze vraag ook kunnen beantwoorden met grondtal 10, of met de natuurlijke logaritme?</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>entropie <span class="ot">&lt;-</span> <span class="cf">function</span>(kolom) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">table</span>(kolom) <span class="sc">/</span> <span class="fu">length</span>(kolom)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="sc">-</span><span class="fu">sum</span>(p <span class="sc">*</span> <span class="fu">log2</span>(p)))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(alignment, entropie)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>positie_1 positie_2 positie_3 positie_4 positie_5 positie_6 positie_7 
+ 0.000000  0.000000  0.000000  1.918296  0.000000  1.459148  0.000000 </code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-tabel_entropie" class="quarto-xref">Exercise&nbsp;8</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>De meest geconserveerde posities (entropie = 0) zijn 1, 2, 3, 5 en 7. De minst geconserveerde is positie 4 (hoogste entropie), gevolgd door positie 6.</p>
+<p>We gebruiken de logaritme met grondtal 2, omdat de uitkomst dan in <code>bits</code> wordt uitgedrukt. Grondtal 10 of de natuurlijke logaritme hadden ook gewerkt, want de rangorde tussen de posities blijft identiek.</p>
+</div>
+</div>
+</div>
+<div id="exr-pos_ident" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 9</strong></span> Een positie die bij alle soorten identiek is, is door de evolutie heen nauwelijks veranderd. Bedenk een biologische reden waarom juist die posities niet mogen veranderen, terwijl andere posities vrij kunnen variëren.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-pos_ident" class="quarto-xref">Exercise&nbsp;9</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Deze posities coderen waarschijnlijk voor onderdelen van een essentieel eiwit of gen. Een mutatie op zo’n plek zou de functie ernstig verstoren of zelfs lethaal zijn, waardoor natuurlijke selectie zulke mutaties wegselecteert. Op andere, minder kritieke posities kunnen mutaties minder schadelijk zijn en dus kunnen deze mutaties worden overgedragen.</p>
+</div>
+</div>
+</div>
+<div id="exr-entropie_evo" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 10</strong></span> De genen die de vroege ontwikkeling van een lichaam sturen, behoren tot de meest geconserveerde in het hele dierenrijk: dieren die honderden miljoenen jaren geleden een gemeenschappelijke voorouder deelden, hebben op die posities nog steeds dezelfde bouwstenen. Wat zegt lage entropie op die posities over het belang van die genen voor de ontwikkeling? En waarom is lage entropie hier een spoor van diepe verwantschap tussen soorten?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-entropie_evo" class="quarto-xref">Exercise&nbsp;10</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Lage entropie op die posities betekent dat mutaties daar bijna altijd zijn weggeselecteerd. Dit is een sterk signaal dat die posities cruciaal zijn voor de functie van het gen tijdens de vroege ontwikkeling. Dat verschillende, ver uiteenlopende soorten na honderden miljoenen jaren evolutie nog steeds exact dezelfde bouwsteen hebben op die plek, kan bijna niet toevallig zijn; het wijst op een gedeelde voorouder waarvan dit stukje DNA vrijwel ongewijzigd is doorgegeven.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="entropie-is-optelbaar" class="level3">
+<h3 class="anchored" data-anchor-id="entropie-is-optelbaar">Entropie is optelbaar</h3>
+<p>We gaan nu gebruik maken van een belangrijke eigenschap van de logaritme. Er is iets vreemds aan de levende wereld. Aan de ene kant wordt ze steeds complexer: een historische groei in biodiversiteit, een rijkdom aan vorm en functie. Maar aan de andere kant herkennen we juist heldere structuur: soorten, genera en families laten zich netjes onderscheiden. Meer variatie en meer ordening tegelijk; dat lijkt een tegenspraak.</p>
+<p>Om die schijnbare tegenspraak te ontleden, gebruiken we een belangrijke eigenschap van de logaritme:</p>
+<p><span id="eq-optelbaar-def"><span class="math display">\[\log(A \times B) = \log(A) + \log(B) \tag{2}\]</span></span></p>
+<p>De logaritme maakt van een vermenigvuldiging een optelling. Dat is precies wat we nodig hebben, want kansen worden vermenigvuldigd, terwijl entropie een <em>som</em> is. De logaritme is de brug tussen die twee: hij vertaalt het vermenigvuldigen van kansen naar het optellen van termen, en maakt zo het somteken (<span class="math inline">\(\sum\)</span>) in de entropie mogelijk.</p>
+<p>Waarom doen we dit? Optellingen zijn niet alleen voor ons brein makkelijker dan vermenigvuldigingen, ze zijn ook rekenkundig veel stabieler: kansen die je met elkaar vermenigvuldigt worden razendsnel extreem klein, terwijl hun logaritmen hanteerbare getallen blijven die je gewoon kunt optellen. Dit is een terugkerende methode in de wetenschap: maten maken die stabiel zijn bij berekeningen en cognitief makkelijker om mee te werken.</p>
+</section>
+</section>
+<section id="informatie-als--logp" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="informatie-als--logp">Informatie als <span class="math inline">\(-\log(p)\)</span></h2>
+<p>De grootheid <span class="math inline">\(-\log(p)\)</span> heeft een eigen naam: <em>informatie</em>, ook wel <em>surprisal</em> (verrassing). Een onwaarschijnlijke uitkomst (kleine kans <span class="math inline">\(p\)</span>) levert veel informatie op; een vrijwel zekere uitkomst (grote <span class="math inline">\(p\)</span>) weinig. De entropie</p>
+<p><span id="eq-entropie2-def"><span class="math display">\[H(X) = -\sum_i p_i \log(p_i) \tag{3}\]</span></span></p>
+<p>is dan niets anders dan het gemiddelde van die informatie over alle uitkomsten, de <em>verwachtingswaarde</em> van de surprisal. Vandaar de naam <em>informatie-entropie</em>, of kortweg weer <em>informatie</em> als afkorting van <em>Shannon-informatie</em>; deze laatste zul je nog vaker tegenkomen in je studie.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Dat één begrip zowel “surprisal” als “informatie” als “entropie” heet, is een voorbeeld van hoe naamgeving in de wetenschap tot verwarring kan leiden. Toepasselijk genoeg gaat entropie hier nu juist over.</p>
+</div></div><section id="de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen">De Complexiteit van de natuur valt uiteen in twee vragen</h3>
+<p>Dankzij de logaritme kunnen we dus de entropie <em>ontleden</em>. Meet je de vorm van een willekeurig organisme in de biosfeer, dan valt de onzekerheid over die vorm uiteen in twee vragen: <em>welke soort is dit?</em> en <em>hoe ziet dit individu eruit, gegeven die soort?</em>. Niet alle organismen in een soort zien er identiek uit. In formulevorm ziet deze partitie er als volgt uit:</p>
+<p><span id="eq-ontleden-def"><span class="math display">\[H(\text{fenotype}) = H(\text{soort}) + H(\text{fenotype} \mid \text{soort}) \tag{4}\]</span></span></p>
+<p>Deze opsplitsing lost de schijnbare tegenspraak op.</p>
+<p><em>Binnen</em> een soort daalt de entropie. De ontwikkeling is gebufferd: veel verschillende genotypen leiden tot hetzelfde fenotype, zodat de vorm binnen een soort weinig varieert. De rechterterm, <span class="math inline">\(H(\text{fenotype} \mid \text{soort})\)</span>, wordt daardoor kleiner.</p>
+<p><em>Tussen</em> soorten stijgt de entropie. Er komen soorten bij, de biodiversiteit groeit, en de linkerterm <span class="math inline">\(H(\text{soort})\)</span> wordt groter.</p>
+<p>Er is dus geen paradox: het gaat om twee verschillende termen, die onafhankelijk van elkaar kunnen bewegen. Sterker nog, de twee versterken elkaar. Juist doordat de vorm binnen een soort strak gebufferd is, worden soorten scherpe, telbare eenheden, en pas over zulke eenheden kun je überhaupt sommeren om biodiversiteit te meten. Daarmee begrijpen we nu waarom de natuur tegelijk complexer en gevarieerder wordt en een herkenbare structuur vertoont, en het is juist die structuur die de biologische wetenschap mogelijk maakt.</p>
+<p><strong>Canalisatie</strong> is het vermogen van de ontwikkeling om, ondanks variatie in genotype of omgeving, steeds hetzelfde fenotype voort te brengen.</p>
+<div id="exr-entropie_canal" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11</strong></span> Welke van de twee termen wordt beïnvloed door canalisatie, en welke door het ontstaan van nieuwe soorten? Kan <span class="math inline">\(𝐻(fenotype)=𝐻(soort)+𝐻(fenotype∣soort)\)</span> gelijk blijven terwijl beide termen veranderen?</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord <a href="#exr-entropie_canal" class="quarto-xref">Exercise&nbsp;11</a>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Canalisatie verkleint de term <span class="math inline">\(𝐻(fenotype∣soort)\)</span>.Het ontstaan van nieuwe soorten vergroot de term <span class="math inline">\(𝐻(soort)\)</span>. De totale entropie <span class="math inline">\(𝐻(fenotype)\)</span> kan gelijk blijven terwijl beide termen veranderen, zolang de toename in de ene term precies wordt gecompenseerd door de afname in de andere.</p>
+</div>
+</div>
+</div>
+<p>Al deze vragen illustreren dat een relatief eenvoudige functie zoals entropie ons veel theoretische inzichten kan verschaffen, zowel kwalitatief als kwantitatief, die anders niet of erg moeilijk te begrijpen zijn. In de ecologie maakt entropie het bovendien mogelijk om verschillende bronnen van biodiversiteit afzonderlijk te meten: de diversiteit binnen een gebied (alfadiversiteit), tussen gebieden (bètadiversiteit) en over het geheel (gammadiversiteit); precies dezelfde opsplitsing in een “binnen”- en een “tussen”-term die we hierboven tegenkwamen.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Deze begrippen zul je later in het jaar behandelen bij de cursus <code>Ecologie 1</code> - het is voor dit portfolio niet nodig om deze al goed te begrijpen.</p>
+</div></div><p>Dat geldt niet alleen voor de biologie, maar ook voor andere wetenschappelijke disciplines.</p>
+<p>In dit theoretische deel stond de interpretatie centraal; code en wiskunde hebben we bewust op de achtergrond gehouden en conceptueel begrip voorop. In de komende delen keren die juist terug, en gaan we meer rekenen en met wiskundige regels werken</p>
+</section>
+</section>
+<section id="slotopdracht-jouw-eigen-synthese" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="slotopdracht-jouw-eigen-synthese">Slotopdracht: jouw eigen synthese</h2>
+<p>Deze laatste opdracht is anders dan de vorige. Er is geen goed of fout antwoord, mogelijk alleen slecht geformuleerd, en je hoeft niets te berekenen. We vragen je om terug te kijken op alles wat in deze portfolio-opdracht langskwam, zowel het practicum als het theoretische deel, en er in je eigen woorden een samenhangend verhaal van te maken. Dit is niet makkelijk en je zult ervaren dat je eigen woorden vinden nu <em>nog</em> erg moeilijk is, we dagen jullie dus uit.</p>
+<p>Belangrijk: dit is een <em>momentopname</em>. De hypothesen en verbanden die je nu zelf formuleert, mag je gedurende het jaar vrij aanpassen, verwerpen of uitbreiden naarmate je nieuwe inzichten opdoet, bijvoorbeeld na nieuwe inzichten met allometrische schaling in de komende colleges. Je legt hier dus geen eindantwoord vast, maar je huidige denken. Durf daarom te speculeren. We helpen je een beetje met een set vragen.</p>
+<p><strong>Vraag 1 — Rode draad.</strong> Vat in je eigen woorden samen welke theoretische elementen vandaag zijn langsgekomen, en hoe ze met elkaar samenhangen. Denk aan de begrippen die telkens terugkeerden: de nulhypothese en het verwerpen daarvan, de <span class="math inline">\(\chi^2\)</span>-toets en de p-waarde, stochastische variabelen en hun verdeling, surprisal en entropie, en de opsplitsing van entropie in canalisatie en biodiversiteit. Probeer niet elk begrip los te beschrijven, maar te laten zien hoe ze in elkaar grijpen.</p>
+<blockquote class="blockquote">
+<p>Jouw antwoord:</p>
+</blockquote>
+<p><strong>Vraag 2 — Dezelfde wiskunde, andere betekenis.</strong> Een terugkerend idee was dat één wiskundige vorm in verschillende contexten opduikt, en dat de interpretatie bepaalt wat die vorm betekent. Geef in eigen woorden een voorbeeld hiervan uit deze opdracht, en bedenk of je een context buiten deze opdracht kunt verzinnen waarin je dezelfde wiskunde zou verwachten.</p>
+<blockquote class="blockquote">
+<p>Jouw antwoord:</p>
+</blockquote>
+<p><strong>Vraag 3 — Onzekerheid als rode draad.</strong> Het centrale thema van deze opdracht was ook onzekerheid. We zagen dat de uitkomst van een meting, de waarde van een toetsgrootheid, en zelfs de conclusie van een test allemaal met onzekerheid behept zijn. Verwoord in je eigen woorden waarom onzekerheid onlosmakelijk verbonden is met het overgrote deel van de biologische wetenschap. Ga daarbij een stap verder: is onzekerheid in de biologie enkel een beperking van onze metingen, of een wezenlijke eigenschap van het leven zelf, dat immers voortkomt uit toeval en variatie?</p>
+<blockquote class="blockquote">
+<p>jouw antwoord:</p>
+</blockquote>
+<p><strong>Vraag 4 — Jouw hypothese.</strong> Formuleer ten slotte één of meer eigen hypothesen over hoe de begrippen uit deze opdrachten, entropie, onzekerheid, canalisatie, informatie, zouden kunnen samenhangen met onderwerpen die je later dit jaar verwacht tegen te komen. Dit is bewust open en speculatief; niemand verwacht dat het al klopt. Het doel is dat je leert je eigen denken vast te leggen en er later op terug te komen.</p>
+<blockquote class="blockquote">
+<p>jouw antwoord:</p>
+</blockquote>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Als je klaar bent, kun je deze file plaatsen in bijbehorende assignment in Brightspace. De maispracticum opdracht is niet nodig, maar sla deze wel goed op met een back-up.</p>
+</div></div><div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Voor de portfolio-ontwikkelingsgroep: entropie als brug tussen wiskunde en natuurkunde
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>We hebben entropie tot nu toe gebruikt als een maat voor onzekerheid, opgebouwd uit kansen. Maar dezelfde formule, <span class="math inline">\(H = -\sum_i p_i \log(p_i)\)</span>, duikt op in verrassend veel verder van elkaar liggende hoeken van de wetenschap. Dat is geen toeval.</p>
+<p>In het honoursonderdeel graven we dieper. Een paar vragen die we gaan verkennen:</p>
+<ul>
+<li><p>Waarom juist deze formule? Entropie is niet zomaar één van de vele mogelijke maten voor onzekerheid. Onder een handvol redelijke eisen — bijvoorbeeld dat onafhankelijke gebeurtenissen optelbare informatie geven — is <span class="math inline">\(-\sum p_i \log p_i\)</span> de <em>enige</em> die overblijft. We leiden dat zelf af.</p></li>
+<li><p>De brug naar de natuurkunde. Dezelfde grootheid die wij op zaadverhoudingen loslaten, bepaalt in de thermodynamica de richting van de tijd en van biochemische processen. De tweede hoofdwet van de thermodynamica stelt namelijk dat de entropie van een gesloten systeem altijd naar een maximum gaat. We bekijken hoe Boltzmanns <span class="math inline">\(S = k \log W\)</span> en Shannons <span class="math inline">\(H\)</span> in wezen dezelfde vergelijking zijn, en wat dat betekent. Dat levende cellen tóch geordende structuren opbouwen, lijkt daarmee in tegenspraak, hoe dat kan, is precies een van de vragen die we gaan verkennen.</p></li>
+<li><p>Continue verdelingen. Tot nu toe telden we discrete uitkomsten. Wat gebeurt er als de variabele continu wordt? Dan wordt de som een integraal, <span class="math inline">\(h(X) = -\int f(x)\log f(x)\,dx\)</span>, en blijkt de normale verdeling een bijzondere eigenschap te hebben: van alle verdelingen met een gegeven variantie heeft zij de hoogste entropie en dat wordt later belangrijk in de statistiek en AI.</p></li>
+<li><p>Maximale entropie als principe. Als je niets weet behalve een paar constraints, welke kansverdeling moet je dan kiezen? Het antwoord — die met de hoogste entropie — blijkt een verrassend krachtig recept, van statistische fysica tot machine learning and AI.</p></li>
+</ul>
+<p>Wie hiermee verder wil, krijgt een glimp van hoe één wiskundige vorm de taal van onzekerheid, informatie én de tweede hoofdwet van de thermodynamica tegelijk spreekt en is volgens velen het belangrijkste wetenschappelijke inzicht dat er is. Kippenvel!!</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

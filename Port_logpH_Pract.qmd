@@ -175,7 +175,7 @@ Als de H⁺-concentratie met een factor 10 daalt, wat gebeurt er dan met de pH? 
 
 De zuurgraad van een oplossing wordt bepaald door de concentratie protonen ($[\text{H}^+]$). Deze kan sterk verschillen tussen oplossingen. Het is niet handig om met extreem grote of kleine concentraties te werken. In de praktijk wordt deze concentratie daarom, zoals besproken, op een logaritmische schaal geplaatst.
 
-De pH van een oplossing wordt als volgt gedefinieerd: $$\text{pH} = -\log_{10}[\text{H}^+].$$
+De pH van een oplossing wordt als volgt gedefinieerd: $$\text{pH} = -\log_{10}[\text{H}^+].$$\$\$\\text{pH} = -\\log\_{10}\[\\text{H}\^+\].\$\$
 
 Om uit de pH de concentratie te bepalen, gebruiken we de exponentiële functie: $$[\text{H}^+] = 10^{-\text{pH}}$$
 
@@ -266,7 +266,7 @@ HZ_A <- 10^(-(14 - pH_A))
 HZ_A
 ```
 
-::: {#exr-pkz}
+::: {}
 Codeer nu zelf de algemene uitdrukking die je gebruikt om de pKz van oplossing A te bepalen.
 :::
 

@@ -18,19 +18,16 @@ Volgens de Mendeliaanse genetica verwachten we, als beide ouders heterozygoot zi
 
 **Tabel 3.1: Kruising van twee heterozygote ouders.**
 
-|   | $R$ | $r$ |
-<<<<<<< HEAD
-|:---------------:|:-------------------------:|:--------------------------:|
-=======
-|:----------------------:|:----------------------:|:----------------------:|
->>>>>>> 16b2f1c5c435ed4239618d8de8b218b9acd4fba6
-| $R$ | $RR$ ([rood]{style="color:red;"}) | $Rr$ ([rood]{style="color:red;"}) |
-| $r$ | $rR$ ([rood]{style="color:red;"}) | $rr$ ([geel]{style="color:#e6cd10;"}) |
+|     | R | r |
+|:---:|:------------------------------:|:------------------------------:|
+| **R** | RR <span style="color:red;">(rood)</span> | Rr <span style="color:red;">(rood)</span> |
+| **r** | rR <span style="color:red;">(rood)</span> | rr <span style="color:#e6cd10;">(geel)</span> |
+
 
 Als beide ouders daadwerkelijk $Rr$ zijn, dan verwachten we in de nakomelingen een verhouding van rood : geel = 3:1; dus drie rode voor elke gele dus een **proportie van (3/4, 1/4)**; de vier mogelijk genetische combinaties worden 2 fenotypen (rood en geel).
 
 ::: aside
-**Opmerking**: De verhouding is een veelvouden van 1/4; er vier mogelijke combinaties zijn van R en r($2^2$).
+**Opmerking**: De verhouding is een veelvoud van 1/4; er zijn vier mogelijke combinaties van R en r($2^2$).
 :::
 
 Een statistische toets vertrekt vanuit de aanname dat er geen verschil is tussen de theoretische en waargenomen verdeling (de Null-hypothese) en onderzoekt vervolgens of het `aannemelijk` is om deze aanname te **verwerpen**. Voor de $\chi^2$-kwadraattoets (spreek uit als chi-kwadraat) betekent dit dat we de waargenomen verdeling vergelijken met de verdeling die we zouden verwachten bij een 3:1-verhouding.
@@ -78,6 +75,9 @@ Hierbij staan de letters voor:
 Voor ons sex ratio voorbeeld ziet de vergelijking er als volgt uit:
 
 $$X^2 = \frac{(O_m - E_m)^2}{E_m} + \frac{(O_v - E_v)^2}{E_v}$$
+
+We splitsen hierbij onze verzameling waarnemingen op in de twee groepen van interesse: mannelijke en vrouwelijke individuen, die we indexeren met $m$ en $v$.
+
 
 ::: {#exr-chi2_uitleg}
 Leg uit dat deze formule het verschil meet tussen de verdeling van de verwachte waarden (E) en de geobserveerde waarden (O) en welke waarde $\chi^2$ aanneemt als de hypothese exact overeenkomt met de meting. Leg uit waarom deze waarde logisch is in deze context.
@@ -150,7 +150,7 @@ De Nulhypothese ($H_0$) stelt in dit geval dat er géén verschil is aangetoond 
 De algemene statistische stelregel is:
 
 - Als $p < 0.05$, verwerpen we de nulhypothese: de waargenomen afwijking is dan te groot om door toeval alleen te worden verklaard; *de kans dat we deze data waarnemen als de nulhypothese correct is klein*.
-- Als $p \ge 0.05$, is er onvoldoende grond om de nulhypothese te verwerpen; *toeval blijft dan een aannemelijke verklaring voor de waargenomen afwijking*.
+- Als $p > 0.05$, is er onvoldoende grond om de nulhypothese te verwerpen; *toeval blijft dan een aannemelijke verklaring voor de waargenomen afwijking*.
 
 In ons voorbeeld is de p-waarde 0.263, dit is groter dan 0.05; er is onvoldoende grond om $H_0$ te verwerpen; *we kunnen de 1:1 verhouding niet uitsluiten*. Het waargenomen verschil (gekwantificeerd in $\chi^2$) is hoogstwaarschijnlijk het gevolg van toeval en dus niet systematisch; het is aannemelijk dat de sex ratio 1:1 is.
 

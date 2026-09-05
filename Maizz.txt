@@ -1,0 +1,3 @@
+Tijdstempel	Groepsnummer	Aantal rode zaden	Aantal gele zaden	Chi^2-waarde	p-waarde
+9/4/2026 17:28:18	0	60	20	0	1
+9/4/2026 17:29:24	0	65	30	2,193	0,386

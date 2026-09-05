@@ -8,7 +8,7 @@ Na het practicum volgt het theoretische deel. Daarin onderzoeken we hoe wiskunde
 
 In dit theoretisch deel laten we expliciet zien dat de wiskunde achter de gebruikte statistische toets ook opduikt in heel andere contexten: biodiversiteit, onzekerheid, machine learning en AI; één wiskundige vorm, telkens opnieuw geïnterpreteerd. Daarmee willen we duidelijk maken dat uiteenlopende biologische concepten kunnen samenvallen in dezelfde onderliggende wiskunde.
 
-Dat geldt ook binnen de statistiek zelf die op de wiskunde is gebaseerd: verschillende methoden en toetsen die jullie als losse recepten leren, rusten vaak op één en dezelfde onderliggende redenering. Wat verandert is de context, niet de wiskunde. Het is ook jullie taak deze zelf te ontdekken, met behulp van ons natuurlijk.
+Dat geldt ook binnen de statistiek zelf die op de wiskunde is gebaseerd: verschillende methoden en toetsen die jullie als losse recepten leren, rusten vaak op één en dezelfde onderliggende redenering. Wat verandert is de context, niet de wiskunde. Het is ook jullie taak deze **zelf** te ontdekken, met behulp van ons natuurlijk.
 
 ## Opdracht van vandaag:
 
@@ -19,7 +19,11 @@ Volgens de Mendeliaanse genetica verwachten we, als beide ouders heterozygoot zi
 **Tabel 3.1: Kruising van twee heterozygote ouders.**
 
 |   | $R$ | $r$ |
+<<<<<<< HEAD
 |:---------------:|:-------------------------:|:--------------------------:|
+=======
+|:----------------------:|:----------------------:|:----------------------:|
+>>>>>>> 16b2f1c5c435ed4239618d8de8b218b9acd4fba6
 | $R$ | $RR$ ([rood]{style="color:red;"}) | $Rr$ ([rood]{style="color:red;"}) |
 | $r$ | $rR$ ([rood]{style="color:red;"}) | $rr$ ([geel]{style="color:#e6cd10;"}) |
 
@@ -54,7 +58,7 @@ Dit roept vanuit de statistiek een belangrijke vraag op:
   2.  We verwerpen de nulhypothese niet we hebben geen effect aangetoond.
 - **B. Of is de afwijking systematisch, en kan het verschil niet meer verklaard worden door toeval alleen?**
   1.  De hypothese van de 1:1 verhouding is `onaannemelijk`.
-  2.  We verwerpen de nulhypothese we hebben een effect aangetoond.
+  2.  We verwerpen de nulhypothese we hebben een verschil aangetoond.
 
 Dit is precies de vraag waarmee de statistiek zich bezighoudt. Het is daarbij belangrijk om te beseffen dat we niet bewijzen dat de verdeling gelijk of ongelijk is. In plaats daarvan onderzoeken we of de metingen de nulhypothese ondersteunen of juist minder aannemelijk maken.
 
@@ -93,7 +97,7 @@ Wat gebeurt er met $\chi^2$ als we een veel grotere steekproef nemen maar de ver
 
 > jouw antwoord:
 
-Deze laatste vraag is een mooi voorbeeld van hoe een eenvoudig wiskunde stap je automatisch het correcte inzicht geeft.
+Deze laatste vraag is een mooi voorbeeld van hoe een eenvoudig wiskunde stap je automatisch het correcte inzicht geeft over de werking van een statistische hypothese test.
 
 ## Voorbeeld in R: Sex ratio berekenen
 
@@ -115,7 +119,7 @@ Chi <- (45-40)^2/40 + (35-40)^2/40
 print(Chi)
 ```
 
-R beschikt over een ingebouwde functie om de $\chi^2$\$\\chi\^2\$-kwadraattoets direct uit te voeren: chisq.test(). Deze gebruik je voor deze data als volgt:
+R beschikt over een ingebouwde functie om de $\chi^2$-kwadraattoets direct uit te voeren: chisq.test(). Deze gebruik je voor deze data als volgt:
 
 `chisq.test(c(45, 35), p = c(1/2, 1/2))`
 
@@ -145,10 +149,10 @@ De Nulhypothese ($H_0$) stelt in dit geval dat er géén verschil is aangetoond 
 
 De algemene statistische stelregel is:
 
-- Als $p < 0.05$, verwerpen we de nulhypothese: de waargenomen afwijking is dan te groot om door toeval alleen te worden verklaard; *de kans dat we deze data waarnemen als de nulhypothese correct is is klein*.
+- Als $p < 0.05$, verwerpen we de nulhypothese: de waargenomen afwijking is dan te groot om door toeval alleen te worden verklaard; *de kans dat we deze data waarnemen als de nulhypothese correct is klein*.
 - Als $p \ge 0.05$, is er onvoldoende grond om de nulhypothese te verwerpen; *toeval blijft dan een aannemelijke verklaring voor de waargenomen afwijking*.
 
-In ons voorbeeld is de p-waarde 0.263, dit is groter dan 0.05; is er onvoldoende grond om $H_0$ te verwerpen: *we kunnen de 1:1 verhouding niet uitsluiten*. Het waargenomen verschil (gekwantificeerd in $\chi^2$) is hoogstwaarschijnlijk het gevolg van toeval en dus niet systematisch.
+In ons voorbeeld is de p-waarde 0.263, dit is groter dan 0.05; er is onvoldoende grond om $H_0$ te verwerpen; *we kunnen de 1:1 verhouding niet uitsluiten*. Het waargenomen verschil (gekwantificeerd in $\chi^2$) is hoogstwaarschijnlijk het gevolg van toeval en dus niet systematisch; het is aannemelijk dat de sex ratio 1:1 is.
 
 ::: {#exr-chi2_steekproef}
 Wat gebeurt er met de $\chi ^{2}$-waarde en de p-waarde als onze steekproefomvang groter wordt (bijvoorbeeld van 350 naar 450)? Leid dit eerst theoretisch af, voer daarna de berekening uit in R en interpreteer ten slotte het resultaat.
@@ -183,6 +187,8 @@ Bereken, gebruik makend van de informatie in deze portfolio en je eigen mais dat
 
 Let op: Neem deze bevindingen en berekeningen netjes op in je labjournaal!
 
-Als laatste actie kunnen jullie de gevonden $\chi^2$ waarden en p-waarden invoeren in dit formulier. Het resultaat daarvan zullen we gebruiken in het volgende theoretische deel.
+Als laatste actie kunnen jullie de gevonden $\chi^2$ - en p-waarden invoeren met [dit formulier](https://forms.gle/T1jEWueUrZrqH62o8)
+
+Het resultaat daarvan zullen we gebruiken in het volgende theoretische deel.
 
 In het theoretische deel van het portfolio gaan we dieper in op het concept van een kansverdeling met name die van $\chi^2$, en in het bijzonder de daarmee verbonden onzekerheid van je uiteindelijke uitspraak. Vervolgens leggen we een verband tussen het concept onzekerheid, biodiversiteit, en Evo-Devo.

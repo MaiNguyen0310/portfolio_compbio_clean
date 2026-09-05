@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -288,7 +288,7 @@ window.Quarto = {
   <li><a href="#positie-specifieke-entropie" id="toc-positie-specifieke-entropie" class="nav-link" data-scroll-target="#positie-specifieke-entropie"><span class="header-section-number">1.5.1</span> Positie-specifieke entropie</a></li>
   <li><a href="#entropie-is-optelbaar" id="toc-entropie-is-optelbaar" class="nav-link" data-scroll-target="#entropie-is-optelbaar"><span class="header-section-number">1.5.2</span> Entropie is optelbaar</a></li>
   </ul></li>
-  <li><a href="#surprisal-informatie-als--logp" id="toc-surprisal-informatie-als--logp" class="nav-link" data-scroll-target="#surprisal-informatie-als--logp"><span class="header-section-number">1.6</span> Surprisal: informatie als <span class="math inline">\(-\log(p)\)</span></a>
+  <li><a href="#informatie-als--logp" id="toc-informatie-als--logp" class="nav-link" data-scroll-target="#informatie-als--logp"><span class="header-section-number">1.6</span> Informatie als <span class="math inline">\(-\log(p)\)</span></a>
   <ul class="collapse">
   <li><a href="#de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen" id="toc-de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen" class="nav-link" data-scroll-target="#de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen"><span class="header-section-number">1.6.1</span> De Complexiteit van de natuur valt uiteen in twee vragen</a></li>
   </ul></li>
@@ -330,10 +330,18 @@ window.Quarto = {
 <h2 data-number="1.2" class="anchored" data-anchor-id="de-toetsgrootheid-is-zelf-een-stochastische-variabele"><span class="header-section-number">1.2</span> De toetsgrootheid is zelf een stochastische variabele</h2>
 <p>Jullie hebben de resultaten van jullie metingen ingevoerd in het online formulier. Hieronder zie je de verdeling van de berekende <span class="math inline">\(\chi^2\)</span>-waarden op basis van jullie individuele metingen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code die een histogram geeft van de chi^2 waarden</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Maizz <span class="ot">&lt;-</span> <span class="fu">read.delim2</span>(<span class="st">"Maizz.txt"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Maizz<span class="sc">$</span>Chi.<span class="fl">2.</span>waarde)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stochastische_var_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div id="exr-chi2_waarden" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 1.1</strong></span> Stel dat maïs zich precies aan de verwachte 3:1-verdeling houdt, dus dat <span class="math inline">\(H_0\)</span> waar is. Verwacht je dan dat alle studenten dezelfde <span class="math inline">\(\chi^2\)</span>-waarden vinden, of nog steeds verschillende? Met andere woorden: ontstaat er ook onder <span class="math inline">\(H_0\)</span> een verdeling van <span class="math inline">\(\chi^2\)</span>-waarden? Zo ja, dan is dat een speciale verdeling. Waarom zou een goede naam voor die specifieke verdeling zijn?</p>
+<p><span class="theorem-title"><strong>Vraag 1.1</strong></span> Stel dat maïs zich precies aan de verwachte 3:1-verdeling houdt, dus dat <span class="math inline">\(H_0\)</span> waar is. Verwacht je dan dat alle studenten dezelfde <span class="math inline">\(\chi^2\)</span>-waarden vinden, of nog steeds verschillende? Met andere woorden: ontstaat er ook onder <span class="math inline">\(H_0\)</span> een verdeling van <span class="math inline">\(\chi^2\)</span>-waarden? Zo ja, dan is dat een speciale verdeling. Wat zou een goede naam voor die specifieke verdeling zijn?</p>
 </div>
 <p><strong>Jouw antwoord:</strong></p>
 <p>Wat onze waargenomen verdeling laat zien, is een voorbeeld van een stochastische variabele: een grootheid waarvan de waarde door toeval wordt bepaald. Ze heeft drie kenmerkende eigenschappen:</p>
@@ -348,20 +356,27 @@ window.Quarto = {
 <p>De <span class="math inline">\(\chi^2\)</span>-waarde voldoet aan alle drie: ze ligt pas vast na het tellen en berekenen (2), verschilt van student tot student door toeval in de steekproef (3), en volgt daarmee een kansverdeling (1). Er is dus onzekerheid over welke <span class="math inline">\(\chi^2\)</span>-waarde een meting oplevert.</p>
 <p>Dit is bovendien geen toeval, maar een noodzakelijk gevolg: <span class="math inline">\(\chi^2\)</span>is een functie van stochastische variabelen, zoals het aantal zaden, en is daardoor zelf ook een stochastische variabele, die dus per definitie een eigen kansverdeling bezit. Wiskundigen hebben die <span class="math inline">\(\chi^2\)</span>-verdeling onder bepaalde <strong>aannamen</strong> kunnen afleiden:</p>
 <p><span class="math display">\[f(x; k) = \frac{1}{2^{k/2}\,\Gamma(k/2)}\, x^{k/2 - 1} e^{-x/2}, \quad x &gt; 0\]</span></p>
-<p>Dit is een ingewikkelde functie die jullie niet uit je hoofd hoeven te kennen. Het belangrijke deel is de zinsnede <em>onder bepaalde aannamen</em>. Een cruciale aanname bv is dat <span class="math inline">\(H_0\)</span> correct is. Dat lijkt merkwaardig, we willen <span class="math inline">\(H_0\)</span> juist toetsen, en toch nemen we haar even als waar aan. Maar precies dat is de geniale zet: alleen door een concrete hypothese als “precies <span class="math inline">\(3:1\)</span>” aan te nemen, kunnen we exact uitrekenen hoe onwaarschijnlijk onze data zouden zijn als <span class="math inline">\(H_0\)</span> klopt. Het alternatief, “er is een afwijking”, is te vaag om mee te rekenen: het kan oneindig veel vormen aannemen. Door <span class="math inline">\(H_0\)</span> als vertrekpunt te nemen, krijgen we een rekenbaar model, en daar komt de <span class="math inline">\(\chi^2\)</span>-verdeling vandaan. We komen hier later dit jaar in Statistiek 1 op terug.</p>
+<p>Dit is een ingewikkelde functie die jullie niet uit je hoofd hoeven te kennen. Het belangrijke deel is de zinsnede <em>onder bepaalde aannamen</em>. Een cruciale aanname bv is dat <span class="math inline">\(H_0\)</span> correct is. Dat lijkt merkwaardig, we willen <span class="math inline">\(H_0\)</span> juist verwerpen, en toch nemen we haar even als waar aan. Maar precies dat is de geniale zet: alleen door een concrete hypothese als “precies <span class="math inline">\(3:1\)</span>” aan te nemen, kunnen we exact uitrekenen hoe onwaarschijnlijk onze data zouden zijn als <span class="math inline">\(H_0\)</span> klopt. Het alternatief, “er is een afwijking”, is te vaag om mee te rekenen: het kan oneindig veel vormen aannemen. Door <span class="math inline">\(H_0\)</span> als vertrekpunt te nemen, krijgen we een rekenbaar model, en daar komt de <span class="math inline">\(\chi^2\)</span>-verdeling vandaan. We komen hier later dit jaar in Statistiek 1 in het algemeen op terug.</p>
 <p>Meer algemeen geldt dat we bij statistische toetsen en wiskundige modellen aannamen altijd expliciet moeten benoemen en controleren.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>De wetenschap kan niet zonder <strong>aannamen</strong>: alleen onder bepaalde condities kunnen we een theorie of model formuleren. Van die aannamen moet je je altijd bewust zijn.</p>
 </div></div><p>Deze onzekerheid wordt nog beter voelbaar bij de p-waarde waarmee we het behouden van <span class="math inline">\(H_O\)</span> op baseren, die op haar beurt een functie van de stochatische variabele <span class="math inline">\(\chi^2\)</span> is. Hieronder zie je de verdeling van de p-waarden over de groepen.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># code die een histrogram geeft van de p waarden</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Maizz<span class="sc">$</span>p.waarde)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="stochastische_var_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <div id="exr-p_waarden" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 1.2</strong></span> Als de p-waarde zelf ook een stochastische variabele is, wat betekent dat dan voor onze uitspraak over <span class="math inline">\(H_0\)</span>?</p>
 </div>
 <p>Antwoord:</p>
-<p>Nemen een kritieke waarde van 0.05 waarbij we de nulhypothese verwerpen, dan blijkt iets opmerkelijks: ook de conclusie, verwerpen of niet, wordt bepaald door een stochastische variabele. Of een student de nulhypothese verwerpt, hangt af van een p-waarde die zelf door toeval varieert. Daarmee erf ook de uitspraak over de hypothese onzekerheid. Een tweede opmerkelijk gevolg is dat zelfs wanneer de 3:1-hypothese correct is, sommige groepen haar toch zullen verwerpen, puur door toeval in de steekproef; bijvoorbeeld als ze teveel rode of gele korrels hebben gemeten. Dit noemen we later een type-I-fout en we weten precies de kans daarop. Voor nu is het genoeg om te zien dat de onzekerheid zich overerft tot in de conclusie zelf.</p>
+<p>Nemen we een kritieke waarde <span class="math inline">\(\alpha\)</span> van 0.05 waarbij we de nulhypothese verwerpen, dan blijkt iets opmerkelijks: ook de conclusie, verwerpen of niet, wordt bepaald door een stochastische variabele. Of een student de nulhypothese verwerpt, hangt af van een p-waarde die zelf door toeval varieert. Daarmee erft ook de uitspraak over de hypothese onzekerheid. Een tweede opmerkelijk gevolg is dat zelfs wanneer de 3:1-hypothese correct is, sommige groepen haar toch zullen verwerpen, puur door toeval in de steekproef; bijvoorbeeld als ze teveel rode of gele korrels hebben gemeten. Dit noemen we later een type-I-fout en we weten precies de kans daarop. Voor nu is het genoeg om te zien dat de onzekerheid zich overerft tot in de conclusie zelf.</p>
 </section>
 <section id="maat-voor-onzekerheid-entropie." class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="maat-voor-onzekerheid-entropie."><span class="header-section-number">1.3</span> Maat voor onzekerheid: Entropie.</h2>
@@ -369,10 +384,10 @@ window.Quarto = {
 </section>
 <section id="maat-voor-onzekerheid-entropie.-1" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="maat-voor-onzekerheid-entropie.-1"><span class="header-section-number">1.4</span> Maat voor onzekerheid: Entropie.</h2>
-<p>Er bestaan verschillende maten in de statistiek welke de hoeveelheid onzekerheid kunnen duiden. Later in het jaar komen we bijvoorbeeld de standaard fout (SE) tegen. Nu wil ik kijken naar een andere zeer belangrijke wetenschappelijke maat voor onzekerheid, namelijk <code>entropie.</code> Entropie kan worden opgevat naast een maat voor onzekerheid, ook als willekeurigheid of wanorde en zoals we zullen zien ook biodiversiteit en positie-specifieke entropie in moleculaire biologie, en is alleen gebaseerd op de kansverdeling.</p>
+<p>Er bestaan verschillende maten in de statistiek welke de hoeveelheid onzekerheid kunnen duiden. Later in het jaar komen we bijvoorbeeld de standaard fout (SE) tegen. Nu wil ik kijken naar een andere zeer belangrijke wetenschappelijke maat voor onzekerheid, namelijk <code>entropie.</code> Entropie kan worden opgevat naast een maat voor onzekerheid, ook als een maat voor willekeur of wanorde en zoals we zullen zien ook biodiversiteit en positie-specifieke entropie in moleculaire biologie, en is alleen een functie van een kansverdeling.</p>
 <p>De entropie van een discrete kansverdeling zoals voor biodiversiteit en positie-specifieke entropie wordt gedefinieerd als:</p>
 <p><span id="eq-entropie-def"><span class="math display">\[H(p) = -\sum_i p_i \log(p_i) \tag{1.1}\]</span></span></p>
-<p>waarbij <span class="math inline">\(p_i\)</span> de kans is op uitkomst <span class="math inline">\(i\)</span>.</p>
+<p>waarbij <span class="math inline">\(p_i\)</span> de kans is op uitkomst <span class="math inline">\(i\)</span> die een bepaalde verdeling volgt.</p>
 <section id="interpretatie" class="level3" data-number="1.4.1">
 <h3 data-number="1.4.1" class="anchored" data-anchor-id="interpretatie"><span class="header-section-number">1.4.1</span> Interpretatie</h3>
 <p>Een hoge entropie wijst op grote onzekerheid. Dit treedt op wanneer de kansen relatief gelijk verdeeld zijn over de mogelijke uitkomsten zoals de eerlijk dobbelsteen.</p>
@@ -391,7 +406,7 @@ window.Quarto = {
 <li>in de <strong>sociale wetenschappen</strong> en economie kan entropie worden gebruikt als maat voor economische of sociale ongelijkheid.</li>
 </ol>
 <div id="exr-entropie_sociaal" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 1.4</strong></span> Leg uit waarom zou entropie een maat zijn voor kunnen zijn voor ongelijkheid in punt 3. Wordt de waarden van de entropie groter of kleiner bij ongelijkheid?</p>
+<p><span class="theorem-title"><strong>Vraag 1.4</strong></span> Leg uit waarom entropie een maat kan zijn voor ongelijkheid in punt 3. Wordt de waarden van de entropie groter of kleiner bij sociale ongelijkheid (Thiel-index)?</p>
 </div>
 <p><strong>Jouw antwoord:</strong></p>
 <div id="exr-entropie_biodiv" class="theorem exercise">
@@ -406,13 +421,31 @@ window.Quarto = {
 <h3 data-number="1.5.1" class="anchored" data-anchor-id="positie-specifieke-entropie"><span class="header-section-number">1.5.1</span> Positie-specifieke entropie</h3>
 <p>We hebben entropie leren kennen als een maat voor onzekerheid of verrassing: hoe moeilijker de uitkomst vooraf te voorspellen is, hoe hoger de entropie. Diezelfde gedachte kunnen we toepassen op DNA.</p>
 <p>Wanneer we hetzelfde gen van verschillende soorten onder elkaar leggen, ontstaat een <em>alignment</em>: overeenkomstige posities staan in dezelfde kolom. Hieronder staat een klein voorbeeld voor zes soorten en zeven posities.</p>
-<pre><code>positie:   1  2  3  4  5  6  7
-soort 1:   A  T  G  C  A  A  T
-soort 2:   A  T  G  T  A  G  T
-soort 3:   A  T  G  A  A  C  T
-soort 4:   A  T  G  G  A  A  T
-soort 5:   A  T  G  C  A  T  T
-soort 6:   A  T  G  A  A  G  T</code></pre>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Het alignment als data frame: elke RIJ een soort, elke KOLOM een positie</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>alignment <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_1 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_2 =</span> <span class="fu">c</span>(<span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_3 =</span> <span class="fu">c</span>(<span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_4 =</span> <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"T"</span>, <span class="st">"A"</span>, <span class="st">"G"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_5 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>, <span class="st">"A"</span>),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_6 =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"G"</span>, <span class="st">"G"</span>, <span class="st">"A"</span>, <span class="st">"T"</span>, <span class="st">"G"</span>),</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">positie_7 =</span> <span class="fu">c</span>(<span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>, <span class="st">"T"</span>),</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">row.names =</span> <span class="fu">c</span>(<span class="st">"soort 1"</span>, <span class="st">"soort 2"</span>, <span class="st">"soort 3"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="st">"soort 4"</span>, <span class="st">"soort 5"</span>, <span class="st">"soort 6"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>alignment</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        positie_1 positie_2 positie_3 positie_4 positie_5 positie_6 positie_7
+soort 1         A         T         G         C         A         A         T
+soort 2         A         T         G         T         A         G         T
+soort 3         A         T         G         A         A         G         T
+soort 4         A         T         G         G         A         A         T
+soort 5         A         T         G         C         A         T         T
+soort 6         A         T         G         A         A         G         T</code></pre>
+</div>
+</div>
 <p>Bekijk de kolommen (posities) van boven naar beneden, niet de rijen. Elke kolom vertelt hoe gevarieerd die positie is over de zes soorten.</p>
 <div id="exr-tabel_pos" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 1.6</strong></span> Op welke posities staat bij alle soorten dezelfde bouwsteen? En op welke positie verschillen de soorten het sterkst? Beschrijf in woorden.</p>
@@ -427,7 +460,20 @@ soort 6:   A  T  G  A  A  G  T</code></pre>
 <p>jouw antwoord:</p>
 </blockquote>
 <div id="exr-tabel_entropie" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 1.8</strong></span> Leg uit welke positie de hoogste entropie heeft en welke de laagste. Gebruik daarbij dat entropie alleen afhangt van hoe de bouwstenen over de soorten verdeeld zijn, niet van welke bouwsteen het is.</p>
+<p><span class="theorem-title"><strong>Vraag 1.8</strong></span> Bereken met de code hieronder de entropie van de verschillende kolommen door op het kleine driehoekje recht boven deze chunk te klikken. Welke van deze posities zijn het meest geconserveerd (constrained) tussen de soorten, en welke het minst? Leg uit hoe je tot je antwoord komt.</p>
+<p>Probeer de code te begrijpen als je tijd hebt, maar dat is niet het eerste doel van deze opdracht. Hint: we hebben hier zelf een functie gemaakt. Waarom gebruiken we de logaritme met grondtal 2? Hadden we deze vraag ook kunnen beantwoorden met grondtal 10, of met de natuurlijke logaritme?</p>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>entropie <span class="ot">&lt;-</span> <span class="cf">function</span>(kolom) {</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">table</span>(kolom) <span class="sc">/</span> <span class="fu">length</span>(kolom)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="sc">-</span><span class="fu">sum</span>(p <span class="sc">*</span> <span class="fu">log2</span>(p))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(alignment, entropie)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>positie_1 positie_2 positie_3 positie_4 positie_5 positie_6 positie_7 
+ 0.000000  0.000000  0.000000  1.918296  0.000000  1.459148  0.000000 </code></pre>
+</div>
 </div>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
@@ -447,41 +493,43 @@ soort 6:   A  T  G  A  A  G  T</code></pre>
 </section>
 <section id="entropie-is-optelbaar" class="level3" data-number="1.5.2">
 <h3 data-number="1.5.2" class="anchored" data-anchor-id="entropie-is-optelbaar"><span class="header-section-number">1.5.2</span> Entropie is optelbaar</h3>
-<p>Er is iets vreemds aan de levende wereld. Aan de ene kant wordt ze steeds complexer, histories een groei in biodiversiteit, een rijkdom aan vorm en functie. Aan de andere kant herkennen we juist heldere structuur: soorten, genera en families laten zich netjes onderscheiden. Meer variatie en meer ordening tegelijk; dat lijkt een tegenspraak.</p>
+<p>We gaan nu gebruik maken van een belangrijke eigenschap van het logarithm. Er is iets vreemds aan de levende wereld. Aan de ene kant wordt ze steeds complexer, histories een groei in biodiversiteit, een rijkdom aan vorm en functie. Aan de andere kant herkennen we juist heldere structuur: soorten, genera en families laten zich netjes onderscheiden. Meer variatie en meer ordening tegelijk; dat lijkt een tegenspraak.</p>
 <p>Om die schijnbare tegenspraak te ontleden, gebruiken we een belangrijke eigenschap van de logaritme:</p>
 <p><span id="eq-optelbaar-def"><span class="math display">\[\log(A \times B) = \log(A) + \log(B) \tag{1.2}\]</span></span></p>
 <p>De logaritme maakt van een vermenigvuldiging een optelling. Dat is precies wat we nodig hebben, want kansen worden vermenigvuldigd, terwijl entropie een <em>som</em> is. De logaritme is de brug tussen die twee: hij vertaalt het vermenigvuldigen van kansen naar het optellen van termen, en maakt zo het somteken (<span class="math inline">\(\sum\)</span>) in de entropie mogelijk.</p>
+<p>Waarom doen we dit? Optellingen zijn niet alleen voor ons brein makkelijker dan vermenigvuldigingen, ze zijn ook rekenkundig veel stabieler: kansen die je met elkaar vermenigvuldigt worden razendsnel extreem klein, terwijl hun logaritmen hanteerbare getallen blijven die je gewoon kunt optellen. Dit is een terugkerende methode in de wetenschap: maten maken die stabiel zijn bij berekeningen en cognitief makkelijker om mee te werken.</p>
 </section>
 </section>
-<section id="surprisal-informatie-als--logp" class="level2 page-columns page-full" data-number="1.6">
-<h2 data-number="1.6" class="anchored" data-anchor-id="surprisal-informatie-als--logp"><span class="header-section-number">1.6</span> Surprisal: informatie als <span class="math inline">\(-\log(p)\)</span></h2>
-<p>De grootheid <span class="math inline">\(-\log(p)\)</span> heeft een eigen naam: <em>informatie</em>, ook wel <em>surprisal</em> (verrassing). Een onwaarschijnlijke uitkomst (kleine <span class="math inline">\(p\)</span>) levert veel informatie op; een vrijwel zekere uitkomst (grote <span class="math inline">\(p\)</span>) weinig. De entropie</p>
+<section id="informatie-als--logp" class="level2 page-columns page-full" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="informatie-als--logp"><span class="header-section-number">1.6</span> Informatie als <span class="math inline">\(-\log(p)\)</span></h2>
+<p>De grootheid <span class="math inline">\(-\log(p)\)</span> heeft een eigen naam: <em>informatie</em>, ook wel <em>surprisal</em> (verrassing). Een onwaarschijnlijke uitkomst (kleine kans <span class="math inline">\(p\)</span>) levert veel informatie op; een vrijwel zekere uitkomst (grote <span class="math inline">\(p\)</span>) weinig. De entropie</p>
 <p><span id="eq-entropie2-def"><span class="math display">\[H(X) = -\sum_i p_i \log(p_i) \tag{1.3}\]</span></span></p>
-<p>is dan niets anders dan het gemiddelde van die informatie over alle uitkomsten, de <em>verwachtingswaarde</em> van de surprisal. Vandaar de naam <em>informatie-entropie</em>, of kortweg weer <em>informatie</em>.</p>
+<p>is dan niets anders dan het gemiddelde van die informatie over alle uitkomsten, de <em>verwachtingswaarde</em> van de surprisal. Vandaar de naam <em>informatie-entropie</em>, of kortweg weer <em>informatie</em> als afkorting van <em>Shannon-informatie</em>; deze laatste zul je nog vaker tegenkomen in je studie.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Dat één begrip zowel “surprisal” als “informatie” als “entropie” heet, is een voorbeeld van hoe naamgeving in de wetenschap tot verwarring kan leiden. Toepasselijk genoeg gaat entropie hier nu juist over.</p>
 </div></div><section id="de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen" class="level3" data-number="1.6.1">
 <h3 data-number="1.6.1" class="anchored" data-anchor-id="de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen"><span class="header-section-number">1.6.1</span> De Complexiteit van de natuur valt uiteen in twee vragen</h3>
-<p>Dankzij de logaritme kunnen we de entropie <em>ontleden</em>. Meet je de vorm van een willekeurig organisme in de biosfeer, dan valt de onzekerheid over die vorm uiteen in twee vragen: <em>welke soort is dit?</em> en <em>hoe ziet dit individu eruit, gegeven die soort?</em> In formulevorm:</p>
+<p>Dankzij de logaritme kunnen we dus de entropie <em>ontleden</em>. Meet je de vorm van een willekeurig organisme in de biosfeer, dan valt de onzekerheid over die vorm uiteen in twee vragen: <em>welke soort is dit?</em> en <em>hoe ziet dit individu eruit, gegeven die soort?</em>, niet alle organisme in een soort zien er identiek uit. In formulevorm ziet deze partitie er als volgt uit:</p>
 <p><span id="eq-ontleden-def"><span class="math display">\[H(\text{fenotype}) = H(\text{soort}) + H(\text{fenotype} \mid \text{soort}) \tag{1.4}\]</span></span></p>
 <p>Deze opsplitsing lost de schijnbare tegenspraak op.</p>
 <p><em>Binnen</em> een soort daalt de entropie. De ontwikkeling is gebufferd: veel verschillende genotypen leiden tot hetzelfde fenotype, zodat de vorm binnen een soort weinig varieert. De rechterterm, <span class="math inline">\(H(\text{fenotype} \mid \text{soort})\)</span>, wordt daardoor kleiner.</p>
 <p><em>Tussen</em> soorten stijgt de entropie. Er komen soorten bij, de biodiversiteit groeit, en de linkerterm <span class="math inline">\(H(\text{soort})\)</span> wordt groter.</p>
-<p>Er is dus geen paradox: het gaat om twee verschillende termen, die onafhankelijk van elkaar kunnen bewegen. Sterker nog, de twee versterken elkaar. Juist doordat de vorm binnen een soort strak gebufferd is, worden soorten scherpe, telbare eenheden — en pas over zulke eenheden kun je überhaupt sommeren om biodiversiteit te meten.</p>
+<p>Er is dus geen paradox: het gaat om twee verschillende termen, die onafhankelijk van elkaar kunnen bewegen. Sterker nog, de twee versterken elkaar. Juist doordat de vorm binnen een soort strak gebufferd is, worden soorten scherpe, telbare eenheden, en pas over zulke eenheden kun je überhaupt sommeren om biodiversiteit te meten. Daarmee begrijpen we nu waarom de natuur tegelijk complexer en gevarieerder wordt en een herkenbare structuur vertoont, en het is juist die structuur die de biologische wetenschap mogelijk maakt.</p>
 <p><strong>Canalisatie</strong> is het vermogen van de ontwikkeling om, ondanks variatie in genotype of omgeving, steeds hetzelfde fenotype voort te brengen.</p>
 <div id="exr-entropie_canal" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 1.11</strong></span> Welke van de twee termen wordt beïnvloed door canalisatie, en welke door het ontstaan van nieuwe soorten? Kan <span class="math inline">\(𝐻(fenotype)=𝐻(soort)+𝐻(fenotype∣soort)\)</span> gelijk blijven terwijl beide termen veranderen?</p>
 </div>
 <p><strong>Jouw antwoord:</strong></p>
-<p>Al deze vragen illustreren dat een relatief eenvoudige functie zoals entropie ons veel theoretische inzichten kan verschaffen, zowel kwalitatief als kwantitatief, die anders niet of erg moeilijk zijn. Dat geldt niet alleen voor de biologie, maar ook voor andere wetenschappelijke disciplines.</p>
+<p>Al deze vragen illustreren dat een relatief eenvoudige functie zoals entropie ons veel theoretische inzichten kan verschaffen, zowel kwalitatief als kwantitatief, die anders niet of erg moeilijk zijn of erg moeilijk. In de ecologie maakt entropie het bovendien mogelijk verschillende bronnen van biodiversiteit afzonderlijk te meten: de diversiteit binnen een gebied (alfadiversiteit), tussen gebieden (bètadiversiteit) en over het geheel (gammadiversiteit); precies dezelfde opsplitsing in een “binnen”- en een “tussen”-term die we hierboven tegenkwamen.</p>
+<p>Dat geldt niet alleen voor de biologie, maar ook voor andere wetenschappelijke disciplines.</p>
 <p>In dit theoretische deel stond de interpretatie centraal; code en wiskunde hebben we bewust op de achtergrond gehouden en conceptueel begrip voorop. In de komende delen keren die juist terug, en gaan we meer rekenen en met wiskundige regels werken</p>
 </section>
 </section>
 <section id="slotopdracht-jouw-eigen-synthese" class="level2 page-columns page-full" data-number="1.7">
 <h2 data-number="1.7" class="anchored" data-anchor-id="slotopdracht-jouw-eigen-synthese"><span class="header-section-number">1.7</span> Slotopdracht: jouw eigen synthese</h2>
-<p>Deze laatste opdracht is anders dan de vorige. Er is geen goed of fout antwoord, mogelijk alleen slecht geformuleerd, en je hoeft niets te berekenen. We vragen je om terug te kijken op alles wat in deze portfolio-opdracht langskwam, zowel het practicum als het theoretische deel, en er in je eigen woorden een samenhangend verhaal van te maken.</p>
-<p>Belangrijk: dit is een <em>momentopname</em>. De hypothesen en verbanden die je nu zlef formuleert, mag je gedurende het jaar vrij aanpassen, verwerpen of uitbreiden naarmate je nieuwe kennis opdoet, bijvoorbeeld na nieuwe inzichten met allometrische schaling in de komende colleges. Je legt hier dus geen eindantwoord vast, maar je huidige denken. Durf daarom te speculeren. We helpen je een beetje met een set vragen.</p>
+<p>Deze laatste opdracht is anders dan de vorige. Er is geen goed of fout antwoord, mogelijk alleen slecht geformuleerd, en je hoeft niets te berekenen. We vragen je om terug te kijken op alles wat in deze portfolio-opdracht langskwam, zowel het practicum als het theoretische deel, en er in je eigen woorden een samenhangend verhaal van te maken. Dit is niet makkelijk en je zult ervaren je eigen worden nu vinden <em>nog</em> erg moeilijk is, we dagen jullie dus uit.</p>
+<p>Belangrijk: dit is een <em>momentopname</em>. De hypothesen en verbanden die je nu zelf formuleert, mag je gedurende het jaar vrij aanpassen, verwerpen of uitbreiden naarmate je nieuwe inzichten opdoet, bijvoorbeeld na nieuwe inzichten met allometrische schaling in de komende colleges. Je legt hier dus geen eindantwoord vast, maar je huidige denken. Durf daarom te speculeren. We helpen je een beetje met een set vragen.</p>
 <p><strong>Vraag 1 — Rode draad.</strong> Vat in je eigen woorden samen welke theoretische elementen vandaag zijn langsgekomen, en hoe ze met elkaar samenhangen. Denk aan de begrippen die telkens terugkeerden: de nulhypothese en het verwerpen daarvan, de <span class="math inline">\(\chi^2\)</span>-toets en de p-waarde, stochastische variabelen en hun verdeling, surprisal en entropie, en de opsplitsing van entropie in canalisatie en biodiversiteit. Probeer niet elk begrip los te beschrijven, maar te laten zien hoe ze in elkaar grijpen.</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
@@ -500,7 +548,7 @@ soort 6:   A  T  G  A  A  G  T</code></pre>
 </blockquote>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Als je klaar bent, kun je deze file plaatsen in je persoonlijke locker in Brightspace</p>
+<p>Als je klaar bent, kun je deze file plaatsen in bijbehorende assignment in Brightspace. De mais practicum opdracht is niet nodig maar sla deze wel goed op met een back-up.</p>
 </div></div><div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -517,11 +565,11 @@ soort 6:   A  T  G  A  A  G  T</code></pre>
 <p>In het honoursonderdeel graven we dieper. Een paar vragen die we gaan verkennen:</p>
 <ul>
 <li><p>Waarom juist deze formule? Entropie is niet zomaar één van de vele mogelijke maten voor onzekerheid. Onder een handvol redelijke eisen — bijvoorbeeld dat onafhankelijke gebeurtenissen optelbare informatie geven — is <span class="math inline">\(-\sum p_i \log p_i\)</span> de <em>enige</em> die overblijft. We leiden dat zelf af.</p></li>
-<li><p>De brug naar de natuurkunde. Dezelfde grootheid die wij op zaadverhoudingen loslaten, bepaalt in de thermodynamica de richting van de tijd: de entropie van een gesloten systeem neemt toe. We bekijken hoe Boltzmanns <span class="math inline">\(S = k \log W\)</span> en Shannons <span class="math inline">\(H\)</span> in wezen dezelfde vergelijking zijn, en wat dat betekent.</p></li>
-<li><p>Continue verdelingen. Tot nu toe telden we discrete uitkomsten. Wat gebeurt er als de variabele continu wordt? Dan wordt de som een integraal, <span class="math inline">\(h(X) = -\int f(x)\log f(x)\,dx\)</span>, en blijkt de normale verdeling een bijzondere eigenschap te hebben: van alle verdelingen met een gegeven variantie heeft zij de hoogste entropie.</p></li>
-<li><p>Maximale entropie als principe. Als je niets weet behalve een paar constraints, welke kansverdeling moet je dan kiezen? Het antwoord — die met de hoogste entropie — blijkt een verrassend krachtig recept, van statistische fysica tot machine learning.</p></li>
+<li><p>De brug naar de natuurkunde. Dezelfde grootheid die wij op zaadverhoudingen loslaten, bepaalt in de thermodynamica de richting van de tijd en van biochemische processen. De tweede hoofdwet van de thermodynamica stelt namelijk dat de entropie van een gesloten systeem altijd naar een maximum gaat. We bekijken hoe Boltzmanns <span class="math inline">\(S = k \log W\)</span> en Shannons <span class="math inline">\(H\)</span> in wezen dezelfde vergelijking zijn, en wat dat betekent. Dat levende cellen tóch geordende structuren opbouwen, lijkt daarmee in tegenspraak, hoe dat kan, is precies een van de vragen die we gaan verkennen.</p></li>
+<li><p>Continue verdelingen. Tot nu toe telden we discrete uitkomsten. Wat gebeurt er als de variabele continu wordt? Dan wordt de som een integraal, <span class="math inline">\(h(X) = -\int f(x)\log f(x)\,dx\)</span>, en blijkt de normale verdeling een bijzondere eigenschap te hebben: van alle verdelingen met een gegeven variantie heeft zij de hoogste entropie en dat wordt later belangrijk in de statistiek en AI.</p></li>
+<li><p>Maximale entropie als principe. Als je niets weet behalve een paar constraints, welke kansverdeling moet je dan kiezen? Het antwoord — die met de hoogste entropie — blijkt een verrassend krachtig recept, van statistische fysica tot machine learning and AI.</p></li>
 </ul>
-<p>Wie hiermee verder wil, krijgt een glimp van hoe één wiskundige vorm de taal van onzekerheid, informatie én de tweede hoofdwet van de thermodynamica tegelijk spreekt.</p>
+<p>Wie hiermee verder wil, krijgt een glimp van hoe één wiskundige vorm de taal van onzekerheid, informatie én de tweede hoofdwet van de thermodynamica tegelijk spreekt en is volgens vele de belangrijkste wetenschappelijke inzich dat er is. Kippenvel !!</p>
 </div>
 </div>
 </div>

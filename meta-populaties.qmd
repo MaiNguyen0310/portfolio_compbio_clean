@@ -1,14 +1,12 @@
 # Metapopulaties: drift, migratie en kolonisatie
 
-*[Dit portfolio-onderdeel is nog niet af; deze tekst dient  als placeholder]*
+*\[Dit portfolio-onderdeel is nog niet af; deze tekst dient als placeholder\]*
 
-  
-In @sec-gen_drift heb je al gezien dat genetische drift in een enkele populatie tot verlies van gentische variatie leidt. Dit verlies was definitief: een verdwenen allel keerde niet meer terug in de populatie. In de praktijk weten we dat dit niet altijd gebeurt. In dit portfolio-onderdeel bekijken we wat er gebeurt als meerdere  populaties met elkaar verbonden zijn en allelen uitwisselen.
+In @sec-gen_drift heb je al gezien dat genetische drift in een enkele populatie tot verlies van gentische variatie leidt. Dit verlies was definitief: een verdwenen allel keerde niet meer terug in de populatie. In de praktijk weten we dat dit niet altijd gebeurt. In dit portfolio-onderdeel bekijken we wat er gebeurt als meerdere populaties met elkaar verbonden zijn en allelen uitwisselen.
 
 ## Drift binnen één patch
 
-Voordat we die verbindingen toevoegen, herhalen we hoe we in
-@sec-gen_drift gesampled hebben. De context verandert een beetje: in plaats van twee allelen van één gen, bekijken we nu twee fenotypes binnen een populatie/patch. Een nieuwe generatie ontstaat door willekeurig, met teruglegging, individuen uit de huidige generatie te trekken.
+Voordat we die verbindingen toevoegen, herhalen we hoe we in @sec-gen_drift gesampled hebben. De context verandert een beetje: in plaats van twee allelen van één gen, bekijken we nu twee fenotypes binnen een populatie/patch. Een nieuwe generatie ontstaat door willekeurig, met teruglegging, individuen uit de huidige generatie te trekken.
 
 We halen inspiratie uit de code die aan het begin van het vorige portfolio-onderdeel gegeven is:
 
@@ -41,7 +39,7 @@ We introduceren hiervoor een migratieparameter $m$: de kans dat een individu in 
 
 ### Twee patches, één richting
 
-*(placeholder:  voorbeeld met precies twee patches en eenrichtingsmigratie, om het effect van $m$ zichtbaar te maken)*
+*(placeholder: voorbeeld met precies twee patches en eenrichtingsmigratie, om het effect van* $m$ zichtbaar te maken)
 
 ```{r}
 J <- 20 # startgrootte van elke patch
@@ -94,7 +92,6 @@ Patch A verliest door migratie steeds individuen, patch B krijgt ze erbij. Wat v
 ### Willekeurig veel patches
 
 *(placeholder: de volledige metapop-functie, in stukken opgebouwd)*
-
 
 ## Het Levins-metapopulatiemodel
 

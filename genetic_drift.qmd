@@ -1,6 +1,6 @@
 # Genetic Drift {#sec-gen_drift}
 
-*[Dit portfolio-onderdeel is nog niet af; deze tekst dient slechts als placeholder]*
+*\[Dit portfolio-onderdeel is nog niet af; deze tekst dient slechts als placeholder\]*
 
 Bij het vak *Evolutiebiologie 1* ben je het Hardy-Weinberg model tegenkomen, dat condities beschrijft waarin de genetische samenstelling van een populatie niet verandert. Hierbij heb je ook al besproken dat geen enkele populatie daadwerkelijk voldoet aan deze condities. In het bijzonder is een voorwaarde voor een Hardy-Weinberg equilibrium dat de populatie oneindig groot is. In de werkelijkheid fluctueren allelfrequenties binnen een populatie door random sampling. Dit noemen we `genetic drift`. Dit vermindert de genetische variatie binnen een populatie, waarbij kleine populaties gevoeliger zijn voor deze random effecten dan grote populaties.
 
@@ -123,7 +123,7 @@ Aan het begin van dit hoofdstuk stelden we dat kleine populaties gevoeliger zijn
 
 ### De binomiale kansverdeling
 
-In @exr-gendrift_functie heb je het idee achter de simulatie al uitgelegd: je trekt $2N$ keer onafhankelijk een allel, met steeds dezelfde kans $p_1$ op allel 1.  Dit proces volgt  een `binomiale verdeling`, die het aantal successen  beschrijft in $n$ onafhankelijke pogingen, elk met dezelfde kans $p$ op succes (denk aan het aantal keer "kop" bij $n$ muntopgooien, of, zoals hier, het aantal kopieën van allel 1 bij $n$ onafhankelijke allel-trekkingen). De kans op precies $k$ successen is:
+In @exr-gendrift_functie heb je het idee achter de simulatie al uitgelegd: je trekt $2N$ keer onafhankelijk een allel, met steeds dezelfde kans $p_1$ op allel 1. Dit proces volgt een `binomiale verdeling`, die het aantal successen beschrijft in $n$ onafhankelijke pogingen, elk met dezelfde kans $p$ op succes (denk aan het aantal keer "kop" bij $n$ muntopgooien, of, zoals hier, het aantal kopieën van allel 1 bij $n$ onafhankelijke allel-trekkingen). De kans op precies $k$ successen is:
 
 $$P(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$$ {#eq-binom}
 
@@ -131,16 +131,11 @@ waarbij $\binom{n}{k}$ het aantal manieren telt waarop je $k$ successen over $n$
 
 In onze context: elke allel-trekking is een "poging" met kans $p_1$ op allel 1, en er zijn $n=2N$ onafhankelijke trekkingen per generatie (één per allel-kopie in de populatie). Het aantal kopieën van allel 1 in de nieuwe generatie, dat we `sum(out)` noemen, is dus een stochastische variabele die $\text{Binom}(2N, p_1)$ volgt.
 
-
 ::: aside
 Vergelijk dit met wat je helemaal aan het begin van het jaar hebt gezien, in @sec-stoch en @sec-mais: het aantal kopieën van allel 1 heeft, net als de $\chi^2$-waarde daar, alle drie de kenmerken van een stochastische variabele, namelijk: een kansverdeling, een waarde die pas na "uitvoering van het experiment" (hier het samplen van een generatie) vaststaat, en inherente onzekerheid. De onderliggende verdeling is anders, omdat het achterliggende stochastische proces anders is.
 :::
 
-
-
-
 Omdat er $2N+1$ mogelijke uitkomsten zijn voor het aantal kopieën allel 1 (van 0 tot $2N$), zijn er ook precies $2N+1$ mogelijke waarden voor de nieuwe allelfrequentie: $0, \frac{1}{2N}, \frac{2}{2N}, \ldots, \frac{2N-1}{2N}, 1$. Het samenstellen van een nieuwe generatie komt dus neer op het trekken van één enkele waarde uit deze $2N+1$ mogelijkheden, met kansen die door de binomiale verdeling worden bepaald.
-
 
 ::: {#exr-drift_binomiaal}
 Je weet dat $X = \text{sum(out)} \sim \text{Binom}(2N, p_1)$, met variantie $\text{Var}(X) = np(1-p)$ (met $n=2N$, $p=p_1$).
@@ -190,6 +185,3 @@ matplot(klein, ylim = c(0,1),
 matplot(groot, ylim = c(0,1), 
         type = "l", lty = 1, main = "N = 100")
 ```
-
-
-

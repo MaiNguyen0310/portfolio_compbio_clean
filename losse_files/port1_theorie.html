@@ -232,7 +232,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="maat-voor-onzekerheid-entropie.">Maat voor onzekerheid: Entropie.</h2>
 <p>Er bestaan verschillende maten in de statistiek die de hoeveelheid onzekerheid kunnen duiden. Later in het jaar komen we bijvoorbeeld de standaardfout (SE) tegen. Nu gaan we kijken naar een andere zeer belangrijke wetenschappelijke maat voor onzekerheid, namelijk <code>entropie</code>. Entropie kan worden opgevat naast een maat voor onzekerheid, ook als een maat voor willekeur of wanorde en zoals we zullen zien ook biodiversiteit en positie-specifieke entropie in moleculaire biologie, en is alleen een functie van een kansverdeling.</p>
 <p>De entropie van een discrete kansverdeling zoals voor biodiversiteit en positie-specifieke entropie wordt gedefinieerd als:</p>
-<p><span class="math display">\[H(p) = -\sum_i p_i \log(p_i)\]</span> {#eq-entropie-def}$$H(p) = -\sum_i p_i \log(p_i)$$</p>
+<p><span id="eq-entropie-def"><span class="math display">\[H(p) = -\sum_i p_i \log(p_i) \tag{1}\]</span></span> = -\sum_i p_i \log(p_i)$$</p>
 <p>waarbij <span class="math inline">\(p_i\)</span> de kans is op uitkomst <span class="math inline">\(i\)</span> die een bepaalde verdeling volgt.</p>
 <section id="interpretatie" class="level3">
 <h3 class="anchored" data-anchor-id="interpretatie">Interpretatie</h3>
@@ -347,7 +347,7 @@ soort 6         A         T         G         A         A         G         T</c
 <h3 class="anchored" data-anchor-id="entropie-is-optelbaar">Entropie is optelbaar</h3>
 <p>We gaan nu gebruik maken van een belangrijke eigenschap van de logaritme. Er is iets vreemds aan de levende wereld. Aan de ene kant wordt ze steeds complexer: een historische groei in biodiversiteit, een rijkdom aan vorm en functie. Maar aan de andere kant herkennen we juist heldere structuur: soorten, genera en families laten zich netjes onderscheiden. Meer variatie en meer ordening tegelijk; dat lijkt een tegenspraak.</p>
 <p>Om die schijnbare tegenspraak te ontleden, gebruiken we een belangrijke eigenschap van de logaritme:</p>
-<p><span id="eq-optelbaar-def"><span class="math display">\[\log(A \times B) = \log(A) + \log(B) \tag{1}\]</span></span></p>
+<p><span id="eq-optelbaar-def"><span class="math display">\[\log(A \times B) = \log(A) + \log(B) \tag{2}\]</span></span></p>
 <p>De logaritme maakt van een vermenigvuldiging een optelling. Dat is precies wat we nodig hebben, want kansen worden vermenigvuldigd, terwijl entropie een <em>som</em> is. De logaritme is de brug tussen die twee: hij vertaalt het vermenigvuldigen van kansen naar het optellen van termen, en maakt zo het somteken (<span class="math inline">\(\sum\)</span>) in de entropie mogelijk.</p>
 <p>Waarom doen we dit? Optellingen zijn niet alleen voor ons brein makkelijker dan vermenigvuldigingen, ze zijn ook rekenkundig veel stabieler: kansen die je met elkaar vermenigvuldigt worden razendsnel extreem klein, terwijl hun logaritmen hanteerbare getallen blijven die je gewoon kunt optellen. Dit is een terugkerende methode in de wetenschap: maten maken die stabiel zijn bij berekeningen en cognitief makkelijker om mee te werken.</p>
 </section>
@@ -355,7 +355,7 @@ soort 6         A         T         G         A         A         G         T</c
 <section id="informatie-als--logp" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="informatie-als--logp">Informatie als <span class="math inline">\(-\log(p)\)</span></h2>
 <p>De grootheid <span class="math inline">\(-\log(p)\)</span> heeft een eigen naam: <em>informatie</em>, ook wel <em>surprisal</em> (verrassing). Een onwaarschijnlijke uitkomst (kleine kans <span class="math inline">\(p\)</span>) levert veel informatie op; een vrijwel zekere uitkomst (grote <span class="math inline">\(p\)</span>) weinig. De entropie</p>
-<p><span id="eq-entropie2-def"><span class="math display">\[H(X) = -\sum_i p_i \log(p_i) \tag{2}\]</span></span></p>
+<p><span id="eq-entropie2-def"><span class="math display">\[H(X) = -\sum_i p_i \log(p_i) \tag{3}\]</span></span></p>
 <p>is dan niets anders dan het gemiddelde van die informatie over alle uitkomsten, de <em>verwachtingswaarde</em> van de surprisal. Vandaar de naam <em>informatie-entropie</em>, of kortweg weer <em>informatie</em> als afkorting van <em>Shannon-informatie</em>; deze laatste zul je nog vaker tegenkomen in je studie.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
@@ -363,7 +363,7 @@ soort 6         A         T         G         A         A         G         T</c
 </div></div><section id="de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="de-complexiteit-van-de-natuur-valt-uiteen-in-twee-vragen">De Complexiteit van de natuur valt uiteen in twee vragen</h3>
 <p>Dankzij de logaritme kunnen we dus de entropie <em>ontleden</em>. Meet je de vorm van een willekeurig organisme in de biosfeer, dan valt de onzekerheid over die vorm uiteen in twee vragen: <em>welke soort is dit?</em> en <em>hoe ziet dit individu eruit, gegeven die soort?</em>. Niet alle organismen in een soort zien er identiek uit. In formulevorm ziet deze partitie er als volgt uit:</p>
-<p><span id="eq-ontleden-def"><span class="math display">\[H(\text{fenotype}) = H(\text{soort}) + H(\text{fenotype} \mid \text{soort}) \tag{3}\]</span></span></p>
+<p><span id="eq-ontleden-def"><span class="math display">\[H(\text{fenotype}) = H(\text{soort}) + H(\text{fenotype} \mid \text{soort}) \tag{4}\]</span></span></p>
 <p>Deze opsplitsing lost de schijnbare tegenspraak op.</p>
 <p><em>Binnen</em> een soort daalt de entropie. De ontwikkeling is gebufferd: veel verschillende genotypen leiden tot hetzelfde fenotype, zodat de vorm binnen een soort weinig varieert. De rechterterm, <span class="math inline">\(H(\text{fenotype} \mid \text{soort})\)</span>, wordt daardoor kleiner.</p>
 <p><em>Tussen</em> soorten stijgt de entropie. Er komen soorten bij, de biodiversiteit groeit, en de linkerterm <span class="math inline">\(H(\text{soort})\)</span> wordt groter.</p>

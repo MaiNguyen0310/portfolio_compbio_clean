@@ -25,7 +25,7 @@ Volgens de Mendeliaanse genetica verwachten we, als beide ouders heterozygoot zi
 **Tabel 3.1: Kruising van twee heterozygote ouders.**
 
 |       |                R                |                  r                  |
-|:-----:|:-------------------------------:|:-----------------------------------:|
+|:-------------:|:-------------------------:|:----------------------------:|
 | **R** | RR [(rood)]{style="color:red;"} |   Rr [(rood)]{style="color:red;"}   |
 | **r** | rR [(rood)]{style="color:red;"} | rr [(geel)]{style="color:#e6cd10;"} |
 
@@ -191,7 +191,7 @@ Bereken, gebruik makend van de informatie in deze portfolio en je eigen mais dat
 
 Let op: Neem deze bevindingen en berekeningen netjes op in je labjournaal!
 
-Als laatste actie kunnen jullie de gevonden $\chi^2$ - en p-waarden invoeren met [dit formulier](https://forms.gle/T1jEWueUrZrqH62o8)
+Als laatste actie kunnen jullie de gevonden $\chi^2$ - en p-waarden invoeren met [dit formulier](https://docs.google.com/spreadsheets/d/1AvQzzhBVJDTNQ8DWVj9TUyAYlZXl1xfwrxzew_U-us4/edit?gid=0#gid=0)
 
 Het resultaat daarvan zullen we gebruiken in het volgende theoretische deel.
 

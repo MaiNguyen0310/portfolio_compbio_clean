@@ -1,4 +1,10 @@
-# Logaritmes en exponenten {#sec-log_exp}
+---
+title: "Logaritmes en exponenten "
+author: "Jouw naam"
+format: 
+  html:
+    toc: true 
+--
 
 In de vorige portfolio-opdracht ontdekte je dat het concept van entropie in allerlei verschillende vakgebieden opduikt, waaronder informatietheorie, thermodynamica, sociale wetenschappen en biodiversiteit. Hierbij zagen we steeds dezelfde wiskundige vorm, maar net iets anders geïnterpreteerd.
 
@@ -224,8 +230,8 @@ Een paar vragen die we kunnen verkennen, zijn de volgende:
 
 - **Waarom juist deze exponent?** Een simpel oppervlak-tegen-volume-argument voorspelt de waarde $b=2/3$. De data wijst eerder op $b\approx 3/4$. Dat verschil is geen meetfout, maar heeft te maken met het achterliggende mechanisme. In het bijzonder gaat het om hoe voedingsstoffen en zuurstof door een lichaam stromen, via vertakkende netwerken zoals bloedvaten en longen. We kunnen zelf  afleiden zelf af hoe de geometrie van zo'n netwerk tot  deze machtswet leidt.
 
-- **Overal dezelfde vorm.** Bloedvaten, longen, bomen, rivierdelta's, kustlijnen: allemaal vertakkende, fractale structuren, in totaal verschillende delen van de natuur. Waarom duikt precies die geometrie steeds weer op?
+- **Waarom zien we overal dezelfde vorm?** Bloedvaten, longen, bomen, rivierdelta's, kustlijnen: allemaal vertakkende, fractale structuren, in totaal verschillende delen van de natuur. Waarom duikt precies die geometrie steeds weer op?
 
 
-- **De grens van het model.** Echte netwerken zijn geen perfecte fractalen. We onderzoeken waar en waarom de voorspelling niet altijd werkt in de praktijk, en wat dat ons leert over het verschil tussen een wiskundig model en de rommelige werkelijkheid die het probeert te vangen.
+- **Wanneer werkt het fractale model niet?** Echte netwerken zijn geen perfecte fractalen. We onderzoeken waar en waarom de voorspelling niet altijd werkt in de praktijk, en wat dat ons leert over het verschil tussen een wiskundig model en de rommelige werkelijkheid die het probeert te vangen.
 :::

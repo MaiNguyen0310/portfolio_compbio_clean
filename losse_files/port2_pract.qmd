@@ -1,5 +1,10 @@
-# pH-berekeningen: logaritmen en exponenten
-
+---
+title: "pH-berekeningen: logaritmen en exponenten"
+author: "Jouw naam"
+format: 
+  html:
+    toc: true 
+--
 Dit portfolio-onderdeel is gekoppeld aan het vak *Chemie van het leven*, waarbij je veel met pH-waarden werkt. Hierbij heb je ongetwijfeld al gerekend met de logaritme, maar dat is niet de enige keer dat je deze functie bent tegengekomen in de studie. In de vorige portfolio-opdracht kwam deze naar voren bij het bespreken van entropie. Dit is geen toeval: de logaritme is een belangrijke functie, die toepassingen heeft in allerlei contexten.
 
 We herhalen de rekenregels van de logaritme kort, zodat je deze bij de hand hebt. Mogelijk ken je deze al goed, maar het doel hierbij is dat we er echt een interpretatie aan geven en niet alleen gebruiken. Vervolgens leiden we het aankomende practicum in, waarbij je tegelijkertijd oefent met coderen.
@@ -326,3 +331,4 @@ Denk aan het statistiekportfolio! Wat was bij de vorige opdracht de meerwaarde v
 ::: {#exr-eig_log}
 Je hebt nu nog een nuttige eigenschap van de logaritme gezien. Beschrijf deze eigenschap in eigen woorden, en leg uit hoe we deze kunnen toepassen in practica.
 :::
+

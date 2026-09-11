@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c574c73dd0d0ff61020859ffc61752ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -184,7 +187,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stochastische_var.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_stochastische_var.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stochastische variabelen, kansverdelingen en entropie</span></span></a>
   </div>
 </li>
@@ -241,7 +244,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mais_pract.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_mais_pract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Maiszaden practicum</span></span></a>
   </div>
 </li>
@@ -311,7 +314,7 @@ window.Quarto = {
 <p><span id="eq-algemeen"><span class="math display">\[\frac{dN}{dt} = f(N), \quad N(0)=N_0. \tag{4.1}\]</span></span></p>
 <p>Hierbij is <span class="math inline">\(f\)</span> een specifieke functie die de geobserveerde verandering beschrijft, en <span class="math inline">\(N(0)\)</span> is de beginwaarde.</p>
 <p>Zo’n vergelijking is niet alleen van toepassing in populaties, maar in allerlei (biologische) contexten. Levende systemen veranderen immers continu. Populaties groeien, krimpen en migreren; cellen delen en sterven, en concentraties in allerlei omgevingen veranderen… Deze verandering over de tijd is vaak makkelijker bij te houden of te schatten dan de absolute aantallen. Dit is ook waarom we deze algemene vorm introduceren: de wiskunde die in dit portfolio geïntroduceerd wordt, is veel breder toepasbaar.</p>
-<p>Als we dan wel iets willen weten over hoe de populatiegrootte zich over de tijd heen ontwikkelt, proberen we de differentiaalvergelijking op te lossen. Daarmee zoeken we op basis van <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span class="quarto-unresolved-ref">eq-algemeen</span></a> een uitdrukking voor <span class="math inline">\(N(t)\)</span>; de populatiegrootte als functie van de tijd. In dit portfolio-onderdeel bekijken we hier een veelvoorkomend voorbeeld van dat biologisch ook erg relevant is. Soms is het moeilijk of zelfs niet mogelijk om een uitdrukking voor <span class="math inline">\(N(t)\)</span> te vinden. In dat geval kan het nog steeds nuttig zijn om vergelijking <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span class="quarto-unresolved-ref">eq-algemeen</span></a> te visualiseren en om een schatting te krijgen van de waarde van <span class="math inline">\(N\)</span> op bepaalde punten. Hiervoor gebruiken we <code>numerieke integratie</code>. We behandelen hiervan een simpel voorbeeld en introduceren nieuwe R-code.</p>
+<p>Als we dan wel iets willen weten over hoe de populatiegrootte zich over de tijd heen ontwikkelt, proberen we de differentiaalvergelijking op te lossen. Daarmee zoeken we op basis van <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span>4.1</span></a> een uitdrukking voor <span class="math inline">\(N(t)\)</span>; de populatiegrootte als functie van de tijd. In dit portfolio-onderdeel bekijken we hier een veelvoorkomend voorbeeld van dat biologisch ook erg relevant is. Soms is het moeilijk of zelfs niet mogelijk om een uitdrukking voor <span class="math inline">\(N(t)\)</span> te vinden. In dat geval kan het nog steeds nuttig zijn om vergelijking <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span>4.1</span></a> te visualiseren en om een schatting te krijgen van de waarde van <span class="math inline">\(N\)</span> op bepaalde punten. Hiervoor gebruiken we <code>numerieke integratie</code>. We behandelen hiervan een simpel voorbeeld en introduceren nieuwe R-code.</p>
 <section id="exponentiële-groei" class="level2 page-columns page-full" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="exponentiële-groei"><span class="header-section-number">4.1</span> Exponentiële groei</h2>
 <p>In het voorbeeld waarin een individu gemiddeld 2 nakomelingen krijgt, waarbij we aannemen dat de populatie begint met 100 individuen, kunnen we een populatiegrootte bijvoorbeeld beschrijven via</p>
@@ -319,7 +322,7 @@ window.Quarto = {
 <p>Hierin zien we dat hoe meer individuen er zijn, hoe meer nakomelingen er bijkomen en dus hoe groter de groeisnelheid van de populatie wordt. In dit geval hebben we <code>exponentiële groei</code> gemodelleerd, waarbij elk individu dus per tijdseenheid 2 nakomelingen krijgt. We kunnen aantonen dat dit inderdaad een exponentiële groeifunctie beschrijft door de differentiaalvergelijking op te lossen.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Merk op dat we dit scenario al eerder kort aan bod hebben zien komen, in <a href="#sec-rekenregels" class="quarto-xref"><span class="quarto-unresolved-ref">sec-rekenregels</span></a>. Daarbij redeneerden we de andere kant op door op basis van de huidige populatiegrootte het aantal verstreken generaties te bepalen.</p>
+<p>Merk op dat we dit scenario al eerder kort aan bod hebben zien komen, in <a href="Port_logpH_Pract.html#sec-rekenregels" class="quarto-xref"><span>Hoofdstuk B.1.3</span></a>. Daarbij redeneerden we de andere kant op door op basis van de huidige populatiegrootte het aantal verstreken generaties te bepalen.</p>
 </div></div><div id="exr-diff_diff" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 4.1</strong></span> Merk op dat exponentiële groei gemodelleerd wordt met de functie <span class="math inline">\(N(t)=Ce^{rt}\)</span>, waarbij <span class="math inline">\(r\)</span> en <span class="math inline">\(C\)</span> constantes zijn. Bepaal de afgeleide van deze functie en laat daarmee zien dat deze oplossing inderdaad hoort bij de differentiaalvergelijking <span class="math inline">\(\frac{dN}{dt}=rN(t)\)</span>.</p>
 </div>
@@ -343,7 +346,7 @@ window.Quarto = {
 <p>In plaats van de groeisnelheid <span class="math inline">\(dN/dt\)</span>$dN/dt$ als functie van <span class="math inline">\(N\)</span>, kunnen we ook <span class="math inline">\(N\)</span> als functie van de tijd <span class="math inline">\(t\)</span> plotten. Hiervoor maken we gebruik van numerieke integratie, en in het bijzonder de methode van Euler.</p>
 <section id="de-methode-van-euler" class="level3 page-columns page-full" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="de-methode-van-euler"><span class="header-section-number">4.1.1</span> De methode van Euler</h3>
-<p>Voor <span class="math inline">\(\frac{dN}{dt}=rN\)</span> vonden we, zoals je in <a href="#exr-diff_diff" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-diff_diff</span></a> liet zien, een exacte formule voor <span class="math inline">\(N(t)\)</span>. Dat lukt niet altijd: voor veel differentiaalvergelijkingen bestaat er geen nette uitdrukking voor <span class="math inline">\(N(t)\)</span>. Toch kunnen we de vergelijking dan nog steeds gebruiken om <span class="math inline">\(N\)</span> te <em>benaderen</em>, met een simpel idee: we kennen op elk moment de groeisnelheid <span class="math inline">\(\frac{dN}{dt}\)</span>, dus we kunnen een klein stapje vooruit zetten door de huidige waarde op te tellen bij (stapgrootte × groeisnelheid):</p>
+<p>Voor <span class="math inline">\(\frac{dN}{dt}=rN\)</span> vonden we, zoals je in <a href="#exr-diff_diff" class="quarto-xref">Vraag&nbsp;<span>4.1</span></a> liet zien, een exacte formule voor <span class="math inline">\(N(t)\)</span>. Dat lukt niet altijd: voor veel differentiaalvergelijkingen bestaat er geen nette uitdrukking voor <span class="math inline">\(N(t)\)</span>. Toch kunnen we de vergelijking dan nog steeds gebruiken om <span class="math inline">\(N\)</span> te <em>benaderen</em>, met een simpel idee: we kennen op elk moment de groeisnelheid <span class="math inline">\(\frac{dN}{dt}\)</span>, dus we kunnen een klein stapje vooruit zetten door de huidige waarde op te tellen bij (stapgrootte × groeisnelheid):</p>
 <p><span id="eq-euler"><span class="math display">\[N(t+dt) \approx N(t) + dt \cdot \left.\frac{dN}{dt}\right|_{N(t)}. \tag{4.2}\]</span></span></p>
 <p>In dit geval wordt dat dus <span id="eq-euler-exp"><span class="math display">\[N(t+dt) \approx N(t) + dt \cdot rN(t). \tag{4.3}\]</span></span></p>
 <p>Dit is <code>Euler-integratie</code> of de <code>methode van Euler</code>. Als je dit vaak genoeg doet, kun je voor elk tijdspunt de waarde van <span class="math inline">\(N(t)\)</span> benaderen. Hoe kleiner je de stapgrootte <code>dt</code> is, hoe nauwkeuriger de benadering, maar ook hoe meer rekenstappen nodig zijn.</p>
@@ -379,7 +382,7 @@ window.Quarto = {
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Dit is dezelfde truc als bij <a href="#exr-plot_log_data" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-plot_log_data</span></a> uit <a href="#sec-log_exp" class="quarto-xref"><span class="quarto-unresolved-ref">sec-log_exp</span></a>: een exponentieel verband wordt, na het nemen van de logaritme, een <em>lineair</em> verband. Daar gebruikte je dat om met <code>lm()</code> een exponent te schatten uit een log-log-plot; hier ga je straks hetzelfde doen om de groeisnelheid <span class="math inline">\(r\)</span> te schatten.</p>
+<p>Dit is dezelfde truc als bij <a href="Port_logpH_Theory.html#exr-plot_log_data" class="quarto-xref">Vraag&nbsp;<span>2.2</span></a> uit <a href="Port_logpH_Theory.html" class="quarto-xref"><span>Chapter 2</span></a>: een exponentieel verband wordt, na het nemen van de logaritme, een <em>lineair</em> verband. Daar gebruikte je dat om met <code>lm()</code> een exponent te schatten uit een log-log-plot; hier ga je straks hetzelfde doen om de groeisnelheid <span class="math inline">\(r\)</span> te schatten.</p>
 </div></div><blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
@@ -403,7 +406,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Merk op dat deze paraboolvorm ook af te leiden is uit de kwadratische term in <a href="#eq-log_groei" class="quarto-xref">Vergelijking&nbsp;<span class="quarto-unresolved-ref">eq-log_groei</span></a>.</p>
+<p>Merk op dat deze paraboolvorm ook af te leiden is uit de kwadratische term in <a href="#eq-log_groei" class="quarto-xref">Vergelijking&nbsp;<span>4.4</span></a>.</p>
 <div id="exr-log_groei_eq" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 4.4</strong></span> In bovenstaande plot is het punt <span class="math inline">\((K,0)\)</span>$(K,0)$ expliciet genoteerd. Waarom is dit een interessant punt? Bedenk wat het betekent dat de grafiek de lijn <span class="math inline">\(dN/dt=0\)</span> snijdt (en dus wat het betekent als <span class="math inline">\(dN/dt &gt;0\)</span> of <span class="math inline">\(dN/dt &lt;0\)</span> geldt).</p>
 </div>
@@ -442,7 +445,7 @@ window.Quarto = {
 <p>Merk op dat een deel van deze grafiek erg lijkt op die van de exponentiële groei. Dit zien we ook terug in de differentiaalvergelijkingen: als <span class="math inline">\(\frac{N}{K}\)</span> erg klein, komen de twee modellen met elkaar overeen. Dit betekent dat het exponentiële groeimodel werkt onder de aanname dat de populatie zich in de exponentiële groeifase bevindt.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Denk ook terug aan <a href="#eq-pkz" class="quarto-xref">Vergelijking&nbsp;<span class="quarto-unresolved-ref">eq-pkz</span></a> voor het berekenen van de pKz in het tweede portfolio-onderdeel. Daar ging het om de ratio <span class="math inline">\(\frac{[\text{Z}^-]}{[\text{HZ}]}\)</span>, en hier bepaalt de ratio <span class="math inline">\(\frac{N}{K}\)</span> het gedrag van het systeem.</p>
+<p>Denk ook terug aan <a href="Port_logpH_Pract.html#eq-pkz" class="quarto-xref">Vergelijking&nbsp;<span>B.1</span></a> voor het berekenen van de pKz in het tweede portfolio-onderdeel. Daar ging het om de ratio <span class="math inline">\(\frac{[\text{Z}^-]}{[\text{HZ}]}\)</span>, en hier bepaalt de ratio <span class="math inline">\(\frac{N}{K}\)</span> het gedrag van het systeem.</p>
 </div></div><p>Na een tijdje zien we geen verandering meer in de populatiegrootte. Dit betekent dat er netto geen groei is. We spreken dan van een <code>evenwicht</code>.</p>
 <p>We kunnen dus de grafiek opdelen in twee fases:</p>
 <div class="cell">
@@ -584,7 +587,7 @@ A(t)=\alpha e^{\beta t}.
 </blockquote>
 <p>Met de gevonden parameters kunnen we een model noteren dat de populatiegrootte beschrijft als functie van tijd.</p>
 <div id="exr-model_form" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.11</strong></span> In bovenstaande code hebben we het evenwichtspunt gemarkeerd en <span class="math inline">\(K\)</span> genoemd. Leg uit wat er gebeurt als <span class="math inline">\(N=K\)</span> geldt en koppel dit aan je antwoord bij <a href="#exr-log_groei_eq" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-log_groei_eq</span></a>. Wat voor interpretatie heeft dit voor het per capita sterfte- en geboortecijfer? Wat gebeurt er als <span class="math inline">\(N\)</span> iets kleiner is dan <span class="math inline">\(K\)</span>? En iets groter?</p>
+<p><span class="theorem-title"><strong>Vraag 4.11</strong></span> In bovenstaande code hebben we het evenwichtspunt gemarkeerd en <span class="math inline">\(K\)</span> genoemd. Leg uit wat er gebeurt als <span class="math inline">\(N=K\)</span> geldt en koppel dit aan je antwoord bij <a href="#exr-log_groei_eq" class="quarto-xref">Vraag&nbsp;<span>4.4</span></a>. Wat voor interpretatie heeft dit voor het per capita sterfte- en geboortecijfer? Wat gebeurt er als <span class="math inline">\(N\)</span> iets kleiner is dan <span class="math inline">\(K\)</span>? En iets groter?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
@@ -596,14 +599,14 @@ A(t)=\alpha e^{\beta t}.
 <p>jouw antwoord</p>
 </blockquote>
 <div id="exr-verband_gebruiken" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.13</strong></span> We kunnen de schatting voor <span class="math inline">\(r\)</span> wat preciezer maken. In <a href="#exr-diff-verband" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-diff-verband</span></a> vond je een lineair verband tussen <span class="math inline">\(\ln(N)\)</span> en <span class="math inline">\(t\)</span> voor <em>exponentiële</em> groei. Dat verband geldt hier niet exact, omdat je populatie logistisch groeit, maar zoals eerder vermeld, blijft het logistische groeimodel dicht bij het exponentiële model blijft zolang <span class="math inline">\(N/K\)</span> klein is.</p>
-<p>Gebruik daarom alleen het beginstuk van je gesimuleerde reeks uit <a href="#exr-model_aanpassen" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-model_aanpassen</span></a> (de tijdspunten waarop <span class="math inline">\(N\)</span> nog ver onder <span class="math inline">\(K\)</span> ligt), en pas daar je kennis van lineaire regressie toe: bepaal met <code>lm()</code> de helling van <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Komt deze schatting van <span class="math inline">\(r\)</span> in de buurt van je eerdere schatting?</p>
+<p><span class="theorem-title"><strong>Vraag 4.13</strong></span> We kunnen de schatting voor <span class="math inline">\(r\)</span> wat preciezer maken. In <a href="#exr-diff-verband" class="quarto-xref">Vraag&nbsp;<span>4.3</span></a> vond je een lineair verband tussen <span class="math inline">\(\ln(N)\)</span> en <span class="math inline">\(t\)</span> voor <em>exponentiële</em> groei. Dat verband geldt hier niet exact, omdat je populatie logistisch groeit, maar zoals eerder vermeld, blijft het logistische groeimodel dicht bij het exponentiële model blijft zolang <span class="math inline">\(N/K\)</span> klein is.</p>
+<p>Gebruik daarom alleen het beginstuk van je gesimuleerde reeks uit <a href="#exr-model_aanpassen" class="quarto-xref">Vraag&nbsp;<span>4.12</span></a> (de tijdspunten waarop <span class="math inline">\(N\)</span> nog ver onder <span class="math inline">\(K\)</span> ligt), en pas daar je kennis van lineaire regressie toe: bepaal met <code>lm()</code> de helling van <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Komt deze schatting van <span class="math inline">\(r\)</span> in de buurt van je eerdere schatting?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
 <div id="exr-aannames" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.14</strong></span> Je hebt in de vorige opgave lineaire regressie toegepast op <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Welke aanname over het groeiproces moet daarvoor gelden? Waarom is die aanname bij <a href="#exr-verband_gebruiken" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-verband_gebruiken</span></a> redelijk voor het beginstuk van de data, maar niet voor de volledige reeks? Verwijs in je antwoord naar de aannames van lineaire regressie zoals besproken in <a href="#sec-bradford" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bradford</span></a>.</p>
+<p><span class="theorem-title"><strong>Vraag 4.14</strong></span> Je hebt in de vorige opgave lineaire regressie toegepast op <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Welke aanname over het groeiproces moet daarvoor gelden? Waarom is die aanname bij <a href="#exr-verband_gebruiken" class="quarto-xref">Vraag&nbsp;<span>4.13</span></a> redelijk voor het beginstuk van de data, maar niet voor de volledige reeks? Verwijs in je antwoord naar de aannames van lineaire regressie zoals besproken in <a href="Bradford_statistiek.html" class="quarto-xref"><span>Appendix C</span></a>.</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>

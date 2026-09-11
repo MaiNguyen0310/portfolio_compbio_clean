@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c574c73dd0d0ff61020859ffc61752ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -184,7 +187,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stochastische_var.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_stochastische_var.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stochastische variabelen, kansverdelingen en entropie</span></span></a>
   </div>
 </li>
@@ -241,7 +244,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mais_pract.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_mais_pract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Maiszaden practicum</span></span></a>
   </div>
 </li>
@@ -454,7 +457,7 @@ Figure&nbsp;10.1: Correlatiematrix als heatmap. Fel = sterke samenhang. De drie 
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span class="quarto-unresolved-ref">fig-heatmap</span></a> springen drie <strong>blokken</strong> langs de diagonaal eruit. Binnen een blok correleert alles sterk; ertussen is het bleek. Zo’n blok is een <strong>ontwikkelingsmodule</strong>: een groep kenmerken die door hetzelfde ontwikkelingsproces wordt aangestuurd en daardoor samen varieert, schedelmaten, kaakmaten, ledematen. De lichaamsmassa kleurt overal lauw: zij hangt zwak met alles samen, want grotere dieren zijn overal groter. Dat is de allometrische relatie die je kan herkennen als de log-lineaire groeirelatie uit het allometrie-hoofdstuk.</p>
+<p>In <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>10.1</span></a> springen drie <strong>blokken</strong> langs de diagonaal eruit. Binnen een blok correleert alles sterk; ertussen is het bleek. Zo’n blok is een <strong>ontwikkelingsmodule</strong>: een groep kenmerken die door hetzelfde ontwikkelingsproces wordt aangestuurd en daardoor samen varieert, schedelmaten, kaakmaten, ledematen. De lichaamsmassa kleurt overal lauw: zij hangt zwak met alles samen, want grotere dieren zijn overal groter. Dat is de allometrische relatie die je kan herkennen als de log-lineaire groeirelatie uit het allometrie-hoofdstuk.</p>
 </section>
 <section id="sec-stap3" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="sec-stap3"><span class="header-section-number">10.3</span> Stap 3 — de matrix als netwerk</h2>
@@ -469,7 +472,7 @@ Figure&nbsp;10.2: Netwerkgraaf van dezelfde tien kenmerken (lijn getekend bij co
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span class="quarto-unresolved-ref">fig-Netwerk</span></a> zie je wat <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span class="quarto-unresolved-ref">fig-heatmap</span></a> je vertelde, maar nu als vorm: drie <strong>clusters</strong> (de driehoeken) en één centrale knoop die ze losjes verbindt. De blokken van de matrix zijn de clusters van de graaf — twee lezingen van hetzelfde object <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
+<p>In <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span>10.2</span></a> zie je wat <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>10.1</span></a> je vertelde, maar nu als vorm: drie <strong>clusters</strong> (de driehoeken) en één centrale knoop die ze losjes verbindt. De blokken van de matrix zijn de clusters van de graaf — twee lezingen van hetzelfde object <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -499,7 +502,7 @@ Note
 </section>
 <section id="sec-samenvatting" class="level1" data-number="12">
 <h1 data-number="12"><span class="header-section-number">12</span> Samenvatting</h1>
-<p>Eén regel, varianties van onafhankelijke stukken tellen op, droeg dit hele hoofdstuk. Ze gaf de <span class="math inline">\(\sqrt{n}\)</span> in de standaardfout (<a href="#sec-optellen" class="quarto-xref"><span class="quarto-unresolved-ref">sec-optellen</span></a>), verklaarde waarom die formule tekortschoot zodra metingen samenhingen (<a href="#sec-tekort" class="quarto-xref"><span class="quarto-unresolved-ref">sec-tekort</span></a>), en werd door de bootstrap tastbaar nagebouwd (<a href="#sec-bootstrap" class="quarto-xref"><span class="quarto-unresolved-ref">sec-bootstrap</span></a>). Uitgebreid naar meerdere kenmerken werd ze de covariantiematrix, waarvan de blok- en clusterstructuur (<a href="#sec-zien" class="quarto-xref"><span class="quarto-unresolved-ref">sec-zien</span></a>) rechtstreeks de biologische modulariteit en canalisatie toont (<a href="#sec-canalisatie" class="quarto-xref"><span class="quarto-unresolved-ref">sec-canalisatie</span></a>). Telkens dezelfde beweging: variatie opsplitsen in een deel dat ergens door verklaard wordt, en een rest.</p>
+<p>Eén regel, varianties van onafhankelijke stukken tellen op, droeg dit hele hoofdstuk. Ze gaf de <span class="math inline">\(\sqrt{n}\)</span> in de standaardfout (<a href="#sec-optellen" class="quarto-xref"><span>Chapter 6</span></a>), verklaarde waarom die formule tekortschoot zodra metingen samenhingen (<a href="#sec-tekort" class="quarto-xref"><span>Chapter 7</span></a>), en werd door de bootstrap tastbaar nagebouwd (<a href="#sec-bootstrap" class="quarto-xref"><span>Chapter 8</span></a>). Uitgebreid naar meerdere kenmerken werd ze de covariantiematrix, waarvan de blok- en clusterstructuur (<a href="#sec-zien" class="quarto-xref"><span>Chapter 10</span></a>) rechtstreeks de biologische modulariteit en canalisatie toont (<a href="#sec-canalisatie" class="quarto-xref"><span>Chapter 11</span></a>). Telkens dezelfde beweging: variatie opsplitsen in een deel dat ergens door verklaard wordt, en een rest.</p>
 <p>Wie dieper wil, vindt hieronder hoe deze structuur zich in eigenwaarden, entropie en zelfs de richting van evolutie laat vangen.</p>
 </section>
 <section id="sec-honours" class="level1" data-number="13">
@@ -516,11 +519,11 @@ Note
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>De blokken samengevat in getallen.</strong> De structuur die je in <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span class="quarto-unresolved-ref">fig-heatmap</span></a> <em>zag</em>, vat exact samen door <span class="math inline">\(\boldsymbol{\Sigma}\)</span> te ontbinden in <strong>eigenvectoren</strong> en <strong>eigenwaarden</strong>. Elke eigenvector is een richting in de kenmerkruimte; de eigenwaarde is de hoeveelheid variatie langs die richting. Dit is de kern van <strong>hoofdcomponentenanalyse (PCA)</strong>. Voor onze tien kenmerken zijn er drie grote eigenwaarden (grofweg <span class="math inline">\(3{,}8\)</span>, <span class="math inline">\(2{,}3\)</span>, <span class="math inline">\(2{,}0\)</span>) en zeven kleine (<span class="math inline">\(\approx 0{,}2\)</span>–<span class="math inline">\(0{,}5\)</span>): de drie grote assen zíjn de drie modules, wiskundig teruggevonden. PC1 valt bovendien vaak samen met de allometrische groei-as — de brug uit <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span class="quarto-unresolved-ref">fig-Netwerk</span></a>.</p>
+<p><strong>De blokken samengevat in getallen.</strong> De structuur die je in <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>10.1</span></a> <em>zag</em>, vat exact samen door <span class="math inline">\(\boldsymbol{\Sigma}\)</span> te ontbinden in <strong>eigenvectoren</strong> en <strong>eigenwaarden</strong>. Elke eigenvector is een richting in de kenmerkruimte; de eigenwaarde is de hoeveelheid variatie langs die richting. Dit is de kern van <strong>hoofdcomponentenanalyse (PCA)</strong>. Voor onze tien kenmerken zijn er drie grote eigenwaarden (grofweg <span class="math inline">\(3{,}8\)</span>, <span class="math inline">\(2{,}3\)</span>, <span class="math inline">\(2{,}0\)</span>) en zeven kleine (<span class="math inline">\(\approx 0{,}2\)</span>–<span class="math inline">\(0{,}5\)</span>): de drie grote assen zíjn de drie modules, wiskundig teruggevonden. PC1 valt bovendien vaak samen met de allometrische groei-as — de brug uit <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span>10.2</span></a>.</p>
 <p><strong>Canalisatie als kleine entropie.</strong> Voor een multivariaat-normale verdeling is de differentiële entropie</p>
 <p><span class="math display">\[h(\mathbf{X}) = \tfrac{1}{2}\log\!\big((2\pi e)^{k}\,\det\boldsymbol{\Sigma}\big).\]</span></p>
 <p>De determinant is het product van de eigenwaarden. Canalisatie knijpt eigenwaarden klein, verkleint <span class="math inline">\(\det\boldsymbol{\Sigma}\)</span>, en verlaagt dus de entropie. Voor onze matrix is <span class="math inline">\(\det \approx 0{,}001\)</span>, ver onder de <span class="math inline">\(1\)</span> die je bij onafhankelijkheid zou krijgen. Zo wordt de portfolio-stelling <em>“canalisatie = reductie van conditionele entropie”</em> een getal dat je kunt uitrekenen: hoe sterker de modulariteit, hoe kleiner de determinant, hoe lager <span class="math inline">\(h(\mathbf{X})\)</span>. Het is dezelfde entropie <span class="math inline">\(H\)</span> als in het maïs-hoofdstuk, nu in continue, meerdimensionale gedaante.</p>
-<p><strong>Van variatie nu naar evolutie ontwikkeling</strong> Wat je meet is de <em>fenotypische</em> covariantie <span class="math inline">\(\mathbf{P}\)</span>. Die valt uiteen in een genetisch en een omgevingsdeel, <span class="math inline">\(\mathbf{P}=\mathbf{G}+\mathbf{E}\)</span> — dezelfde optelling als <a href="#sec-tekort" class="quarto-xref"><span class="quarto-unresolved-ref">sec-tekort</span></a>, nu als matrix (en je paren-meetfout uit het practicum zit in <span class="math inline">\(\mathbf{E}\)</span>). De <strong>G-matrix</strong> stuurt hoe een populatie op selectie reageert, via de Lande-vergelijking</p>
+<p><strong>Van variatie nu naar evolutie ontwikkeling</strong> Wat je meet is de <em>fenotypische</em> covariantie <span class="math inline">\(\mathbf{P}\)</span>. Die valt uiteen in een genetisch en een omgevingsdeel, <span class="math inline">\(\mathbf{P}=\mathbf{G}+\mathbf{E}\)</span> — dezelfde optelling als <a href="#sec-tekort" class="quarto-xref"><span>Chapter 7</span></a>, nu als matrix (en je paren-meetfout uit het practicum zit in <span class="math inline">\(\mathbf{E}\)</span>). De <strong>G-matrix</strong> stuurt hoe een populatie op selectie reageert, via de Lande-vergelijking</p>
 <p><span class="math display">\[\Delta\bar{\mathbf{z}} = \mathbf{G}\,\boldsymbol{\beta},\]</span></p>
 <p>met een vorm identiek aan <span class="math inline">\(\mathbf{y}=\mathbf{X}\boldsymbol{\beta}\)</span> uit het regressiehoofdstuk: een matrix die een vector transformeert. De eigenvector van <span class="math inline">\(\mathbf{G}\)</span> met de grootste eigenwaarde heet <span class="math inline">\(g_{\max}\)</span>, de <em>“weg van de minste evolutionaire weerstand”</em>: populaties evolueren bij voorkeur langs de as van maximale variatie. Canalisatie — kleine eigenwaarden in bepaalde richtingen — bepaalt zo niet alleen de variatie van nu, maar kanaliseert de evolutionaire toekomst. Wat ontwikkeling makkelijk laat variëren, laat evolutie makkelijk bewegen.</p>
 <p><strong>Opmerking voor mij</strong>: Robuustheid kan variatie ook maskeren: chaperonne-eiwitten als Hsp90 bufferen cryptische genetische variatie, die bij stress vrijkomt en dan zichtbaar wordt voor selectie (genetische assimilatie). In matrix-taal: onder stress verandert <span class="math inline">\(\mathbf{G}\)</span> van vorm en verschijnen nieuwe eigenrichtingen. Cool!!</p>

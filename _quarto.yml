@@ -10,7 +10,7 @@ book:
   chapters:
     - index.qmd
     - ANT_stochastische_var.qmd
-    - Port_logpH_Theory.qmd
+    - antwoorden/ANT_log_theorie.qmd
     - Regressie_theorie.qmd
     - Differentiaalvergelijkingen_theorie.qmd
     - sepia_standaardfout_theorie.qmd
@@ -19,7 +19,7 @@ book:
     - references.qmd
   appendices:
     - ANT_mais_pract.qmd
-    - Port_logpH_Pract.qmd
+    - antwoorden/ANT_log_pract.qmd
     - Bradford_statistiek.qmd
     - Sepia_Mantel.qmd  
 

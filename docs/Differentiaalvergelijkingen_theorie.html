@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,13 +13,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -80,10 +77,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c574c73dd0d0ff61020859ffc61752ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -113,7 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -193,7 +190,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Port_logpH_Theory.html" class="sidebar-item-text sidebar-link">
+  <a href="./antwoorden/ANT_log_theorie.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Logaritmes en exponenten</span></span></a>
   </div>
 </li>
@@ -250,7 +247,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Port_logpH_Pract.html" class="sidebar-item-text sidebar-link">
+  <a href="./antwoorden/ANT_log_pract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">pH-berekeningen: logaritmen en exponenten</span></span></a>
   </div>
 </li>
@@ -322,7 +319,7 @@ window.Quarto = {
 <p>Hierin zien we dat hoe meer individuen er zijn, hoe meer nakomelingen er bijkomen en dus hoe groter de groeisnelheid van de populatie wordt. In dit geval hebben we <code>exponentiële groei</code> gemodelleerd, waarbij elk individu dus per tijdseenheid 2 nakomelingen krijgt. We kunnen aantonen dat dit inderdaad een exponentiële groeifunctie beschrijft door de differentiaalvergelijking op te lossen.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Merk op dat we dit scenario al eerder kort aan bod hebben zien komen, in <a href="Port_logpH_Pract.html#sec-rekenregels" class="quarto-xref"><span>Hoofdstuk B.1.3</span></a>. Daarbij redeneerden we de andere kant op door op basis van de huidige populatiegrootte het aantal verstreken generaties te bepalen.</p>
+<p>Merk op dat we dit scenario al eerder kort aan bod hebben zien komen, in <a href="antwoorden/ANT_log_pract.html#sec-rekenregels" class="quarto-xref"><span>Hoofdstuk B.1.3</span></a>. Daarbij redeneerden we de andere kant op door op basis van de huidige populatiegrootte het aantal verstreken generaties te bepalen.</p>
 </div></div><div id="exr-diff_diff" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 4.1</strong></span> Merk op dat exponentiële groei gemodelleerd wordt met de functie <span class="math inline">\(N(t)=Ce^{rt}\)</span>, waarbij <span class="math inline">\(r\)</span> en <span class="math inline">\(C\)</span> constantes zijn. Bepaal de afgeleide van deze functie en laat daarmee zien dat deze oplossing inderdaad hoort bij de differentiaalvergelijking <span class="math inline">\(\frac{dN}{dt}=rN(t)\)</span>.</p>
 </div>
@@ -382,7 +379,7 @@ window.Quarto = {
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Dit is dezelfde truc als bij <a href="Port_logpH_Theory.html#exr-plot_log_data" class="quarto-xref">Vraag&nbsp;<span>2.2</span></a> uit <a href="Port_logpH_Theory.html" class="quarto-xref"><span>Chapter 2</span></a>: een exponentieel verband wordt, na het nemen van de logaritme, een <em>lineair</em> verband. Daar gebruikte je dat om met <code>lm()</code> een exponent te schatten uit een log-log-plot; hier ga je straks hetzelfde doen om de groeisnelheid <span class="math inline">\(r\)</span> te schatten.</p>
+<p>Dit is dezelfde truc als bij <a href="antwoorden/ANT_log_theorie.html#exr-plot_log_data" class="quarto-xref">Vraag&nbsp;<span>2.2</span></a> uit <a href="antwoorden/ANT_log_theorie.html" class="quarto-xref"><span>Chapter 2</span></a>: een exponentieel verband wordt, na het nemen van de logaritme, een <em>lineair</em> verband. Daar gebruikte je dat om met <code>lm()</code> een exponent te schatten uit een log-log-plot; hier ga je straks hetzelfde doen om de groeisnelheid <span class="math inline">\(r\)</span> te schatten.</p>
 </div></div><blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
@@ -445,7 +442,7 @@ window.Quarto = {
 <p>Merk op dat een deel van deze grafiek erg lijkt op die van de exponentiële groei. Dit zien we ook terug in de differentiaalvergelijkingen: als <span class="math inline">\(\frac{N}{K}\)</span> erg klein, komen de twee modellen met elkaar overeen. Dit betekent dat het exponentiële groeimodel werkt onder de aanname dat de populatie zich in de exponentiële groeifase bevindt.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Denk ook terug aan <a href="Port_logpH_Pract.html#eq-pkz" class="quarto-xref">Vergelijking&nbsp;<span>B.1</span></a> voor het berekenen van de pKz in het tweede portfolio-onderdeel. Daar ging het om de ratio <span class="math inline">\(\frac{[\text{Z}^-]}{[\text{HZ}]}\)</span>, en hier bepaalt de ratio <span class="math inline">\(\frac{N}{K}\)</span> het gedrag van het systeem.</p>
+<p>Denk ook terug aan <a href="antwoorden/ANT_log_pract.html#eq-pkz" class="quarto-xref">Vergelijking&nbsp;<span>B.1</span></a> voor het berekenen van de pKz in het tweede portfolio-onderdeel. Daar ging het om de ratio <span class="math inline">\(\frac{[\text{Z}^-]}{[\text{HZ}]}\)</span>, en hier bepaalt de ratio <span class="math inline">\(\frac{N}{K}\)</span> het gedrag van het systeem.</p>
 </div></div><p>Na een tijdje zien we geen verandering meer in de populatiegrootte. Dit betekent dat er netto geen groei is. We spreken dan van een <code>evenwicht</code>.</p>
 <p>We kunnen dus de grafiek opdelen in twee fases:</p>
 <div class="cell">

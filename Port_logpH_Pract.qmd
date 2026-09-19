@@ -250,20 +250,22 @@ waarbij het zuur wordt aangeduid met $\text{HZ}$ en de geconjugeerde base met $\
 Bekijk @eq-pkz goed. Wat gebeurt er met de pH als de verhouding van de concentratie van het zuur ten opzichte van de concentratie van de base kleiner wordt?
 :::
 
+> Jouw antwoord
+
 Stel je voor dat de pH van oplossing A gelijk is aan 7. Neem verder aan dat de concentratie van het zuur 0.2 mol/L is.
 
 ```{r}
 pH_A <- 7
-Z_A <- 0.2
+HZ_A <- 0.2
 ```
 
 De concentratie van de geconjugeerde base kan dan worden bepaald via
 
-$$[\ce{HZ}]=[\ce{OH^-}]=10^{-(14-pH)}.$$ Deze algemene formule kunnen we als volgt coderen:
+$$[\ce{Z}^-]=[\ce{OH^-}]=10^{-(14-pH)}.$$ Deze algemene formule kunnen we als volgt coderen:
 
 ```{r}
-HZ_A <- 10^(-(14 - pH_A))
-HZ_A
+Z_A <- 10^(-(14 - pH_A))
+Z_A
 ```
 
 ::: {}
@@ -319,6 +321,8 @@ abline(model)
 Waarom geeft het schatten van de pKz uit een lijn door meerdere punten waarschijnlijk een betrouwbaardere waarde dan het berekenen van de pKz uit slechts één meting?
 :::
 
+> Jouw antwoord
+
 ::: aside
 Denk aan het statistiekportfolio! Wat was bij de vorige opdracht de meerwaarde van een grotere steekproefgrootte?
 :::
@@ -326,3 +330,5 @@ Denk aan het statistiekportfolio! Wat was bij de vorige opdracht de meerwaarde v
 ::: {#exr-eig_log}
 Je hebt nu nog een nuttige eigenschap van de logaritme gezien. Beschrijf deze eigenschap in eigen woorden, en leg uit hoe we deze kunnen toepassen in practica.
 :::
+
+> Jouw antwoord

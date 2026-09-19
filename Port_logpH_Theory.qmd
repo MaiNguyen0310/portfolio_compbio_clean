@@ -71,6 +71,8 @@ Bovenstaande plot ziet er anders uit dan de gegeven figuur? Los het probleem op:
 Tip: kijk goed naar de assen in @fig-massa-metabolisme.
 :::
 
+> Jouw antwoord
+
 ```{r}
 # gebruik de functie log10()
 ```
@@ -78,6 +80,8 @@ Tip: kijk goed naar de assen in @fig-massa-metabolisme.
 ::: {#exr-log-log}
 Om @fig-massa-metabolisme te repliceren heb je een transformatie uitgevoerd op één van de assen. Doe hetzelfde nu voor de andere as, en plot opnieuw
 :::
+
+> Jouw antwoord 
 
 ```{r}
 # jouw antwoord
@@ -109,6 +113,7 @@ massa_metabolisme <- massa*metabolisme
 Probeer nu een relatie te vinden tussen de massa en het totale metabolisme. Plot deze relatie op dezelfde manier als eerder.
 :::
 
+> Jouw antwoord
 ```{r}
 # jouw antwoord
 ```
@@ -135,10 +140,10 @@ Merk op dat je de functie **lm()** al eerder hebt gebruikt, bij het practicum-de
 
 
 ::: {#exr-exponenten}
-Je vond zojuist twee exponenten: één voor het verband tussen massa en massa-specifiek metabolisme, en één voor massa en totaal metabolisme. Laat met de rekenregels van de logaritme zien hoe deze twee exponenten met elkaar samenhangen. Verklaar daarmee je bevindingen.
+Je vond zojuist twee exponenten: één voor het verband tussen massa en massa-specifiek metabolisme, en één voor massa en totaal metabolisme. Gebruik je antwoord bij exr-machtsform om deze aan elkaar te koppelen. Verklaar daarmee je bevindingen.
 :::
 
-> jouw antwoord:
+> Jouw antwoord
 
 ## Samenvattende opdracht
 
@@ -146,7 +151,7 @@ Wat hier opvalt, is dat één simpele wiskundige vorm, namelijk het machtsverban
 
 In de vorige portfolio-opdracht schreef je een eigen hypothese over hoe entropie, onzekerheid en canalisatie zouden samenhangen met onderwerpen die je dit jaar nog zou tegenkomen.
 
-::: {#exr-log_terugblik}
+**Vraag 1 — Terugblik** 
 Lees je antwoord van toen terug.
 
 - Klopten je verwachtingen?
@@ -154,13 +159,13 @@ Lees je antwoord van toen terug.
 - In de introductie beschreven we dat de logaritme in zoveel uiteenlopende contexten (pH, aardbevingen, geluid, metabolisme) opduikt. Formuleer nu, in je eigen woorden, een algemene verklaring.
 :::
 
-> jouw antwoord:
+> Jouw antwoord
 
 
 ## Terug naar concentraties
 
 De motivatie om de logaritme verder te onderzoeken, kwam vanuit de pH-berekeningen die we eerder hebben uitgevoerd. We hebben gezien dat de logaritme ook in andere contexten voorkomt, maar nu keren we toch nog terug naar de context van concentraties. 
-**Dit geeft al een link met iets wat we later in het jaar zullen behandelen, maar dit deel is niet strikt noodzakelijk om de logaritme goed te begrijpen. Geen zorgen dus, als je niet meer aan dit gedeelte toekomt.**
+**Dit geeft al een link met iets wat we later in het jaar zullen behandelen, maar dit deel is niet strikt noodzakelijk om de logaritme goed te begrijpen. Geen zorgen dus, als je niet meer aan dit gedeelte toekomt. Het is uiteraard wel zinvol het te proberen!**
 
 Je bent al bekend met het begrip `diffusie`: een druppel inkt in een glas water verspreidt zich vanzelf, van een gebied met hoge concentratie naar een gebied met lage concentratie. Dat proces verloopt spontaan, zonder toevoeging van energie. Wil je het omgekeerde bereiken (namelijk de inkt weer terugconcentreren op één plek) dan kost dat wél energie.
 

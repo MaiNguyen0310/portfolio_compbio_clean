@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c574c73dd0d0ff61020859ffc61752ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -184,7 +187,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stochastische_var.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_stochastische_var.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stochastische variabelen, kansverdelingen en entropie</span></span></a>
   </div>
 </li>
@@ -241,7 +244,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mais_pract.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_mais_pract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Maiszaden practicum</span></span></a>
   </div>
 </li>
@@ -308,10 +311,10 @@ window.Quarto = {
 
 
 <p><em>[Dit portfolio-onderdeel is nog niet af; deze tekst dient als placeholder]</em></p>
-<p>In <a href="#sec-gen_drift" class="quarto-xref"><span class="quarto-unresolved-ref">sec-gen_drift</span></a> heb je al gezien dat genetische drift in een enkele populatie tot verlies van gentische variatie leidt. Dit verlies was definitief: een verdwenen allel keerde niet meer terug in de populatie. In de praktijk weten we dat dit niet altijd gebeurt. In dit portfolio-onderdeel bekijken we wat er gebeurt als meerdere populaties met elkaar verbonden zijn en allelen uitwisselen.</p>
+<p>In <a href="genetic_drift.html" class="quarto-xref"><span>Chapter 6</span></a> heb je al gezien dat genetische drift in een enkele populatie tot verlies van gentische variatie leidt. Dit verlies was definitief: een verdwenen allel keerde niet meer terug in de populatie. In de praktijk weten we dat dit niet altijd gebeurt. In dit portfolio-onderdeel bekijken we wat er gebeurt als meerdere populaties met elkaar verbonden zijn en allelen uitwisselen.</p>
 <section id="drift-binnen-één-patch" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="drift-binnen-één-patch"><span class="header-section-number">7.1</span> Drift binnen één patch</h2>
-<p>Voordat we die verbindingen toevoegen, herhalen we hoe we in <a href="#sec-gen_drift" class="quarto-xref"><span class="quarto-unresolved-ref">sec-gen_drift</span></a> gesampled hebben. De context verandert een beetje: in plaats van twee allelen van één gen, bekijken we nu twee fenotypes binnen een populatie/patch. Een nieuwe generatie ontstaat door willekeurig, met teruglegging, individuen uit de huidige generatie te trekken.</p>
+<p>Voordat we die verbindingen toevoegen, herhalen we hoe we in <a href="genetic_drift.html" class="quarto-xref"><span>Chapter 6</span></a> gesampled hebben. De context verandert een beetje: in plaats van twee allelen van één gen, bekijken we nu twee fenotypes binnen een populatie/patch. Een nieuwe generatie ontstaat door willekeurig, met teruglegging, individuen uit de huidige generatie te trekken.</p>
 <p>We halen inspiratie uit de code die aan het begin van het vorige portfolio-onderdeel gegeven is:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>J <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># patchgrootte</span></span>
@@ -326,11 +329,11 @@ window.Quarto = {
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>patch <span class="ot">&lt;-</span> <span class="fu">sample</span>(patch, J, <span class="at">replace =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>patch</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 1 2 2 1 2 1 1 1 2 2</code></pre>
+<pre><code> [1] 1 1 1 2 2 2 2 2 1 1</code></pre>
 </div>
 </div>
 <div id="exr-drift_herkennen" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 7.1</strong></span> Vergelijk deze code met de simulatie bij <a href="#sec-gen_drift" class="quarto-xref"><span class="quarto-unresolved-ref">sec-gen_drift</span></a>. Welk onderdeel van die simulatie komt hier op dezelfde manier terug, en wat is het enige wat verandert?</p>
+<p><span class="theorem-title"><strong>Vraag 7.1</strong></span> Vergelijk deze code met de simulatie bij <a href="genetic_drift.html" class="quarto-xref"><span>Chapter 6</span></a>. Welk onderdeel van die simulatie komt hier op dezelfde manier terug, en wat is het enige wat verandert?</p>
 </div>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
@@ -413,7 +416,7 @@ window.Quarto = {
 <p>Een bezette patch kan een lege patch koloniseren, met snelheid afhankelijk van een kolonisatiecoëfficiënt <span class="math inline">\(c\)</span>; een bezette patch kan ook uitsterven (bijvoorbeeld door een plaag), met snelheid <span class="math inline">\(e\)</span>. Dit geeft de volgende vergelijking voor de verandering van <span class="math inline">\(p\)</span> in de tijd:</p>
 <p><span id="eq-levins"><span class="math display">\[\frac{dp}{dt} = cp(1-p) - ep \tag{7.1}\]</span></span></p>
 <div id="exr-levins_herkennen" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 7.3</strong></span> Vergelijk <a href="#eq-levins" class="quarto-xref">Vergelijking&nbsp;<span class="quarto-unresolved-ref">eq-levins</span></a> met de logistische groeivergelijking. Welke vorm herken je terug, en welke term is hier nieuw ten opzichte van dat model?</p>
+<p><span class="theorem-title"><strong>Vraag 7.3</strong></span> Vergelijk <a href="#eq-levins" class="quarto-xref">Vergelijking&nbsp;<span>7.1</span></a> met de logistische groeivergelijking. Welke vorm herken je terug, en welke term is hier nieuw ten opzichte van dat model?</p>
 </div>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>

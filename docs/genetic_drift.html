@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -13,10 +13,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +80,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-c574c73dd0d0ff61020859ffc61752ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -184,7 +187,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./stochastische_var.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_stochastische_var.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stochastische variabelen, kansverdelingen en entropie</span></span></a>
   </div>
 </li>
@@ -241,7 +244,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./mais_pract.html" class="sidebar-item-text sidebar-link">
+  <a href="./ANT_mais_pract.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Maiszaden practicum</span></span></a>
   </div>
 </li>
@@ -321,7 +324,7 @@ window.Quarto = {
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">c</span>(p0,p1)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>freq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3031462 0.6968538</code></pre>
+<pre><code>[1] 0.3133762 0.6866238</code></pre>
 </div>
 </div>
 <p>Om het principe van genetic drift in één generatietijdseenheid van deze populatie te simuleren, bedenken we het volgende:</p>
@@ -351,7 +354,7 @@ window.Quarto = {
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>freq_nieuw <span class="ot">&lt;-</span> <span class="fu">c</span>(p0_nieuw, p1_nieuw)</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>freq_nieuw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3065 0.6935</code></pre>
+<pre><code>[1] 0.3115 0.6885</code></pre>
 </div>
 </div>
 <p>Het verschil ten opzichte van de frequenties in de vorige populatie kunnen we zien door de vectoren van elkaar af te trekken:</p>
@@ -359,7 +362,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gen_verschil <span class="ot">&lt;-</span> freq_nieuw <span class="sc">-</span> freq</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gen_verschil</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  0.003353826 -0.003353826</code></pre>
+<pre><code>[1] -0.001876249  0.001876249</code></pre>
 </div>
 </div>
 <p>Deze simulatie geeft slechts een beperkt beeld van de mogelijkheden weer: het gaan om één populatie en we bekijken één generatietijd. Voor een andere populatie zou de uitkomst van het random samplen heel anders kunnen zijn. Bovendien is het resultaat ook anders als we de code voor dezelfde populatie opnieuw runnen. Ook zouden we geïnteresseerd kunnen zijn in het effect van genetic drift op de langere termijn. We kunnen dus, met dezelfde logica als bovenstaand, een <code>functie</code> bouwen die dit voor een willekeurig aantal populaties en generaties bijhoudt en de simulaties meerdere keren uitvoert:</p>
@@ -387,17 +390,17 @@ window.Quarto = {
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           [,1]      [,2]      [,3]      [,4]      [,5]
- [1,] 0.6968538 0.6968538 0.6968538 0.6968538 0.6968538
- [2,] 0.6950000 0.6600000 0.6800000 0.6700000 0.7500000
- [3,] 0.7250000 0.6150000 0.6900000 0.7100000 0.7300000
- [4,] 0.7050000 0.5400000 0.6300000 0.6750000 0.6650000
- [5,] 0.7100000 0.5500000 0.6400000 0.6900000 0.6450000
- [6,] 0.6650000 0.5150000 0.5500000 0.6900000 0.6400000
- [7,] 0.6850000 0.4700000 0.5700000 0.7300000 0.6600000
- [8,] 0.6800000 0.4700000 0.5650000 0.7100000 0.7050000
- [9,] 0.6850000 0.4500000 0.5450000 0.6900000 0.6900000
-[10,] 0.7000000 0.5400000 0.5400000 0.7000000 0.7050000
-[11,] 0.7450000 0.5300000 0.5850000 0.6650000 0.7000000</code></pre>
+ [1,] 0.6866238 0.6866238 0.6866238 0.6866238 0.6866238
+ [2,] 0.7150000 0.6650000 0.7300000 0.6500000 0.7100000
+ [3,] 0.7500000 0.6600000 0.6800000 0.6000000 0.6950000
+ [4,] 0.7750000 0.6800000 0.6700000 0.5700000 0.7200000
+ [5,] 0.8300000 0.6400000 0.6800000 0.5400000 0.6700000
+ [6,] 0.8250000 0.6750000 0.6900000 0.5200000 0.6550000
+ [7,] 0.8150000 0.6900000 0.7250000 0.5600000 0.5850000
+ [8,] 0.8050000 0.6750000 0.6700000 0.6050000 0.6650000
+ [9,] 0.8300000 0.6950000 0.6450000 0.5950000 0.6750000
+[10,] 0.8100000 0.7100000 0.6950000 0.5750000 0.6200000
+[11,] 0.7800000 0.7200000 0.6650000 0.5600000 0.6400000</code></pre>
 </div>
 </div>
 <p>We krijgen dus een matrix waarin we de frequentie van allel 1 over de generaties heen (rijen) zien voor elke populatie (kolommen).</p>
@@ -433,13 +436,13 @@ window.Quarto = {
 <p>Aan het begin van dit hoofdstuk stelden we dat kleine populaties gevoeliger zijn voor genetic drift dan grote populaties. Dit ga je nu zelf ondervinden.</p>
 <section id="de-binomiale-kansverdeling" class="level3 page-columns page-full" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="de-binomiale-kansverdeling"><span class="header-section-number">6.2.1</span> De binomiale kansverdeling</h3>
-<p>In <a href="#exr-gendrift_functie" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-gendrift_functie</span></a> heb je het idee achter de simulatie al uitgelegd: je trekt <span class="math inline">\(2N\)</span> keer onafhankelijk een allel, met steeds dezelfde kans <span class="math inline">\(p_1\)</span> op allel 1. Dit proces volgt een <code>binomiale verdeling</code>, die het aantal successen beschrijft in <span class="math inline">\(n\)</span> onafhankelijke pogingen, elk met dezelfde kans <span class="math inline">\(p\)</span> op succes (denk aan het aantal keer “kop” bij <span class="math inline">\(n\)</span> muntopgooien, of, zoals hier, het aantal kopieën van allel 1 bij <span class="math inline">\(n\)</span> onafhankelijke allel-trekkingen). De kans op precies <span class="math inline">\(k\)</span> successen is:</p>
+<p>In <a href="#exr-gendrift_functie" class="quarto-xref">Vraag&nbsp;<span>6.1</span></a> heb je het idee achter de simulatie al uitgelegd: je trekt <span class="math inline">\(2N\)</span> keer onafhankelijk een allel, met steeds dezelfde kans <span class="math inline">\(p_1\)</span> op allel 1. Dit proces volgt een <code>binomiale verdeling</code>, die het aantal successen beschrijft in <span class="math inline">\(n\)</span> onafhankelijke pogingen, elk met dezelfde kans <span class="math inline">\(p\)</span> op succes (denk aan het aantal keer “kop” bij <span class="math inline">\(n\)</span> muntopgooien, of, zoals hier, het aantal kopieën van allel 1 bij <span class="math inline">\(n\)</span> onafhankelijke allel-trekkingen). De kans op precies <span class="math inline">\(k\)</span> successen is:</p>
 <p><span id="eq-binom"><span class="math display">\[P(X=k) = \binom{n}{k} p^k (1-p)^{n-k} \tag{6.1}\]</span></span></p>
 <p>waarbij <span class="math inline">\(\binom{n}{k}\)</span> het aantal manieren telt waarop je <span class="math inline">\(k\)</span> successen over <span class="math inline">\(n\)</span> pogingen kunt verdelen. Een binomiale verdeling heeft twee parameters, <span class="math inline">\(n\)</span> en <span class="math inline">\(p\)</span>, en daaruit volgen direct het gemiddelde (<span class="math inline">\(np\)</span>) en de variantie (<span class="math inline">\(np(1-p)\)</span>).</p>
 <p>In onze context: elke allel-trekking is een “poging” met kans <span class="math inline">\(p_1\)</span> op allel 1, en er zijn <span class="math inline">\(n=2N\)</span> onafhankelijke trekkingen per generatie (één per allel-kopie in de populatie). Het aantal kopieën van allel 1 in de nieuwe generatie, dat we <code>sum(out)</code> noemen, is dus een stochastische variabele die <span class="math inline">\(\text{Binom}(2N, p_1)\)</span> volgt.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Vergelijk dit met wat je helemaal aan het begin van het jaar hebt gezien, in <a href="#sec-stoch" class="quarto-xref"><span class="quarto-unresolved-ref">sec-stoch</span></a> en <a href="#sec-mais" class="quarto-xref"><span class="quarto-unresolved-ref">sec-mais</span></a>: het aantal kopieën van allel 1 heeft, net als de <span class="math inline">\(\chi^2\)</span>-waarde daar, alle drie de kenmerken van een stochastische variabele, namelijk: een kansverdeling, een waarde die pas na “uitvoering van het experiment” (hier het samplen van een generatie) vaststaat, en inherente onzekerheid. De onderliggende verdeling is anders, omdat het achterliggende stochastische proces anders is.</p>
+<p>Vergelijk dit met wat je helemaal aan het begin van het jaar hebt gezien, in <a href="ANT_stochastische_var.html" class="quarto-xref"><span>Chapter 1</span></a> en <a href="ANT_mais_pract.html" class="quarto-xref"><span>Appendix A</span></a>: het aantal kopieën van allel 1 heeft, net als de <span class="math inline">\(\chi^2\)</span>-waarde daar, alle drie de kenmerken van een stochastische variabele, namelijk: een kansverdeling, een waarde die pas na “uitvoering van het experiment” (hier het samplen van een generatie) vaststaat, en inherente onzekerheid. De onderliggende verdeling is anders, omdat het achterliggende stochastische proces anders is.</p>
 </div></div><p>Omdat er <span class="math inline">\(2N+1\)</span> mogelijke uitkomsten zijn voor het aantal kopieën allel 1 (van 0 tot <span class="math inline">\(2N\)</span>), zijn er ook precies <span class="math inline">\(2N+1\)</span> mogelijke waarden voor de nieuwe allelfrequentie: <span class="math inline">\(0, \frac{1}{2N}, \frac{2}{2N}, \ldots, \frac{2N-1}{2N}, 1\)</span>. Het samenstellen van een nieuwe generatie komt dus neer op het trekken van één enkele waarde uit deze <span class="math inline">\(2N+1\)</span> mogelijkheden, met kansen die door de binomiale verdeling worden bepaald.</p>
 <div id="exr-drift_binomiaal" class="theorem exercise">
 <p><span class="theorem-title"><strong>Vraag 6.4</strong></span> Je weet dat <span class="math inline">\(X = \text{sum(out)} \sim \text{Binom}(2N, p_1)\)</span>, met variantie <span class="math inline">\(\text{Var}(X) = np(1-p)\)</span> (met <span class="math inline">\(n=2N\)</span>, <span class="math inline">\(p=p_1\)</span>).</p>
@@ -474,7 +477,7 @@ window.Quarto = {
 </div>
 </div>
 <div id="exr-binom_plot" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 6.5</strong></span> Vergelijk de drie plots. Wat gebeurt er met de breedte van de verdeling (rond de piek bij 0.5) als <span class="math inline">\(N\)</span> toeneemt? Komt dit overeen met de variantie die je bij <a href="#exr-drift_binomiaal" class="quarto-xref">Vraag&nbsp;<span class="quarto-unresolved-ref">exr-drift_binomiaal</span></a> hebt afgeleid?</p>
+<p><span class="theorem-title"><strong>Vraag 6.5</strong></span> Vergelijk de drie plots. Wat gebeurt er met de breedte van de verdeling (rond de piek bij 0.5) als <span class="math inline">\(N\)</span> toeneemt? Komt dit overeen met de variantie die je bij <a href="#exr-drift_binomiaal" class="quarto-xref">Vraag&nbsp;<span>6.4</span></a> hebt afgeleid?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>

@@ -1,10 +1,10 @@
----
-title: "Logaritmes en exponenten "
-author: "Jouw naam"
-format: 
-  html:
-    toc: true 
---
+|                                    |
+|------------------------------------|
+| title: "Logaritmes en exponenten " |
+| author: "Jouw naam"                |
+| format:                            |
+| html:                              |
+| toc: true                          |
 
 In de vorige portfolio-opdracht ontdekte je dat het concept van entropie in allerlei verschillende vakgebieden opduikt, waaronder informatietheorie, thermodynamica, sociale wetenschappen en biodiversiteit. Hierbij zagen we steeds dezelfde wiskundige vorm, maar net iets anders geïnterpreteerd.
 
@@ -12,7 +12,7 @@ In deze opdracht bekijken we een tweede voorbeeld van zo'n terugkerende vorm: de
 
 ## Eigenschappen van de logaritme
 
-De logartitme heeft een handige eigenschap voor het werken met concentraties en dus met de pH: hij comprimeert een enorm bereik (14 ordes van grootte in $[\text{H}^+]$) tot een overzichtelijke schaal. Diezelfde eigenschap zit achter de schaal van Richter (aardbevingen) en decibel (geluid): elke stap van 1 staat voor een factor 10 in de onderliggende grootheid.
+De logartitme heeft een handige eigenschap voor het werken met concentraties en dus met de pH: hij comprimeert een enorm bereik (14 ordes van grootte in $[\text{H}^+]$\$\[\\text{H}\^+\]\$) tot een overzichtelijke schaal. Diezelfde eigenschap zit achter de schaal van Richter (aardbevingen) en decibel (geluid): elke stap van 1 staat voor een factor 10 in de onderliggende grootheid.
 
 Maar de logaritme heeft nog een tweede, andere eigenschap, die je eerder bij de rekenregels al hebt gezien: hij zet een *machtsverband* om in een *lineair* verband. Die eigenschap staat nu centraal, in een heel andere context dan pH: hoe lichaamsgrootte samenhangt met de rest van de biologie van een dier.
 
@@ -30,7 +30,7 @@ Een interessant fenomeen binnen de evolutie is `allometrische schaling`. Dit bes
 
 $$Y = aM^b.$$
 
-Hierbij staat $Y$ voor de variabele die gemeten wordt (bv. metabolismesnelheid) en $M$ voor de massa. De coëfficiënt $a$ is soortspecifiek en $b$ is de allometrische exponent. Deze exponent beschrijft dus de disproportionele groei die we observeren bij allerlei  soorten zoogdieren.
+Hierbij staat $Y$ voor de variabele die gemeten wordt (bv. metabolismesnelheid) en $M$ voor de massa. De coëfficiënt $a$ is soortspecifiek en $b$ is de allometrische exponent. Deze exponent beschrijft dus de disproportionele groei die we observeren bij allerlei soorten zoogdieren.
 
 ### De schijnbare paradox van de muis en de olifant
 
@@ -137,9 +137,6 @@ Merk op dat je de functie **lm()** al eerder hebt gebruikt, bij het practicum-de
 
 > Jouw antwoord
 
-
-
-
 ::: {#exr-exponenten}
 Je vond zojuist twee exponenten: één voor het verband tussen massa en massa-specifiek metabolisme, en één voor massa en totaal metabolisme. Laat met de rekenregels van de logaritme zien hoe deze twee exponenten met elkaar samenhangen. Verklaar daarmee je bevindingen.
 :::
@@ -162,11 +159,9 @@ Lees je antwoord van toen terug.
 
 > jouw antwoord:
 
-
 ## Terug naar concentraties
 
-De motivatie om de logaritme verder te onderzoeken, kwam vanuit de pH-berekeningen die we eerder hebben uitgevoerd. We hebben gezien dat de logaritme ook in andere contexten voorkomt, maar nu keren we toch nog terug naar de context van concentraties. 
-**Dit geeft al een link met iets wat we later in het jaar zullen behandelen, maar dit deel is niet strikt noodzakelijk om de logaritme goed te begrijpen. Geen zorgen dus, als je niet meer aan dit gedeelte toekomt.**
+De motivatie om de logaritme verder te onderzoeken, kwam vanuit de pH-berekeningen die we eerder hebben uitgevoerd. We hebben gezien dat de logaritme ook in andere contexten voorkomt, maar nu keren we toch nog terug naar de context van concentraties. **Dit geeft al een link met iets wat we later in het jaar zullen behandelen, maar dit deel is niet strikt noodzakelijk om de logaritme goed te begrijpen. Geen zorgen dus, als je niet meer aan dit gedeelte toekomt.**
 
 Je bent al bekend met het begrip `diffusie`: een druppel inkt in een glas water verspreidt zich vanzelf, van een gebied met hoge concentratie naar een gebied met lage concentratie. Dat proces verloopt spontaan, zonder toevoeging van energie. Wil je het omgekeerde bereiken (namelijk de inkt weer terugconcentreren op één plek) dan kost dat wél energie.
 
@@ -228,10 +223,9 @@ We hebben de logaritme tot nu toe gebruikt om een machtswet zichtbaar te maken: 
 
 Een paar vragen die we kunnen verkennen, zijn de volgende:
 
-- **Waarom juist deze exponent?** Een simpel oppervlak-tegen-volume-argument voorspelt de waarde $b=2/3$. De data wijst eerder op $b\approx 3/4$. Dat verschil is geen meetfout, maar heeft te maken met het achterliggende mechanisme. In het bijzonder gaat het om hoe voedingsstoffen en zuurstof door een lichaam stromen, via vertakkende netwerken zoals bloedvaten en longen. We kunnen zelf  afleiden zelf af hoe de geometrie van zo'n netwerk tot  deze machtswet leidt.
+- **Waarom juist deze exponent?** Een simpel oppervlak-tegen-volume-argument voorspelt de waarde $b=2/3$. De data wijst eerder op $b\approx 3/4$. Dat verschil is geen meetfout, maar heeft te maken met het achterliggende mechanisme. In het bijzonder gaat het om hoe voedingsstoffen en zuurstof door een lichaam stromen, via vertakkende netwerken zoals bloedvaten en longen. We kunnen zelf afleiden zelf af hoe de geometrie van zo'n netwerk tot deze machtswet leidt.
 
 - **Waarom zien we overal dezelfde vorm?** Bloedvaten, longen, bomen, rivierdelta's, kustlijnen: allemaal vertakkende, fractale structuren, in totaal verschillende delen van de natuur. Waarom duikt precies die geometrie steeds weer op?
-
 
 - **Wanneer werkt het fractale model niet?** Echte netwerken zijn geen perfecte fractalen. We onderzoeken waar en waarom de voorspelling niet altijd werkt in de praktijk, en wat dat ons leert over het verschil tussen een wiskundig model en de rommelige werkelijkheid die het probeert te vangen.
 :::

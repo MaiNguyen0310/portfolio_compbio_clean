@@ -24,41 +24,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -275,8 +240,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#het-model-in-vectorvorm" id="toc-het-model-in-vectorvorm" class="nav-link active" data-scroll-target="#het-model-in-vectorvorm"><span class="header-section-number">3.1</span> Het model in vectorvorm</a></li>
-  <li><a href="#regressie-is-projectie" id="toc-regressie-is-projectie" class="nav-link" data-scroll-target="#regressie-is-projectie"><span class="header-section-number">3.2</span> Regressie is projectie</a></li>
+  <li><a href="#het-model-in-vectorvorm" id="toc-het-model-in-vectorvorm" class="nav-link active" data-scroll-target="#het-model-in-vectorvorm"><span class="header-section-number">3.1</span> Het model in vectorvorm</a>
+  <ul class="collapse">
+  <li><a href="#datavectoren-en-de-datamatrix" id="toc-datavectoren-en-de-datamatrix" class="nav-link" data-scroll-target="#datavectoren-en-de-datamatrix"><span class="header-section-number">3.1.1</span> Datavectoren en de datamatrix</a></li>
+  <li><a href="#rekenen-met-vectoren-en-matrices" id="toc-rekenen-met-vectoren-en-matrices" class="nav-link" data-scroll-target="#rekenen-met-vectoren-en-matrices"><span class="header-section-number">3.1.2</span> Rekenen met vectoren en matrices</a></li>
+  <li><a href="#het-lineaire-model-als-matrixvergelijking" id="toc-het-lineaire-model-als-matrixvergelijking" class="nav-link" data-scroll-target="#het-lineaire-model-als-matrixvergelijking"><span class="header-section-number">3.1.3</span> Het lineaire model als matrixvergelijking</a></li>
+  </ul></li>
+  <li><a href="#regressie-is-projectie" id="toc-regressie-is-projectie" class="nav-link" data-scroll-target="#regressie-is-projectie"><span class="header-section-number">3.2</span> Regressie is projectie</a>
+  <ul class="collapse">
+  <li><a href="#kleinste-kwadraten-de-beste-lijn-kiezen" id="toc-kleinste-kwadraten-de-beste-lijn-kiezen" class="nav-link" data-scroll-target="#kleinste-kwadraten-de-beste-lijn-kiezen"><span class="header-section-number">3.2.1</span> Kleinste kwadraten: de beste lijn kiezen</a></li>
+  <li><a href="#dezelfde-regressie-meetkundig-bekeken" id="toc-dezelfde-regressie-meetkundig-bekeken" class="nav-link" data-scroll-target="#dezelfde-regressie-meetkundig-bekeken"><span class="header-section-number">3.2.2</span> Dezelfde regressie, meetkundig bekeken</a></li>
+  </ul></li>
   <li><a href="#evo-devo-regressie-als-het-verkleinen-van-onzekerheid" id="toc-evo-devo-regressie-als-het-verkleinen-van-onzekerheid" class="nav-link" data-scroll-target="#evo-devo-regressie-als-het-verkleinen-van-onzekerheid"><span class="header-section-number">3.3</span> Evo-devo: regressie als het verkleinen van onzekerheid</a></li>
   <li><a href="#verdieping-pythagoras-en-r2" id="toc-verdieping-pythagoras-en-r2" class="nav-link" data-scroll-target="#verdieping-pythagoras-en-r2"><span class="header-section-number">3.4</span> Verdieping: Pythagoras en <span class="math inline">\(R^2\)</span></a></li>
   <li><a href="#slotopdracht-jouw-eigen-synthese" id="toc-slotopdracht-jouw-eigen-synthese" class="nav-link" data-scroll-target="#slotopdracht-jouw-eigen-synthese"><span class="header-section-number">3.5</span> Slotopdracht: jouw eigen synthese</a></li>
@@ -305,99 +279,106 @@ window.Quarto = {
 </header>
 
 
-<p>In het practicum bij de Bradford-test gebruikte je de functie <code>lm(abs ~ conc)</code>. Die functie deed het werk, maar bleef een <em>black box</em>: je zag de geschatte parameters verschijnen zonder te weten wat er onder de motorkap gebeurde. In dit hoofdstuk openen we die black box.</p>
-<p>Je hebt daar al twee stukken gereedschap voor klaarliggen. Ten eerste de taal van <strong>datavectoren</strong> en de <strong>datamatrix</strong>: je meetgegevens als geordende rijtjes getallen. Ten tweede de <strong>parametervector</strong> <span class="math inline">\(\boldsymbol{\beta} = (a, b)\)</span>, die we in het practicum al even aankondigden. In dit hoofdstuk brengen we die twee samen.</p>
+<p>In de opdracht over logaritmes en allometrische schaling gebruikte je al de functie <code>lm()</code>, om een rechte lijn door log-log-getransformeerde data te trekken. Straks, in het practicum bij de Bradford-test, gebruik je dezelfde functie opnieuw: je meet de absorbantie van oplossingen met bekende eiwitconcentraties en maakt daarmee een ijklijn met <code>lm(Abs ~ Conc)</code>. Tot nu toe was <code>lm()</code> een <em>black box</em>: de geschatte parameters verschijnen, zonder dat je weet wat er onder de motorkap gebeurt. In dit hoofdstuk openen we die black box, zodat je het practicum met begrip ingaat.</p>
+<p>Daarvoor leren we een nieuw stuk wiskundige taal: <strong>vectoren</strong> en <strong>matrices</strong>. Je meetgegevens worden datavectoren, je dataset een datamatrix, en de onbekende getallen van de lijn vormen samen een parametervector. In die taal wordt het lineaire model één compacte vergelijking, met een verrassend meetkundige betekenis.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Je zag <code>lm()</code> ook terug in de opdracht over logaritmes en allometrische schaling, waar hetzelfde lineaire model op log-log-getransformeerde data werd toegepast. Dezelfde functie, dezelfde wiskunde, telkens een andere biologische context. In dit hoofdstuk gaan we begrijpen <em>waarom</em> die ene functie zo breed inzetbaar is.</p>
-</div></div><p>De rode draad van dit hoofdstuk is bovendien een oude bekende. In de eerste portfolio-opdracht draaide alles om <strong>onzekerheid</strong>, en we maten die met entropie. We zullen zien dat regressie in de kern hetzelfde doet: hier om onzekerheid te <em>verkleinen</em> door gebruik te maken van informatie. Waar entropie discreet en in kansen rekent, rekent regressie continu en in variantie war we een continue versie van entropie moeten gebruiken. Het onderliggende idee is hetzelfde.</p>
+<p>Dezelfde functie voor het metabolisme van zoogdieren en voor de absorbantie van een eiwitoplossing: dezelfde wiskunde, telkens een andere biologische context. In dit hoofdstuk gaan we begrijpen <em>waarom</em> die ene functie zo breed inzetbaar is.</p>
+</div></div><p>De rode draad van dit hoofdstuk is bovendien een oude bekende. In de eerste portfolio-opdracht draaide alles om <strong>onzekerheid</strong>, en we maten die met entropie. We zullen zien dat regressie in de kern hetzelfde doet: ook regressie gaat over het <em>verkleinen</em> van onzekerheid door gebruik te maken van informatie. Waar entropie discreet en in kansen rekent, rekent regressie continu en met varianties; wil je daar entropie gebruiken, dan heb je een continue versie van entropie nodig. Het onderliggende idee is hetzelfde.</p>
 <section id="het-model-in-vectorvorm" class="level2 page-columns page-full" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="het-model-in-vectorvorm"><span class="header-section-number">3.1</span> Het model in vectorvorm</h2>
-<p>We vertrekken van het lineaire model uit het practicum:</p>
-<p><span class="math display">\[Ab = a + b \cdot Conc\]</span></p>
-<p>Dit geldt idealiter voor elke meting. Maar we hebben niet één meting, we hebben er <span class="math inline">\(n\)</span>. Voor meting <span class="math inline">\(i\)</span> schrijven we:</p>
+<section id="datavectoren-en-de-datamatrix" class="level3 page-columns page-full" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="datavectoren-en-de-datamatrix"><span class="header-section-number">3.1.1</span> Datavectoren en de datamatrix</h3>
+<p>Bij de Bradford-test meet je per oplossing twee getallen: een concentratie en een absorbantie. Een geordend rijtje getallen heet een <strong>vector</strong>. Alle concentraties samen vormen één vector, alle absorbanties samen een tweede. Omdat elk element een gemeten waarde is, noemen we ze <strong>datavectoren</strong>. Bij <span class="math inline">\(n\)</span> metingen schrijven we</p>
+<p><span class="math display">\[\mathbf{x} = \begin{pmatrix} x_1 \\ x_2 \\ \vdots \\ x_n \end{pmatrix}, \qquad \mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix}\]</span></p>
+<p>met <span class="math inline">\(\mathbf{x}\)</span> de concentraties en <span class="math inline">\(\mathbf{y}\)</span> de absorbanties. Vectoren schrijven we vet. Een los element, zoals de <span class="math inline">\(i\)</span>-de meting <span class="math inline">\(x_i\)</span>, is een gewoon getal (een <em>scalar</em>).</p>
+<p>Zet je datavectoren als kolommen naast elkaar, dan krijg je een <strong>datamatrix</strong>: een tabel met getallen waarin elke kolom een variabele is en elke rij een meting. De afmeting van een matrix noteren we als (aantal rijen) <span class="math inline">\(\times\)</span> (aantal kolommen); de datamatrix met <span class="math inline">\(\mathbf{x}\)</span> en <span class="math inline">\(\mathbf{y}\)</span> is dus <span class="math inline">\(n \times 2\)</span>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Je werkte al met datavectoren zonder ze zo te noemen: <code>massa &lt;- c(0.002, 0.008, ...)</code> uit de allometrie-opdracht is er één. De functie <code>c()</code> (<em>combine</em>) combineert losse getallen tot een vector.</p>
+</div></div></section>
+<section id="rekenen-met-vectoren-en-matrices" class="level3 page-columns page-full" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="rekenen-met-vectoren-en-matrices"><span class="header-section-number">3.1.2</span> Rekenen met vectoren en matrices</h3>
+<p>Met deze nieuwe objecten kun je rekenen, en daarvoor hoef je geen nieuwe bewerkingen te leren. Optellen en vermenigvuldigen ken je al van getallen; we breiden ze uit naar vectoren en matrices.</p>
+<p><strong>Optellen</strong> van twee vectoren van gelijke lengte gaat elementsgewijs:</p>
+<p><span class="math display">\[\begin{pmatrix} 2 \\ 5 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \\ 4 \end{pmatrix} = \begin{pmatrix} 3 \\ 6 \\ 7 \end{pmatrix}\]</span></p>
+<p><strong>Een getal maal een vector</strong> vermenigvuldigt elk element met dat getal:</p>
+<p><span class="math display">\[2 \cdot \begin{pmatrix} 2 \\ 5 \\ 3 \end{pmatrix} = \begin{pmatrix} 4 \\ 10 \\ 6 \end{pmatrix}\]</span></p>
+<p>R werkt op dezelfde manier: <code>massa * 2</code> vermenigvuldigt elk element van de vector met 2.</p>
+<p><strong>Een matrix maal een vector</strong> is iets rijker. Neem van elke rij van de matrix de <em>gewogen som</em>: vermenigvuldig de elementen van die rij met de overeenkomstige elementen van de vector, en tel ze op. Elke rij levert zo één getal van de uitkomst:</p>
+<p><span class="math display">\[\begin{pmatrix} 1 &amp; 3 \\ 1 &amp; 5 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 1\cdot a + 3\cdot b \\ 1\cdot a + 5\cdot b \end{pmatrix} = \begin{pmatrix} a + 3b \\ a + 5b \end{pmatrix}\]</span></p>
+<p>Een matrix maal een vector levert dus weer een vector op. Dat kan alleen als het aantal kolommen van de matrix gelijk is aan de lengte van de vector.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Dit is nog geen volledige lineaire algebra; die komt later in een eigen cursus. Hier gaat het om: dezelfde bewerkingen, een rijker object.</p>
+</div></div></section>
+<section id="het-lineaire-model-als-matrixvergelijking" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="het-lineaire-model-als-matrixvergelijking"><span class="header-section-number">3.1.3</span> Het lineaire model als matrixvergelijking</h3>
+<p>In het practicum beschrijf je de relatie tussen absorbantie en concentratie met een lineair model:</p>
+<p><span class="math display">\[\text{Abs} = a + b \cdot \text{Conc}\]</span></p>
+<p>Hierin zijn <span class="math inline">\(\text{Abs}\)</span> (absorbantie) en <span class="math inline">\(\text{Conc}\)</span> (concentratie) de variabelen. We schrijven hun namen rechtop, zodat je ze niet leest als een product van losse letters. Het intercept <span class="math inline">\(a\)</span> en de richtingscoëfficiënt (helling) <span class="math inline">\(b\)</span> zijn de <strong>parameters</strong>: vaste, maar onbekende getallen die we uit de meetgegevens moeten schatten.</p>
+<p>Dit verband geldt idealiter voor elke meting. Maar we hebben niet één meting, we hebben er <span class="math inline">\(n\)</span>. Voor meting <span class="math inline">\(i\)</span> schrijven we:</p>
 <p><span class="math display">\[y_i = a + b \cdot x_i + \varepsilon_i\]</span></p>
-<p>Hier is <span class="math inline">\(y_i\)</span> de waargenomen uitkomst (bijvoorbeeld de absorbantie), <span class="math inline">\(x_i\)</span> de predictor (de concentratie), en <span class="math inline">\(\varepsilon_i\)</span> een <strong>residu</strong>: het kleine verschil tussen wat het model voorspelt en wat we echt meten. Dat residu is er altijd, omdat de meetpunten nooit precies op één lijn liggen.</p>
+<p>Hier is <span class="math inline">\(y_i\)</span> de waargenomen uitkomst (de absorbantie), <span class="math inline">\(x_i\)</span> de predictor (de concentratie), en <span class="math inline">\(\varepsilon_i\)</span> een <strong>residu</strong>: het verschil tussen wat het model voorspelt en wat we echt meten. Dat residu is er altijd, omdat de meetpunten nooit precies op één lijn liggen.</p>
 <p>Al deze <span class="math inline">\(n\)</span> vergelijkingen tegelijk kunnen we compact opschrijven met vectoren en een matrix:</p>
 <p><span class="math display">\[\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\]</span></p>
 <p>waarbij</p>
 <p><span class="math display">\[\mathbf{y} = \begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_n \end{pmatrix}, \qquad \mathbf{X} = \begin{pmatrix} 1 &amp; x_1 \\ 1 &amp; x_2 \\ \vdots &amp; \vdots \\ 1 &amp; x_n \end{pmatrix}, \qquad \boldsymbol{\beta} = \begin{pmatrix} a \\ b \end{pmatrix}, \qquad \boldsymbol{\varepsilon} = \begin{pmatrix} \varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n \end{pmatrix}\]</span></p>
-<p>De matrix <span class="math inline">\(\mathbf{X}\)</span> heet de <strong>designmatrix</strong>. De eerste kolom bestaat volledig uit enen; die hoort bij het intercept <span class="math inline">\(a\)</span>. De tweede kolom is de datavector met predictoren. Het product <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span> is opnieuw een vector, met op plek <span class="math inline">\(i\)</span> precies de voorspelling <span class="math inline">\(a + b \cdot x_i\)</span>.</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Een matrix maal een vector, <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span>, betekent: neem van elke rij van <span class="math inline">\(\mathbf{X}\)</span> de gewogen som met de gewichten uit <span class="math inline">\(\boldsymbol{\beta}\)</span>. Rij <span class="math inline">\(i\)</span> is <span class="math inline">\((1, x_i)\)</span>, dus de gewogen som is <span class="math inline">\(1 \cdot a + x_i \cdot b = a + b\,x_i\)</span>. Zo levert één matrix-vector-product in één keer alle <span class="math inline">\(n\)</span> voorspellingen op.</p>
-</div></div><p><strong>Vraag 1:</strong> Stel dat je drie metingen hebt met concentraties <span class="math inline">\(x_1 = 2\)</span>, <span class="math inline">\(x_2 = 4\)</span>, <span class="math inline">\(x_3 = 6\)</span>. Schrijf de designmatrix <span class="math inline">\(\mathbf{X}\)</span> volledig uit. Schrijf daarna, met symbolen <span class="math inline">\(a\)</span> en <span class="math inline">\(b\)</span>, de drie elementen van de voorspellingsvector <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span> op.</p>
+<p>De matrix <span class="math inline">\(\mathbf{X}\)</span> heet de <strong>designmatrix</strong>. De eerste kolom bestaat volledig uit enen; die hoort bij het intercept <span class="math inline">\(a\)</span>. De tweede kolom is de datavector <span class="math inline">\(\mathbf{x}\)</span> met predictoren. De twee parameters vormen samen de <strong>parametervector</strong> <span class="math inline">\(\boldsymbol{\beta}\)</span>. Volgens de regel voor matrix maal vector is het product <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span> opnieuw een vector, met op plek <span class="math inline">\(i\)</span> precies de voorspelling <span class="math inline">\(a + b \cdot x_i\)</span>. Eén matrix-vector-product levert zo in één keer alle <span class="math inline">\(n\)</span> voorspellingen op.</p>
+<p><strong>Vraag 1:</strong> Stel dat je drie metingen hebt met concentraties <span class="math inline">\(x_1 = 2\)</span>, <span class="math inline">\(x_2 = 4\)</span> en <span class="math inline">\(x_3 = 6\)</span>. Schrijf de designmatrix <span class="math inline">\(\mathbf{X}\)</span> volledig uit. Wat is de afmeting (<span class="math inline">\(\ldots \times \ldots\)</span>) van <span class="math inline">\(\mathbf{X}\)</span>, en hoeveel elementen heeft de datavector <span class="math inline">\(\mathbf{y}\)</span>?</p>
 <p><strong>jouw antwoord:</strong></p>
-<p><strong>Vraag 2:</strong> Beschrijf de tidy dataset die bij deze data en model hoort. Wat valt op, wat hoeven we niet in de dataset weer te geven? Leg uit.</p>
+<p><strong>Vraag 2:</strong> Reken met de designmatrix uit Vraag 1 het product <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span> uit, met <span class="math inline">\(\boldsymbol{\beta} = (a, b)\)</span>. Wat valt je op als je de uitkomst vergelijkt met het lineaire model <span class="math inline">\(y_i = a + b\,x_i\)</span>? Welke rol speelt de kolom met enen?</p>
 <p><strong>jouw antwoord:</strong></p>
+</section>
 </section>
 <section id="regressie-is-projectie" class="level2 page-columns page-full" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="regressie-is-projectie"><span class="header-section-number">3.2</span> Regressie is projectie</h2>
-<p>Nu komt de kern van dit hoofdstuk, en meteen het lastigste idee. We gaan de regressie <em>meetkundig</em> bekijken. Daarvoor kijken we op een ongewone manier naar de data.</p>
-<p>Tot nu toe tekende je een scatterplot: elk punt was één meting. In dat plaatje leven de metingen náást elkaar. Nu doen we iets anders: we vatten de héle uitkomst-datavector <span class="math inline">\(\mathbf{y}\)</span> op als <strong>één punt in een ruimte</strong>. Bij drie metingen is <span class="math inline">\(\mathbf{y} = (y_1, y_2, y_3)\)</span> dus één pijl in een driedimensionale ruimte, vanuit de oorsprong.</p>
-<p>De voorspellingen van het model, <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span>, kunnen niet zomaar overal liggen. Welke waarden <span class="math inline">\(a\)</span> en <span class="math inline">\(b\)</span> je ook kiest, het resultaat ligt altijd in een plat vlak door de oorsprong: het <strong>modelvlak</strong>. Dit vlak bevat álle mogelijke voorspellingen die het model kan maken; een hele hoop één dimensionale lijnen liggen allemaal op een 2 dimensionaal vlak.</p>
-<p>Het probleem is nu meetkundig samen te vatten: de waargenomen <span class="math inline">\(\mathbf{y}\)</span> ligt vrijwel nooit precies in dat vlak. Er is immers ruis. De vraag van regressie wordt daarmee: <em>welk punt in het modelvlak ligt het dichtst bij</em> <span class="math inline">\(\mathbf{y}\)</span>? Dat dichtstbijzijnde punt noemen we <span class="math inline">\(\hat{\mathbf{y}}\)</span>, de <strong>projectie</strong> van <span class="math inline">\(\mathbf{y}\)</span> op het modelvlak. Je kunt het zien als de schaduw die <span class="math inline">\(\mathbf{y}\)</span> recht op het vlak werpt.</p>
+<p>Nu komt de kern van dit hoofdstuk, en meteen het lastigste idee. Welke <span class="math inline">\(a\)</span> en <span class="math inline">\(b\)</span> kiest <code>lm()</code> eigenlijk? We bekijken dat eerst concreet, in de vertrouwde scatterplot, en daarna meetkundig, op een nieuwe manier.</p>
+<section id="kleinste-kwadraten-de-beste-lijn-kiezen" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="kleinste-kwadraten-de-beste-lijn-kiezen"><span class="header-section-number">3.2.1</span> Kleinste kwadraten: de beste lijn kiezen</h3>
+<p>Elke keuze van <span class="math inline">\(a\)</span> en <span class="math inline">\(b\)</span> geeft een andere rechte lijn door de scatterplot. Voor elke meting is het residu</p>
+<p><span class="math display">\[\varepsilon_i = y_i - (a + b\,x_i)\]</span></p>
+<p>de verticale afstand tussen het meetpunt en de lijn: positief als het punt boven de lijn ligt, negatief als het eronder ligt. Een goede lijn heeft kleine residuen. Om dat in één getal te vangen, kwadrateren we alle residuen en tellen ze op:</p>
+<p><span class="math display">\[\text{SS}_{\text{res}} = \sum_{i=1}^{n} \varepsilon_i^2\]</span></p>
+<p>Dit is de <strong>kwadratensom</strong> van de residuen (<em>sum of squares</em>). De beste lijn is de lijn waarvoor deze som zo klein mogelijk is. Dat heet de <strong>kleinste-kwadratenmethode</strong>, en het is precies wat <code>lm()</code> voor je uitrekent.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Toon de R-code van deze figuur</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># --- 3D -&gt; 2D: een eenvoudige schuine kijk op een 3D-scene ---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># --- indrukwekkend, maar gewoon gemaak met LLM's ;-) ---</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>iso <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, z) {</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cbind</span>(x <span class="sc">+</span> d <span class="sc">*</span> y, z <span class="sc">+</span> d <span class="sc">*</span> y <span class="sc">*</span> <span class="fl">0.6</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>P       <span class="ot">&lt;-</span> <span class="cf">function</span>(p) <span class="fu">iso</span>(p[<span class="dv">1</span>], p[<span class="dv">2</span>], p[<span class="dv">3</span>])</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>arrow3d <span class="ot">&lt;-</span> <span class="cf">function</span>(p, q, ...) { a <span class="ot">&lt;-</span> <span class="fu">P</span>(p); b <span class="ot">&lt;-</span> <span class="fu">P</span>(q)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrows</span>(a[<span class="dv">1</span>], a[<span class="dv">2</span>], b[<span class="dv">1</span>], b[<span class="dv">2</span>], <span class="at">length =</span> <span class="fl">0.12</span>, ...) }</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>seg3d   <span class="ot">&lt;-</span> <span class="cf">function</span>(p, q, ...) { a <span class="ot">&lt;-</span> <span class="fu">P</span>(p); b <span class="ot">&lt;-</span> <span class="fu">P</span>(q)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">segments</span>(a[<span class="dv">1</span>], a[<span class="dv">2</span>], b[<span class="dv">1</span>], b[<span class="dv">2</span>], ...) }</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>lab3d   <span class="ot">&lt;-</span> <span class="cf">function</span>(p, txt, ...) { a <span class="ot">&lt;-</span> <span class="fu">P</span>(p); <span class="fu">text</span>(a[<span class="dv">1</span>], a[<span class="dv">2</span>], txt, ...) }</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># --- de scene: oorsprong, projectie in het vlak, residu omhoog ---</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>O    <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>yhat <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">2.6</span>, <span class="fl">2.2</span>, <span class="dv">0</span>)   <span class="co"># projectie: ligt IN het modelvlak (z = 0)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>res  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">2.4</span>)     <span class="co"># residu: loodrecht uit het vlak</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>yobs <span class="ot">&lt;-</span> yhat <span class="sc">+</span> res       <span class="co"># waarneming y</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">2.4</span>, <span class="fl">0.5</span>))</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>box_pts <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">P</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.6</span>,<span class="sc">-</span><span class="fl">0.6</span>,<span class="dv">0</span>)), <span class="fu">P</span>(<span class="fu">c</span>(<span class="fl">4.2</span>,<span class="sc">-</span><span class="fl">0.6</span>,<span class="dv">0</span>)), <span class="fu">P</span>(<span class="fu">c</span>(<span class="fl">4.2</span>,<span class="fl">4.2</span>,<span class="dv">0</span>)),</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">P</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.6</span>,<span class="fl">4.2</span>,<span class="dv">0</span>)), <span class="fu">P</span>(yobs <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.4</span>)))</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(box_pts, <span class="at">type =</span> <span class="st">"n"</span>, <span class="at">asp =</span> <span class="dv">1</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>, <span class="at">xlab =</span> <span class="st">""</span>, <span class="at">ylab =</span> <span class="st">""</span>,</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Regressie is projectie: y als som van model + residu"</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># modelvlak (alle mogelijke voorspellingen Xβ)</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>corners <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">P</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>,<span class="sc">-</span><span class="fl">0.4</span>,<span class="dv">0</span>)), <span class="fu">P</span>(<span class="fu">c</span>(<span class="fl">4.0</span>,<span class="sc">-</span><span class="fl">0.4</span>,<span class="dv">0</span>)),</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">P</span>(<span class="fu">c</span>(<span class="fl">4.0</span>,<span class="fl">4.0</span>,<span class="dv">0</span>)), <span class="fu">P</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>,<span class="fl">4.0</span>,<span class="dv">0</span>)))</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="fu">polygon</span>(corners, <span class="at">col =</span> <span class="st">"grey93"</span>, <span class="at">border =</span> <span class="st">"grey75"</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> <span class="fu">seq</span>(<span class="fl">0.4</span>, <span class="fl">3.6</span>, <span class="at">by =</span> <span class="fl">0.8</span>)) {</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seg3d</span>(<span class="fu">c</span>(t,<span class="sc">-</span><span class="fl">0.4</span>,<span class="dv">0</span>), <span class="fu">c</span>(t,<span class="fl">4.0</span>,<span class="dv">0</span>), <span class="at">col =</span> <span class="st">"grey82"</span>)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">seg3d</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.4</span>,t,<span class="dv">0</span>), <span class="fu">c</span>(<span class="fl">4.0</span>,t,<span class="dv">0</span>), <span class="at">col =</span> <span class="st">"grey82"</span>)</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">lab3d</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.3</span>, <span class="fl">3.4</span>, <span class="dv">0</span>), <span class="st">"modelvlak"</span>, <span class="at">col =</span> <span class="st">"grey40"</span>, <span class="at">cex =</span> <span class="fl">0.95</span>, <span class="at">pos =</span> <span class="dv">4</span>)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">lab3d</span>(<span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.3</span>, <span class="fl">2.9</span>, <span class="dv">0</span>),</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      <span class="fu">expression</span>(<span class="st">"alle mogelijke "</span> <span class="sc">*</span> <span class="fu">hat</span>(y) <span class="sc">*</span> <span class="st">" = X"</span> <span class="sc">*</span> beta),</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"grey45"</span>, <span class="at">cex =</span> <span class="fl">0.72</span>, <span class="at">pos =</span> <span class="dv">4</span>)</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># de drie vectoren</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="fu">arrow3d</span>(O, yhat, <span class="at">col =</span> <span class="st">"#1f5fb4"</span>, <span class="at">lwd =</span> <span class="fl">3.2</span>)                 <span class="co"># ŷ in het vlak</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="fu">lab3d</span>(yhat <span class="sc">+</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="fl">0.05</span>,<span class="dv">0</span>), <span class="fu">expression</span>(<span class="fu">hat</span>(y)),</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"#1f5fb4"</span>, <span class="at">cex =</span> <span class="fl">1.35</span>, <span class="at">pos =</span> <span class="dv">1</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">arrow3d</span>(O, yobs, <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">lwd =</span> <span class="fl">3.2</span>)                   <span class="co"># y (waarneming)</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">lab3d</span>(yobs <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.2</span>), <span class="fu">expression</span>(y), <span class="at">col =</span> <span class="st">"black"</span>, <span class="at">cex =</span> <span class="fl">1.35</span>, <span class="at">pos =</span> <span class="dv">3</span>)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">arrow3d</span>(yhat, yobs, <span class="at">col =</span> <span class="st">"#c0392b"</span>, <span class="at">lwd =</span> <span class="fl">3.2</span>)              <span class="co"># residu</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="fu">lab3d</span>((yhat<span class="sc">+</span>yobs)<span class="sc">/</span><span class="dv">2</span> <span class="sc">+</span> <span class="fu">c</span>(<span class="fl">0.15</span>,<span class="dv">0</span>,<span class="dv">0</span>), <span class="fu">expression</span>(y <span class="sc">-</span> <span class="fu">hat</span>(y)),</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"#c0392b"</span>, <span class="at">cex =</span> <span class="fl">1.15</span>, <span class="at">pos =</span> <span class="dv">4</span>)</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co"># rechte-hoek-markering aan de voet van het residu</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fl">0.32</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> yhat <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fu">sum</span>(yhat<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>cA <span class="ot">&lt;-</span> yhat <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,h); cB <span class="ot">&lt;-</span> yhat <span class="sc">-</span> <span class="fu">c</span>(u[<span class="dv">1</span>],u[<span class="dv">2</span>],<span class="dv">0</span>)<span class="sc">*</span>h<span class="sc">*</span><span class="fl">1.1</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">seg3d</span>(cA, cA <span class="sc">-</span> <span class="fu">c</span>(u[<span class="dv">1</span>],u[<span class="dv">2</span>],<span class="dv">0</span>)<span class="sc">*</span>h<span class="sc">*</span><span class="fl">1.1</span>, <span class="at">col =</span> <span class="st">"#c0392b"</span>, <span class="at">lwd =</span> <span class="fl">1.4</span>)</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="fu">seg3d</span>(cB, cB <span class="sc">+</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,h),             <span class="at">col =</span> <span class="st">"#c0392b"</span>, <span class="at">lwd =</span> <span class="fl">1.4</span>)</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>op <span class="ot">&lt;-</span> <span class="fu">P</span>(O); <span class="fu">points</span>(op[<span class="dv">1</span>], op[<span class="dv">2</span>], <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(op[<span class="dv">1</span>], op[<span class="dv">2</span>], <span class="st">"O"</span>, <span class="at">pos =</span> <span class="dv">2</span>, <span class="at">cex =</span> <span class="fl">0.95</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+<div class="cell-output-display">
+<div id="fig-kleinste-kwadraten" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kleinste-kwadraten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Regressie_theorie_files/figure-html/fig-kleinste-kwadraten-1.png" class="img-fluid figure-img" width="816">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kleinste-kwadraten-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3.1: Dezelfde zes metingen met twee verschillende lijnen. De rode lijntjes zijn de residuen. Boven elk paneel staan de gewone som en de kwadratensom van de residuen.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In <a href="#fig-kleinste-kwadraten" class="quarto-xref">Figuur&nbsp;<span>3.1</span></a> zie je dezelfde zes metingen twee keer. Links staat een slecht gekozen lijn: de residuen zijn groot. Rechts staat de lijn die <code>lm()</code> vindt: de residuen zijn veel kleiner, en de kwadratensom is ruim veertig keer zo klein.</p>
+<p><strong>Vraag 3:</strong> Boven beide panelen staat ook de gewone som van de residuen, <span class="math inline">\(\sum \varepsilon_i\)</span>. Die is in beide gevallen nul, terwijl de linker lijn duidelijk slecht past. Leg uit hoe dat kan, en waarom we de residuen daarom kwadrateren voordat we ze optellen.</p>
+<blockquote class="blockquote">
+<p>jouw antwoord:</p>
+</blockquote>
+</section>
+<section id="dezelfde-regressie-meetkundig-bekeken" class="level3 page-columns page-full" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="dezelfde-regressie-meetkundig-bekeken"><span class="header-section-number">3.2.2</span> Dezelfde regressie, meetkundig bekeken</h3>
+<p>We weten nu <em>dat</em> <code>lm()</code> de kwadratensom minimaliseert. Er is een tweede manier om naar precies dezelfde berekening te kijken, die laat zien <em>waarom</em> het minimum ligt waar het ligt. Daarvoor kijken we op een ongewone manier naar de data.</p>
+<p>In de scatterplot was elk punt één meting. Nu vatten we de héle uitkomst-datavector <span class="math inline">\(\mathbf{y}\)</span> op als <strong>één punt in een ruimte</strong>, met één as per meting. Bij drie metingen is <span class="math inline">\(\mathbf{y} = (y_1, y_2, y_3)\)</span> dus één pijl in een driedimensionale ruimte, vanuit de oorsprong.</p>
+<p>In het algemeen heeft deze ruimte evenveel dimensies als je metingen hebt: bij <span class="math inline">\(n\)</span> metingen is <span class="math inline">\(\mathbf{y}\)</span> een punt in een <span class="math inline">\(n\)</span>-dimensionale ruimte. Meer dan drie dimensies kunnen we niet tekenen; daarom gebruiken we in de figuur <span class="math inline">\(n = 3\)</span>, maar de redenering blijft voor elke <span class="math inline">\(n\)</span> hetzelfde.</p>
+<p>Ook de voorspellingen van het model vormen een vector met <span class="math inline">\(n\)</span> elementen, één voor elke gemeten waarde van de responsvariabele. Element <span class="math inline">\(i\)</span> is de waarde op de lijn bij concentratie <span class="math inline">\(x_i\)</span>, namelijk <span class="math inline">\(a + b\,x_i\)</span>. Daarom liggen de metingen en de voorspellingen in dezelfde <span class="math inline">\(n\)</span>-dimensionale ruimte, en kun je ze van elkaar aftrekken: ook het residu heeft <span class="math inline">\(n\)</span> elementen, één per meting.</p>
+<p>De voorspellingen van het model kunnen in die ruimte niet zomaar overal liggen. Met de rekenregels van hierboven kun je <span class="math inline">\(\mathbf{X}\boldsymbol{\beta}\)</span> ook schrijven als</p>
+<p><span class="math display">\[\mathbf{X}\boldsymbol{\beta} = a \cdot \mathbf{1} + b \cdot \mathbf{x}\]</span></p>
+<p>waarbij <span class="math inline">\(\mathbf{1} = (1, 1, \ldots, 1)\)</span> de kolom met enen is en <span class="math inline">\(\mathbf{x}\)</span> de kolom met concentraties: de twee kolommen van de designmatrix. Elke voorspelling is dus “<span class="math inline">\(a\)</span> stappen in de richting van <span class="math inline">\(\mathbf{1}\)</span>, plus <span class="math inline">\(b\)</span> stappen in de richting van <span class="math inline">\(\mathbf{x}\)</span>”. Alle punten die je zo kunt bereiken, vormen samen een plat vlak door de oorsprong: het <strong>modelvlak</strong>. De twee richtingen van dat vlak zijn dus de kolommen <span class="math inline">\(\mathbf{1}\)</span> en <span class="math inline">\(\mathbf{x}\)</span> van de designmatrix; het intercept <span class="math inline">\(a\)</span> en de helling <span class="math inline">\(b\)</span> zeggen hoe ver je langs elk van die richtingen gaat.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Hoe groot <span class="math inline">\(n\)</span> ook is, het modelvlak blijft tweedimensionaal, omdat het model twee parameters heeft. Voor het residu blijven <span class="math inline">\(n - 2\)</span> dimensies over; dat getal zie je in <code>summary()</code> terug als <em>degrees of freedom</em>.</p>
+</div></div><p>Zo ontstaat een vertaling tussen de twee plaatjes: elke rechte lijn die je in de scatterplot zou kunnen tekenen, dus elke keuze van <span class="math inline">\(a\)</span> en <span class="math inline">\(b\)</span>, is in deze ruimte precies één punt van het modelvlak. Het modelvlak is de verzameling van álle mogelijke lijnen.</p>
+<p>De waargenomen <span class="math inline">\(\mathbf{y}\)</span> ligt vrijwel nooit precies in dat vlak; er is immers ruis. De vraag van regressie wordt daarmee meetkundig: <em>welk punt in het modelvlak ligt het dichtst bij</em> <span class="math inline">\(\mathbf{y}\)</span>? Dat dichtstbijzijnde punt noemen we <span class="math inline">\(\hat{\mathbf{y}}\)</span>, de <strong>projectie</strong> van <span class="math inline">\(\mathbf{y}\)</span> op het modelvlak. Je kunt het zien als de schaduw die <span class="math inline">\(\mathbf{y}\)</span> recht op het vlak werpt.</p>
+<p>Dat dit dezelfde vraag is als bij de kleinste kwadraten, zie je met de stelling van Pythagoras. De lengte van een vector, genoteerd als <span class="math inline">\(\|\mathbf{v}\|\)</span>, is de wortel uit de som van de kwadraten van zijn elementen: Pythagoras, maar nu met meer dan twee termen. Voor de afstand tussen <span class="math inline">\(\mathbf{y}\)</span> en een punt <span class="math inline">\(\hat{\mathbf{y}}\)</span> in het modelvlak geldt dus</p>
+<p><span class="math display">\[\|\mathbf{y} - \hat{\mathbf{y}}\|^2 = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} \varepsilon_i^2 = \text{SS}_{\text{res}}\]</span></p>
+<p>Het kwadraat van die afstand is precies de kwadratensom van de residuen van de bijbehorende lijn. Het dichtstbijzijnde punt zoeken en de kleinste kwadratensom zoeken zijn dus één en dezelfde opdracht.</p>
+<div class="cell">
 <div class="cell-output-display">
 <div id="fig-projectie" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -405,25 +386,26 @@ window.Quarto = {
 <img src="Regressie_theorie_files/figure-html/fig-projectie-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-projectie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3.1: De waarneming y ligt buiten het modelvlak. De projectie ŷ is het dichtstbijzijnde punt ín het vlak; het residu y − ŷ verbindt beide en staat loodrecht op het vlak.
+Figure&nbsp;3.2: De waarneming y ligt buiten het modelvlak. De projectie ŷ is het dichtstbijzijnde punt ín het vlak; het residu y − ŷ verbindt beide en staat loodrecht op het vlak. De grijze pijlen 1 en x zijn de twee kolommen van de designmatrix.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In de figuur zie je alle drie de vectoren vanuit de oorsprong <span class="math inline">\(O\)</span>. De blauwe <span class="math inline">\(\hat{\mathbf{y}}\)</span> ligt in het grijze modelvlak: dit is de beste voorspelling die het model kan maken. De zwarte <span class="math inline">\(\mathbf{y}\)</span> steekt uit het vlak omhoog: dit is wat je werkelijk hebt gemeten. De rode vector <span class="math inline">\(\mathbf{y} - \hat{\mathbf{y}}\)</span> verbindt de projectie met de waarneming. Dat is de <strong>residuvector</strong> (restvector): precies wat het model niet verklaart.</p>
+<p>In <a href="#fig-projectie" class="quarto-xref">Figuur&nbsp;<span>3.2</span></a> zie je alle vectoren vanuit de oorsprong <span class="math inline">\(O\)</span>. De grijze pijlen <span class="math inline">\(\mathbf{1}\)</span> en <span class="math inline">\(\mathbf{x}\)</span> zijn de twee richtingen van het modelvlak; het raster in het vlak volgt die richtingen, zodat je kunt aflezen hoeveel stappen <span class="math inline">\(a\)</span> en <span class="math inline">\(b\)</span> nodig zijn om een punt te bereiken. De blauwe <span class="math inline">\(\hat{\mathbf{y}}\)</span> ligt in het modelvlak: dit is de beste voorspelling die het model kan maken. De zwarte <span class="math inline">\(\mathbf{y}\)</span> steekt uit het vlak omhoog: dit is wat je werkelijk hebt gemeten. De rode vector <span class="math inline">\(\mathbf{y} - \hat{\mathbf{y}}\)</span> verbindt de projectie met de waarneming. Dat is de <strong>residuvector</strong> (restvector): precies wat het model niet verklaart.</p>
 <p>Het kleine hoekje bij de voet van de rode vector geeft aan dat het residu <em>loodrecht</em> op het modelvlak staat. Dat is geen toeval: de kortste afstand van een punt tot een vlak loopt altijd langs de loodlijn. Precies daarom is de projectie de best mogelijke keuze; elke andere keuze in het vlak zou een langer residu geven.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Waaróm dat residu loodrecht staat, en hoe je die loodrechtheid exact berekent met een <em>inproduct</em> van vectoren, komt later dit jaar aan bod in de cursus statistiek. Voor nu is het genoeg om het meetkundig te zien: het rechte-hoekje in de figuur is de belofte van iets dat je straks precies leert uitrekenen. Onthoud het teken; je komt het terug.</p>
-</div></div><p><strong>Vraag 3:</strong> Stel dat je meetpunten toevallig <em>precies</em> op een rechte lijn liggen, zonder enige ruis. Waar ligt de waarneming <span class="math inline">\(\mathbf{y}\)</span> dan ten opzichte van het modelvlak? Hoe lang is de residuvector <span class="math inline">\(\mathbf{y} - \hat{\mathbf{y}}\)</span> in dat geval? Beschrijf in woorden.</p>
+<p>Waaróm het residu loodrecht staat, en hoe je dat uitrekent met een <em>inproduct</em> van vectoren, leer je later dit jaar in de cursus statistiek. Onthoud het rechte-hoekje; je komt het terug.</p>
+</div></div><p><strong>Vraag 4:</strong> Stel dat je meetpunten toevallig <em>precies</em> op een rechte lijn liggen, zonder enige ruis. Waar ligt de waarneming <span class="math inline">\(\mathbf{y}\)</span> dan ten opzichte van het modelvlak? Hoe lang is de residuvector <span class="math inline">\(\mathbf{y} - \hat{\mathbf{y}}\)</span> in dat geval? Beschrijf in woorden.</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
-<p><strong>Vraag 4:</strong> Regressie kiest <span class="math inline">\(\hat{\mathbf{y}}\)</span> als het punt in het modelvlak dat het dichtst bij <span class="math inline">\(\mathbf{y}\)</span> ligt. Leg uit waarom elk ánder punt in het vlak een langere residuvector zou opleveren. Gebruik daarbij het beeld van de loodlijn.</p>
+<p><strong>Vraag 5:</strong> Regressie kiest <span class="math inline">\(\hat{\mathbf{y}}\)</span> als het punt in het modelvlak dat het dichtst bij <span class="math inline">\(\mathbf{y}\)</span> ligt. Leg uit waarom elk ánder punt in het vlak een langere residuvector zou opleveren. Gebruik daarbij het beeld van de loodlijn. Wat betekent dat voor de kwadratensom van de bijbehorende lijn in de scatterplot?</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
+</section>
 </section>
 <section id="evo-devo-regressie-als-het-verkleinen-van-onzekerheid" class="level2 page-columns page-full" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="evo-devo-regressie-als-het-verkleinen-van-onzekerheid"><span class="header-section-number">3.3</span> Evo-devo: regressie als het verkleinen van onzekerheid</h2>
@@ -431,57 +413,73 @@ Figure&nbsp;3.1: De waarneming y ligt buiten het modelvlak. De projectie ŷ is h
 <p>Bekijk de residuvector nog eens. Hoe korter die vector, hoe dichter de waarnemingen bij de voorspellingen liggen, en hoe beter het model de uitkomst <em>voorspelt</em>. Een korte residuvector betekent: als je de predictor kent, weet je de uitkomst vrijwel zeker. Een lange residuvector betekent: zelfs mét de predictor blijft er veel onzekerheid over.</p>
 <p>Dat is precies de gedachte die je kent van de entropie-splitsing uit de eerste opdracht:</p>
 <p><span class="math display">\[H(\text{fenotype} \mid \text{soort}) &lt; H(\text{fenotype})\]</span></p>
-<p>Daar zagen we dat conditioneren op informatie, weten wélke soort het is, de onzekerheid over het fenotype verkleint. Regressie doet hetzelfde, maar continu en in termen van variantie in plaats van entropie:</p>
-<p><span class="math display">\[\operatorname{Var}(\mathbf{y} \mid \mathbf{x}) &lt; \operatorname{Var}(\mathbf{y})\]</span></p>
-<p>De variantie van <span class="math inline">\(\mathbf{y}\)</span> zónder de predictor is groot; de overgebleven variantie <em>gegeven</em> de predictor, de spreiding rond de lijn, is kleiner. Die overgebleven spreiding is niets anders dan de lengte van de residuvector. Regressie is dus de continue tegenhanger van de entropie-decompositie: dezelfde beweging van onzekerheid-verkleinen-door-informatie, in een andere wiskundige taal.</p>
+<p>Daar zagen we dat conditioneren op informatie de onzekerheid over het fenotype verkleint. De informatie was daar de <strong>soort</strong>: een categorie waarin je het individu plaatst. Weet je tot welke soort een individu behoort, dan blijft er minder onzekerheid over zijn fenotype over.</p>
+<p>Regressie doet hetzelfde, maar continu. Om te zien hoe, splitsen we het model in twee delen:</p>
+<p><span class="math display">\[y_i = \underbrace{a + b\,x_i}_{\text{deterministisch deel}} + \underbrace{\varepsilon_i}_{\text{stochastisch deel}}\]</span></p>
+<p>Het <strong>deterministische deel</strong> <span class="math inline">\(a + b\,x_i\)</span> ligt volledig vast zodra je <span class="math inline">\(x_i\)</span> kent: dezelfde concentratie geeft altijd dezelfde voorspelling. Het is het systematische, voorspelbare deel van het model. Het <strong>stochastische deel</strong> <span class="math inline">\(\varepsilon_i\)</span> is het deel dat ook mét kennis van <span class="math inline">\(x_i\)</span> onvoorspelbaar blijft; net als de <span class="math inline">\(\chi^2\)</span>-waarde uit de eerste opdracht is het een stochastische variabele.</p>
+<p>Hier is de informatie dus de <strong>predictor</strong> <span class="math inline">\(x\)</span>: die legt het deterministische deel vast. Zonder <span class="math inline">\(x\)</span> is de onzekerheid over een meting <span class="math inline">\(y\)</span> groot; mét <span class="math inline">\(x\)</span> blijft binnen dit model alleen de onzekerheid van het stochastische deel over:</p>
+<p><span class="math display">\[\operatorname{Var}(y \mid x) = \operatorname{Var}(\varepsilon) &lt; \operatorname{Var}(y)\]</span></p>
+<p>De variantie zónder de predictor is groot; de overgebleven variantie <em>gegeven</em> de predictor, de spreiding rond de lijn, is kleiner. In je data zie je die overgebleven spreiding terug als de lengte van de residuvector. Regressie is dus de continue tegenhanger van de entropie-decompositie: dezelfde beweging van onzekerheid-verkleinen-door-informatie, in een andere wiskundige taal.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Dit is opnieuw een voorbeeld van de terugkerende boodschap: één idee, onzekerheid die afneemt zodra je ergens op conditioneert, duikt op in twee heel verschillende wiskundige vormen. De entropie rekent met kansen en logaritmes; de regressie met vectoren en varianties. De interpretatie verbindt ze.</p>
-</div></div><p>En hier komt de evo-devo binnen. <strong>Canalisatie</strong> is het vermogen van de ontwikkeling om, ondanks variatie in genotype of omgeving, steeds hetzelfde fenotype voort te brengen. In de taal van dit hoofdstuk is dat verrassend concreet: een sterk gekanaliseerd kenmerk is een kenmerk met een <em>korte residuvector</em>. Het verwachte fenotype ligt vast, en de individuele afwijkingen daaromheen zijn klein. Een slecht gebufferd, weinig gekanaliseerd kenmerk heeft juist een lange residuvector: veel onvoorspelbare variatie rond het gemiddelde.</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Let op één nuance. De residuvector mengt twee bronnen van variatie: echte biologische variatie tussen individuen én meetruis van je instrument. Canalisatie gaat over de eerste. Een korte residuvector door een nauwkeurige spectrofotometer is dus iets anders dan een korte residuvector door sterke ontwikkelingsbuffering, ook al zien ze er in de wiskunde hetzelfde uit.</p>
-</div></div><p><strong>Vraag 5:</strong> Leg in je eigen woorden uit waarom een sterk gekanaliseerd kenmerk hoort bij een korte residuvector. Betrek daarin het begrip <em>voorspelbaarheid</em>: hoe goed kun je het fenotype van een individu voorspellen als het kenmerk sterk gekanaliseerd is?</p>
+<p>Opnieuw één idee in twee wiskundige vormen: onzekerheid die afneemt zodra je ergens op conditioneert. Entropie rekent met kansen en logaritmes, regressie met vectoren en varianties.</p>
+</div></div><p>En hier komt de evo-devo binnen. <strong>Canalisatie</strong> is het vermogen van de ontwikkeling om, ondanks variatie in genotype of omgeving, steeds hetzelfde fenotype voort te brengen. In de taal van dit hoofdstuk is dat verrassend concreet: het verwachte fenotype is het deterministische deel, en canalisatie houdt het stochastische deel klein. Een sterk gekanaliseerd kenmerk heeft dus een <em>korte residuvector</em>: de individuele afwijkingen rond het verwachte fenotype zijn klein. Een slecht gebufferd, weinig gekanaliseerd kenmerk heeft juist een lange residuvector: veel onvoorspelbare variatie rond het verwachte fenotype.</p>
+<p>Let op één nuance. Het stochastische deel mengt twee bronnen van variatie: echte biologische variatie tussen individuen én meetruis van je instrument. Canalisatie gaat over de eerste. Een korte residuvector door een nauwkeurige spectrofotometer is dus iets anders dan een korte residuvector door sterke ontwikkelingsbuffering, ook al zien ze er in de wiskunde hetzelfde uit. “Stochastisch” betekent hier ook niet “onbelangrijk”: de variatie tussen individuen is juist het materiaal waarop selectie werkt.</p>
+<p><strong>Vraag 6:</strong> Leg in je eigen woorden uit waarom een sterk gekanaliseerd kenmerk hoort bij een korte residuvector. Betrek daarin het begrip <em>voorspelbaarheid</em>: hoe goed kun je het fenotype van een individu voorspellen als het kenmerk sterk gekanaliseerd is?</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
-<p><strong>Vraag 6:</strong> In de eerste opdracht was onzekerheid discreet (entropie, in kansen); hier is ze continu (variantie, in een residuvector). Beschrijf in je eigen woorden welk idee in béíde gevallen hetzelfde is. Wat betekent “conditioneren op informatie” telkens?</p>
+<p><strong>Vraag 7:</strong> In de eerste opdracht was onzekerheid discreet (entropie, in kansen); hier is ze continu (variantie, in een residuvector). Beschrijf in je eigen woorden welk idee in béíde gevallen hetzelfde is. Wat is telkens de informatie waarop je conditioneert, en welk deel van de onzekerheid blijft daarna over?</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
-<p><strong>Vraag 7 (speculatief):</strong> Canalisatie zorgt dat veel verschillende genotypen tot hetzelfde fenotype leiden, en maakt soorten daarmee tot scherpe, telbare en herkenbare eenheden. Bedenk een hypothese: hoe zou de mate van canalisatie (de lengte van de residuvector <em>binnen</em> een soort) kunnen samenhangen met hoe goed soorten in de biodiversiteit van elkaar te onderscheiden zijn? Er is hier geen goed of fout antwoord; durf te speculeren.</p>
+<p><strong>Vraag 8 (speculatief):</strong> Canalisatie zorgt dat veel verschillende genotypen tot hetzelfde fenotype leiden, en maakt soorten daarmee tot scherpe, telbare en herkenbare eenheden. Bedenk een hypothese: hoe zou de mate van canalisatie (de lengte van de residuvector <em>binnen</em> een soort) kunnen samenhangen met hoe goed soorten in de biodiversiteit van elkaar te onderscheiden zijn? Er is hier geen goed of fout antwoord; durf te speculeren.</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
 </section>
-<section id="verdieping-pythagoras-en-r2" class="level2 page-columns page-full" data-number="3.4">
+<section id="verdieping-pythagoras-en-r2" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="verdieping-pythagoras-en-r2"><span class="header-section-number">3.4</span> Verdieping: Pythagoras en <span class="math inline">\(R^2\)</span></h2>
-<p>Deze sectie is een verdieping. Ze is niet nodig om de rest te begrijpen, maar laat een mooie samenhang zien voor wie verder wil.</p>
-<p>Kijk nog een keer naar de figuur. De drie vectoren <span class="math inline">\(\mathbf{y}\)</span>, <span class="math inline">\(\hat{\mathbf{y}}\)</span> en <span class="math inline">\(\mathbf{y} - \hat{\mathbf{y}}\)</span> vormen samen een driehoek, en dankzij het rechte-hoekje is dat een <em>rechthoekige</em> driehoek. Op een rechthoekige driehoek geldt de stelling van Pythagoras. Toegepast op de lengtes van deze vectoren levert dat:</p>
+<p>Deze sectie is een verdieping en een uitdaging. Ze is niet nodig om de rest te begrijpen; klap haar open als je verder wilt.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Open de verdieping">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Open de verdieping
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Kijk nog een keer naar <a href="#fig-projectie" class="quarto-xref">Figuur&nbsp;<span>3.2</span></a>. De drie vectoren <span class="math inline">\(\mathbf{y}\)</span>, <span class="math inline">\(\hat{\mathbf{y}}\)</span> en <span class="math inline">\(\mathbf{y} - \hat{\mathbf{y}}\)</span> vormen samen een driehoek, en dankzij het rechte-hoekje is dat een <em>rechthoekige</em> driehoek. Op een rechthoekige driehoek geldt de stelling van Pythagoras. Toegepast op de lengtes van deze vectoren levert dat:</p>
 <p><span class="math display">\[\underbrace{\|\mathbf{y}\|^2}_{\text{totaal}} = \underbrace{\|\hat{\mathbf{y}}\|^2}_{\text{verklaard}} + \underbrace{\|\mathbf{y} - \hat{\mathbf{y}}\|^2}_{\text{residu}}\]</span></p>
-<p>met <span class="math inline">\(\|\mathbf{y}\|\)</span> de lengte van <span class="math inline">\(y\)</span>.</p>
+<p>met <span class="math inline">\(\|\cdot\|\)</span> de lengte van een vector, zoals eerder in dit hoofdstuk.</p>
 <p>Werk je met de afwijkingen ten opzichte van het gemiddelde, dan zijn deze drie lengtes precies de bekende <strong>kwadratensommen</strong> uit de statistiek:</p>
 <p><span class="math display">\[\text{SS}_{\text{tot}} = \text{SS}_{\text{reg}} + \text{SS}_{\text{res}}\]</span></p>
 <p>De totale variatie in je data valt uiteen in een deel dat het model verklaart en een deel dat overblijft als residu. Dat is dezelfde soort opsplitsing als de entropie-decompositie uit de eerste opdracht, nu meetkundig afgedwongen door Pythagoras. Opnieuw duikt een vertrouwde wiskundige vorm op in een nieuwe context.</p>
-<p>Uit deze opsplitsing volgt direct een maat voor hoe goed het model voorspelt, de <strong>determinatiecoëfficiënt</strong> of multiple R^2:</p>
+<p>Uit deze opsplitsing volgt direct een maat voor hoe goed het model voorspelt, de <strong>determinatiecoëfficiënt</strong> <span class="math inline">\(R^2\)</span> (in de uitvoer van <code>summary()</code> in R heet hij <em>Multiple R-squared</em>):</p>
 <p><span class="math display">\[R^2 = \frac{\text{SS}_{\text{reg}}}{\text{SS}_{\text{tot}}} = 1 - \frac{\text{SS}_{\text{res}}}{\text{SS}_{\text{tot}}}\]</span></p>
 <p><span class="math inline">\(R^2\)</span> is de fractie van de totale onzekerheid over <span class="math inline">\(\mathbf{y}\)</span> die wegvalt zodra je de predictor kent. Ligt <span class="math inline">\(R^2\)</span> dicht bij <span class="math inline">\(1\)</span>, dan is de residuvector kort en is het kenmerk goed voorspelbaar, sterk gekanaliseerd, in onze evo-devo-interpretatie. Ligt <span class="math inline">\(R^2\)</span> dicht bij <span class="math inline">\(0\)</span>, dan voegt de predictor weinig toe.</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>In het practicum leer je de correlatiecoëfficiënt <span class="math inline">\(r\)</span> kennen. Bij een model met één predictor, zoals hier, geldt <span class="math inline">\(R^2 = r^2\)</span>: het kwadraat van de correlatie is de fractie verklaarde variatie. Bij meerdere predictoren is dat verband minder eenvoudig.</p>
 <p>De koppeling tussen “kleinere variantie” en “kleinere entropie” is exact te maken, maar alleen onder de aanname dat de variatie een normale (Gaussische) verdeling volgt; dan is de entropie een nette functie van de variantie. Voor ons volstaat de parallel: in beide gevallen meet je hoeveel onzekerheid er overblijft. De precieze voorwaarden leer je later dit jaar bij statistiek.</p>
-</div></div><p><strong>Vraag 8 (verdieping):</strong> Leg uit waarom <span class="math inline">\(R^2\)</span> nooit groter dan <span class="math inline">\(1\)</span> en nooit kleiner dan <span class="math inline">\(0\)</span> kan zijn. Gebruik daarbij de Pythagoras-opsplitsing hierboven: wat zou het betekenen voor de lengtes van de vectoren als <span class="math inline">\(R^2 = 1\)</span>, en wat als <span class="math inline">\(R^2 = 0\)</span>?</p>
+<p><strong>Vraag 9 (verdieping):</strong> Leg uit waarom <span class="math inline">\(R^2\)</span> nooit groter dan <span class="math inline">\(1\)</span> en nooit kleiner dan <span class="math inline">\(0\)</span> kan zijn. Gebruik daarbij de Pythagoras-opsplitsing hierboven: wat zou het betekenen voor de lengtes van de vectoren als <span class="math inline">\(R^2 = 1\)</span>, en wat als <span class="math inline">\(R^2 = 0\)</span>?</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
+</div>
+</div>
+</div>
 </section>
 <section id="slotopdracht-jouw-eigen-synthese" class="level2 page-columns page-full" data-number="3.5">
 <h2 data-number="3.5" class="anchored" data-anchor-id="slotopdracht-jouw-eigen-synthese"><span class="header-section-number">3.5</span> Slotopdracht: jouw eigen synthese</h2>
 <p>Zoals bij de vorige opdrachten is dit een momentopname van je denken; er is geen goed of fout antwoord, alleen goed of slecht geformuleerd. Je mag je antwoorden later dit jaar vrij herzien.</p>
-<p><strong>Vraag 9 — Dezelfde wiskunde, andere betekenis.</strong> In dit hoofdstuk kwamen meerdere vertrouwde vormen terug in een nieuwe gedaante: de logaritme-context van allometrie werd een regressie, de entropie-decompositie werd een variantie-decompositie, en Pythagoras bleek varianties te ontleden. Kies er één en beschrijf in je eigen woorden wat er behouden blijft en wat er verandert wanneer de vorm van context wisselt.</p>
+<p><strong>Vraag 10 — Dezelfde wiskunde, andere betekenis.</strong> In dit hoofdstuk kwamen meerdere vertrouwde vormen terug in een nieuwe gedaante: de logaritme-context van allometrie werd een regressie, de entropie-decompositie werd een variantie-decompositie, en Pythagoras bleek varianties te ontleden. Kies er één en beschrijf in je eigen woorden wat er behouden blijft en wat er verandert wanneer de vorm van context wisselt.</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>
-<p><strong>Vraag 10 — Terug naar je eigen hypothese.</strong> Lees je speculatieve antwoord terug uit de eerste portfolio-opdracht, waar je een hypothese formuleerde over entropie, onzekerheid en canalisatie. Zie je nu, met regressie en de residuvector erbij, een verband dat je toen nog niet kon verwoorden? Herschrijf of breid je hypothese uit.</p>
+<p><strong>Vraag 11 — Terug naar je eigen hypothese.</strong> Lees je speculatieve antwoord terug uit de eerste portfolio-opdracht, waar je een hypothese formuleerde over entropie, onzekerheid en canalisatie. Zie je nu, met regressie en de residuvector erbij, een verband dat je toen nog niet kon verwoorden? Herschrijf of breid je hypothese uit.</p>
 <blockquote class="blockquote">
 <p>jouw antwoord:</p>
 </blockquote>

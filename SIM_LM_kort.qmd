@@ -1,0 +1,103 @@
+---
+title: "Simulatie lineaire regressie"
+format: html
+---
+
+## Wat is het model?
+
+Het statistische model bij jullie experiment is:
+
+$$\text{Abs} = a + b \cdot \text{Conc} + \varepsilon$$
+
+We nemen aan dat $\varepsilon$ normaal verdeeld is met gemiddelde 0 en standaarddeviatie (SD) 1.
+
+Met `set.seed()` krijg je bij elke run dezelfde toevalsgetallen:
+
+```{r}
+set.seed(2027)
+```
+
+Eerst maken we de concentraties `Conc`:
+
+```{r}
+Conc <- c(0, 1, 2, 3, 4, 5, 6)
+n <- length(Conc)
+```
+
+Dan kiezen we het intercept `a` en de richtingscoëfficiënt `b`:
+
+```{r}
+a <- 0
+b <- 3
+```
+
+Dan maken we eerst het deterministische model en plotten we dat:
+
+```{r}
+Abs <- a + b * Conc
+plot(Abs ~ Conc)
+abline(a, b)
+```
+
+Alle punten liggen op de lijn. Nu voegen we spreiding toe aan de data. Daarvoor maken we eerst $\varepsilon$:
+
+```{r}
+Epsilon <- rnorm(n = n, mean = 0, sd = 1)
+print(Epsilon)
+```
+
+### Interlude: variantie
+
+De spreiding van `Epsilon` meten we met de variantie: de som van de kwadraten rond het gemiddelde, gedeeld door $n - 1$:
+
+$$s^2 = \frac{\sum_{i=1}^{n} (\varepsilon_i - \bar{\varepsilon})^2}{n - 1}$$
+
+In R wordt dat:
+
+```{r}
+sum((Epsilon - mean(Epsilon))^2)
+Variantie <- sum((Epsilon - mean(Epsilon))^2) / (n - 1)
+Variantie
+var(Epsilon)
+sqrt(var(Epsilon))
+sd(Epsilon)
+```
+
+Nu simuleren we het hele model:
+
+```{r}
+Abs <- a + b * Conc + Epsilon
+plot(Abs ~ Conc)
+abline(a, b, lty = 2)
+abline(lm(Abs ~ Conc), lty = 1)
+```
+
+De gestippelde lijn is de echte lijn, de doorgetrokken lijn de geschatte. Nu kunnen we er een statistische analyse op loslaten:
+
+```{r}
+Model <- lm(Abs ~ Conc)
+summary(Model)
+```
+
+Wat zit er in `Model`?
+
+```{r}
+str(Model)
+```
+
+Als je er elementen uit wilt halen:
+
+```{r}
+Model$coefficients    # of coef(Model)
+Model$residuals       # of resid(Model)
+Model$fitted.values   # of fitted(Model)
+```
+
+Let op: de residuen zijn niet hetzelfde als `Epsilon`. `Epsilon` is het echte stochastische deel; de residuen zijn de afstanden tot de *geschatte* lijn.
+
+Zo ook voor de samenvatting van een model:
+
+```{r}
+str(summary(Model))
+summary(Model)$r.squared
+```

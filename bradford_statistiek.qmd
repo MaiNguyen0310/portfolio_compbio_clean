@@ -1,52 +1,46 @@
 # Bradford-test: statistiek, vectoren en lineaire modellen {#sec-bradford}
 
-In de eerste portfolio-opdracht gebruikten we het concept van entropie om toenemende complexiteit in de biologie te duiden. In de tweede opdracht zagen we dat een rechte lijn de relatie tussen metabolische snelheid en massa goed kon beschrijven. Vandaag gebruiken we de Bradford-test om statistiek toe te passen en een ijklijn te maken. Daarbij komen beide concepten opnieuw samen.
+In de eerste portfolio-opdracht gebruikten we het concept van entropie om toenemende complexiteit in de biologie te duiden. In de tweede opdracht zagen we dat een rechte lijn de relatie tussen metabolische snelheid en massa goed kon beschrijven. In het theoriehoofdstuk over lineaire regressie zag je wat er achter zo'n rechte lijn zit. Vandaag gebruiken we de Bradford-test om dat toe te passen op je eigen meetgegevens en een ijklijn te maken. Daarbij komen deze concepten opnieuw samen.
 
-In deze les kijken we ook weer naar aannames. Een aanname is een biologische veronderstelling die nodig is om een wiskundige analyse of model te mogen gebruiken. Die aanname moet wetenschappelijk onderbouwd zijn. Voor de Bradford-test nemen we bijvoorbeeld aan dat de relatie tussen eiwitconcentratie en absorbantie binnen het gebruikte meetbereik **lineair** is en dat de **rest-term normal verdeeld** is. Daarom is het belangrijk dat monsters soms eerst worden verdund, zodat de metingen binnen het lineaire bereik van de methode vallen.
+In deze les kijken we ook weer naar aannames. Een aanname is een biologische of chemische veronderstelling die nodig is om een wiskundige analyse of model te mogen gebruiken. Die aanname moet wetenschappelijk onderbouwd zijn. Voor de Bradford-test nemen we aan dat de relatie tussen eiwitconcentratie en absorbantie binnen het gebruikte meetbereik **lineair** is. Daarom is het belangrijk dat monsters soms eerst worden verdund, zodat de metingen binnen het lineaire bereik van de methode vallen. Daarnaast nemen we aan dat de **restterm**, het stochastische deel $\varepsilon$ uit het theoriehoofdstuk, **normaal verdeeld** is. Voor het trekken van de ijklijn zelf is die aanname niet nodig; ze speelt pas een rol bij de p-waarden in de uitvoer van R.
 
 ::: aside
-Aannames kwamen ook eerder terug: de $\chi^2$-verdeling gelden alleen onder specifieke aannames die je moet benoemen en controleren.
+Aannames kwamen ook eerder terug: de $\chi^2$-verdeling geldt alleen onder specifieke aannames die je moet benoemen en controleren.
 :::
 
-Naast de statistiek introduceren we in deze opdracht een nieuw stuk wiskundige taal: **vectoren** en **matrices**, concepten uit de lineaire algebra. Deze taal loopt als een draad door de rest van het portfolio: je meetgegevens zijn vectoren, je dataset is een matrix, en straks blijkt dat ook het lineaire model zich in die taal laat schrijven. Zo zie je opnieuw dat één wiskundige vorm in verschillende contexten terugkeert; de interpretatie bepaalt de betekenis.
+In het theoriehoofdstuk maakte je kennis met **vectoren** en **matrices**, concepten uit de lineaire algebra. Vandaag pas je die taal toe op je eigen metingen: je meetgegevens zijn datavectoren, je dataset is een datamatrix, en de ijklijn is het lineaire model $\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$. Zo zie je opnieuw dat één wiskundige vorm in verschillende contexten terugkeert; de interpretatie bepaalt de betekenis.
 
 Voor het portfolio kun je de vragen in dit document beantwoorden. In de les werken we deze vragen stap voor stap uit.
 
-# Doel van de Bradford-test
+## Doel van de Bradford-test
 
 Bij de Bradford-test meten we de absorbantie van oplossingen met verschillende eiwitconcentraties. We verwachten dat de absorbantie toeneemt wanneer de eiwitconcentratie toeneemt. Er is dan sprake van een positieve relatie tussen eiwitconcentratie en absorbantie.
 
 De informatie over deze relatie gebruiken we om de eiwitconcentratie te bepalen van een oplossing waarvan de concentratie nog onbekend is. Daarvoor maken we eerst een ijklijn met bekende concentraties.
 
-# Data als vectoren en matrices
+## Data als vectoren en matrices
 
-Voordat we gaan rekenen, kijken we naar de *vorm* van onze data. In de vorige opdracht voerde je een meetreeks in met de functie `c()`. Zo'n rijtje getallen heeft een wiskundige naam: een **vector**.
+Voordat we gaan rekenen, kijken we met de taal uit het theoriehoofdstuk naar de *vorm* van onze data. Per meting verzamelen we twee getallen: een concentratie en de bijbehorende absorbantie. Alle concentraties samen vormen de datavector $\mathbf{Conc}$, alle absorbanties de datavector $\mathbf{Abs}$:
 
-Een **vector** is een geordend rijtje getallen. In dit practicum verzamelen we per meting twee getallen: een concentratie en de bijbehorende absorbantie. Alle concentraties samen vormen één vector, alle absorbanties samen een tweede vector. We noemen ze **datavectoren**, omdat elk element een gemeten waarde is.
+$$\mathbf{Conc} = \begin{pmatrix} \text{Conc}_1 \\ \text{Conc}_2 \\ \vdots \\ \text{Conc}_n \end{pmatrix}, \qquad \mathbf{Abs} = \begin{pmatrix} \text{Abs}_1 \\ \text{Abs}_2 \\ \vdots \\ \text{Abs}_n \end{pmatrix}$$
 
-Een datavector met *n* metingen schrijven we als:
+In het theoriehoofdstuk heetten deze vectoren $\mathbf{x}$ (de predictor) en $\mathbf{y}$ (de uitkomst). Leggen we ze als kolommen naast elkaar, dan ontstaat de datamatrix:
 
-$$\mathbf{conc} = \begin{pmatrix} conc_1 \\ conc_2 \\ \vdots \\ conc_n \end{pmatrix}, \qquad \mathbf{abs} = \begin{pmatrix} abs_1 \\ abs_2 \\ \vdots \\ abs_n \end{pmatrix}$$
-
-We schrijven vectoren vet ($\mathbf{conc}$) om ze te onderscheiden van een enkel getal (een *scalar*), zoals $conc_i$: de $i$-de meting. De index $i$ loopt van 1 tot *n* en wijst één element in de vector aan.
-
-Leggen we de twee datavectoren als kolommen naast elkaar, dan ontstaat een **datamatrix**: een tabel van getallen met rijen en kolommen.
-
-$$\mathbf{D} = \begin{pmatrix} conc_1 & abs_1 \\ conc_2 & abs_2 \\ \vdots & \vdots \\ conc_n & abs_n \end{pmatrix}$$
+$$\mathbf{D} = \begin{pmatrix} \text{Conc}_1 & \text{Abs}_1 \\ \text{Conc}_2 & \text{Abs}_2 \\ \vdots & \vdots \\ \text{Conc}_n & \text{Abs}_n \end{pmatrix}$$
 
 Elke **kolom** is een variabele (één datavector); elke **rij** is één meting (één observatie). Dit is precies de *tidy* vorm die je zo dadelijk in R terugziet: elke variabele een eigen kolom, elke observatie een eigen rij.
 
-::: aside
-De afmeting van een matrix noteren we als (aantal rijen) $\times$ (aantal kolommen). Onze datamatrix $\mathbf{D}$ is dus $n \times 2$: $n$ metingen, $2$ variabelen. Een vector is een matrix met maar één kolom.
-:::
+**Vraag 1.** Stel dat je $12$ oplossingen doormeet. Wat is de lengte van de datavector $\mathbf{Abs}$, en wat is de afmeting ($\ldots \times \ldots$) van de datamatrix $\mathbf{D}$? En wat als je van $20$ oplossingen naast de concentratie en de absorbantie ook de pH meet? Schrijf voor die situatie ook de designmatrix $\mathbf{X}$ uit van het model $\text{Abs} = a + b_1 \cdot \text{Conc} + b_2 \cdot \text{pH}$, en geef de afmeting ervan.
 
-**Vraag 1.** Stel dat je $12$ oplossingen doormeet. Wat is de lengte van de datavector $\mathbf{abs}$, en wat is de afmeting ($\ldots \times \ldots$) van de datamatrix $\mathbf{D}$? en wat als je van 20 oplossingen de absorbatie bepaald en de pH meet?
+::: {.callout-note collapse="true" title="Hint"}
+Een datavector heeft één element per meting. De datamatrix heeft één rij per meting en één kolom per variabele. Tel bij de tweede situatie hoeveel variabelen je per oplossing meet. Voor de designmatrix: welke kolom heb je nodig voor het intercept $a$, en welke kolommen voor de predictoren? Staat de respons Abs in $\mathbf{X}$?
+:::
 
 **Jouw antwoord:**
 
-# Correlatie en aannames
+## Correlatie en aannames
 
-Correlatie geeft aan hoe sterk twee variabelen samenhangen. In dit practicum onderzoeken we de correlatie tussen de datavectoren $\mathbf{abs}$ en $\mathbf{conc}$.
+Correlatie geeft aan hoe sterk twee variabelen samenhangen. In dit practicum onderzoeken we de correlatie tussen de datavectoren $\mathbf{Abs}$ en $\mathbf{Conc}$.
 
 Een belangrijke aanname is dat de relatie tussen concentratie en absorbantie in het bemeten bereik ongeveer lineair is. Dat betekent dat de meetpunten ongeveer op een rechte lijn liggen. Deze aanname moet inhoudelijk te verdedigen zijn. In de analytische chemie is absorbantie bij lage concentraties vaak goed voorspelbaar vanuit de concentratie, zolang de metingen binnen het lineaire meetbereik blijven.
 
@@ -56,6 +50,46 @@ In de biologie zijn concentraties vaak zo hoog dat opgeloste moleculen met elkaa
 
 Een grote absolute correlatie, dus dicht bij `-1` of `1`, is nuttig voor een ijklijn. Een positieve correlatie dicht bij `1` betekent dat hogere concentraties betrouwbaar samengaan met hogere absorbanties. Dat maakt schatten en voorspellen beter mogelijk.
 
+Let op: een hoge absolute correlatie zegt iets over de *sterkte van de samenhang*, niet over de juistheid van je metingen. Een ijklijn met een systematische fout, bijvoorbeeld een verkeerd afgetrokken blanco, kan nog steeds een hoge correlatie hebben. Controleer daarom altijd óók de plot, en niet alleen het getal.
+
+```{r}
+#| label: fig-correlatie-galerij
+#| fig-cap: "Acht scatterplots met hun Pearson-correlatie r. Bovenste rij: van perfect negatief tot positief. Onderste rij: wat de correlatie níet meet."
+#| echo: false
+#| fig-width: 9
+#| fig-height: 4.5
+
+set.seed(3)
+n <- 40
+x <- rnorm(n)
+# maak y met een gekozen correlatie rho met x
+maak <- function(rho) {
+  z <- resid(lm(rnorm(n) ~ x))
+  as.vector(rho * scale(x) + sqrt(1 - rho^2) * scale(z))
+}
+panelen <- list(
+  list(y = -x,                 t = "perfect negatief"),
+  list(y = maak(-0.7),         t = "negatief"),
+  list(y = maak(0),            t = "geen samenhang"),
+  list(y = maak(0.7),          t = "positief"),
+  list(y = x,                  t = "steile lijn"),
+  list(y = 0.1 * x,            t = "flauwe lijn"),
+  list(y = x^2 - mean(x^2),    t = "parabool"),
+  list(y = c(0.05 * x[-n], 8), t = "lijn + een uitschieter")
+)
+par(mfrow = c(2, 4), mar = c(1, 1, 3.2, 1))
+for (p in panelen) {
+  r <- cor(x, p$y); if (abs(r) < 0.005) r <- 0
+  ylim <- if (p$t == "flauwe lijn") range(x) else range(p$y)
+  plot(x, p$y, pch = 19, cex = 0.7, axes = FALSE, xlab = "", ylab = "", ylim = ylim)
+  box(col = "grey70")
+  title(p$t, line = 1.9, cex.main = 1.05)
+  mtext(sprintf("r = %.2f", r), side = 3, line = 0.4, cex = 0.85, col = "#1f5fb4")
+}
+```
+
+@fig-correlatie-galerij laat zien wat de correlatie wel en niet meet. Het teken geeft de richting van de samenhang, de grootte hoe dicht de punten bij een rechte lijn liggen. Een steile en een flauwe lijn hebben allebei $r = 1$: de correlatie zegt niets over de helling. Een parabool heeft $r \approx 0$, terwijl er wel een duidelijk verband is: de correlatie meet alleen *lineaire* samenhang. En zonder het ene afwijkende punt zou het laatste paneel $r = 1$ hebben; één uitschieter kan $r$ dus sterk veranderen.
+
 In R gebruik je hiervoor de functie `cor()`, met als argumenten de twee datavectoren:
 
 ```{r}
@@ -64,51 +98,90 @@ In R gebruik je hiervoor de functie `cor()`, met als argumenten de twee datavect
 #| warning: false
 
 # Pearson-correlatie: meet vooral lineaire samenhang
-cor(abs, conc, method = "pearson")
+cor(Abs, Conc, method = "pearson")
 
 # Spearman-correlatie: meet monotone samenhang op basis van rangen
-cor(abs, conc, method = "spearman")
+cor(Abs, Conc, method = "spearman")
 ```
 
-Formeel is de Pearson correlatie beschreven als,
+Formeel is de Pearson-correlatie gedefinieerd als
 
 $$r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2}\sqrt{\sum_{i=1}^{n}(y_i-\bar{y})^2}}$$
 
-waarbij $x_i$ hier de gemeten concentraties en $y_i$ absorbanties zijn, en $\bar{x}$ en $\bar{y}$ hun gemiddelden.
-
-De Spearman-correlatie gebruikt exact dezelfde formule, maar past die niet toe op de gemeten waarden zelf, maar op hun rangnummers (hun volgorde van klein naar groot). Daardoor meet Pearson vooral een lineaire samenhang, terwijl Spearman elke de toe- of afnamen (monotone samenhang) oppikt. Dezelfde wiskundige vorm dus, met een andere invoer; en ook cor() in R laat je met één argument, `method` in de code, tussen die vormen wisselen.
+waarbij $x_i$ hier de gemeten concentraties en $y_i$ de absorbanties zijn, en $\bar{x}$ en $\bar{y}$ hun gemiddelden.
 
 ```{r}
-#| eval: false
-#| message: false
-#| warning: false
+#| label: fig-correlatie-kwadranten
+#| fig-cap: "Drie scatterplots met lijnen door de gemiddelden. Elk punt draagt het product (x − x̄)(y − ȳ) bij aan de teller van r: positief in de blauwe vlakken, negatief in de rode."
+#| echo: false
+#| fig-width: 9
+#| fig-height: 3.6
 
-# Spearman-correlatie: meet monotone samenhang op basis van rangen
-cor(abs, conc, method = "spearman")
+set.seed(7)
+kw_n <- 20
+kw_x <- rnorm(kw_n)
+kw_maak <- function(rho) {
+  z <- resid(lm(rnorm(kw_n) ~ kw_x))
+  as.vector(rho * scale(kw_x) + sqrt(1 - rho^2) * scale(z))
+}
+kw_panelen <- list(list(y = kw_maak(0.8),  t = "positieve samenhang"),
+                   list(y = kw_maak(0),    t = "geen samenhang"),
+                   list(y = kw_maak(-0.8), t = "negatieve samenhang"))
+blauw <- "#1f5fb4"; rood <- "#c0392b"
+par(mfrow = c(1, 3), mar = c(3.2, 3.2, 3.6, 0.8), mgp = c(1.8, 0.5, 0))
+for (p in kw_panelen) {
+  x <- kw_x; y <- p$y; mx <- mean(x); my <- mean(y)
+  bijdrage <- (x - mx) * (y - my)
+  r <- cor(x, y); if (abs(r) < 0.005) r <- 0
+  plot(x, y, type = "n", xaxt = "n", yaxt = "n", xlab = "x", ylab = "y")
+  u <- par("usr")
+  rect(mx, my, u[2], u[4], col = paste0(blauw, "26"), border = NA)  # rechtsboven: +
+  rect(u[1], u[3], mx, my, col = paste0(blauw, "26"), border = NA)  # linksonder: +
+  rect(u[1], my, mx, u[4], col = paste0(rood, "26"),  border = NA)  # linksboven: -
+  rect(mx, u[3], u[2], my, col = paste0(rood, "26"),  border = NA)  # rechtsonder: -
+  abline(v = mx, h = my, lty = 2, col = "grey40")
+  # grote, lichte tekens midden in elk kwadrant (achter de punten)
+  qx <- c((mx + u[2]) / 2, (u[1] + mx) / 2); qy <- c((my + u[4]) / 2, (u[3] + my) / 2)
+  text(qx[1], qy[1], "+", cex = 4, font = 2, col = paste0(blauw, "55"))
+  text(qx[2], qy[2], "+", cex = 4, font = 2, col = paste0(blauw, "55"))
+  text(qx[2], qy[1], "\u2013", cex = 4, font = 2, col = paste0(rood, "55"))
+  text(qx[1], qy[2], "\u2013", cex = 4, font = 2, col = paste0(rood, "55"))
+  points(x, y, pch = 19, cex = 1.1, col = ifelse(bijdrage > 0, blauw, rood))
+  mtext(expression(bar(x)), side = 1, at = mx, line = 0.3, cex = 0.85)
+  mtext(expression(bar(y)), side = 2, at = my, line = 0.3, las = 1, cex = 0.85)
+  title(p$t, line = 2.0, cex.main = 1.05)
+  mtext(sprintf("r = %.2f", r), side = 3, line = 0.5, cex = 0.85)
+}
 ```
 
-Dus ook in de structuur van R nemen we deze herbruikbare vormen waar, net als in de wiskunde.
+Wat de formule doet, zie je in @fig-correlatie-kwadranten. Trek in een scatterplot een verticale lijn door $\bar{x}$ en een horizontale lijn door $\bar{y}$. Een punt rechtsboven of linksonder geeft een positief product $(x_i - \bar{x})(y_i - \bar{y})$ (blauw); een punt linksboven of rechtsonder geeft een negatief product (rood). De teller van $r$ telt al die bijdragen op. In het linkerpaneel liggen de meeste punten in de blauwe vlakken, dus $r$ is positief. In het rechterpaneel liggen ze vooral in de rode vlakken, dus $r$ is negatief. In het middelste paneel heffen de bijdragen elkaar op, en ligt $r$ rond nul. De noemer deelt door de spreiding van beide variabelen. Daardoor hangt $r$ niet af van de eenheden: in mg/mL of in µg/mL krijg je dezelfde $r$.
 
-Correlatie is dus een maat voor de samenhang tussen twee datavectoren. Pearson meet een lineaire samenhang en Spearman meet een monotone samenhang, of de waarden samen stijgen of samen dalen, ook als dat niet langs een rechte lijn gebeurt. Spearman gebruikt daarvoor dezelfde formule als Pearson, maar toegepast op de rangnummers in plaats van de gemeten waarden.
+::: aside
+Later zie je dat $r$ de cosinus is van de hoek tussen de twee datavectoren, nadat je van elk het gemiddelde hebt afgetrokken. Daarom ligt $r$ altijd tussen $-1$ en $1$.
+:::
 
-# Het lineaire model
+De Spearman-correlatie gebruikt exact dezelfde formule, maar past die niet toe op de gemeten waarden zelf, maar op hun rangnummers (hun volgorde van klein naar groot). Daardoor meet Pearson vooral een lineaire samenhang, terwijl Spearman elke samenhang oppikt waarbij de waarden samen toe- of afnemen (een monotone samenhang). Dezelfde wiskundige vorm dus, met een andere invoer. Ook in de structuur van R zie je die herbruikbare vorm terug: met één argument, `method`, wissel je in `cor()` tussen beide.
 
-We kunnen de relatie tussen absorbantie en concentratie beschrijven met een lineair model:
+Correlatie is dus een **maat** voor de samenhang tussen twee datavectoren. Pearson meet een lineaire samenhang en Spearman meet een monotone samenhang: of de waarden samen stijgen of samen dalen, ook als dat niet langs een rechte lijn gebeurt.
 
-$$Ab = a + b \cdot Conc$$
+## Het lineaire model
+
+In het theoriehoofdstuk beschreven we de relatie tussen absorbantie en concentratie met een lineair model:
+
+$$\text{Abs} = a + b \cdot \text{Conc}$$
 
 waarbij:
 
-- $Ab$ de absorbantie is;
-- $Conc$ de concentratie is;
+- $\text{Abs}$ de absorbantie is;
+- $\text{Conc}$ de concentratie is;
 - $a$ het intercept is;
 - $b$ de richtingscoëfficiënt is.
 
-## Variabele versus parameter
+### Variabele versus parameter
 
 In een lineair model is er een verschil tussen variabelen en parameters.
 
-Een **variabele** is een grootheid die per meting kan verschillen. In dit voorbeeld zijn `abs` en `conc` variabelen. Ze staan als kolommen in de datamatrix: elke rij bevat één concentratie en de bijbehorende absorbantie. Een variabele is dus precies één datavector.
+Een **variabele** is een eigenschap die per meting kan verschillen. In dit voorbeeld zijn `Abs` en `Conc` variabelen. We schrijven hun namen in formules rechtop, zodat je ze niet leest als een product van losse letters. Ze staan als kolommen in de datamatrix: elke rij bevat één concentratie en de bijbehorende absorbantie. Een variabele is dus precies één datavector.
 
 ::: aside
 Een grootheid is een meetbare eigenschap die je in een getal (meestal met eenheid) kunt uitdrukken, zoals concentratie of lengte. Categorische eigenschappen zoals geslacht of soort zijn variabelen, maar geen grootheden: hun waarden zijn labels, geen getallen.
@@ -116,29 +189,29 @@ Een grootheid is een meetbare eigenschap die je in een getal (meestal met eenhei
 
 Een **parameter** is een vaste, maar meestal onbekende, waarde in het model. In de vergelijking
 
-$$Ab = a + b \cdot Conc$$
+$$\text{Abs} = a + b \cdot \text{Conc}$$
 
 zijn $a$ en $b$ parameters. Ze staan niet vooraf in de datamatrix, omdat we ze uit de meetgegevens moeten schatten. De parameter $a$ bepaalt waar de lijn de y-as snijdt. De parameter $b$ bepaalt hoe sterk de absorbantie verandert wanneer de concentratie toeneemt.
 
 ::: aside
-Deze twee parameters, $a$ en $b$, kun je zelf ook als een klein rijtje getallen opvatten: een parametervector $\boldsymbol{\beta} = (a, b)$. In het theoretische vervolg op deze opdracht schrijven we het hele lineaire model met vectoren en matrices, en dan wordt duidelijk waarom die schrijfwijze zo krachtig is.
+Samen vormen $a$ en $b$ de parametervector $\boldsymbol{\beta} = (a, b)$ uit het theoriehoofdstuk, waar je het hele model schreef als $\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$. Hier is $\mathbf{y} = \mathbf{Abs}$, en de tweede kolom van de designmatrix $\mathbf{X}$ is $\mathbf{Conc}$.
 :::
 
 Als de blanco correct is afgetrokken, of als we bewust een model door de oorsprong kiezen, kunnen we soms $a = 0$ stellen. Dan wordt het model:
 
-$$Ab = b \cdot Conc$$
+$$\text{Abs} = b \cdot \text{Conc}$$
 
-In dat eenvoudige geval geldt:
+Dat komt overeen met een designmatrix zonder de kolom met enen; in R schrijf je dat model als `lm(Abs ~ 0 + Conc)`. In dat eenvoudige geval geldt:
 
-$$b = \frac{Ab}{Conc}$$
+$$b = \frac{\text{Abs}}{\text{Conc}}$$
 
 In echte meetdata schatten we $b$ meestal met statistische regressie, omdat de meetpunten niet allemaal precies op één lijn liggen.
 
-# Data in tidy format
+## Data in tidy format
 
 De meetgegevens zetten we in een tabel. De kolomnamen komen overeen met de variabelen in het model. Elke kolom is een datavector; samen vormen ze de datamatrix.
 
-| abs | conc |
+| Abs | Conc |
 |----:|-----:|
 | ... |  ... |
 | ... |  ... |
@@ -146,147 +219,206 @@ De meetgegevens zetten we in een tabel. De kolomnamen komen overeen met de varia
 
 Elke rij is één meting: een bekende concentratie met de bijbehorende absorbantie. Dit noemen we **tidy data**: elke variabele heeft een eigen kolom en elke observatie heeft een eigen rij.
 
-Zo zien we de dataset op twee manieren tegelijk: als één tweedimensionale datamatrix, of als twee datavectoren `abs` en `conc` naast elkaar. Beide beschrijvingen zijn correct; ze benadrukken alleen iets anders.
+Zo zien we de dataset op twee manieren tegelijk: als één tweedimensionale datamatrix, of als twee datavectoren `Abs` en `Conc` naast elkaar. Beide beschrijvingen zijn correct; ze benadrukken alleen iets anders.
 
-# R-code: data invoeren als vectoren
+**Vraag 2.** De designmatrix $\mathbf{X}$ uit het theoriehoofdstuk heeft een kolom met enen en een kolom met concentraties. Welke van die twee kolommen staat níet in je tidy dataset? Waarom hoef je die niet op te slaan, en hoe komt hij dan toch in het model terecht? Tip: kijk straks naar de uitvoer van `lm()`. Welke parameter schat R zonder dat jij er een kolom voor hebt ingevoerd?
+
+::: {.callout-note collapse="true" title="Hint"}
+Kijk naar de eerste kolom van $\mathbf{X}$: verandert die van meting tot meting? Zoek daarna in de uitvoer van `summary(model)` de rij waarvoor je zelf geen kolom hebt ingevoerd.
+:::
+
+**Jouw antwoord:**
+
+## R-code: data invoeren als vectoren
 
 Je kunt data inlezen vanuit een Excel-bestand, maar in dit voorbeeld voeren we de waarden handmatig in. Elke regel maakt één datavector.
 
-```{r}
-#| eval: false  #vervang false door true als je je eigen data invoerd
+We laten de namen van onze variabelen beginnen met een hoofdletter: `Abs` en `Conc`. R maakt onderscheid tussen hoofdletters en kleine letters (denk aan `chisq.test()` uit de eerste opdracht), en de meeste R-functies beginnen met een kleine letter. Zo voorkom je dat een variabele dezelfde naam krijgt als een functie: `abs()` is in R bijvoorbeeld de functie voor de absolute waarde.
 
-abs <- c(...)   # vul hier de gemeten absorbanties in
-conc <- c(...)  # vul hier de bekende concentraties in
+```{r}
+#| eval: false  #vervang false door true als je je eigen data invoert
+
+Abs <- c(...)   # vul hier de gemeten absorbanties in
+Conc <- c(...)  # vul hier de bekende concentraties in
 ```
 
 De functie `c()` is een standaardfunctie in R. De `c` staat voor *combine*: de functie combineert losse getallen (scalars) tot één vector.
 
-De pijl `<-` betekent dat de vector aan een naam wordt toegekend. Als je daarna `abs` aanroept, krijg je de volledige datavector met absorbanties terug.
+De pijl `<-` betekent dat de vector aan een naam wordt toegekend. Als je daarna `Abs` aanroept, krijg je de volledige datavector met absorbanties terug.
 
 ```{r}
-#| eval: false  #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
-abs
-conc
+Abs
+Conc
 ```
 
 Je kunt met een vector in één keer rekenen. R past de berekening *elementsgewijs* toe: op elk element van de vector afzonderlijk.
 
 ```{r}
-#| eval: false #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
-abs + 1   # telt 1 op bij elke absorbantiewaarde
-abs * 2   # vermenigvuldigt elke absorbantiewaarde met 2; een scalaire vermenigvuldiging
+Abs + 1   # telt 1 op bij elke absorbantiewaarde
+Abs * 2   # vermenigvuldigt elke absorbantiewaarde met 2; een scalaire vermenigvuldiging
 ```
 
-::: aside
-Dat R automatisch elk element bewerkt, heet *vectorisatie*. Het is precies de reden dat vectoren zo handig zijn: je schrijft één bewerking op, en die werkt meteen op de hele meetreeks.
-:::
+Dat R automatisch elk element bewerkt, heet *vectorisatie*. In het theoriehoofdstuk kon je alleen vectoren van gelijke lengte optellen. Bij `Abs + 1` lost R dat stilzwijgend op: van de 1 maakt R een vector van enen, even lang als `Abs`. Dat is precies de vector $\mathbf{1}$ uit de designmatrix; `Abs + 1` is dus $\mathbf{Abs} + \mathbf{1}$.
 
 Veel R-functies gebruiken één of meer argumenten. Het argument staat tussen haakjes.
 
 ```{r}
-#| eval: false #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
-sum(abs)   # som van alle absorbantiewaarden
-prod(abs)  # product van alle absorbantiewaarden
-exp(abs)   # exponentiële functie toegepast op alle waarden
-sin(abs)   # sinus toegepast op alle waarden
+sum(Abs)   # som van alle absorbantiewaarden
+prod(Abs)  # product van alle absorbantiewaarden
+exp(Abs)   # exponentiële functie toegepast op alle waarden
+sin(Abs)   # sinus toegepast op alle waarden
 ```
 
-# Correlatie berekenen
+## Correlatie berekenen
 
-Eerst onderzoeken we of er een duidelijke samenhang is tussen de datavectoren $\mathbf{abs}$ en $\mathbf{conc}$.
+Eerst onderzoeken we of er een duidelijke samenhang is tussen de datavectoren $\mathbf{Abs}$ en $\mathbf{Conc}$.
 
 ```{r}
-#| eval: false #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
-cor(abs, conc, method = "pearson")
-cor(abs, conc, method = "spearman")
+cor(Abs, Conc, method = "pearson")
+cor(Abs, Conc, method = "spearman")
 ```
 
-**Vraag 2.** Is dit een sterke correlatie? Leg je antwoord uit.
+**Vraag 3.** Is dit een sterke correlatie? Leg je antwoord uit.
 
-**Vraag 3.** Waarom is een hoge correlatie belangrijk voor een ijklijn?
+::: {.callout-note collapse="true" title="Hint"}
+Hoe dicht ligt $r$ bij $1$? Vergelijk met de galerij van scatterplots. Kijk ook naar je eigen scatterplot, en vergelijk Pearson met Spearman: wat zou een groot verschil tussen die twee betekenen voor je meetbereik?
+:::
 
-# Plot van de ijklijn
+**Jouw antwoord:**
 
-Met een spreidingsdiagram kunnen we controleren of de punten ongeveer op een rechte lijn liggen. In de plot zet je de twee datavectoren tegen elkaar uit: elke rij van de datamatrix wordt één punt.
+**Vraag 4.** Waarom is een hoge correlatie belangrijk voor een ijklijn?
+
+::: {.callout-note collapse="true" title="Hint"}
+Waarvoor gebruik je de ijklijn straks? Denk aan het terugrekenen van een absorbantie naar een concentratie: wat gebeurt er met die schatting als de punten ver van de lijn liggen? Lees ook de waarschuwing over systematische fouten nog eens.
+:::
+
+**Jouw antwoord:**
+
+## Plot van de ijklijn
+
+Met een scatterplot kunnen we controleren of de punten ongeveer op een rechte lijn liggen. In de plot zet je de twee datavectoren tegen elkaar uit: elke rij van de datamatrix wordt één punt.
 
 ```{r}
-#| eval: false #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
 plot(
-  conc, abs,
+  Conc, Abs,
   xlab = "Eiwitconcentratie",
   ylab = "Absorbantie",
   main = "Bradford-ijklijn"
 )
 ```
 
-# Lineaire regressie
+## Lineaire regressie
 
-Om een model aan de data te fitten, gebruiken we regressie. Hier gebruiken we lineaire regressie: we vatten de data samen in een eenvoudig lineair model.
+Om de ijklijn te bepalen, fitten we het lineaire model met `lm()`. In het theoriehoofdstuk zag je wat die functie doet: ze kiest de waarden van $a$ en $b$ waarvoor de kwadratensom van de residuen, $\sum \varepsilon_i^2$, zo klein mogelijk is. Meetkundig is dat de projectie van $\mathbf{Abs}$ op het modelvlak.
 
 ```{r}
-#| eval: false #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
-model <- lm(abs ~ conc)
+model <- lm(Abs ~ Conc)
 ```
 
 Hierbij betekent:
 
 - `lm()` staat voor *linear model*;
-- `abs ~ conc` betekent dat de datavector `abs` wordt gemodelleerd als functie van de datavector `conc`;
+- `Abs ~ Conc` betekent dat de datavector `Abs` wordt gemodelleerd als functie van de datavector `Conc`;
 - `model` is het object waarin R de resultaten van de regressie opslaat.
 
 We kunnen de structuur en samenvatting van het model bekijken:
 
 ```{r}
-#| eval: false #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
 str(model)
 summary(model)
 ```
 
-In de output van `summary(model)` staan onder andere de geschatte waarden van het intercept $a$ (Intercept) en de richtingscoëfficiënt $b$ (abs). Een leuk weetje is de Multiple R\^2, dit is Pearson-correlatie r in het kwadraat en geeft aan welk deel van de spreiding door het model wordt verklaard. Neem de wortel van multiple R\^2 (sqrt(...)) en je krijgt de absolute waarde van de correlatie terug die je eerder had berekend.
+In de uitvoer van `summary(model)` staan onder andere de geschatte waarden van het intercept $a$ (in de rij `(Intercept)`) en de richtingscoëfficiënt $b$ (in de rij `Conc`).
 
 ::: aside
-Note dat je de functie `lm()` ook tegenkomt in de theoretische opdracht over logaritmes en allometrische schaling, waar hetzelfde lineaire model op log-log-getransformeerde data wordt losgelaten. Dezelfde functie, dezelfde wiskunde, een andere biologische context.
+Merk op dat je de functie `lm()` ook tegenkwam in de opdracht over logaritmes en allometrische schaling, waar hetzelfde lineaire model op log-log-getransformeerde data werd losgelaten. Dezelfde functie, dezelfde wiskunde, een andere biologische context.
 :::
 
-# Concentratie van een onbekend monster bepalen
+### De residuen van je eigen ijklijn
 
-Als het model is gefit, kunnen we de concentratie van een onbekend monster schatten. Stel dat de absorbantie van het onbekende monster `abs_onbekend` is. Dan geldt:
+Met je eigen data kun je nagaan wat `lm()` heeft gedaan. De residuen, de verticale afstanden van je meetpunten tot de lijn, haal je op met `resid()`. Samen vormen ze de residuvector uit het theoriehoofdstuk: het stochastische deel dat het model niet verklaart.
 
-$$\widehat{Conc} = \frac{Ab_{onbekend} - \hat{a}}{\hat{b}}$$
+```{r}
+#| eval: false  #vervang false door true als je je eigen data invoert
+
+resid(model)          # de residuvector
+sum(resid(model))     # de gewone som van de residuen
+sum(resid(model)^2)   # de kwadratensom van de residuen
+```
+
+::: aside
+Een getal als `1.2e-17` betekent $1{,}2 \times 10^{-17}$: dat is nul, op een afrondingsfout van de computer na.
+:::
+
+**Vraag 5.** Welke waarde vind je voor de gewone som van de residuen, en welke voor de kwadratensom? Verklaar met wat je in het theoriehoofdstuk leerde waarom de gewone som (vrijwel) nul is, en waarom we daarom naar de kwadratensom kijken.
+
+::: {.callout-note collapse="true" title="Hint"}
+Een getal als `1.2e-17` is vrijwel nul. Denk terug aan de figuur met de slecht gekozen lijn in het theoriehoofdstuk: daar was de gewone som van de residuen óók nul. Wat gebeurt er met positieve en negatieve residuen als je ze optelt, en wat als je ze eerst kwadrateert?
+:::
+
+**Jouw antwoord:**
+
+### Hoeveel verklaart de ijklijn?
+
+In de uitvoer van `summary(model)` vind je ook *Multiple R-squared*, de determinatiecoëfficiënt $R^2$. Die geeft aan welk deel van de spreiding in de absorbanties door het model wordt verklaard: hoe dichter bij $1$, hoe korter de residuvector ten opzichte van de totale spreiding. Bij een model met één predictor en een intercept, zoals hier, is $R^2$ precies het kwadraat van de Pearson-correlatie: $R^2 = r^2$. Neem je de wortel, dan krijg je de absolute waarde van de correlatie terug die je eerder berekende.
+
+```{r}
+#| eval: false  #vervang false door true als je je eigen data invoert
+
+sqrt(summary(model)$r.squared)   # vergelijk met cor(Abs, Conc, method = "pearson")
+```
+
+::: aside
+Wie de verdieping in het theoriehoofdstuk deed, herkent $R^2 = \text{SS}_{\text{reg}}/\text{SS}_{\text{tot}}$ uit de opsplitsing met Pythagoras.
+:::
+
+## Concentratie van een onbekend monster bepalen
+
+Als het model is gefit, kunnen we de concentratie van een onbekend monster schatten. Stel dat de absorbantie van het onbekende monster `Abs_onbekend` is. Dan geldt:
+
+$$\widehat{\text{Conc}} = \frac{\text{Abs}_{\text{onbekend}} - \hat{a}}{\hat{b}}$$
 
 In R kan dat bijvoorbeeld zo:
 
 ```{r}
-#| eval: false #vervang false door true als je je eigen data invoerd
+#| eval: false  #vervang false door true als je je eigen data invoert
 
 coefs <- coef(model)
 a_hat <- coefs[1]
 b_hat <- coefs[2]
 
-abs_onbekend <- ...
-conc_onbekend <- (abs_onbekend - a_hat) / b_hat
-conc_onbekend
+Abs_onbekend <- ...
+Conc_onbekend <- (Abs_onbekend - a_hat) / b_hat
+Conc_onbekend
 ```
 
-# Samenvatting
+## Samenvatting
 
 In deze les hebben we de Bradford-test gebruikt als voorbeeld van statistisch modelleren. We hebben:
 
-- meetgegevens leren zien als **datavectoren** en de dataset als een **datamatrix**
-- een ijklijn gemaakt met bekende concentraties
-- gekeken naar correlatie tussen de datavectoren concentratie en absorbantie
-- de functie `cor()` gebruikt, inclusief `method = "spearman"`
-- het verschil besproken tussen variabelen (datavectoren) en parameters (parameter vectors;
-- een lineair model opgesteld met `lm(abs ~ conc)`
+- meetgegevens leren zien als **datavectoren** en de dataset als een **datamatrix**;
+- een ijklijn gemaakt met bekende concentraties;
+- gekeken naar correlatie tussen de datavectoren concentratie en absorbantie;
+- de functie `cor()` gebruikt, inclusief `method = "spearman"`;
+- het verschil besproken tussen variabelen (datavectoren) en parameters (de parametervector);
+- een lineair model opgesteld met `lm(Abs ~ Conc)`;
+- de residuen en de kwadratensom van onze eigen ijklijn bekeken, en gezien dat $R^2 = r^2$;
 - gezien hoe een onbekende concentratie uit het model kan worden geschat.
 
 Een goede ijklijn vereist niet alleen een hoge correlatie, maar ook een inhoudelijk verdedigbare aanname dat de relatie in het gebruikte meetbereik lineair is.
 
-In het theoretische deel dat bij deze opdracht hoort, gaan we dieper in op de lineaire regressie zelf. We schrijven het lineaire model dan volledig in de taal van vectoren en matrices, en zien hoe diezelfde wiskunde opduikt in de evo-devo, wanneer we verbanden tussen vorm en grootte over soorten heen willen beschrijven.
+In het theoriehoofdstuk zag je wat er achter `lm()` zit: het model als $\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$, de kleinste-kwadratenlijn als projectie, en de opsplitsing in een deterministisch en een stochastisch deel. Vandaag paste je dat toe op je eigen metingen. De korte residuvector van een goede ijklijn is dezelfde wiskunde waarmee we in de evo-devo canalisatie beschreven: een klein stochastisch deel rond een voorspelbare verwachting. Alleen gaat het hier vooral om meetruis, en daar om biologische variatie tussen individuen.

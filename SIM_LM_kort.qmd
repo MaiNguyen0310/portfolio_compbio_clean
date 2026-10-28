@@ -82,6 +82,15 @@ Model <- lm(Abs ~ Conc)
 summary(Model)
 ```
 
+Wat is de model-matrix, coëfficiëntenvector, en het product?
+
+```{r}
+Model_Matrix <- model.matrix(Model)
+Parameters <- c(a,b)
+Model_Matrix %*% (Parameters)
+```
+
+
 Wat zit er in `Model`?
 
 ```{r}

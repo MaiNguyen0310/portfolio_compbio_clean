@@ -1,0 +1,960 @@
+---
+title: "Toeval, entropie en osmose"
+subtitle: "Van munt opgooien naar diffusie en osmotische druk"
+lang: nl
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    html-math-method: mathjax
+    width: 1280
+    height: 720
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| include: false
+options(OutDec = ",")
+kB <- 1.380649e-23; Temp <- 310; Eta <- 0.69e-3; R <- 8.314
+Tijd <- function(L, D) L^2 / (2 * D)
+Opmaak <- function(s) ifelse(s < 60, paste(signif(s, 2), "s"),
+                      ifelse(s < 3600, paste(signif(s / 60, 2), "min"),
+                      ifelse(s < 86400, paste(signif(s / 3600, 2), "uur"),
+                      ifelse(s < 3.15e7, paste(signif(s / 86400, 2), "dagen"),
+                                         paste(signif(s / 3.15e7, 2), "jaar")))))
+Stoffen <- data.frame(Molecuul = c("zuurstof", "glucose", "eiwit (~50 kDa)"),
+                      Straal = c(0.17e-9, 0.38e-9, 2.5e-9))
+Stoffen$D <- kB * Temp / (6 * pi * Eta * Stoffen$Straal)
+
+TekenOsmose <- function(HoogteL, HoogteR, OpgelostL, OpgelostR, Seed = 5, Tekst = 1) {
+  set.seed(Seed)
+  par(mar = c(0, 0, 0, 0))
+  plot(NA, xlim = c(-0.3, 12), ylim = c(-1, 6.6), asp = 1, axes = FALSE, xlab = "", ylab = "")
+  Kant <- function(x0, Hoogte, nOpgelost) {
+    rect(x0, 0, x0 + 5, Hoogte, col = "aliceblue", border = NA)
+    Rooster <- expand.grid(x = seq(x0 + 0.3, x0 + 4.7, by = 0.43),
+                           y = seq(0.3, Hoogte - 0.15, by = 0.43))
+    Opgelost <- sample(nrow(Rooster), nOpgelost)
+    points(Rooster$x[-Opgelost], Rooster$y[-Opgelost], pch = 16, cex = Tekst, col = "steelblue")
+    points(Rooster$x[Opgelost], Rooster$y[Opgelost], pch = 16, cex = 2.2 * Tekst, col = "darkorange")
+  }
+  Kant(0, HoogteL, OpgelostL)
+  Kant(5, HoogteR, OpgelostR)
+  lines(c(0, 0, 10, 10), c(6, 0, 0, 6), lwd = 2, col = "gray30")
+  segments(5, 0, 5, 6, lty = 2, lwd = 3, col = "darkgreen")
+  text(2.5, -0.45, "weinig opgeloste stof", cex = 1.2 * Tekst)
+  text(7.5, -0.45, "veel opgeloste stof", cex = 1.2 * Tekst)
+}
+```
+
+## Wat denk je?.
+
+<br>
+
+**Hoe lang doet een glucosemolecuul erover om door diffusie 1 meter af te leggen?**
+
+
+::: {.incremental}
+-   A. ongeveer 1 seconde
+-   B. ongeveer 1 uur
+-   C. ongeveer 1 dag
+-   D. ongeveer 1 jaar
+-   E. ongeveer 20 jaar
+:::
+
+
+## Antwoord: ongeveer 18 jaar
+
+<br>
+
+-   Door één cel (10 µm): ongeveer **een twintigste seconde**
+-   Over 1 meter: ongeveer **18 jaar**
+
+. . .
+
+**Diffusie verloopt niet lineair met de afstand.** 1 meter is $10^5$ keer zo ver als 10 µm, maar duurt ongeveer $10^{10}$ keer zo lang.
+
+. . .
+
+Een embryo heeft de eerste dagen geen hart en geen bloedvaten. Alles beweegt door diffusie en transport over membranen.
+
+. . .
+
+**Vandaag:** *waarom* diffusie en osmose gebeuren, en hoe we dat stochastische kunnen begrijpen.
+
+## Drie vragen
+
+<br>
+
+1.  Waarom verspreiden moleculen zich?
+2.  Waarom stopt dat bij een gelijke verdeling, en is dat evenwicht een statische toestand
+3.  Wat als de opgeloste stof niet door het membraan kan: hoe ontstaat dan een evenwicht?
+
+. . .
+
+::: callout-important
+Het antwoord: **toeval en tellen**. Er bestaat geen kracht die moleculen **gericht** naar de lage concentratie duwt.
+:::
+
+# 1. Waarom verspreiden moleculen zich? {background-color="#2c3e50"}
+
+## Wat je ziet: een druppel inkt
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.5
+set.seed(3)
+N <- 400
+PosX <- rnorm(N, 0, 1.5); PosY <- rnorm(N, 0, 1.5)
+Momenten <- c(0, 50, 500); t <- 0
+par(mfrow = c(1, 3), mar = c(1, 1, 3, 1), cex.main = 1.8)
+for (s in Momenten) {
+  while (t < s) {
+    PosX <- PosX + sample(c(-1, 1), N, replace = TRUE)
+    PosY <- PosY + sample(c(-1, 1), N, replace = TRUE)
+    t <- t + 1
+  }
+  plot(PosX, PosY, pch = 16, cex = 0.8, col = adjustcolor("navy", 0.5),
+       xlim = c(-70, 70), ylim = c(-70, 70), asp = 1,
+       axes = FALSE, xlab = "", ylab = "", main = paste("na", s, "stappen"))
+  box(col = "gray70")
+}
+```
+
+Elk molecuul zet zelf willekeurige stapjes. Niemand stuurt, en toch wordt de wolk breder in dit 2D vlak.
+
+## Waarom: botsen en munt opgooien
+
+-   Een opgelost molecuul wordt voortdurend gebotst door watermoleculen
+-   Het verandert biljoenen keren per seconde van richting
+-   Het heeft geen idee waar de andere moleculen zijn, en **geen geheugen**: elke stap is onafhankelijk van de vorige
+
+. . .
+
+**Het eenvoudigste model:** elke tijdstap $\tau$ zet het molecuul een stap $\ell$.
+
+-   kop: één stap naar rechts ($+\ell$)
+-   munt: één stap naar links ($-\ell$)
+
+Dit is een *random walk* in **één dimensie**.
+
+
+## Simulatie: 10 keer een munt opgooien. {.smaller}
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.6
+set.seed(243)
+Moleculen <- 1000
+Stappen <- matrix(sample(c(-1, 1), Moleculen * 10, replace = TRUE), ncol = 10)
+Paden <- t(apply(Stappen, 1, cumsum))     # rij = molecuul, kolom = positie na stap 1 t/m 10
+Eind <- Paden[, 10]
+
+par(mfrow = c(1, 2), mar = c(5, 5, 3, 1), cex = 1.3)
+Twintig <- t(cbind(0, Paden[1:20, ])) + rnorm(11 * 20, 0, 0.12)   # kleine verschuiving tegen overlap
+matplot(0:10, Twintig, type = "l", lty = 1, lwd = 1.5, col = adjustcolor("navy", 0.45),
+        ylim = c(-10, 10), xlab = "stap", ylab = "positie", main = "20 moleculen")
+abline(h = 0, lty = 2)
+
+Tel <- table(factor(Eind, levels = seq(-10, 10, 2)))
+Balken <- barplot(100 * Tel / Moleculen, names.arg = seq(-10, 10, 2), cex.names = 0.8,
+                  col = "steelblue", border = "white", ylim = c(0, 30),
+                  xlab = "positie na 10 stappen", ylab = "% van de moleculen", main = "1000 moleculen")
+points(Balken, 100 * dbinom(0:10, 10, 0.5), pch = 19, col = "red")
+legend("topleft", c("simulatie", "verwachting (Binom)"), pch = c(15, 19),
+       col = c("steelblue", "red"), bty = "n", cex = 0.85)
+```
+
+In de histogram, op 0 `r round(100 * mean(Eind == 0))` % (verwacht 25 %). Alle 10 stappen naar dezelfde kant, dan `r sum(abs(Eind) == 10)` van de 1000 moleculen (verwacht $(\tfrac{1}{2})^{10} + (\tfrac{1}{2})^{10} \approx 0{,}2\,\%$: alles links of alles rechts).
+
+
+## Na 10 en na 40 stappen (werpen van munt)
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.6
+set.seed(7)
+Moleculen <- 300
+Na10 <- replicate(Moleculen, sum(sample(c(-1, 1), 10, replace = TRUE)))
+Na40 <- replicate(Moleculen, sum(sample(c(-1, 1), 40, replace = TRUE)))
+par(mfrow = c(1, 2), mar = c(5, 5, 3, 1), cex = 1.3)
+Grenzen <- seq(-41, 41, 2)
+hist(Na10, breaks = Grenzen, xlim = c(-24, 24), ylim = c(0, 80), col = "steelblue",
+     border = "white", main = "na 10 stappen", xlab = "positie", ylab = "aantal moleculen")
+hist(Na40, breaks = Grenzen, xlim = c(-24, 24), ylim = c(0, 80), col = "darkorange",
+     border = "white", main = "na 40 stappen", xlab = "positie", ylab = "aantal moleculen")
+```
+
+Gemiddeld sta je op 0, maar de spreiding groeit. **Hoe snel?** Dat gaan we nu uitrekenen.
+
+## Waar staat een molecuul na $n$ stappen? {.smaller}
+
+<br>
+
+$$
+x = s_1 + s_2 + \dots + s_n, \qquad \text{elke } s_i = +\ell \text{ of } -\ell
+$$
+
+. . .
+
+-   De **afgelegde weg** is voor elk molecuul hetzelfde: $n\ell$
+-   De **verplaatsing** $x$ verschilt per molecuul, stappen heffen elkaar deels op
+
+. . .
+
+**Gemiddeld** over veel moleculen is $x = 0$; eindpunten links ($x < 0$) en rechts ($x > 0$) heffen elkaar op. 
+
+Om de **spreiding** te meten, kwadrateren we eerst: een molecuul op $-4$ telt dan even zwaar als een op $+4$, want $(-4)^2 = (+4)^2 = 16$. 
+
+Daarna middelen we over veel molecule trajectoren:
+
+$$\langle x^2 \rangle = \text{gemiddelde van } x^2 \text{ over alle moleculen}$$
+
+## Kwadrateren en worteltrekken {.smaller}
+
+```{r}
+#| fig-width: 13
+#| fig-height: 5.5
+set.seed(10)
+Moleculen <- 1000
+Stappen <- matrix(sample(c(-1, 1), Moleculen * 10, replace = TRUE), ncol = 10)
+Paden <- cbind(0, t(apply(Stappen, 1, cumsum)))   # kolom 1 = start, kolom 11 = na 10 stappen
+Ruis <- matrix(rnorm(20 * 11, 0, 0.12), nrow = 11)  # kleine verschuiving tegen overlap
+Kleur <- adjustcolor("navy", 0.45)
+
+par(mfrow = c(1, 3), mar = c(5, 5, 3, 1), cex = 1.2)
+
+# 1. positie x
+matplot(0:10, t(Paden[1:20, ]) + Ruis, type = "l", lty = 1, lwd = 1.5, col = Kleur,
+        ylim = c(-10, 10), xlab = "stap n", ylab = "x", main = "positie x")
+abline(h = 0, lty = 2)
+
+# 2. kwadraat x^2
+matplot(0:10, t(Paden[1:20, ]^2) + abs(Ruis), type = "l", lty = 1, lwd = 1.5, col = Kleur,
+        ylim = c(0, 40), xlab = "stap n", ylab = expression(x^2),
+        main = expression(bold("kwadraat " * x^2)))
+abline(h = 0, lty = 2)
+lines(0:10, colMeans(Paden^2), lwd = 4, col = "red")
+abline(0, 1, lwd = 2, lty = 3, col = "black")
+legend("topleft", c(expression(symbol("\341") * x^2 * symbol("\361")), expression(n * l^2)),
+       lwd = c(4, 2), lty = c(1, 3), col = c("red", "black"), bty = "n")
+
+# 3. wortel van het kwadraat: |x|
+matplot(0:10, abs(t(Paden[1:20, ])) + abs(Ruis), type = "l", lty = 1, lwd = 1.5, col = Kleur,
+        ylim = c(-10, 10), xlab = "stap n", ylab = expression(sqrt(x^2) == "|x|"),
+        main = "afstand tot het begin")
+abline(h = 0, lty = 2)
+lines(0:10, sqrt(colMeans(Paden^2)), lwd = 4, col = "red")
+lines(0:10, colMeans(abs(Paden)), lwd = 4, lty = 2, col = "darkorange")
+legend("bottomleft", c(expression(sqrt(symbol("\341") * x^2 * symbol("\361"))), "gemiddelde |x|"),
+       lwd = 4, lty = c(1, 2), col = c("red", "darkorange"), bty = "n")
+
+Komma <- function(v) gsub(",", "{,}", format(round(v, 2)))   # komma netjes in LaTeX
+```
+
+
+
+## ⟨x²⟩ is de variantie{.smaller}
+
+<br>
+
+Dit kennen jullie uit de statistiek. De **variantie** is het gemiddelde van de gekwadrateerde afwijkingen ten opzichte van het gemiddelde:
+
+$$
+\text{variantie} = \frac{1}{N} \sum_{i=1}^{N} (x_i - \bar{x})^2
+$$
+
+Hier is het gemiddelde $\bar{x} = 0$, dus de afwijking van het gemiddelde is gewoon de positie zelf:
+
+$$
+\langle x^2 \rangle = \frac{1}{N} \sum_{i=1}^{N} x_i^2 = \text{variantie van de posities}
+$$
+
+$\sqrt{\langle x^2 \rangle}$ is dan de **standaarddeviatie**: de typische afstand tot het beginpunt.
+
+## Hoe snel wordt de wolk breder? Twee stappen {.smaller}
+
+<br>
+
+Neem veel moleculen die elk twee stappen zetten. Er zijn $2 \times 2 = 4$ paden (mogelijkheden); elk wordt door een kwart van de moleculen gevolgd.
+
+| pad | $x$ | $x^2$ |
+|:---|:---:|:---:|
+| rechts, rechts | $+2\ell$ | $4\ell^2$ |
+| rechts, links | $0$ | $0$ |
+| links, rechts | $0$ | $0$ |
+| links, links | $-2\ell$ | $4\ell^2$ |
+
+. . .
+
+$$
+\langle x^2 \rangle = \frac{4\ell^2 + 0 + 0 + 4\ell^2}{4} = 2\ell^2
+$$
+
+Geen enkel molecuul heeft precies $2\ell^2$, maar gemiddeld wel.
+
+## Waarom elke stap $\ell^2$ toevoegt {.smaller}
+
+$$
+x^2 = (s_1 + s_2)^2 = \underbrace{s_1^2 + s_2^2}_{\text{altijd } 2\ell^2} + \underbrace{2 s_1 s_2}_{\pm 2\ell^2}
+$$
+
+```{r}
+s1 <- c(1, 1, -1, -1)          # eerste stap, in eenheden van l
+s2 <- c(1, -1, 1, -1)          # tweede stap
+Pad <- c("rechts, rechts", "rechts, links", "links, rechts", "links, links")
+
+# Schrijf een getal als veelvoud van l of l^2 (in LaTeX), met of zonder plusteken
+Fmt <- function(v, eenheid, teken = FALSE) {
+  getal <- ifelse(abs(v) == 1, "", abs(v))
+  voor  <- ifelse(v < 0, "-", ifelse(teken, "+", ""))
+  ifelse(v == 0, "$0$", paste0("$", voor, getal, eenheid, "$"))
+}
+
+Kwadraten <- s1^2 + s2^2
+Kruisterm <- 2 * s1 * s2
+X2        <- (s1 + s2)^2
+
+Tabel <- data.frame(
+  pad   = c(Pad, "**gemiddeld**"),
+  s1    = c(Fmt(s1, "\\ell", TRUE), ""),
+  s2    = c(Fmt(s2, "\\ell", TRUE), ""),
+  kw    = Fmt(c(Kwadraten, mean(Kwadraten)), "\\ell^2"),
+  kruis = Fmt(c(Kruisterm, mean(Kruisterm)), "\\ell^2", TRUE),
+  x2    = Fmt(c(X2, mean(X2)), "\\ell^2")
+)
+knitr::kable(Tabel, align = "lccccc",
+             col.names = c("pad", "$s_1$", "$s_2$", "$s_1^2 + s_2^2$", "$2\\,s_1 s_2$", "$x^2$"))
+```
+
+-   **Zelfde kant op**, de stappen versterken elkaar ($+2\ell^2$); **tegengesteld:** ze heffen elkaar op ($-2\ell^2$)
+-   Het molecuul onthoudt zijn vorige stap niet, dus beide komen even vaak voor, **gemiddeld 0**
+-   **Bij $n$ stappen**, $n$ kwadraten van elk $\ell^2$, en alle kruistermen gemiddeld 0, dus $\langle x^2 \rangle = n\,\ell^2$
+
+## Van stappen naar tijd: de diffusiecoëfficiënt
+
+<br>
+
+In een tijd $t$ zet een molecuul $n = t/\tau$ stappen:
+
+$$
+\langle x^2 \rangle = n\,\ell^2 = \frac{\ell^2}{\tau}\,t = 2Dt
+\qquad\text{met}\qquad
+\boxed{D = \frac{\ell^2}{2\tau}}
+$$
+
+. . .
+
+-   $D$ vat het toeval samen in één getal: **stapgrootte** $\ell$ en **staptijd** $\tau$
+-   De factor 2 is een afspraak, zodat dezelfde $D$ straks in de wet van Fick staat
+
+::: notes
+\[11–13 min\] Dit is de kern: een stochastisch proces op microschaal geeft een vaste wet op macroschaal.
+:::
+
+## Wat zijn $\ell$ en $\tau$ voor een echt molecuul?  {.smaller}
+
+<br>
+
+
+-   $\tau$: de tijd waarin een molecuul zijn richting **vergeet** door botsingen met watermoleculen
+-   $\ell$: de afstand die het in die tijd aflegt
+
+. . .
+
+Voor glucose in water bij 37 °C:
+
+| | orde van grootte |
+|:---|:---|
+| staptijd $\tau$ | $10^{-13}$ s: tien biljoen stappen per seconde |
+| stapgrootte $\ell$ | $0{,}01$ nm: een tiende van een atoom |
+
+. . .
+
+Piepkleine, razendsnelle stapjes. Toch komt het molecuul in 1 seconde zo'n 30 µm ver: $n\ell^2 \approx 10^{13} \times (10^{-11}\text{ m})^2 = 10^{-9}$ m².
+
+**De details van $\ell$ en $\tau$ doen er niet toe; alleen de combinatie $D = \ell^2/2\tau$ telt.**
+
+## Toeval geeft een vaste wet
+
+```{r}
+#| fig-width: 12
+#| fig-height: 4.6
+set.seed(42)
+AantalWalkers <- 500; AantalStappen <- 1000
+Stappen <- matrix(sample(c(-1, 1), AantalWalkers * AantalStappen, replace = TRUE),
+                  nrow = AantalStappen)
+Positie <- apply(Stappen, 2, cumsum)
+par(mfrow = c(1, 2), mar = c(4.5, 4.5, 3, 1), cex = 1.2)
+matplot(Positie[, 1:10], type = "l", lty = 1,
+        col = gray(seq(0.1, 0.7, length.out = 10)),
+        xlab = "stap n", ylab = "positie x (in stappen)", main = "tien moleculen")
+abline(h = 0, lty = 2)
+plot(rowMeans(Positie^2), type = "l", lwd = 2, xlab = "stap n",
+     ylab = expression("gemiddelde " * x^2), main = "500 moleculen")
+abline(0, 1, lty = 2, col = "red")
+legend("topleft", c("simulatie", expression(n * l^2)), lty = c(1, 2),
+       col = c("black", "red"), bty = "n")
+```
+
+Elk molecuul afzonderlijk is onvoorspelbaar, maar het gemiddelde over veel moleculen volgt precies $\langle x^2 \rangle = n\ell^2$ (universaliteit)
+
+## Twee keer zo ver, vier keer zo lang {.smaller}
+
+<br>
+
+De typische afstand is $L = \sqrt{\langle x^2 \rangle}$, dus
+
+$$
+L^2 \approx 2Dt
+\qquad\Longleftrightarrow\qquad
+t \approx \frac{L^2}{2D}
+$$
+
+:::: {.columns}
+::: {.column width="40%"}
+| afstand | tijd |
+|:---:|:---:|
+| 1× | 1× |
+| 2× | 4× |
+| 10× | 100× |
+| 1000× | 1 000 000× |
+:::
+
+::: {.column width="60%"}
+::: {.fragment}
+-   In 2D en 3D wordt de factor 2 een 4 en een 6
+-   Een kanaal is eendimensionaal
+-   **Twee keer zo ver blijft vier keer zo lang**
+:::
+:::
+::::
+
+## Hoe groot is $D$? Stokes–Einstein {.smaller}
+
+<br>
+
+De stapjes worden bepaald door warmte en wrijving:
+
+$$
+D = \frac{\ell^2}{2\tau} = \frac{kT}{6\pi\eta r}
+$$
+
+-   **Boven de streep:** $kT$, thermische energie: warmte **drijft** de beweging aan
+-   **Onder de streep:** $6\pi\eta r$, wrijving met de vloeistof (viscositeit $\eta$, straal $r$): wrijving **remt**
+
+. . .
+
+Een eiwit met **1000 keer** zo groot volume heeft maar **10 keer** zo grote straal, en diffundeert maar 10 keer zo langzaam.
+
+
+## Getallen {.smaller}
+
+<br>
+
+
+```{r}
+knitr::kable(data.frame(
+  Molecuul = Stoffen$Molecuul,
+  `D (µm²/s)` = signif(Stoffen$D * 1e12, 2),
+  `door een cel (10 µm)` = Opmaak(Tijd(10e-6, Stoffen$D)),
+  `1 mm` = Opmaak(Tijd(1e-3, Stoffen$D)),
+  `1 cm` = Opmaak(Tijd(1e-2, Stoffen$D)),
+  `1 m` = Opmaak(Tijd(1, Stoffen$D)),
+  check.names = FALSE), align = "lrcccc")
+```
+
+Water, 37 °C, afstand in één richting. Binnen een cel snel, over millimeters traag, over centimeters onbruikbaar.
+
+. . .
+
+**Gevolgen:** eencelligen en platwormen zijn klein of plat; bij gewervelde embryo's werkt het **hart** als eerste orgaan; planten hebben bulk flow in xyleem en floëem.
+
+::: notes
+\[13–16 min\] Bij stroming groeit de transporttijd evenredig met de afstand, bij diffusie met het kwadraat.
+:::
+
+## Van toeval naar stroom: Fick's wet.
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.2
+par(mar = c(0, 0, 0, 0))
+plot(NA, xlim = c(-0.5, 10.5), ylim = c(-1.6, 5.4), asp = 1, axes = FALSE, xlab = "", ylab = "")
+rect(1, 0, 5, 4, border = "gray30", lwd = 2); rect(5, 0, 9, 4, border = "gray30", lwd = 2)
+LinksX <- c(1.7, 2.7, 3.7, 4.4, 1.9, 2.9, 3.9, 2.4); LinksY <- c(3.2, 3.3, 3.1, 2.1, 1.9, 2.0, 1.0, 0.8)
+points(LinksX, LinksY, pch = 16, cex = 3.5, col = "navy")
+points(c(6.6, 7.8), c(2.6, 1.3), pch = 16, cex = 3.5, col = "navy")
+text(3, -0.5, "8 moleculen", cex = 1.6); text(7, -0.5, "2 moleculen", cex = 1.6)
+arrows(3.5, 4.4, 6.5, 4.4, lwd = 3, length = 0.15, col = "darkred")
+text(5, 5, "ongeveer 4 gaan naar rechts", cex = 1.5, col = "darkred")
+arrows(6.5, -1.1, 3.5, -1.1, lwd = 1.5, length = 0.12, col = "steelblue")
+text(5, -1.5, "ongeveer 1 gaat naar links", cex = 1.5, col = "steelblue")
+```
+
+Elk molecuul heeft **50 % kans** om over te steken. Netto gaan er toch **3 naar rechts**, alleen omdat er links **meer moleculen** zijn.
+
+## De wet van Fick, met dezelfde $D$ {.smaller}
+
+Twee laagjes met dikte $\ell$ en oppervlak $A$:
+
+1.  Per stap $\tau$ springt de helft naar de andere kant: netto $\tfrac{1}{2}(N_L - N_R)$
+2.  Flux = aantal per oppervlak per tijd: $J = \dfrac{N_L - N_R}{2A\tau}$
+3.  Volume van een laagje is $A\ell$, dus $N_L - N_R = A\ell\,(C_L - C_R)$
+4.  De **middens** van de laagjes liggen een afstand $\ell$ uit elkaar: $C_L - C_R \approx -\ell\,\dfrac{\partial C}{\partial x}$
+
+. . .
+
+$$
+J = \frac{A\ell \cdot \left(-\ell\,\frac{\partial C}{\partial x}\right)}{2A\tau}
+= -\frac{\ell^2}{2\tau}\,\frac{\partial C}{\partial x}
+= -D\,\frac{\partial C}{\partial x}
+$$
+
+**Dezelfde $D$ als in de random walk.** 
+
+. . . 
+
+Fick vond deze wet in 1855 als beschrijving van wat hij mat. Pas in 1905 liet Einstein zien dat ze volgt uit willekeurige moleculaire stappen, toen nog niet iedereen geloofde dat moleculen bestaan.
+
+::: notes
+\[16–19 min\] De ½ komt uit het munt opgooien. De A valt weg; de ℓ² komt van het volume van het laagje en van het concentratieverschil over afstand ℓ.
+:::
+
+## Wat zegt de wet van Fick? {.smaller}
+
+<br>
+
+
+$$
+J = -D\,\frac{\partial C}{\partial x}
+$$
+
+-   De stroom is evenredig met hoe steil de concentratie verandert
+-   **Als $\partial C/\partial x = 0$, dan $J = 0$: evenwicht.** Overal even vol, dus geen reden om te stromen
+-   Over een dun membraan wordt de helling het verschil: $J = P\,(C_1 - C_2)$
+
+. . .
+
+::: callout-important
+De kans per molecuul om over te steken is **altijd gelijk**. Er is alleen een netto stroom omdat er aan één kant **meer moleculen** zijn.
+:::
+
+## Maar waarom altijd naar de gelijke verdeling?
+
+<br>
+
+De wet van Fick beschrijft de **stroom**, maar zegt niet *waarom* een systeem altijd bij de gelijke verdeling uitkomt, en nooit vanzelf terug naar alles aan één kant.
+
+. . .
+
+Daarvoor kijken we naar de **kans op elke mogelijke verdeling**. Zo kunnen we toestanden vergelijken: **welke is het waarschijnlijkst?**
+
+# 2. Waarom stopt het bij een gelijke verdeling? {background-color="#2c3e50"}
+
+## Wat je ziet: 100 moleculen
+
+:::: {.columns}
+::: {.column width="62%"}
+```{r}
+#| fig-width: 7
+#| fig-height: 5
+set.seed(1)
+N <- 100; AantalStappen <- 1500
+Links <- numeric(AantalStappen); Links[1] <- N
+for (t in 2:AantalStappen) {
+  if (runif(1) < Links[t - 1] / N) Links[t] <- Links[t - 1] - 1
+  else Links[t] <- Links[t - 1] + 1
+}
+par(mar = c(4.5, 4.5, 1, 1), cex = 1.2)
+plot(Links, type = "l", ylim = c(0, N), xlab = "Tijdstap", ylab = "Aantal links")
+abline(h = N / 2, lty = 2, col = "red")
+```
+:::
+
+::: {.column width="38%"}
+-   Start: alles links
+-   Elke stap wisselt **één willekeurig molecuul** van kant
+-   Geen kracht, alleen toeval
+
+::: {.fragment}
+Het systeem loopt naar 50 links en 50 rechts, en schommelt daar.
+:::
+:::
+::::
+
+::: notes
+\[19–21 min\] Als het kan: draai dit live in R met een andere seed.
+:::
+
+## Tellen met 4 moleculen
+
+```{r}
+#| fig-width: 12
+#| fig-height: 5
+Letters <- c("A", "B", "C", "D")
+par(mar = c(0, 0, 0, 0))
+plot(NA, xlim = c(-0.3, 14.6), ylim = c(-1.6, 6.8), axes = FALSE, xlab = "", ylab = "")
+Kleuren <- c("gray50", "steelblue", "darkred", "steelblue", "gray50")
+for (k in 4:0) {
+  Groepen <- if (k == 0) list(character(0)) else combn(Letters, k, simplify = FALSE)
+  x0 <- (4 - k) * 3
+  for (j in seq_along(Groepen)) {
+    y0 <- (j - 1) * 1.1
+    rect(x0, y0, x0 + 2.4, y0 + 0.9, border = Kleuren[5 - k], lwd = 2)
+    segments(x0 + 1.2, y0, x0 + 1.2, y0 + 0.9, col = Kleuren[5 - k], lwd = 2)
+    text(x0 + 0.6, y0 + 0.45, paste(Groepen[[j]], collapse = ""), cex = 1.3)
+    text(x0 + 1.8, y0 + 0.45, paste(setdiff(Letters, Groepen[[j]]), collapse = ""), cex = 1.3)
+  }
+  text(x0 + 1.2, -0.5, paste(k, "links /", 4 - k, "rechts"), cex = 1.4)
+  text(x0 + 1.2, -1.2, paste(length(Groepen), ifelse(length(Groepen) == 1, "manier", "manieren")),
+       cex = 1.5, font = 2, col = Kleuren[5 - k])
+}
+```
+
+Alle 16 rangschikkingen zijn **even waarschijnlijk**. 2 links / 2 rechts kan op de meeste manieren.
+
+## De binomiaalcoëfficiënt {.smaller}
+
+Het aantal manieren om $n_L$ van de $N$ moleculen links te hebben:
+
+$$
+W(n_L) = \frac{N!}{n_L!\,(N - n_L)!}
+\qquad\text{controle: } \frac{4!}{2!\,2!} = 6
+$$
+
+:::: {.columns}
+::: {.column width="58%"}
+```{r}
+#| fig-width: 6.5
+#| fig-height: 4.2
+par(mar = c(4.5, 4.5, 1, 1), cex = 1.2)
+plot(NA, xlim = c(0, 1), ylim = c(0, 26),
+     xlab = expression("Fractie links  " * n[L] / N), ylab = "Kansdichtheid")
+Kleuren <- c("gray60", "steelblue", "darkred")
+for (i in 1:3) {
+  N <- c(10, 100, 1000)[i]; nL <- 0:N
+  lines(nL / N, N * dbinom(nL, N, 0.5), lwd = 2, col = Kleuren[i])
+}
+legend("topright", paste("N =", c(10, 100, 1000)), col = Kleuren, lwd = 2, bty = "n")
+```
+:::
+
+::: {.column width="42%"}
+::: {.fragment}
+Een druppel van 1 mM bevat al ongeveer $3 \cdot 10^{16}$ opgeloste moleculen: schommelingen zijn **onzichtbaar**.
+
+De "wet" van diffusie is een uitspraak over een **overweldigend grote kans**.
+:::
+:::
+::::
+
+## Entropie {.smaller}
+
+<br>
+
+$$
+S = k \ln W
+$$
+
+-   Entropie meet hoeveel rangschikkingen bij dezelfde toestand horen
+-   **Evenwicht is de toestand met de meeste rangschikkingen: maximale entropie**
+-   Een geschud pak kaarten komt nooit vanzelf terug in de keurige volgorde
+
+. . .
+
+Verband met Shannon (maïshoofdstuk): $S = -k\sum_i p_i \ln p_i$. Met alle $W$ kansen gelijk, $p_i = 1/W$, wordt dat $k \ln W$.
+
+Vier moleculen: $\log_2 16 = 4$ bits, één bit per molecuul.
+
+## Evenwicht staat niet stil
+
+-   Bij 50 links en 50 rechts blijven de moleculen bewegen
+-   Er gaan evenveel van links naar rechts als terug
+-   **De stromen zijn gelijk**: een *dynamisch evenwicht*
+
+. . .
+
+**Bespreek met je buur (1 min):** elk molecuul had steeds 50 % kans om over te steken. Wat is er in evenwicht dan veranderd?
+
+::: notes
+\[21–29 min voor dit deel\] Antwoord: niets aan de kansen, alleen aan de aantallen.
+:::
+
+# 3. Waarom stroomt water naar de opgeloste stof? {background-color="#2c3e50"}
+
+## Wat je ziet
+
+```{r}
+#| fig-width: 11
+#| fig-height: 5.6
+TekenOsmose(HoogteL = 4, HoogteR = 4, OpgelostL = 10, OpgelostR = 35, Tekst = 1.15)
+arrows(3.6, 5.5, 6.4, 5.5, lwd = 5, length = 0.15, col = "darkred")
+text(5, 6.1, "meer water naar rechts", cex = 1.2 * 1.15, col = "darkred")
+arrows(6.1, 4.6, 3.9, 4.6, lwd = 1.5, length = 0.1, col = "steelblue")
+text(6.2, 4.6, "minder terug", pos = 4, cex = 1.1 * 1.15, col = "steelblue")
+```
+
+Een membraan dat water doorlaat, maar de opgeloste stof niet.
+
+## Waarom het gebeurt: tellen
+
+-   Elk watermolecuul heeft aan beide kanten **dezelfde kans** om door het membraan te gaan
+-   Rechts zijn meer plekken bezet door opgeloste deeltjes: per volume **minder watermoleculen**
+-   Er gaan dus per seconde **meer watermoleculen naar rechts dan terug**
+
+. . .
+
+Hetzelfde argument als bij de 8 en 2 moleculen, maar nu voor water.
+
+## Waarom het gebeurt: entropie {.smaller}
+
+Een rooster van plekken. We verplaatsen één watermolecuul van links naar rechts:
+
+| | begin | rangschikkingen | na verplaatsen | rangschikkingen |
+|:---|:---|:---:|:---|:---:|
+| links | 1 opgelost, 5 water | $\binom{6}{1} = 6$ | 1 opgelost, 4 water | $\binom{5}{1} = 5$ |
+| rechts | 2 opgelost, 4 water | $\binom{6}{2} = 15$ | 2 opgelost, 5 water | $\binom{7}{2} = 21$ |
+
+. . .
+
+Hele systeem: $6 \times 15 = 90$ wordt $5 \times 21 = 105$. Andersom (rechts → links): $7 \times 10 = 70$.
+
+. . .
+
+-   Links neemt de entropie iets af, rechts neemt ze meer toe
+-   Een extra watermolecuul levert vooral nieuwe rangschikkingen op als er **veel opgeloste deeltjes** zijn om mee te mengen
+
+::: callout-note
+Water wordt niet *aangetrokken*. Het water lost de ongelijkheid op die de opgeloste stof zelf niet kan oplossen.
+:::
+
+::: notes
+\[29–32 min\] In zuiver water maakt het niet uit waar een extra watermolecuul komt: alle watermoleculen zijn gelijk.
+:::
+
+## Welke kant op?
+
+Begin: links 1 opgelost en 5 water, rechts 2 opgelost en 4 water: $6 \times 15 = 90$ rangschikkingen.
+
+. . .
+
+| één watermolecuul gaat | links | rechts | hele systeem |
+|:---|:---:|:---:|:---:|
+| naar rechts | $\binom{5}{1} = 5$ | $\binom{7}{2} = 21$ | $105$ |
+| naar links | $\binom{7}{1} = 7$ | $\binom{5}{2} = 10$ | $70$ |
+
+. . .
+
+-   Naar rechts: **meer** rangschikkingen (105 > 90)
+-   Naar links: **minder** (70 < 90)
+-   Daarom gaat water netto naar de kant met **meer opgeloste stof**
+
+## Wanneer stopt het?
+
+```{r}
+#| fig-width: 11
+#| fig-height: 5.2
+TekenOsmose(HoogteL = 3.2, HoogteR = 4.8, OpgelostL = 10, OpgelostR = 35, Seed = 6, Tekst = 1.15)
+arrows(3.9, 5.75, 6.1, 5.75, lwd = 3, length = 0.12, col = "gray20")
+arrows(6.1, 5.3, 3.9, 5.3, lwd = 3, length = 0.12, col = "gray20")
+text(2.3, 5.5, "evenveel heen\nals terug", cex = 1.1 * 1.15)
+segments(0, 4, 10.7, 4, lty = 3, col = "gray50")
+segments(5, 3.2, 10.7, 3.2, lty = 2, col = "gray30")
+segments(10, 4.8, 10.7, 4.8, lty = 2, col = "gray30")
+arrows(10.5, 3.2, 10.5, 4.8, code = 3, lwd = 2, length = 0.1)
+text(10.75, 4, expression(Delta * h), pos = 4, cex = 1.3 * 1.15)
+```
+
+De hogere waterkolom **duwt water terug**. **De concentraties zijn nog steeds niet gelijk.**
+
+::: notes
+\[35–36 min\] Hier eventueel live demo van de osmose-app. Zeg erbij dat de hoogte in de app niet op schaal is.
+:::
+
+## Entropie tegen druk
+
+Elk watermolecuul dat naar rechts gaat:
+
+-   **wint entropie:** hoe meer opgeloste deeltjes rechts (en hoe minder links), hoe meer nieuwe rangschikkingen, zoals in het rooster. De winst is evenredig met het verschil in het aandeel opgeloste deeltjes (molfractie):
+$$
+\Delta S \approx k\,(x_{s,\text{rechts}} - x_{s,\text{links}})
+$$
+-   **moet omhoog tegen de druk:** dat kost een energie $\Pi \cdot v$ ($v$ is het volume van één watermolecuul)
+
+. . .
+
+Bij temperatuur $T$ is een entropiewinst $\Delta S$ evenveel waard als een energie $T\,\Delta S$.
+
+::: notes
+Waar de formule voor ΔS vandaan komt: een extra watermolecuul maakt het aantal rangschikkingen ongeveer 1 + x_s keer zo groot, dus ΔS = k ln(1 + x_s) ≈ k x_s. In cytoplasma is x_s ≈ 0,005, dus die benadering is daar uitstekend.
+:::
+
+## Evenwicht: van entropie naar druk
+
+Winst en kosten zijn precies gelijk:
+
+$$
+T\,\Delta S = \Pi\, v
+\quad\Longrightarrow\quad
+\Pi = kT\,\frac{x_{s,\text{rechts}} - x_{s,\text{links}}}{v}
+$$
+
+. . .
+
+$x_s / v$ is het aantal opgeloste deeltjes per volume. Per mol:
+
+$$
+\boxed{\Pi = \Delta C\, R\, T}
+\qquad\text{(van 't Hoff)}
+$$
+
+::: notes
+\[36–40 min\] Dit is de brug tussen entropie en osmolariteit. De nette afleiding met de chemische potentiaal staat in Verdieping E.
+:::
+
+## Osmolariteit is entropie {.smaller}
+
+<br>
+
+Deel de evenwichtsvoorwaarde $T\,\Delta S = \Pi\,v$ door $T\,v$:
+
+$$
+\underbrace{\frac{\Pi}{T}}_{\text{druk / temperatuur}}
+= \underbrace{\frac{\Delta S}{v}}_{\text{entropiewinst per volume verplaatst water}}
+= R\,\Delta C
+$$
+
+<br>
+
+Het osmolariteitsverschil $\Delta C$ zegt dus hoeveel entropie het systeem wint per m³ water dat naar de geconcentreerde kant gaat. De temperatuur $T$ zet die entropiewinst om in een druk: $\Pi = T \cdot R\,\Delta C$.
+
+**Voorbeeld:** bij $\Delta C = 300$ mOsm/L $= 300$ mol/m³ is de entropiewinst $R\,\Delta C = 8{,}314 \times 300 \approx 2500$ J/(K·m³), ongeveer 2,5 J/K per liter verplaatst water. Maal $T = 310$ K geeft $\Pi \approx 0{,}77$ MPa.
+
+## $R$, $k$ en de eenheden {.smaller}
+
+$R = 8{,}314$ J/(mol·K) is de **gasconstante**: de constante van Boltzmann per mol.
+
+$$
+R = N_A\,k \qquad (N_A = 6{,}022 \cdot 10^{23} \text{ per mol})
+$$
+
+$kT$: thermische energie van één molecuul. $RT$: van een mol (bij 37 °C: 2,58 kJ/mol).
+
+. . .
+
+$$
+\underbrace{\Delta C}_{\text{mol/m}^3} \cdot \underbrace{R}_{\text{J/(mol·K)}} \cdot \underbrace{T}_{\text{K}}
+\;\rightarrow\; \frac{\text{J}}{\text{m}^3} = \frac{\text{N}}{\text{m}^2} = \text{Pa}
+$$
+
+Druk is energie per volume. Gebruik $C$ in mol/m³ (1 mM = 1 mol/m³). De formule lijkt op de gaswet $PV = nRT$: opgeloste deeltjes gedragen zich als gasdeeltjes.
+
+## Waterpotentiaal en de cel
+
+$$
+\Psi = \Psi_S + \Psi_P, \qquad \Psi_S = -C\,R\,T
+$$
+
+Water stroomt van hoge naar lage $\Psi$, tot $\Psi$ aan beide kanten gelijk is.
+
+. . .
+
+:::: {.columns}
+::: {.column width="50%"}
+**Cel zonder wand** (dierlijke cel)
+
+-   zwelt op tot de concentraties gelijk zijn
+-   of tot ze barst
+:::
+
+::: {.column width="50%"}
+**Cel met wand** (plantencel)
+
+-   zwelt op tot de wand terugduwt: **turgordruk**
+-   concentraties blijven **verschillend**
+:::
+::::
+
+## Hoe sterk is osmose?
+
+```{r}
+Druk  <- function(mOsm) mOsm * R * Temp
+Kolom <- function(P) P / (1000 * 9.81)
+knitr::kable(data.frame(
+  Situatie = c("cytoplasma (300 mOsm) tegen zuiver water", "verschil van 1 mOsm"),
+  `Osmotische druk` = c(paste(round(Druk(300) / 1e6, 2), "MPa"), paste(round(Druk(1) / 1e3, 1), "kPa")),
+  `Even hoog als een waterkolom van` = c(paste(round(Kolom(Druk(300))), "m"),
+                                         paste(round(100 * Kolom(Druk(1))), "cm")),
+  check.names = FALSE), align = "lcc")
+```
+
+. . .
+
+Vergelijk: turgor in een plantencel is ongeveer 0,5 MPa. **Osmose is een krachtige motor.**
+
+::: notes
+\[40–44 min\] Het getal van 1 mOsm komt terug in de opdracht: het blastocoel heeft maar een heel klein osmotisch verschil nodig.
+:::
+
+## Denkvraag {.smaller}
+
+Een rode bloedcel in gedestilleerd water zwelt op en barst.
+
+**Leg uit waarom, zonder het woord "aantrekken" te gebruiken.**
+
+Gebruik: *kans*, *aantal watermoleculen*, *rangschikkingen*, *volume*, *druk*.
+
+. . .
+
+**Een antwoord:**
+
+-   Binnen zijn per volume **minder watermoleculen** dan in het zuivere water buiten
+-   Elk watermolecuul heeft dezelfde **kans** om door het membraan te gaan, dus er gaan er **meer naar binnen dan naar buiten**: het systeem wint daarbij **rangschikkingen**
+-   Het **volume** van de cel neemt toe en de inhoud verdunt, maar de concentraties worden nooit gelijk: buiten blijft het zuiver water
+-   Stoppen kan alleen door **tegendruk**: $\Pi = \Delta C\,RT$ met $\Delta C = 300$ mOsm/L, ongeveer 0,8 MPa. Een cel zonder wand kan die niet leveren: hij **barst**. Een plantencel overleeft het wel dankzij de celwand (**turgor**)
+
+
+
+# Afsluiting {background-color="#2c3e50"}
+
+## Drie vragen, drie antwoorden {.smaller}
+
+1.  **Waarom verspreiden moleculen zich?** Door toeval. Elke stap voegt gemiddeld $\ell^2$ toe aan $\langle x^2 \rangle$, dus $\langle x^2 \rangle = 2Dt$ met $D = \ell^2/2\tau = kT/6\pi\eta r$. Dezelfde $D$ staat in de wet van Fick.
+2.  **Waarom stopt het bij een gelijke verdeling?** Die toestand kan op de meeste manieren: maximale entropie $S = k \ln W$ (tweede hoofdwet). In evenwicht zijn de stromen gelijk.
+3.  **Waarom stroomt water naar de opgeloste stof?** Het hele systeem wint rangschikkingen, evenredig met het verschil in opgeloste deeltjes. In evenwicht weegt die entropiewinst op tegen de druk: $\Pi = \Delta C\,RT$.
+
+. . .
+
+**In het hoofdstuk verder:** wanneer kost transport energie? Vrije energie, ATP, kanalen en pompen (vraag 4).
+
+## Opdracht: het embryo pompt zichzelf op {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+Een muizenembryo vormt na ongeveer drie dagen een vochtgevulde holte, het **blastocoel**.
+
+-   Cellen pompen Na⁺ naar de holte
+-   Water volgt door osmose
+-   De druk bepaalt mee hoe groot het embryo wordt en welk lot de cellen krijgen
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+**Jullie rekenen uit:**
+
+1.  hoe lang diffusie in het embryo duurt
+2.  hoeveel osmotisch verschil nodig is
+3.  wat het pompen kost (zie vraag 4 in het hoofdstuk)
+4.  waarom dit een stationaire toestand is en geen evenwicht
+:::
+:::
+::::
+
+Zie het hoofdstuk *Toeval, entropie en transport over membranen* in het portfolio.
+
+::: notes
+\[46–50 min\] Ruimte voor vragen. Wijs op de Verdiepingen in het hoofdstuk (A–G).
+:::

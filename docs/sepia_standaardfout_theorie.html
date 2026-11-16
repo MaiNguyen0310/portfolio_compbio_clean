@@ -8,7 +8,7 @@
 
 <meta name="description" content="September 2026 – Februari 2027">
 
-<title>5&nbsp; Sepia: de wiskunde achter de standaardfout – Portfolio Computationele Biologie</title>
+<title>7&nbsp; Sepia: de wiskunde achter de standaardfout – Portfolio Computationele Biologie</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -70,7 +70,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./genetic_drift.html" rel="next">
-<link href="./Differentiaalvergelijkingen_theorie.html" rel="prev">
+<link href="./Eigen_experiment_theorie.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sepia_standaardfout_theorie.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sepia_standaardfout_theorie.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -196,32 +196,44 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Regressie_theorie.html" class="sidebar-item-text sidebar-link">
+  <a href="./antwoorden/ANT_Regressie_theorie.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lineaire regressie: vectoren en projectie.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./thermodynamica_transport_antwoorden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Toeval, entropie en transport over membranen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Differentiaalvergelijkingen_theorie.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Eigen_experiment_theorie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Eigen experiment: theorie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sepia_standaardfout_theorie.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./genetic_drift.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Genetic Drift</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Genetic Drift</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./meta-populaties.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Metapopulaties: drift, migratie en kolonisatie</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Metapopulaties: drift, migratie en kolonisatie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -253,14 +265,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Bradford_statistiek.html" class="sidebar-item-text sidebar-link">
+  <a href="./antwoorden/ANT_bradford_statistiek.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Bradford-test: statistiek, vectoren en lineaire modellen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./eigen_experiment_practicum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Eigen experiment: practicum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Sepia_Mantel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Sepia Mantel en de t-test.</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sepia Mantel en de t-test.</span></span></a>
   </div>
 </li>
       </ul>
@@ -275,20 +293,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#theoriedeel-van-variantie-optelling-naar-canalisatie" id="toc-theoriedeel-van-variantie-optelling-naar-canalisatie" class="nav-link active" data-scroll-target="#theoriedeel-van-variantie-optelling-naar-canalisatie"><span class="header-section-number">5.1</span> Theoriedeel — van variantie-optelling naar canalisatie</a></li>
-  <li><a href="#sec-optellen" id="toc-sec-optellen" class="nav-link" data-scroll-target="#sec-optellen"><span class="header-section-number">6</span> Variatie telt op</a></li>
-  <li><a href="#sec-tekort" id="toc-sec-tekort" class="nav-link" data-scroll-target="#sec-tekort"><span class="header-section-number">7</span> Waarom de formule in het practicum tekortschoot</a></li>
-  <li><a href="#sec-bootstrap" id="toc-sec-bootstrap" class="nav-link" data-scroll-target="#sec-bootstrap"><span class="header-section-number">8</span> Bootstrap: de steekproevenverdeling nabouwen</a></li>
-  <li><a href="#sec-cov" id="toc-sec-cov" class="nav-link" data-scroll-target="#sec-cov"><span class="header-section-number">9</span> Van twee kenmerken naar meer: de covariantiematrix</a></li>
-  <li><a href="#sec-zien" id="toc-sec-zien" class="nav-link" data-scroll-target="#sec-zien"><span class="header-section-number">10</span> Structuur in grotere matrixen</a>
+  <li><a href="#theoriedeel-van-variantie-optelling-naar-canalisatie" id="toc-theoriedeel-van-variantie-optelling-naar-canalisatie" class="nav-link active" data-scroll-target="#theoriedeel-van-variantie-optelling-naar-canalisatie"><span class="header-section-number">7.1</span> Theoriedeel — van variantie-optelling naar canalisatie</a></li>
+  <li><a href="#sec-optellen" id="toc-sec-optellen" class="nav-link" data-scroll-target="#sec-optellen"><span class="header-section-number">8</span> Variatie telt op</a></li>
+  <li><a href="#sec-tekort" id="toc-sec-tekort" class="nav-link" data-scroll-target="#sec-tekort"><span class="header-section-number">9</span> Waarom de formule in het practicum tekortschoot</a></li>
+  <li><a href="#sec-bootstrap" id="toc-sec-bootstrap" class="nav-link" data-scroll-target="#sec-bootstrap"><span class="header-section-number">10</span> Bootstrap: de steekproevenverdeling nabouwen</a></li>
+  <li><a href="#sec-cov" id="toc-sec-cov" class="nav-link" data-scroll-target="#sec-cov"><span class="header-section-number">11</span> Van twee kenmerken naar meer: de covariantiematrix</a></li>
+  <li><a href="#sec-zien" id="toc-sec-zien" class="nav-link" data-scroll-target="#sec-zien"><span class="header-section-number">12</span> Structuur in grotere matrixen</a>
   <ul class="collapse">
-  <li><a href="#sec-stap1" id="toc-sec-stap1" class="nav-link" data-scroll-target="#sec-stap1"><span class="header-section-number">10.1</span> De matrix als getallen</a></li>
-  <li><a href="#sec-stap2" id="toc-sec-stap2" class="nav-link" data-scroll-target="#sec-stap2"><span class="header-section-number">10.2</span> De matrix als heatmap</a></li>
-  <li><a href="#sec-stap3" id="toc-sec-stap3" class="nav-link" data-scroll-target="#sec-stap3"><span class="header-section-number">10.3</span> Stap 3 — de matrix als netwerk</a></li>
+  <li><a href="#sec-stap1" id="toc-sec-stap1" class="nav-link" data-scroll-target="#sec-stap1"><span class="header-section-number">12.1</span> De matrix als getallen</a></li>
+  <li><a href="#sec-stap2" id="toc-sec-stap2" class="nav-link" data-scroll-target="#sec-stap2"><span class="header-section-number">12.2</span> De matrix als heatmap</a></li>
+  <li><a href="#sec-stap3" id="toc-sec-stap3" class="nav-link" data-scroll-target="#sec-stap3"><span class="header-section-number">12.3</span> Stap 3 — de matrix als netwerk</a></li>
   </ul></li>
-  <li><a href="#sec-canalisatie" id="toc-sec-canalisatie" class="nav-link" data-scroll-target="#sec-canalisatie"><span class="header-section-number">11</span> Modulariteit ís gekanaliseerde variatie</a></li>
-  <li><a href="#sec-samenvatting" id="toc-sec-samenvatting" class="nav-link" data-scroll-target="#sec-samenvatting"><span class="header-section-number">12</span> Samenvatting</a></li>
-  <li><a href="#sec-honours" id="toc-sec-honours" class="nav-link" data-scroll-target="#sec-honours"><span class="header-section-number">13</span> Honours — eigenwaarden, entropie en de richting van evolutie</a></li>
+  <li><a href="#sec-canalisatie" id="toc-sec-canalisatie" class="nav-link" data-scroll-target="#sec-canalisatie"><span class="header-section-number">13</span> Modulariteit ís gekanaliseerde variatie</a></li>
+  <li><a href="#sec-samenvatting" id="toc-sec-samenvatting" class="nav-link" data-scroll-target="#sec-samenvatting"><span class="header-section-number">14</span> Samenvatting</a></li>
+  <li><a href="#sec-honours" id="toc-sec-honours" class="nav-link" data-scroll-target="#sec-honours"><span class="header-section-number">15</span> Honours — eigenwaarden, entropie en de richting van evolutie</a></li>
   </ul>
 </nav>
     </div>
@@ -297,7 +315,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></h1>
 </div>
 
 
@@ -314,8 +332,8 @@ window.Quarto = {
 </header>
 
 
-<section id="theoriedeel-van-variantie-optelling-naar-canalisatie" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="theoriedeel-van-variantie-optelling-naar-canalisatie"><span class="header-section-number">5.1</span> Theoriedeel — van variantie-optelling naar canalisatie</h2>
+<section id="theoriedeel-van-variantie-optelling-naar-canalisatie" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="theoriedeel-van-variantie-optelling-naar-canalisatie"><span class="header-section-number">7.1</span> Theoriedeel — van variantie-optelling naar canalisatie</h2>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -330,8 +348,8 @@ Note
 </div>
 </div>
 </section>
-<section id="sec-optellen" class="level1" data-number="6">
-<h1 data-number="6"><span class="header-section-number">6</span> Variatie telt op</h1>
+<section id="sec-optellen" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Variatie telt op</h1>
 <p>De hele standaardfout hangt aan één regel. Voor twee <em>onafhankelijke</em> grootheden <span class="math inline">\(A\)</span> en <span class="math inline">\(B\)</span> geldt: <span class="math display">\[\mathrm{Var}(A + B) = \mathrm{Var}(A) + \mathrm{Var}(B).\]</span></p>
 <p>Varianties tellen op; standaarddeviaties niet. Dit is de stelling van Bienaymé, en ze is het fundament onder alles wat volgt.</p>
 <p>Pas dit toe op een gemiddelde van <span class="math inline">\(n\)</span> onafhankelijke metingen <span class="math inline">\(\bar x = \tfrac{1}{n}\sum x_i\)</span>. Elke <span class="math inline">\(x_i\)</span> heeft variantie <span class="math inline">\(\sigma^2\)</span>, en na optellen en delen door <span class="math inline">\(n\)</span>:</p>
@@ -344,8 +362,8 @@ Note
 = \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2}.\]</span></p>
 <p>Onder de aanname van gelijke variantie wordt dit de <em>two-sample</em>-standaardfout <span class="math inline">\(s_p\sqrt{1/n_1 + 1/n_2}\)</span> die je in weg 1 van het practicum gebruikte. De <span class="math inline">\(t\)</span>-waarde is dan het verschil der gemiddelden gedeeld door deze SE: signaal gedeeld door ruis.</p>
 </section>
-<section id="sec-tekort" class="level1" data-number="7">
-<h1 data-number="7"><span class="header-section-number">7</span> Waarom de formule in het practicum tekortschoot</h1>
+<section id="sec-tekort" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Waarom de formule in het practicum tekortschoot</h1>
 <p>De regel <span class="math inline">\(\mathrm{Var}(A+B)=\mathrm{Var}(A)+\mathrm{Var}(B)\)</span> geldt onder de aannamen van <em>onafhankelijkheid</em>. In je Sepia-data is die onafhankelijkheid op één plek duidelijk geschonden. De twee metingen met dezelfde <code>SampleID</code> van student 1 en student 2 die hetzelfde dier meten, zijn per definitie onafhankelijk; ze meten letterlijk dezelfde zeekat, dus wordt de uitkomst van de meeting beperkt door dezelfde sample, een sample wordt niet ineens twee cm groter. Verschillende zeekatten (verschillende <code>SampleID</code>’s) zijn daarentegen wel in de kern onafhankelijke trekkingen uit de populatie.</p>
 <p>Juist daarom is de middelingsstap uit het practicum zo belangrijk: door de twee metingen per <code>SampleID</code> te <em>middelen</em> tot één waarde per dier, haal je die afhankelijkheid eruit. Wat overblijft is één schone waarde per zeekat, en op díe waarden mag je de optelling <span class="math inline">\(\mathrm{Var}(A+B)=\mathrm{Var}(A)+\mathrm{Var}(B)\)</span> weer gebruiken. In meer geavanceerde methoden maken juist gebruik van deze onafhankelijkheid maar dat is pas veel later in de opleiding.</p>
 <p>Waarom viel de waargenomen SE dan tóch groter uit dan de formule voorspelde? Niet door gecorreleerde metingen, maar door een extra <em>laag</em> variatie die de formule niet meeneemt. Je kunt de totale spreiding namelijk in optelbare stukken opdelen:</p>
@@ -359,8 +377,8 @@ Note
 <p>De meetfout heb je door het middelen grotendeels verwijderd. De biologische spreiding binnen een tafel zit in de gewone formule. Maar het <strong>tafel-effect</strong>, dat de ene tafel toevallig grotere dieren kreeg, of net anders mat dan de andere, is variatie <em>tussen</em> de tafelgemiddelden, en die ziet <span class="math inline">\(s/\sqrt{n}\)</span> niet: de formule kijkt binnen één groep, niet naar de verschillen tussen groepen. De waargenomen SE (de spreiding van de tafelgemiddelden) bevat dat tafel-effect wel, en valt daardoor groter uit. Dit heet <strong>variantiecomponenten-analyse</strong>; dezelfde optelling, nu gebruikt om variatie te <em>ontleden</em> in plaats van op te bouwen. Het is precies wat de ANOVA in het practicum voor je uitrekende.</p>
 <p><strong>Vraag.</strong> Waarom is het belangrijk om de twee studentmetingen per zeekat éérst te middelen, vóórdat je de tafelgemiddelden en de standaardfout berekent? Wat zou er misgaan als je in plaats daarvan alle losse metingen (twee per dier) als aparte, onafhankelijke waarnemingen zou behandelen?</p>
 </section>
-<section id="sec-bootstrap" class="level1" data-number="8">
-<h1 data-number="8"><span class="header-section-number">8</span> Bootstrap: de steekproevenverdeling nabouwen</h1>
+<section id="sec-bootstrap" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Bootstrap: de steekproevenverdeling nabouwen</h1>
 <p>De SE formule <em>veronderstelt</em> een steekproevenverdeling, ze leunt op de centrale limietstelling (hier een kantlijn opmerking). Maar je kunt die verdeling ook rechtstreeks door de computer laten <em>nabouwen</em>, zonder formule. Dat is de <strong>bootstrap</strong>; doe alsof je ene steekproef de hele populatie is, trek er met terugleggen telkens een nieuwe steekproef uit, en bekijk de spreiding van de gemiddelden.</p>
 <p>Wat maakt dit meer dan een trucje? Ten eerste <em>laat</em> de bootstrap de abstractie zien; de steekproevenverdeling wordt een histogram dat je kunt bekijken en de standaarddeviatie van kan bepalen. Ten tweede werkt hij ook waar de formule faalt, voor b.v. de mediaan, een ratio of een correlatie bestaat geen nette formules voor de standaard error, maar bootstrappen kan altijd. Ten derde, en dat is de brug terug naar het practicum: door uit de gepoolde data te trekken negeert de bootstrap de tafels, en reproduceert zo wat de formule zou geven. Juist door dat te vergelijken met de spreiding-tussen-tafels isoleer je het tafel-effect. <strong>De bootstrap geeft je de basis voor “hoe zou het zijn als er alleen toeval speelde”.</strong></p>
 <p><strong>Vraag.</strong> De bootstrap-SE en de formule <span class="math inline">\(s/\sqrt{n}\)</span> geven vrijwel hetzelfde getal, terwijl de waargenomen SE uit de tafels groter is. Wat zegt dat over wat de bootstrap wél en niet “ziet” in de data?</p>
@@ -382,8 +400,8 @@ Note
 </div>
 </div>
 </section>
-<section id="sec-cov" class="level1" data-number="9">
-<h1 data-number="9"><span class="header-section-number">9</span> Van twee kenmerken naar meer: de covariantiematrix</h1>
+<section id="sec-cov" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Van twee kenmerken naar meer: de covariantiematrix</h1>
 <p>In het practicum eindigde je met de correlatie tussen lengte en breedte. Die samenhang vang je formeel in de <strong>covariantiematrix</strong>:</p>
 <p><span class="math display">\[\boldsymbol{\Sigma} =
 \begin{pmatrix}
@@ -393,10 +411,10 @@ Note
 <p>De diagonaal is de spreiding van elk kenmerk apart; de off-diagonaal zegt hoe sterk ze samen covariëren. De positieve <span class="math inline">\(\mathrm{Cov}(L,W)\)</span> die je vond, is de “schuinte” van je scatterplot. Dit is dezelfde vetgedrukte matrix-taal (<span class="math inline">\(\mathbf{X}\)</span>, <span class="math inline">\(\boldsymbol{\Sigma}\)</span>) uit de Bradford-assay en de regressie, nu toegepast op de samenhang tussen kenmerken.</p>
 <p>Twee kenmerken is nog overzichtelijk. De biologie wordt pas interessant bij <em>veel</em> kenmerken tegelijk. Stel dat we van een gewerveld dier tien maten nemen: drie aan de schedel, drie aan de kaak en het gebit, drie aan de ledematen, plus de lichaamsmassa. De covariantiematrix is dan <span class="math inline">\(10\times 10\)</span>. Hoe lees je die?</p>
 </section>
-<section id="sec-zien" class="level1" data-number="10">
-<h1 data-number="10"><span class="header-section-number">10</span> Structuur in grotere matrixen</h1>
-<section id="sec-stap1" class="level2" data-number="10.1">
-<h2 data-number="10.1" class="anchored" data-anchor-id="sec-stap1"><span class="header-section-number">10.1</span> De matrix als getallen</h2>
+<section id="sec-zien" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Structuur in grotere matrixen</h1>
+<section id="sec-stap1" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="sec-stap1"><span class="header-section-number">12.1</span> De matrix als getallen</h2>
 <p>De covariantiematrix (hier als correlatiematrix, geschaald tussen <span class="math inline">\(-1\)</span> en <span class="math inline">\(1\)</span>) is in eerste instantie gewoon een tabel met getallen:</p>
 <div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># De 10x10 correlatiematrix van de kenmerken. In de praktijk komt deze</span></span>
@@ -441,8 +459,8 @@ SchB   0.75  1.00  0.80  0.09  0.10  0.11  0.12  0.12  0.07  0.41
 <p>Als je goed kijkt, zie je de structuur al: hoge getallen (<span class="math inline">\(0{,}75\)</span>–<span class="math inline">\(0{,}81\)</span>) clusteren in blokjes langs de diagonaal, met lage waarden (<span class="math inline">\(\approx 0{,}1\)</span>) ertussen, en de onderste rij (<code>Lij</code>, lichaamsmassa) zit overal rond <span class="math inline">\(0,4\)</span>. Maar een tabel met honderd getallen leest niemand prettig. Daarom kleuren we hem.</p>
 <p><strong>Vraag.</strong> Wijs, puur op de getallen, de drie groepen kenmerken aan die onderling sterk samenhangen. Welk kenmerk hoort bij geen enkele groep echt thuis, maar hangt met alle een beetje samen?</p>
 </section>
-<section id="sec-stap2" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="sec-stap2"><span class="header-section-number">10.2</span> De matrix als heatmap</h2>
+<section id="sec-stap2" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="sec-stap2"><span class="header-section-number">12.2</span> De matrix als heatmap</h2>
 <p>Zet elke correlatie om in een kleur (fel = sterk, bleek = zwak) en de structuur springt eruit:</p>
 <div id="fig-heatmap" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -450,14 +468,14 @@ SchB   0.75  1.00  0.80  0.09  0.10  0.11  0.12  0.12  0.07  0.41
 <img src="Heatmap.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heatmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.1: Correlatiematrix als heatmap. Fel = sterke samenhang. De drie blokken langs de diagonaal zijn ontwikkelingsmodules: kenmerken die samen ontstaan, bewegen samen. Buiten de blokken is de samenhang zwak. De rij/kolom van de lichaamsmassa kleurt overal lauw — een brug die alle modules zwak verbindt.
+Figure&nbsp;12.1: Correlatiematrix als heatmap. Fel = sterke samenhang. De drie blokken langs de diagonaal zijn ontwikkelingsmodules: kenmerken die samen ontstaan, bewegen samen. Buiten de blokken is de samenhang zwak. De rij/kolom van de lichaamsmassa kleurt overal lauw — een brug die alle modules zwak verbindt.
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>10.1</span></a> springen drie <strong>blokken</strong> langs de diagonaal eruit. Binnen een blok correleert alles sterk; ertussen is het bleek. Zo’n blok is een <strong>ontwikkelingsmodule</strong>: een groep kenmerken die door hetzelfde ontwikkelingsproces wordt aangestuurd en daardoor samen varieert, schedelmaten, kaakmaten, ledematen. De lichaamsmassa kleurt overal lauw: zij hangt zwak met alles samen, want grotere dieren zijn overal groter. Dat is de allometrische relatie die je kan herkennen als de log-lineaire groeirelatie uit het allometrie-hoofdstuk.</p>
+<p>In <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>12.1</span></a> springen drie <strong>blokken</strong> langs de diagonaal eruit. Binnen een blok correleert alles sterk; ertussen is het bleek. Zo’n blok is een <strong>ontwikkelingsmodule</strong>: een groep kenmerken die door hetzelfde ontwikkelingsproces wordt aangestuurd en daardoor samen varieert, schedelmaten, kaakmaten, ledematen. De lichaamsmassa kleurt overal lauw: zij hangt zwak met alles samen, want grotere dieren zijn overal groter. Dat is de allometrische relatie die je kan herkennen als de log-lineaire groeirelatie uit het allometrie-hoofdstuk.</p>
 </section>
-<section id="sec-stap3" class="level2" data-number="10.3">
-<h2 data-number="10.3" class="anchored" data-anchor-id="sec-stap3"><span class="header-section-number">10.3</span> Stap 3 — de matrix als netwerk</h2>
+<section id="sec-stap3" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="sec-stap3"><span class="header-section-number">12.3</span> Stap 3 — de matrix als netwerk</h2>
 <p>Dezelfde matrix kun je als netwerk tekenen: elk kenmerk een knoop, en een lijn tussen twee kenmerken als hun correlatie boven een drempel ligt (dikker = sterker).</p>
 <div id="fig-Netwerk" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -465,11 +483,11 @@ Figure&nbsp;10.1: Correlatiematrix als heatmap. Fel = sterke samenhang. De drie 
 <img src="Network.png" class="img-fluid figure-img" style="width:78.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-Netwerk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10.2: Netwerkgraaf van dezelfde tien kenmerken (lijn getekend bij correlatie <span class="math inline">\(&gt;0{,}35\)</span>). De drie modules verschijnen als drie dicht verbonden driehoeken; de lichaamsmassa zit centraal en verbindt de modules met dunne lijnen. Blokken in de matrix en clusters in de graaf zijn hetzelfde verschijnsel, twee keer getekend.
+Figure&nbsp;12.2: Netwerkgraaf van dezelfde tien kenmerken (lijn getekend bij correlatie <span class="math inline">\(&gt;0{,}35\)</span>). De drie modules verschijnen als drie dicht verbonden driehoeken; de lichaamsmassa zit centraal en verbindt de modules met dunne lijnen. Blokken in de matrix en clusters in de graaf zijn hetzelfde verschijnsel, twee keer getekend.
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span>10.2</span></a> zie je wat <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>10.1</span></a> je vertelde, maar nu als vorm: drie <strong>clusters</strong> (de driehoeken) en één centrale knoop die ze losjes verbindt. De blokken van de matrix zijn de clusters van de graaf — twee lezingen van hetzelfde object <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
+<p>In <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span>12.2</span></a> zie je wat <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>12.1</span></a> je vertelde, maar nu als vorm: drie <strong>clusters</strong> (de driehoeken) en één centrale knoop die ze losjes verbindt. De blokken van de matrix zijn de clusters van de graaf — twee lezingen van hetzelfde object <span class="math inline">\(\boldsymbol{\Sigma}\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -485,8 +503,8 @@ Note
 </div>
 </section>
 </section>
-<section id="sec-canalisatie" class="level1" data-number="11">
-<h1 data-number="11"><span class="header-section-number">11</span> Modulariteit ís gekanaliseerde variatie</h1>
+<section id="sec-canalisatie" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Modulariteit ís gekanaliseerde variatie</h1>
 <p>Waarom bewegen kenmerken binnen een module samen, en tussen modules niet? Omdat de ontwikkeling ze zo <em>kanaliseert</em>. Ter herinnering, <strong>Canalisatie</strong> is het vermogen van een ontwikkelingsproces om ondanks verstoringen (in genen of omgeving) steeds hetzelfde eindresultaat te leveren. Een sterk gekanaliseerd kenmerk heeft weinig variatie; gekanaliseerde kenmerken die samen worden aangestuurd, variëren bovendien <em>samen</em>.</p>
 <p>Zo vertaalt canalisatie zich rechtstreeks naar de plaatjes:</p>
 <ul>
@@ -497,13 +515,13 @@ Note
 <p>Dit sluit de cirkel met het practicum. Daar was het tafel-effect een <em>ongewenste</em> bundeling van variatie (waarnemers die samenhang opdrongen). Hier is de bundeling <em>biologisch en gewenst</em>: de ontwikkeling zelf bindt kenmerken samen. In beide gevallen is het dezelfde wiskunde, covariantie die de simpele optelling doorbreekt, maar de biologische betekenis is tegengesteld. Meetfout is anti-informatie; canalisatie is biologische informatie.</p>
 <p><strong>Vraag ter afsluiting.</strong> Een soort die extreem sterk gekanaliseerd is, heeft nauwelijks fenotypische variatie. Waarom kan dat een probleem zijn als de omgeving plotseling verandert? Formuleer het spanningsveld tussen robuustheid (nu) en evolueerbaarheid (later) in je eigen woorden.</p>
 </section>
-<section id="sec-samenvatting" class="level1" data-number="12">
-<h1 data-number="12"><span class="header-section-number">12</span> Samenvatting</h1>
-<p>Eén regel, varianties van onafhankelijke stukken tellen op, droeg dit hele hoofdstuk. Ze gaf de <span class="math inline">\(\sqrt{n}\)</span> in de standaardfout (<a href="#sec-optellen" class="quarto-xref"><span>Chapter 6</span></a>), verklaarde waarom die formule tekortschoot zodra metingen samenhingen (<a href="#sec-tekort" class="quarto-xref"><span>Chapter 7</span></a>), en werd door de bootstrap tastbaar nagebouwd (<a href="#sec-bootstrap" class="quarto-xref"><span>Chapter 8</span></a>). Uitgebreid naar meerdere kenmerken werd ze de covariantiematrix, waarvan de blok- en clusterstructuur (<a href="#sec-zien" class="quarto-xref"><span>Chapter 10</span></a>) rechtstreeks de biologische modulariteit en canalisatie toont (<a href="#sec-canalisatie" class="quarto-xref"><span>Chapter 11</span></a>). Telkens dezelfde beweging: variatie opsplitsen in een deel dat ergens door verklaard wordt, en een rest.</p>
+<section id="sec-samenvatting" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Samenvatting</h1>
+<p>Eén regel, varianties van onafhankelijke stukken tellen op, droeg dit hele hoofdstuk. Ze gaf de <span class="math inline">\(\sqrt{n}\)</span> in de standaardfout (<a href="#sec-optellen" class="quarto-xref"><span>Chapter 8</span></a>), verklaarde waarom die formule tekortschoot zodra metingen samenhingen (<a href="#sec-tekort" class="quarto-xref"><span>Chapter 9</span></a>), en werd door de bootstrap tastbaar nagebouwd (<a href="#sec-bootstrap" class="quarto-xref"><span>Chapter 10</span></a>). Uitgebreid naar meerdere kenmerken werd ze de covariantiematrix, waarvan de blok- en clusterstructuur (<a href="#sec-zien" class="quarto-xref"><span>Chapter 12</span></a>) rechtstreeks de biologische modulariteit en canalisatie toont (<a href="#sec-canalisatie" class="quarto-xref"><span>Chapter 13</span></a>). Telkens dezelfde beweging: variatie opsplitsen in een deel dat ergens door verklaard wordt, en een rest.</p>
 <p>Wie dieper wil, vindt hieronder hoe deze structuur zich in eigenwaarden, entropie en zelfs de richting van evolutie laat vangen.</p>
 </section>
-<section id="sec-honours" class="level1" data-number="13">
-<h1 data-number="13"><span class="header-section-number">13</span> Honours — eigenwaarden, entropie en de richting van evolutie</h1>
+<section id="sec-honours" class="level1" data-number="15">
+<h1 data-number="15"><span class="header-section-number">15</span> Honours — eigenwaarden, entropie en de richting van evolutie</h1>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -516,11 +534,11 @@ Note
 </div>
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>De blokken samengevat in getallen.</strong> De structuur die je in <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>10.1</span></a> <em>zag</em>, vat exact samen door <span class="math inline">\(\boldsymbol{\Sigma}\)</span> te ontbinden in <strong>eigenvectoren</strong> en <strong>eigenwaarden</strong>. Elke eigenvector is een richting in de kenmerkruimte; de eigenwaarde is de hoeveelheid variatie langs die richting. Dit is de kern van <strong>hoofdcomponentenanalyse (PCA)</strong>. Voor onze tien kenmerken zijn er drie grote eigenwaarden (grofweg <span class="math inline">\(3{,}8\)</span>, <span class="math inline">\(2{,}3\)</span>, <span class="math inline">\(2{,}0\)</span>) en zeven kleine (<span class="math inline">\(\approx 0{,}2\)</span>–<span class="math inline">\(0{,}5\)</span>): de drie grote assen zíjn de drie modules, wiskundig teruggevonden. PC1 valt bovendien vaak samen met de allometrische groei-as — de brug uit <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span>10.2</span></a>.</p>
+<p><strong>De blokken samengevat in getallen.</strong> De structuur die je in <a href="#fig-heatmap" class="quarto-xref">Figuur&nbsp;<span>12.1</span></a> <em>zag</em>, vat exact samen door <span class="math inline">\(\boldsymbol{\Sigma}\)</span> te ontbinden in <strong>eigenvectoren</strong> en <strong>eigenwaarden</strong>. Elke eigenvector is een richting in de kenmerkruimte; de eigenwaarde is de hoeveelheid variatie langs die richting. Dit is de kern van <strong>hoofdcomponentenanalyse (PCA)</strong>. Voor onze tien kenmerken zijn er drie grote eigenwaarden (grofweg <span class="math inline">\(3{,}8\)</span>, <span class="math inline">\(2{,}3\)</span>, <span class="math inline">\(2{,}0\)</span>) en zeven kleine (<span class="math inline">\(\approx 0{,}2\)</span>–<span class="math inline">\(0{,}5\)</span>): de drie grote assen zíjn de drie modules, wiskundig teruggevonden. PC1 valt bovendien vaak samen met de allometrische groei-as — de brug uit <a href="#fig-Netwerk" class="quarto-xref">Figuur&nbsp;<span>12.2</span></a>.</p>
 <p><strong>Canalisatie als kleine entropie.</strong> Voor een multivariaat-normale verdeling is de differentiële entropie</p>
 <p><span class="math display">\[h(\mathbf{X}) = \tfrac{1}{2}\log\!\big((2\pi e)^{k}\,\det\boldsymbol{\Sigma}\big).\]</span></p>
 <p>De determinant is het product van de eigenwaarden. Canalisatie knijpt eigenwaarden klein, verkleint <span class="math inline">\(\det\boldsymbol{\Sigma}\)</span>, en verlaagt dus de entropie. Voor onze matrix is <span class="math inline">\(\det \approx 0{,}001\)</span>, ver onder de <span class="math inline">\(1\)</span> die je bij onafhankelijkheid zou krijgen. Zo wordt de portfolio-stelling <em>“canalisatie = reductie van conditionele entropie”</em> een getal dat je kunt uitrekenen: hoe sterker de modulariteit, hoe kleiner de determinant, hoe lager <span class="math inline">\(h(\mathbf{X})\)</span>. Het is dezelfde entropie <span class="math inline">\(H\)</span> als in het maïs-hoofdstuk, nu in continue, meerdimensionale gedaante.</p>
-<p><strong>Van variatie nu naar evolutie ontwikkeling</strong> Wat je meet is de <em>fenotypische</em> covariantie <span class="math inline">\(\mathbf{P}\)</span>. Die valt uiteen in een genetisch en een omgevingsdeel, <span class="math inline">\(\mathbf{P}=\mathbf{G}+\mathbf{E}\)</span> — dezelfde optelling als <a href="#sec-tekort" class="quarto-xref"><span>Chapter 7</span></a>, nu als matrix (en je paren-meetfout uit het practicum zit in <span class="math inline">\(\mathbf{E}\)</span>). De <strong>G-matrix</strong> stuurt hoe een populatie op selectie reageert, via de Lande-vergelijking</p>
+<p><strong>Van variatie nu naar evolutie ontwikkeling</strong> Wat je meet is de <em>fenotypische</em> covariantie <span class="math inline">\(\mathbf{P}\)</span>. Die valt uiteen in een genetisch en een omgevingsdeel, <span class="math inline">\(\mathbf{P}=\mathbf{G}+\mathbf{E}\)</span> — dezelfde optelling als <a href="#sec-tekort" class="quarto-xref"><span>Chapter 9</span></a>, nu als matrix (en je paren-meetfout uit het practicum zit in <span class="math inline">\(\mathbf{E}\)</span>). De <strong>G-matrix</strong> stuurt hoe een populatie op selectie reageert, via de Lande-vergelijking</p>
 <p><span class="math display">\[\Delta\bar{\mathbf{z}} = \mathbf{G}\,\boldsymbol{\beta},\]</span></p>
 <p>met een vorm identiek aan <span class="math inline">\(\mathbf{y}=\mathbf{X}\boldsymbol{\beta}\)</span> uit het regressiehoofdstuk: een matrix die een vector transformeert. De eigenvector van <span class="math inline">\(\mathbf{G}\)</span> met de grootste eigenwaarde heet <span class="math inline">\(g_{\max}\)</span>, de <em>“weg van de minste evolutionaire weerstand”</em>: populaties evolueren bij voorkeur langs de as van maximale variatie. Canalisatie — kleine eigenwaarden in bepaalde richtingen — bepaalt zo niet alleen de variatie van nu, maar kanaliseert de evolutionaire toekomst. Wat ontwikkeling makkelijk laat variëren, laat evolutie makkelijk bewegen.</p>
 <p><strong>Opmerking voor mij</strong>: Robuustheid kan variatie ook maskeren: chaperonne-eiwitten als Hsp90 bufferen cryptische genetische variatie, die bij stress vrijkomt en dan zichtbaar wordt voor selectie (genetische assimilatie). In matrix-taal: onder stress verandert <span class="math inline">\(\mathbf{G}\)</span> van vorm en verschijnen nieuwe eigenrichtingen. Cool!!</p>
@@ -934,13 +952,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Differentiaalvergelijkingen_theorie.html" class="pagination-link" aria-label="Differentiaalvergelijkingen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span>
+      <a href="./Eigen_experiment_theorie.html" class="pagination-link" aria-label="Eigen experiment: theorie">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Eigen experiment: theorie</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="./genetic_drift.html" class="pagination-link" aria-label="Genetic Drift">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Genetic Drift</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Genetic Drift</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

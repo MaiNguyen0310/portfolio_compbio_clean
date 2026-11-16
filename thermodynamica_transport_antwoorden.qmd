@@ -203,7 +203,7 @@ col.names = c("pad", "$s_1$", "$s_2$", "$s_1^2 + s_2^2$", "$2\\,s_1 s_2$", "$x^2
 
 Geen enkel molecuul heeft precies $x^2 = 2\ell^2$ (het is $4\ell^2$ of $0$), maar gemiddeld wel. De kruisterm laat zien of twee stappen elkaar versterken of opheffen. Gaan ze dezelfde kant op, dan versterken ze elkaar en is de kruisterm $+2\ell^2$; gaan ze tegengesteld, dan heffen ze elkaar op en is hij $-2\ell^2$. Omdat het molecuul zijn vorige stap niet onthoudt, komen beide even vaak voor: gemiddeld is de kruisterm nul.
 
-**Bij $n$ stappen** werkt het precies zo: $n$ kwadraten van elk $\ell^2$, en alle kruistermen zijn gemiddeld nul. Elke stap voegt dus gemiddeld $\ell^2$ toe:
+**Bij** $n$ stappen werkt het precies zo: $n$ kwadraten van elk $\ell^2$, en alle kruistermen zijn gemiddeld nul. Elke stap voegt dus gemiddeld $\ell^2$ toe:
 
 $$
 \langle x^2 \rangle = n\,\ell^2 .
@@ -259,12 +259,12 @@ $$
 
 De tijd groeit met het *kwadraat* van de afstand:
 
-| afstand | tijd |
-|:---:|:---:|
-| 1× | 1× |
-| 2× | 4× |
-| 10× | 100× |
-| 1000× | 1 000 000× |
+| afstand |    tijd    |
+|:-------:|:----------:|
+|   1×    |     1×     |
+|   2×    |     4×     |
+|   10×   |    100×    |
+|  1000×  | 1 000 000× |
 
 Deze formule geldt voor de afstand in één richting, bijvoorbeeld dwars door een membraan of door een kanaal, waarin een molecuul maar één kant op kan. In twee en drie dimensies wordt de factor 2 een 4 en een 6 ($L^2 \approx 4Dt$ en $L^2 \approx 6Dt$), omdat er per richting $2Dt$ bijkomt. De diffusiecoëfficiënt $D$ blijft dezelfde, en twee keer zo ver blijft vier keer zo lang.
 
@@ -276,8 +276,8 @@ $$
 D = \frac{\ell^2}{2\tau} = \frac{kT}{6\pi\eta r}.
 $$
 
--   **Boven de streep:** $kT$, de thermische energie van een molecuul. $T$ is de temperatuur in kelvin en $k$ de constante van Boltzmann. Warmte zorgt voor de botsingen en drijft de beweging aan.
--   **Onder de streep:** $6\pi\eta r$, de wrijving met de vloeistof. $\eta$ is de viscositeit (stroperigheid) en $r$ de straal van het molecuul. Wrijving remt de beweging af.
+- **Boven de streep:** $kT$, de thermische energie van een molecuul. $T$ is de temperatuur in kelvin en $k$ de constante van Boltzmann. Warmte zorgt voor de botsingen en drijft de beweging aan.
+- **Onder de streep:** $6\pi\eta r$, de wrijving met de vloeistof. $\eta$ is de viscositeit (stroperigheid) en $r$ de straal van het molecuul. Wrijving remt de beweging af.
 
 Een groter molecuul diffundeert dus langzamer, maar minder dan je misschien zou denken. Eiwitten hebben ongeveer allemaal dezelfde dichtheid, dus een eiwit met een duizend keer zo groot volume (en dus ook ongeveer duizend keer zo zwaar) heeft een straal die maar $\sqrt[3]{1000} = 10$ keer zo groot is. Het diffundeert dan tien keer zo langzaam. Waar de Stokes–Einstein-relatie vandaan komt, staat in Verdieping A.
 
@@ -375,6 +375,13 @@ Dit idee kunnen we precies maken met dezelfde stapjes als in de random walk. Nee
 3.  **Van aantallen naar concentraties.** Een laagje heeft volume $A\ell$, dus $N = C \cdot A\ell$ en $N_L - N_R = A\ell\,(C_L - C_R)$.
 4.  **Concentratieverschil als helling.** $C_L$ en $C_R$ zijn de gemiddelde concentraties in de laagjes, ongeveer de concentratie in hun midden. De **middens** van de laagjes liggen een afstand $\ell$ uit elkaar, dus $C_L - C_R \approx -\ell\, \dfrac{\partial C}{\partial x}$.
 
+
+**De formule in beweging.** In de animatie beginnen 20 000 moleculen bijna allemaal links. Elk molecuul springt per stap met kans ½ naar links of naar rechts. Het onderste paneel vergelijkt de netto stroom die in de simulatie is geteld (oranje) met wat de wet van Fick voorspelt (zwarte lijn).
+
+![De wet van Fick ontstaat uit willekeurige stapjes. Boven: de moleculen. Midden: het aantal per laagje. Onder: de netto stroom over elke grens, geteld (oranje) en voorspeld met ½(N_L − N_R) (zwart).](fick_animatie.gif){#fig-fick-animatie}
+
+Let op drie dingen. De stroom is het grootst waar het profiel het steilst is. Naarmate het profiel vlakker wordt, neemt de stroom af. En de getelde stroom schommelt rond de voorspelling: de wet van Fick geldt voor het gemiddelde, niet voor elke stap afzonderlijk.
+
 Invullen geeft de **wet van Fick**:
 
 $$
@@ -383,7 +390,7 @@ J = \frac{A\ell \cdot \left(-\ell\,\frac{\partial C}{\partial x}\right)}{2A\tau}
 = -D\,\frac{\partial C}{\partial x}.
 $$
 
-Dit is **dezelfde $D$ als in de random walk**. $J$ is de stroom (hoeveel stof per seconde door een oppervlak van 1 m² gaat). $C$ is de concentratie van de stof die diffundeert, als hoeveelheid per volume, bijvoorbeeld in mol/m³ (1 mM = 1 mol/m³); dan is $J$ in mol per m² per seconde. Elke stof heeft zijn eigen gradiënt en zijn eigen stroom. $\partial C/\partial x$ zegt hoe steil de concentratie verandert met de plaats. Het kromme $\partial$ betekent: kijk alleen naar de verandering met de plaats $x$ en houd de tijd vast; de concentratie hangt namelijk af van plaats én tijd. Het minteken zegt dat de stroom van hoog naar laag gaat.
+Dit is **dezelfde** $D$ als in de random walk. $J$ is de stroom (hoeveel stof per seconde door een oppervlak van 1 m² gaat). $C$ is de concentratie van de stof die diffundeert, als hoeveelheid per volume, bijvoorbeeld in mol/m³ (1 mM = 1 mol/m³); dan is $J$ in mol per m² per seconde. Elke stof heeft zijn eigen gradiënt en zijn eigen stroom. $\partial C/\partial x$ zegt hoe steil de concentratie verandert met de plaats. Het kromme $\partial$ betekent: kijk alleen naar de verandering met de plaats $x$ en houd de tijd vast; de concentratie hangt namelijk af van plaats én tijd. Het minteken zegt dat de stroom van hoog naar laag gaat.
 
 De historische volgorde is omgekeerd aan die in dit hoofdstuk. Adolf Fick, een fysioloog, vond deze wet in 1855 als beschrijving van wat hij mat, naar analogie van de warmtewet van Fourier; $D$ was voor hem een gemeten constante. Pas in 1905 lieten Einstein (en onafhankelijk Smoluchowski in 1906) zien dat de wet volgt uit willekeurige moleculaire stappen, toen nog niet iedereen geloofde dat moleculen bestaan. Jean Perrin bevestigde dat in 1908–1909 met metingen aan Brownse beweging.
 
@@ -574,8 +581,8 @@ Elk watermolecuul heeft aan beide kanten dezelfde kans om door het membraan te g
 
 Een klein rekenvoorbeeld maakt zichtbaar wat er met de entropie gebeurt. Denk aan een rooster van plekken die elk door één water- of één opgelost deeltje worden ingenomen. Het aantal rangschikkingen is het aantal manieren om de opgeloste deeltjes over de plekken te verdelen: de binomiaalcoëfficiënt. We verplaatsen één watermolecuul van links naar rechts:
 
-| | begin | rangschikkingen | na verplaatsen | rangschikkingen |
-|:---|:---|:---:|:---|:---:|
+|   | begin | rangschikkingen | na verplaatsen | rangschikkingen |
+|:--------------|:--------------|:-------------:|:--------------|:-------------:|
 | links | 6 plekken: 1 opgelost, 5 water | $\binom{6}{1} = 6$ | 5 plekken: 1 opgelost, 4 water | $\binom{5}{1} = 5$ |
 | rechts | 6 plekken: 2 opgelost, 4 water | $\binom{6}{2} = 15$ | 7 plekken: 2 opgelost, 5 water | $\binom{7}{2} = 21$ |
 
@@ -584,11 +591,11 @@ Elke rangschikking links kan met elke rangschikking rechts samengaan, dus het aa
 Een watermolecuul kan vanuit deze begintoestand twee kanten op. Welke richting is waarschijnlijker?
 
 | één watermolecuul gaat | links | rechts | hele systeem |
-|:---|:---:|:---:|:---:|
+|:-----------------|:----------------:|:----------------:|:----------------:|
 | naar rechts | 1 opgelost, 4 water: $\binom{5}{1} = 5$ | 2 opgelost, 5 water: $\binom{7}{2} = 21$ | $5 \times 21 = 105$ |
 | naar links | 1 opgelost, 6 water: $\binom{7}{1} = 7$ | 2 opgelost, 3 water: $\binom{5}{2} = 10$ | $7 \times 10 = 70$ |
 
-Naar rechts levert **meer** rangschikkingen op (105 > 90), naar links **minder** (70 < 90). Daarom gaat water netto naar de kant met meer opgeloste stof.
+Naar rechts levert **meer** rangschikkingen op (105 \> 90), naar links **minder** (70 \< 90). Daarom gaat water netto naar de kant met meer opgeloste stof.
 
 Links neemt de entropie iets af, want daar verdwijnt water. Rechts neemt ze meer toe, want daar wordt de oplossing verdund. Een extra watermolecuul levert vooral nieuwe rangschikkingen op als er veel opgeloste deeltjes zijn om mee te mengen; in zuiver water maakt het niet uit waar een extra watermolecuul komt, want alle watermoleculen zijn gelijk. Netto neemt de entropie van het hele systeem toe.
 
@@ -706,8 +713,8 @@ $\Psi_S$ is het "trekken" van de opgeloste stof (negatief), $\Psi_P$ het "duwen"
 
 In een cel werkt het net zo:
 
--   Een **cel zonder wand** (een dierlijke cel) zwelt op tot de concentraties binnen en buiten gelijk zijn, of tot ze barst.
--   Een **cel met wand** (een plantencel) zwelt op tot de wand terugduwt. Die tegendruk is de **turgordruk**. De concentraties blijven verschillend.
+- Een **cel zonder wand** (een dierlijke cel) zwelt op tot de concentraties binnen en buiten gelijk zijn, of tot ze barst.
+- Een **cel met wand** (een plantencel) zwelt op tot de wand terugduwt. Die tegendruk is de **turgordruk**. De concentraties blijven verschillend.
 
 ### Getallen
 
@@ -733,8 +740,8 @@ Osmose is een krachtige motor. Een cel van 300 mOsm/L in zuiver water ontwikkelt
 ::: callout-tip
 ## Twee veelgehoorde formuleringen, nauwkeuriger
 
--   *"Opgeloste stoffen binden water, zodat er minder vrij water is."* Dat water zich om opgeloste deeltjes heen nestelt, klopt, maar het verklaart niet waarom alleen het *aantal* deeltjes telt. De fundamentele oorzaak is tellen: de mengentropie.
--   *"Water stroomt tot de concentraties aan beide kanten gelijk zijn."* Dat geldt alleen als het volume vrij kan veranderen. In het algemeen stroomt water tot $\Psi$ aan beide kanten gelijk is.
+- *"Opgeloste stoffen binden water, zodat er minder vrij water is."* Dat water zich om opgeloste deeltjes heen nestelt, klopt, maar het verklaart niet waarom alleen het *aantal* deeltjes telt. De fundamentele oorzaak is tellen: de mengentropie.
+- *"Water stroomt tot de concentraties aan beide kanten gelijk zijn."* Dat geldt alleen als het volume vrij kan veranderen. In het algemeen stroomt water tot $\Psi$ aan beide kanten gelijk is.
 :::
 
 ### Denkvraag
@@ -744,10 +751,10 @@ Een rode bloedcel in gedestilleerd water zwelt op en barst. Leg uit waarom, zond
 ::: {.callout-tip collapse="true"}
 ## Antwoord
 
--   Binnen zijn per volume **minder watermoleculen** dan in het zuivere water buiten.
--   Elk watermolecuul heeft dezelfde **kans** om door het membraan te gaan, dus er gaan er **meer naar binnen dan naar buiten**. Het systeem wint daarbij **rangschikkingen**: water mengt binnen met de opgeloste deeltjes, buiten valt niets te mengen.
--   Het **volume** van de cel neemt toe en de inhoud verdunt, maar de concentraties worden nooit gelijk: buiten blijft het zuiver water.
--   Stoppen kan alleen door **tegendruk**: $\Pi = \Delta C\,RT$ met $\Delta C = 300 - 0 = 300$ mOsm/L, ongeveer 0,8 MPa, zo'n 8 keer de luchtdruk. Een cel zonder wand kan die druk niet leveren: hij zwelt op van een platte schijf tot een bol, daarna kan het membraan nauwelijks verder rekken, en hij **barst** (hemolyse). Een plantencel overleeft dit wel: de celwand levert de tegendruk (**turgor**).
+- Binnen zijn per volume **minder watermoleculen** dan in het zuivere water buiten.
+- Elk watermolecuul heeft dezelfde **kans** om door het membraan te gaan, dus er gaan er **meer naar binnen dan naar buiten**. Het systeem wint daarbij **rangschikkingen**: water mengt binnen met de opgeloste deeltjes, buiten valt niets te mengen.
+- Het **volume** van de cel neemt toe en de inhoud verdunt, maar de concentraties worden nooit gelijk: buiten blijft het zuiver water.
+- Stoppen kan alleen door **tegendruk**: $\Pi = \Delta C\,RT$ met $\Delta C = 300 - 0 = 300$ mOsm/L, ongeveer 0,8 MPa, zo'n 8 keer de luchtdruk. Een cel zonder wand kan die druk niet leveren: hij zwelt op van een platte schijf tot een bol, daarna kan het membraan nauwelijks verder rekken, en hij **barst** (hemolyse). Een plantencel overleeft dit wel: de celwand levert de tegendruk (**turgor**).
 :::
 
 ## Wanneer kost transport energie?
@@ -794,9 +801,9 @@ $$
 \Delta G = RT \ln \frac{C_2}{C_1} .
 $$
 
--   $\Delta G < 0$: bergaf, passief transport, gebeurt vanzelf.
--   $\Delta G > 0$: bergop, actief transport, kost energie.
--   $\Delta G = 0$: evenwicht.
+- $\Delta G < 0$: bergaf, passief transport, gebeurt vanzelf.
+- $\Delta G > 0$: bergop, actief transport, kost energie.
+- $\Delta G = 0$: evenwicht.
 
 Bij 37 °C is $RT = 2{,}58$ kJ/mol. Elke factor 10 in concentratie is dus $RT \ln 10 \approx 5{,}9$ kJ/mol hoogteverschil.
 
@@ -1189,11 +1196,11 @@ c.  Bij vrije diffusie is de kans per molecuul om naar links of naar rechts te s
 
 ## Literatuur
 
--   Abu-Arish, A., Porcher, A., Czerwonka, A., Dostatni, N., & Fradin, C. (2010). High mobility of Bicoid captured by fluorescence correlation spectroscopy: implication for the rapid establishment of its gradient. *Biophysical Journal*, 99, L33–L35.
--   Berg, H. C. (1993). *Random Walks in Biology* (uitgebreide editie). Princeton University Press.
--   Chan, C. J., Costanzo, M., Ruiz-Herrero, T., Mönke, G., Petrie, R. J., Bergert, M., Diz-Muñoz, A., Mahadevan, L., & Hiiragi, T. (2019). Hydraulic control of mammalian embryo size and cell fate. *Nature*, 571, 112–116.
--   Dubuis, J. O., Tkačik, G., Wieschaus, E. F., Gregor, T., & Bialek, W. (2013). Positional information, in bits. *PNAS*, 110, 16301–16308.
--   Einstein, A. (1905). Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten suspendierten Teilchen. *Annalen der Physik*, 17, 549–560.
--   Gregor, T., Wieschaus, E. F., McGregor, A. P., Bialek, W., & Tank, D. W. (2007). Stability and nuclear dynamics of the Bicoid morphogen gradient. *Cell*, 130, 141–152.
--   Phillips, R., Kondev, J., Theriot, J., & Garcia, H. (2013). *Physical Biology of the Cell* (2e ed.). Garland Science.
--   Urry, L. A., et al. *Campbell Biology: A Global Approach* (12e ed.). Pearson. Hoofdstuk 8 en 36.
+- Abu-Arish, A., Porcher, A., Czerwonka, A., Dostatni, N., & Fradin, C. (2010). High mobility of Bicoid captured by fluorescence correlation spectroscopy: implication for the rapid establishment of its gradient. *Biophysical Journal*, 99, L33–L35.
+- Berg, H. C. (1993). *Random Walks in Biology* (uitgebreide editie). Princeton University Press.
+- Chan, C. J., Costanzo, M., Ruiz-Herrero, T., Mönke, G., Petrie, R. J., Bergert, M., Diz-Muñoz, A., Mahadevan, L., & Hiiragi, T. (2019). Hydraulic control of mammalian embryo size and cell fate. *Nature*, 571, 112–116.
+- Dubuis, J. O., Tkačik, G., Wieschaus, E. F., Gregor, T., & Bialek, W. (2013). Positional information, in bits. *PNAS*, 110, 16301–16308.
+- Einstein, A. (1905). Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten suspendierten Teilchen. *Annalen der Physik*, 17, 549–560.
+- Gregor, T., Wieschaus, E. F., McGregor, A. P., Bialek, W., & Tank, D. W. (2007). Stability and nuclear dynamics of the Bicoid morphogen gradient. *Cell*, 130, 141–152.
+- Phillips, R., Kondev, J., Theriot, J., & Garcia, H. (2013). *Physical Biology of the Cell* (2e ed.). Garland Science.
+- Urry, L. A., et al. *Campbell Biology: A Global Approach* (12e ed.). Pearson. Hoofdstuk 8 en 36.

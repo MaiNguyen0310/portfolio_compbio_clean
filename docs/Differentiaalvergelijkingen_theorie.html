@@ -8,7 +8,7 @@
 
 <meta name="description" content="September 2026 – Februari 2027">
 
-<title>4&nbsp; Differentiaalvergelijkingen – Portfolio Computationele Biologie</title>
+<title>5&nbsp; Differentiaalvergelijkingen – Portfolio Computationele Biologie</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -69,8 +69,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sepia_standaardfout_theorie.html" rel="next">
-<link href="./Regressie_theorie.html" rel="prev">
+<link href="./Eigen_experiment_theorie.html" rel="next">
+<link href="./thermodynamica_transport_antwoorden.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -151,7 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Differentiaalvergelijkingen_theorie.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Differentiaalvergelijkingen_theorie.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -196,32 +196,44 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Regressie_theorie.html" class="sidebar-item-text sidebar-link">
+  <a href="./antwoorden/ANT_Regressie_theorie.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lineaire regressie: vectoren en projectie.</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./thermodynamica_transport_antwoorden.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Toeval, entropie en transport over membranen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Differentiaalvergelijkingen_theorie.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Eigen_experiment_theorie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Eigen experiment: theorie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sepia_standaardfout_theorie.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./genetic_drift.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Genetic Drift</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Genetic Drift</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./meta-populaties.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Metapopulaties: drift, migratie en kolonisatie</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Metapopulaties: drift, migratie en kolonisatie</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -253,14 +265,20 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Bradford_statistiek.html" class="sidebar-item-text sidebar-link">
+  <a href="./antwoorden/ANT_bradford_statistiek.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Bradford-test: statistiek, vectoren en lineaire modellen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./eigen_experiment_practicum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Eigen experiment: practicum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./Sepia_Mantel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Sepia Mantel en de t-test.</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sepia Mantel en de t-test.</span></span></a>
   </div>
 </li>
       </ul>
@@ -275,12 +293,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#exponentiële-groei" id="toc-exponentiële-groei" class="nav-link active" data-scroll-target="#exponentiële-groei"><span class="header-section-number">4.1</span> Exponentiële groei</a>
+  <li><a href="#exponentiële-groei" id="toc-exponentiële-groei" class="nav-link active" data-scroll-target="#exponentiële-groei"><span class="header-section-number">5.1</span> Exponentiële groei</a>
   <ul class="collapse">
-  <li><a href="#de-methode-van-euler" id="toc-de-methode-van-euler" class="nav-link" data-scroll-target="#de-methode-van-euler"><span class="header-section-number">4.1.1</span> De methode van Euler</a></li>
+  <li><a href="#de-methode-van-euler" id="toc-de-methode-van-euler" class="nav-link" data-scroll-target="#de-methode-van-euler"><span class="header-section-number">5.1.1</span> De methode van Euler</a></li>
   </ul></li>
-  <li><a href="#logistische-groei" id="toc-logistische-groei" class="nav-link" data-scroll-target="#logistische-groei"><span class="header-section-number">4.2</span> Logistische groei</a></li>
-  <li><a href="#parameters-schatten" id="toc-parameters-schatten" class="nav-link" data-scroll-target="#parameters-schatten"><span class="header-section-number">4.3</span> Parameters schatten</a></li>
+  <li><a href="#logistische-groei" id="toc-logistische-groei" class="nav-link" data-scroll-target="#logistische-groei"><span class="header-section-number">5.2</span> Logistische groei</a></li>
+  <li><a href="#parameters-schatten" id="toc-parameters-schatten" class="nav-link" data-scroll-target="#parameters-schatten"><span class="header-section-number">5.3</span> Parameters schatten</a></li>
   </ul>
 </nav>
     </div>
@@ -289,7 +307,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-diffvgl" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span></h1>
+<h1 class="title"><span id="sec-diffvgl" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span></h1>
 </div>
 
 
@@ -308,12 +326,12 @@ window.Quarto = {
 
 <p>Stel je weet van een bepaalde populatie maar één ding: elk individu krijgt gemiddeld 2 nakomelingen per jaar. Verder heb je geen informatie uit tellingen of tussentijdse metingen. Toch kun je, met alleen deze regel en een startaantal, de populatiegrootte op elk moment in de toekomst redelijk voorspellen.</p>
 <p>Dat is de kern van een <code>differentiaalvergelijking</code>: een vergelijking die niet een grootheid (in dit geval populatiegrootte) zelf beschrijft, maar hoe die <em>verandert</em>. Een differentiaalvergelijking heeft de volgende algemene vorm:</p>
-<p><span id="eq-algemeen"><span class="math display">\[\frac{dN}{dt} = f(N), \quad N(0)=N_0. \tag{4.1}\]</span></span></p>
+<p><span id="eq-algemeen"><span class="math display">\[\frac{dN}{dt} = f(N), \quad N(0)=N_0. \tag{5.1}\]</span></span></p>
 <p>Hierbij is <span class="math inline">\(f\)</span> een specifieke functie die de geobserveerde verandering beschrijft, en <span class="math inline">\(N(0)\)</span> is de beginwaarde.</p>
 <p>Zo’n vergelijking is niet alleen van toepassing in populaties, maar in allerlei (biologische) contexten. Levende systemen veranderen immers continu. Populaties groeien, krimpen en migreren; cellen delen en sterven, en concentraties in allerlei omgevingen veranderen… Deze verandering over de tijd is vaak makkelijker bij te houden of te schatten dan de absolute aantallen. Dit is ook waarom we deze algemene vorm introduceren: de wiskunde die in dit portfolio geïntroduceerd wordt, is veel breder toepasbaar.</p>
-<p>Als we dan wel iets willen weten over hoe de populatiegrootte zich over de tijd heen ontwikkelt, proberen we de differentiaalvergelijking op te lossen. Daarmee zoeken we op basis van <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span>4.1</span></a> een uitdrukking voor <span class="math inline">\(N(t)\)</span>; de populatiegrootte als functie van de tijd. In dit portfolio-onderdeel bekijken we hier een veelvoorkomend voorbeeld van dat biologisch ook erg relevant is. Soms is het moeilijk of zelfs niet mogelijk om een uitdrukking voor <span class="math inline">\(N(t)\)</span> te vinden. In dat geval kan het nog steeds nuttig zijn om vergelijking <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span>4.1</span></a> te visualiseren en om een schatting te krijgen van de waarde van <span class="math inline">\(N\)</span> op bepaalde punten. Hiervoor gebruiken we <code>numerieke integratie</code>. We behandelen hiervan een simpel voorbeeld en introduceren nieuwe R-code.</p>
-<section id="exponentiële-groei" class="level2 page-columns page-full" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="exponentiële-groei"><span class="header-section-number">4.1</span> Exponentiële groei</h2>
+<p>Als we dan wel iets willen weten over hoe de populatiegrootte zich over de tijd heen ontwikkelt, proberen we de differentiaalvergelijking op te lossen. Daarmee zoeken we op basis van <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span>5.1</span></a> een uitdrukking voor <span class="math inline">\(N(t)\)</span>; de populatiegrootte als functie van de tijd. In dit portfolio-onderdeel bekijken we hier een veelvoorkomend voorbeeld van dat biologisch ook erg relevant is. Soms is het moeilijk of zelfs niet mogelijk om een uitdrukking voor <span class="math inline">\(N(t)\)</span> te vinden. In dat geval kan het nog steeds nuttig zijn om vergelijking <a href="#eq-algemeen" class="quarto-xref">Vergelijking&nbsp;<span>5.1</span></a> te visualiseren en om een schatting te krijgen van de waarde van <span class="math inline">\(N\)</span> op bepaalde punten. Hiervoor gebruiken we <code>numerieke integratie</code>. We behandelen hiervan een simpel voorbeeld en introduceren nieuwe R-code.</p>
+<section id="exponentiële-groei" class="level2 page-columns page-full" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="exponentiële-groei"><span class="header-section-number">5.1</span> Exponentiële groei</h2>
 <p>In het voorbeeld waarin een individu gemiddeld 2 nakomelingen krijgt, waarbij we aannemen dat de populatie begint met 100 individuen, kunnen we een populatiegrootte bijvoorbeeld beschrijven via</p>
 <p><span class="math display">\[\frac{dN}{dt} = 2N(t), \quad N(0)=100.\]</span></p>
 <p>Hierin zien we dat hoe meer individuen er zijn, hoe meer nakomelingen er bijkomen en dus hoe groter de groeisnelheid van de populatie wordt. In dit geval hebben we <code>exponentiële groei</code> gemodelleerd, waarbij elk individu dus per tijdseenheid 2 nakomelingen krijgt. We kunnen aantonen dat dit inderdaad een exponentiële groeifunctie beschrijft door de differentiaalvergelijking op te lossen.</p>
@@ -321,7 +339,7 @@ window.Quarto = {
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Merk op dat we dit scenario al eerder kort aan bod hebben zien komen, in <a href="antwoorden/ANT_log_pract.html#sec-rekenregels" class="quarto-xref"><span>Hoofdstuk B.1.3</span></a>. Daarbij redeneerden we de andere kant op door op basis van de huidige populatiegrootte het aantal verstreken generaties te bepalen.</p>
 </div></div><div id="exr-diff_diff" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.1</strong></span> Merk op dat exponentiële groei gemodelleerd wordt met de functie <span class="math inline">\(N(t)=Ce^{rt}\)</span>, waarbij <span class="math inline">\(r\)</span> en <span class="math inline">\(C\)</span> constantes zijn. Bepaal de afgeleide van deze functie en laat daarmee zien dat deze oplossing inderdaad hoort bij de differentiaalvergelijking <span class="math inline">\(\frac{dN}{dt}=rN(t)\)</span>.</p>
+<p><span class="theorem-title"><strong>Vraag 5.1</strong></span> Merk op dat exponentiële groei gemodelleerd wordt met de functie <span class="math inline">\(N(t)=Ce^{rt}\)</span>, waarbij <span class="math inline">\(r\)</span> en <span class="math inline">\(C\)</span> constantes zijn. Bepaal de afgeleide van deze functie en laat daarmee zien dat deze oplossing inderdaad hoort bij de differentiaalvergelijking <span class="math inline">\(\frac{dN}{dt}=rN(t)\)</span>.</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
@@ -341,11 +359,11 @@ window.Quarto = {
 </div>
 <p>Merk op dat dit laat zien wat we eerder in woorden hadden geconcludeerd: hoe groter de populatie, hoe groter de groeisnelheid.</p>
 <p>In plaats van de groeisnelheid <span class="math inline">\(dN/dt\)</span>$dN/dt$ als functie van <span class="math inline">\(N\)</span>, kunnen we ook <span class="math inline">\(N\)</span> als functie van de tijd <span class="math inline">\(t\)</span> plotten. Hiervoor maken we gebruik van numerieke integratie, en in het bijzonder de methode van Euler.</p>
-<section id="de-methode-van-euler" class="level3 page-columns page-full" data-number="4.1.1">
-<h3 data-number="4.1.1" class="anchored" data-anchor-id="de-methode-van-euler"><span class="header-section-number">4.1.1</span> De methode van Euler</h3>
-<p>Voor <span class="math inline">\(\frac{dN}{dt}=rN\)</span> vonden we, zoals je in <a href="#exr-diff_diff" class="quarto-xref">Vraag&nbsp;<span>4.1</span></a> liet zien, een exacte formule voor <span class="math inline">\(N(t)\)</span>. Dat lukt niet altijd: voor veel differentiaalvergelijkingen bestaat er geen nette uitdrukking voor <span class="math inline">\(N(t)\)</span>. Toch kunnen we de vergelijking dan nog steeds gebruiken om <span class="math inline">\(N\)</span> te <em>benaderen</em>, met een simpel idee: we kennen op elk moment de groeisnelheid <span class="math inline">\(\frac{dN}{dt}\)</span>, dus we kunnen een klein stapje vooruit zetten door de huidige waarde op te tellen bij (stapgrootte × groeisnelheid):</p>
-<p><span id="eq-euler"><span class="math display">\[N(t+dt) \approx N(t) + dt \cdot \left.\frac{dN}{dt}\right|_{N(t)}. \tag{4.2}\]</span></span></p>
-<p>In dit geval wordt dat dus <span id="eq-euler-exp"><span class="math display">\[N(t+dt) \approx N(t) + dt \cdot rN(t). \tag{4.3}\]</span></span></p>
+<section id="de-methode-van-euler" class="level3 page-columns page-full" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="de-methode-van-euler"><span class="header-section-number">5.1.1</span> De methode van Euler</h3>
+<p>Voor <span class="math inline">\(\frac{dN}{dt}=rN\)</span> vonden we, zoals je in <a href="#exr-diff_diff" class="quarto-xref">Vraag&nbsp;<span>5.1</span></a> liet zien, een exacte formule voor <span class="math inline">\(N(t)\)</span>. Dat lukt niet altijd: voor veel differentiaalvergelijkingen bestaat er geen nette uitdrukking voor <span class="math inline">\(N(t)\)</span>. Toch kunnen we de vergelijking dan nog steeds gebruiken om <span class="math inline">\(N\)</span> te <em>benaderen</em>, met een simpel idee: we kennen op elk moment de groeisnelheid <span class="math inline">\(\frac{dN}{dt}\)</span>, dus we kunnen een klein stapje vooruit zetten door de huidige waarde op te tellen bij (stapgrootte × groeisnelheid):</p>
+<p><span id="eq-euler"><span class="math display">\[N(t+dt) \approx N(t) + dt \cdot \left.\frac{dN}{dt}\right|_{N(t)}. \tag{5.2}\]</span></span></p>
+<p>In dit geval wordt dat dus <span id="eq-euler-exp"><span class="math display">\[N(t+dt) \approx N(t) + dt \cdot rN(t). \tag{5.3}\]</span></span></p>
 <p>Dit is <code>Euler-integratie</code> of de <code>methode van Euler</code>. Als je dit vaak genoeg doet, kun je voor elk tijdspunt de waarde van <span class="math inline">\(N(t)\)</span> benaderen. Hoe kleiner je de stapgrootte <code>dt</code> is, hoe nauwkeuriger de benadering, maar ook hoe meer rekenstappen nodig zijn.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fl">0.1</span> <span class="co"># tijdstappen voor berekeningen en plotten</span></span>
@@ -369,13 +387,13 @@ window.Quarto = {
 </div>
 </div>
 <div id="exr-diff_graf" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.2</strong></span> Verklaar de laatste twee grafieken op basis van de differentiaalvergelijking en relateer ze aan elkaar.</p>
+<p><span class="theorem-title"><strong>Vraag 5.2</strong></span> Verklaar de laatste twee grafieken op basis van de differentiaalvergelijking en relateer ze aan elkaar.</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
 <div id="exr-diff-verband" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.3</strong></span> Wat is, uitgaande van deze exponentiële relatie, het verband tussen de afhankelijke variabele <span class="math inline">\(\ln(N)\)</span> en de onafhankelijke variabele <span class="math inline">\(t\)</span>?</p>
+<p><span class="theorem-title"><strong>Vraag 5.3</strong></span> Wat is, uitgaande van deze exponentiële relatie, het verband tussen de afhankelijke variabele <span class="math inline">\(\ln(N)\)</span> en de onafhankelijke variabele <span class="math inline">\(t\)</span>?</p>
 </div>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
@@ -385,13 +403,13 @@ window.Quarto = {
 </blockquote>
 </section>
 </section>
-<section id="logistische-groei" class="level2 page-columns page-full" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="logistische-groei"><span class="header-section-number">4.2</span> Logistische groei</h2>
+<section id="logistische-groei" class="level2 page-columns page-full" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="logistische-groei"><span class="header-section-number">5.2</span> Logistische groei</h2>
 <p>We zien in de grafiek voor exponentiële groei dat de populatiegrootte in vijf tijdheden van 100 tot meer dan <span class="math inline">\(10^5\)</span> is gegroeid. Dat is een enorme toename, en het is niet realistisch dat een gebied die groei aan kan. Doordat de ruimte en de hoeveelheid voedsel beperkt is, onstaat er competitie. Hierdoor is er een bovengrens voor het totaal aantal dieren in de populatie. We noemen deze grens ook wel de <em>draagkracht</em> en noteren deze als <span class="math inline">\(K\)</span>. De groei van de populatie wordt dan afhankelijk van de verhouding tussen de populatiegrootte en de draagkracht. Dit zien we in de volgende uitdrukking:</p>
 <p><span id="eq-log_groei"><span class="math display">\[\begin{align}
   \frac{dN}{dt} &amp; = rN\left(1-\frac{N}{K}\right)
 \\ &amp; = rN-r\frac{N^2}{K}
-\end{align} \tag{4.4}\]</span></span></p>
+\end{align} \tag{5.4}\]</span></span></p>
 <p>Via <a href="https://mai-nguyen0310.shinyapps.io/Computational_Biology/">deze app</a> kun je het logistische groeimodel simuleren om een intuïtie te ontwikkelen voor hoe dit werkt. Hier laten we ook enkele voorbeelden zien.</p>
 <p>Net zoals bij de exponentiële groei kunnen we de groeisnelheid uitzetten tegen de populatiegrootte:</p>
 <div class="cell">
@@ -403,15 +421,15 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Merk op dat deze paraboolvorm ook af te leiden is uit de kwadratische term in <a href="#eq-log_groei" class="quarto-xref">Vergelijking&nbsp;<span>4.4</span></a>.</p>
+<p>Merk op dat deze paraboolvorm ook af te leiden is uit de kwadratische term in <a href="#eq-log_groei" class="quarto-xref">Vergelijking&nbsp;<span>5.4</span></a>.</p>
 <div id="exr-log_groei_eq" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.4</strong></span> In bovenstaande plot is het punt <span class="math inline">\((K,0)\)</span>$(K,0)$ expliciet genoteerd. Waarom is dit een interessant punt? Bedenk wat het betekent dat de grafiek de lijn <span class="math inline">\(dN/dt=0\)</span> snijdt (en dus wat het betekent als <span class="math inline">\(dN/dt &gt;0\)</span> of <span class="math inline">\(dN/dt &lt;0\)</span> geldt).</p>
+<p><span class="theorem-title"><strong>Vraag 5.4</strong></span> In bovenstaande plot is het punt <span class="math inline">\((K,0)\)</span>$(K,0)$ expliciet genoteerd. Waarom is dit een interessant punt? Bedenk wat het betekent dat de grafiek de lijn <span class="math inline">\(dN/dt=0\)</span> snijdt (en dus wat het betekent als <span class="math inline">\(dN/dt &gt;0\)</span> of <span class="math inline">\(dN/dt &lt;0\)</span> geldt).</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
 <div id="exr-oorsprong" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.5</strong></span> De grafiek gaat ook door het punt <span class="math inline">\((0,0)\)</span>. Hoe interpreteren we dit punt, en waarom is het verloop van de grafiek rondom dit punt logsich?</p>
+<p><span class="theorem-title"><strong>Vraag 5.5</strong></span> De grafiek gaat ook door het punt <span class="math inline">\((0,0)\)</span>. Hoe interpreteren we dit punt, en waarom is het verloop van de grafiek rondom dit punt logsich?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
@@ -455,7 +473,7 @@ window.Quarto = {
 </div>
 </div>
 <div id="exr-diff_over_draagkracht" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.6</strong></span> We laten nu de populatiegrootte starten boven de draagkracht. Bedenk waarom het verloop van de volgende grafiek nu logisch is.</p>
+<p><span class="theorem-title"><strong>Vraag 5.6</strong></span> We laten nu de populatiegrootte starten boven de draagkracht. Bedenk waarom het verloop van de volgende grafiek nu logisch is.</p>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>N[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fl">1.1</span><span class="sc">*</span>K <span class="co"># start op 1.1 maal de draagkracht</span></span>
@@ -510,20 +528,20 @@ window.Quarto = {
 A(t)=\alpha e^{\beta t}.
 \end{equation}\]</span></p>
 <div id="exr-diff_dalend" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.7</strong></span> Hoe kunnen we ervoor zorgen dat de dalende trend uit de tabel gevolgd wordt door het model? Simuleer dit, en haal hierbij inspiratie uit eerder gegeven code. De exacte datapunten uit de tabel hoeven niet benaderd te worden, het gaat om de trend. Denk aan de mogelijke parameterwaarden.</p>
+<p><span class="theorem-title"><strong>Vraag 5.7</strong></span> Hoe kunnen we ervoor zorgen dat de dalende trend uit de tabel gevolgd wordt door het model? Simuleer dit, en haal hierbij inspiratie uit eerder gegeven code. De exacte datapunten uit de tabel hoeven niet benaderd te worden, het gaat om de trend. Denk aan de mogelijke parameterwaarden.</p>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Jouw antwoord</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="parameters-schatten" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="parameters-schatten"><span class="header-section-number">4.3</span> Parameters schatten</h2>
+<section id="parameters-schatten" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="parameters-schatten"><span class="header-section-number">5.3</span> Parameters schatten</h2>
 <p>We kunnen de draagkracht en groeisnelheid ook afleiden uit andere observaties.</p>
 <p>We beschrijven een populatie met dichtheid <span class="math inline">\(n\)</span> (exacte eenheden laten we buiten beschouwing) en observeren dat de het aantal geboortes <span class="math inline">\(g\)</span> en sterftes <span class="math inline">\(s\)</span> in de populatie dichtheidsafhankelijk is. We hebben hiervoor de vergelijkingen <span class="math display">\[\begin{equation}
 \frac{dg}{dt} = 1 + 0.04n, \quad \frac{ds}{dt} = 0.45 + 0.06n.
 \end{equation}\]</span></p>
 <div id="exr-int_g_s" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.8</strong></span> Interpreteer deze vergelijkingen. Wat betekent het dat het aantal geboortes en sterftes afhankelijk is van de dichtheid? Geef een mogelijke context waarin dit voor kan komen.</p>
+<p><span class="theorem-title"><strong>Vraag 5.8</strong></span> Interpreteer deze vergelijkingen. Wat betekent het dat het aantal geboortes en sterftes afhankelijk is van de dichtheid? Geef een mogelijke context waarin dit voor kan komen.</p>
 </div>
 <blockquote class="blockquote">
 <p>jouw antwoord</p>
@@ -570,40 +588,40 @@ A(t)=\alpha e^{\beta t}.
 </div>
 </div>
 <div id="exr-code_uitleg" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.9</strong></span> Leg in woorden uit wat bovenstaande code doet, stap voor stap: wat is <code>n_vals</code>, wat berekenen <code>g(n_vals)</code> en <code>s(n_vals)</code>, en wat laat de uiteindelijke plot zien? Relateer je antwoord aan de vergelijkingen voor <span class="math inline">\(\frac{dg}{dt}\)</span> en <span class="math inline">\(\frac{ds}{dt}\)</span> hierboven.</p>
+<p><span class="theorem-title"><strong>Vraag 5.9</strong></span> Leg in woorden uit wat bovenstaande code doet, stap voor stap: wat is <code>n_vals</code>, wat berekenen <code>g(n_vals)</code> en <code>s(n_vals)</code>, en wat laat de uiteindelijke plot zien? Relateer je antwoord aan de vergelijkingen voor <span class="math inline">\(\frac{dg}{dt}\)</span> en <span class="math inline">\(\frac{ds}{dt}\)</span> hierboven.</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
 <p>We willen nu deze processen samen nemen in één vergelijking, en werken daarbij onder de aanname van logistische groei.</p>
 <div id="exr-dn_dt_afleiden" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.10</strong></span> Wat wordt de uitdrukking voor de verandering per tijdseenheid <span class="math inline">\(\frac{dN}{dt}\)</span> als er wordt aangenomen dat de populatiegrootte <span class="math inline">\(N\)</span> logistische groei volgt? Wat is de initiële per capita groeisnelheid <span class="math inline">\(r\)</span>, en wat is de draagkracht <span class="math inline">\(K\)</span>? Relateer je antwoord ook aan bovenstaande figuur.</p>
+<p><span class="theorem-title"><strong>Vraag 5.10</strong></span> Wat wordt de uitdrukking voor de verandering per tijdseenheid <span class="math inline">\(\frac{dN}{dt}\)</span> als er wordt aangenomen dat de populatiegrootte <span class="math inline">\(N\)</span> logistische groei volgt? Wat is de initiële per capita groeisnelheid <span class="math inline">\(r\)</span>, en wat is de draagkracht <span class="math inline">\(K\)</span>? Relateer je antwoord ook aan bovenstaande figuur.</p>
 </div>
 <blockquote class="blockquote">
 <p>jouw antwoord</p>
 </blockquote>
 <p>Met de gevonden parameters kunnen we een model noteren dat de populatiegrootte beschrijft als functie van tijd.</p>
 <div id="exr-model_form" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.11</strong></span> In bovenstaande code hebben we het evenwichtspunt gemarkeerd en <span class="math inline">\(K\)</span> genoemd. Leg uit wat er gebeurt als <span class="math inline">\(N=K\)</span> geldt en koppel dit aan je antwoord bij <a href="#exr-log_groei_eq" class="quarto-xref">Vraag&nbsp;<span>4.4</span></a>. Wat voor interpretatie heeft dit voor het per capita sterfte- en geboortecijfer? Wat gebeurt er als <span class="math inline">\(N\)</span> iets kleiner is dan <span class="math inline">\(K\)</span>? En iets groter?</p>
+<p><span class="theorem-title"><strong>Vraag 5.11</strong></span> In bovenstaande code hebben we het evenwichtspunt gemarkeerd en <span class="math inline">\(K\)</span> genoemd. Leg uit wat er gebeurt als <span class="math inline">\(N=K\)</span> geldt en koppel dit aan je antwoord bij <a href="#exr-log_groei_eq" class="quarto-xref">Vraag&nbsp;<span>5.4</span></a>. Wat voor interpretatie heeft dit voor het per capita sterfte- en geboortecijfer? Wat gebeurt er als <span class="math inline">\(N\)</span> iets kleiner is dan <span class="math inline">\(K\)</span>? En iets groter?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
 <div id="exr-model_aanpassen" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.12</strong></span> Simuleer nu het model met de gevonden waarden voor <span class="math inline">\(r\)</span> en <span class="math inline">\(K\)</span> (gebruik eerder gegeven code als voorbeeld). Bedenk een manier om aan de hand van het object <span class="math inline">\(N\)</span> (de berekende dichtheid per tijdstip) een benadering te krijgen van de waarden van <span class="math inline">\(r\)</span> en <span class="math inline">\(K\)</span>. Dat wil zeggen: bedenk dat je in een situatie zit waarin je alleen deze lijst zou hebben, en niet zou weten welke waarden van <span class="math inline">\(r\)</span> en <span class="math inline">\(K\)</span> zijn gebruikt om deze te maken. Hoe zou je deze toch kunnen schatten (tip: wanneer observeren we gedrag direct gerelateerd aan deze parameters?)</p>
+<p><span class="theorem-title"><strong>Vraag 5.12</strong></span> Simuleer nu het model met de gevonden waarden voor <span class="math inline">\(r\)</span> en <span class="math inline">\(K\)</span> (gebruik eerder gegeven code als voorbeeld). Bedenk een manier om aan de hand van het object <span class="math inline">\(N\)</span> (de berekende dichtheid per tijdstip) een benadering te krijgen van de waarden van <span class="math inline">\(r\)</span> en <span class="math inline">\(K\)</span>. Dat wil zeggen: bedenk dat je in een situatie zit waarin je alleen deze lijst zou hebben, en niet zou weten welke waarden van <span class="math inline">\(r\)</span> en <span class="math inline">\(K\)</span> zijn gebruikt om deze te maken. Hoe zou je deze toch kunnen schatten (tip: wanneer observeren we gedrag direct gerelateerd aan deze parameters?)</p>
 </div>
 <blockquote class="blockquote">
 <p>jouw antwoord</p>
 </blockquote>
 <div id="exr-verband_gebruiken" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.13</strong></span> We kunnen de schatting voor <span class="math inline">\(r\)</span> wat preciezer maken. In <a href="#exr-diff-verband" class="quarto-xref">Vraag&nbsp;<span>4.3</span></a> vond je een lineair verband tussen <span class="math inline">\(\ln(N)\)</span> en <span class="math inline">\(t\)</span> voor <em>exponentiële</em> groei. Dat verband geldt hier niet exact, omdat je populatie logistisch groeit, maar zoals eerder vermeld, blijft het logistische groeimodel dicht bij het exponentiële model blijft zolang <span class="math inline">\(N/K\)</span> klein is.</p>
-<p>Gebruik daarom alleen het beginstuk van je gesimuleerde reeks uit <a href="#exr-model_aanpassen" class="quarto-xref">Vraag&nbsp;<span>4.12</span></a> (de tijdspunten waarop <span class="math inline">\(N\)</span> nog ver onder <span class="math inline">\(K\)</span> ligt), en pas daar je kennis van lineaire regressie toe: bepaal met <code>lm()</code> de helling van <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Komt deze schatting van <span class="math inline">\(r\)</span> in de buurt van je eerdere schatting?</p>
+<p><span class="theorem-title"><strong>Vraag 5.13</strong></span> We kunnen de schatting voor <span class="math inline">\(r\)</span> wat preciezer maken. In <a href="#exr-diff-verband" class="quarto-xref">Vraag&nbsp;<span>5.3</span></a> vond je een lineair verband tussen <span class="math inline">\(\ln(N)\)</span> en <span class="math inline">\(t\)</span> voor <em>exponentiële</em> groei. Dat verband geldt hier niet exact, omdat je populatie logistisch groeit, maar zoals eerder vermeld, blijft het logistische groeimodel dicht bij het exponentiële model blijft zolang <span class="math inline">\(N/K\)</span> klein is.</p>
+<p>Gebruik daarom alleen het beginstuk van je gesimuleerde reeks uit <a href="#exr-model_aanpassen" class="quarto-xref">Vraag&nbsp;<span>5.12</span></a> (de tijdspunten waarop <span class="math inline">\(N\)</span> nog ver onder <span class="math inline">\(K\)</span> ligt), en pas daar je kennis van lineaire regressie toe: bepaal met <code>lm()</code> de helling van <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Komt deze schatting van <span class="math inline">\(r\)</span> in de buurt van je eerdere schatting?</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
 </blockquote>
 <div id="exr-aannames" class="theorem exercise">
-<p><span class="theorem-title"><strong>Vraag 4.14</strong></span> Je hebt in de vorige opgave lineaire regressie toegepast op <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Welke aanname over het groeiproces moet daarvoor gelden? Waarom is die aanname bij <a href="#exr-verband_gebruiken" class="quarto-xref">Vraag&nbsp;<span>4.13</span></a> redelijk voor het beginstuk van de data, maar niet voor de volledige reeks? Verwijs in je antwoord naar de aannames van lineaire regressie zoals besproken in <a href="Bradford_statistiek.html" class="quarto-xref"><span>Appendix C</span></a>.</p>
+<p><span class="theorem-title"><strong>Vraag 5.14</strong></span> Je hebt in de vorige opgave lineaire regressie toegepast op <span class="math inline">\(\ln(N)\)</span> tegen <span class="math inline">\(t\)</span>. Welke aanname over het groeiproces moet daarvoor gelden? Waarom is die aanname bij <a href="#exr-verband_gebruiken" class="quarto-xref">Vraag&nbsp;<span>5.13</span></a> redelijk voor het beginstuk van de data, maar niet voor de volledige reeks? Verwijs in je antwoord naar de aannames van lineaire regressie zoals besproken in <a href="antwoorden/ANT_bradford_statistiek.html" class="quarto-xref"><span>Appendix C</span></a>.</p>
 </div>
 <blockquote class="blockquote">
 <p>Jouw antwoord</p>
@@ -1015,13 +1033,13 @@ A(t)=\alpha e^{\beta t}.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./Regressie_theorie.html" class="pagination-link" aria-label="Lineaire regressie: vectoren en projectie.">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lineaire regressie: vectoren en projectie.</span></span>
+      <a href="./thermodynamica_transport_antwoorden.html" class="pagination-link" aria-label="Toeval, entropie en transport over membranen">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Toeval, entropie en transport over membranen</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sepia_standaardfout_theorie.html" class="pagination-link" aria-label="Sepia: de wiskunde achter de standaardfout">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./Eigen_experiment_theorie.html" class="pagination-link" aria-label="Eigen experiment: theorie">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Eigen experiment: theorie</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,192 @@
+# Eigen experiment: practicum {#sec-eigen-experiment-practicum}
+
+In dit practicum bedenk je zelf een experiment met agarplaten en analyseer je je tellingen. De vragen over wat je vindt, staan in het theoriehoofdstuk (@sec-eigen-experiment-theorie).
+
+## Wat je al weet
+
+In het maïspracticum vergeleek je getelde korrels met de aantallen die je volgens Mendel verwacht. Dat deed je met de $\chi^2$-toets. Hier gebruik je dezelfde toets, nu voor kolonies. De verwachting komt dit keer niet uit een theorie, maar uit de nulhypothese: er is geen verschil tussen je behandelingen.
+
+Weet je niet meer precies hoe de toets werkt of wat een $p$-waarde is? Lees dan eerst @sec-chi2-herhaling.
+
+## Je experiment ontwerpen
+
+Je kiest zelf wat je vergelijkt: twee of drie **behandelingen**. Dat kunnen drie plekken in huis zijn, of je vingers voor en na het handen wassen. Per behandeling gebruik je meerdere platen. Op elke plaat tel je de kolonies.
+
+@fig-opzet toont een voorbeeld met drie behandelingen en drie platen per behandeling.
+
+```{r}
+#| label: fig-opzet
+#| fig-cap: "Voorbeeld van een studieopzet. Elke behandeling heeft drie platen. Elke plaat levert één telling en dus één rij in de tabel."
+#| fig-width: 8
+#| fig-height: 5
+#| code-fold: true
+set.seed(1)
+Groepen <- c("keuken", "badkamer", "woonkamer")
+Tel     <- matrix(c(38, 27, 28,  31, 19, 25,  15, 26, 19), nrow = 3)  # kolom = behandeling
+Midden  <- c(4.6, 7.6, 10.6)
+
+par(mar = c(0, 0, 0, 0))
+plot(NA, xlim = c(0, 12), ylim = c(1.3, 9), asp = 1,
+     axes = FALSE, xlab = "", ylab = "")
+
+Label <- function(Y, Kop, Sub) {
+  text(0, Y, Kop, adj = 0, font = 2)
+  text(0, Y - 0.4, Sub, adj = 0, cex = 0.85, col = "grey35")
+}
+Label(8.2, "Behandeling", "verklarende variabele")
+Label(6.6, "Platen", "herhalingen")
+Label(5.6, "Telling", "responsvariabele")
+Label(3.4, "Tabel", "elke plaat een rij")
+
+for (G in 1:3) {
+  rect(Midden[G] - 1.3, 7.6, Midden[G] + 1.3, 8.4, col = "grey90", border = "grey40")
+  text(Midden[G], 8, Groepen[G], font = 2)
+  arrows(Midden[G], 7.5, Midden[G], 7.05, length = 0.08)
+  for (P in 1:3) {
+    X <- Midden[G] + (P - 2) * 0.9
+    symbols(X, 6.4, circles = 0.4, inches = FALSE, add = TRUE,
+            bg = "grey96", fg = "grey40")
+    Straal <- 0.33 * sqrt(runif(Tel[P, G]))
+    Hoek   <- runif(Tel[P, G], 0, 2 * pi)
+    points(X + Straal * cos(Hoek), 6.4 + Straal * sin(Hoek),
+           pch = 16, cex = 0.4, col = "darkorange3")
+    text(X, 5.4, Tel[P, G])
+  }
+}
+
+arrows(7.6, 5.0, 7.6, 4.55, length = 0.08)
+rect(4.6, 1.6, 10.6, 4.4, border = "grey40")
+segments(4.6, 3.75, 10.6, 3.75, col = "grey40")
+Kolom <- c(5.6, 7.6, 9.6)
+text(Kolom, 4.08, c("Behandeling", "Plaat", "Kolonies"), font = 2)
+for (R in 1:3) text(Kolom, 3.75 - 0.45 * R, c("keuken", R, Tel[R, 1]))
+text(Kolom, 1.9, "...")
+```
+
+De nulhypothese bij deze opzet is:
+
+- $H_0$: het verwachte aantal kolonies per plaat is bij alle behandelingen gelijk.
+
+::: {.callout-tip title="Opdracht 1"}
+Beschrijf je eigen opzet in drie punten:
+
+a. je onderzoeksvraag, in één zin;
+
+b. je behandelingen en het aantal platen per behandeling;
+
+c. wat je voor alle platen gelijk houdt, bijvoorbeeld hoe lang een plaat openstaat.
+:::
+
+## Je data invoeren
+
+Zet je tellingen in een tabel met **één rij per plaat**, net als in @fig-opzet. Dit is het *tidy* formaat: elke rij is een waarneming, elke kolom een variabele.
+
+```{r}
+Mijn <- data.frame(
+  Behandeling = c("keuken", "keuken", "keuken",
+                  "badkamer", "badkamer", "badkamer",
+                  "woonkamer", "woonkamer", "woonkamer"),
+  Plaat       = c(1, 2, 3,
+                  1, 2, 3,
+                  1, 2, 3),
+  Kolonies    = c(38, 27, 28,
+                  31, 19, 25,
+                  15, 26, 19)
+)
+Mijn
+```
+
+::: {.callout-tip title="Opdracht 2"}
+Vervang de behandelingen en de tellingen door die van jouw experiment. Heb je twee behandelingen, of meer of minder platen? Voeg dan rijen toe of haal ze weg. Elke kolom moet even lang blijven.
+:::
+
+## Zijn je behandelingen factoren?
+
+De tabel ziet er goed uit, maar daarmee ben je er nog niet. R moet ook wéten dat `Behandeling` een categorische variabele is. In R heet zo'n variabele een **factor**. Kijk eerst wat R van je tabel gemaakt heeft:
+
+```{r}
+str(Mijn)
+```
+
+Achter `Behandeling` staat `chr`, van *character*: voor R is het gewone tekst, geen factor.
+
+```{r}
+is.factor(Mijn$Behandeling)
+```
+
+Zolang daar `FALSE` staat, kan R je platen niet groeperen. Een poging om te tekenen loopt dan ook vast:
+
+```{r}
+#| error: true
+#| warning: false
+#| fig-show: hide
+plot(Kolonies ~ Behandeling, data = Mijn)
+```
+
+Maak er dus eerst een factor van. Met `levels` leg je meteen de volgorde vast waarin je behandelingen in figuren en tabellen verschijnen. Laat je `levels` weg, dan zet R ze alfabetisch, en staat "badkamer" vooraan.
+
+```{r}
+Mijn$Behandeling <- factor(Mijn$Behandeling,
+                           levels = c("keuken", "badkamer", "woonkamer"))
+is.factor(Mijn$Behandeling)
+levels(Mijn$Behandeling)
+```
+
+::: {.callout-tip title="Opdracht 3"}
+Controleer met `str()` en `is.factor()` of jouw behandelingen factoren zijn. Maak er zo nodig een factor van, met je eigen behandelingen in de volgorde die jij logisch vindt.
+:::
+
+## Je data bekijken
+
+Teken altijd eerst je data. Met een factor als verklarende variabele maakt `plot()` vanzelf een boxplot. Met `points()` leg je daar de platen zelf overheen.
+
+```{r}
+#| fig-width: 5
+#| fig-height: 4
+plot(Kolonies ~ Behandeling, data = Mijn, las = 1,
+     col = "grey95", border = "grey45",
+     xlab = "Behandeling", ylab = "Kolonies per plaat")
+points(Kolonies ~ Behandeling, data = Mijn,
+       pch = 16, col = "darkorange3")
+```
+
+De dikke lijn in elke box is de mediaan, de box zelf loopt van het eerste tot het derde kwartiel. Met maar drie platen per behandeling zegt zo'n box weinig: daarom teken je de punten erbij, zodat je ziet waar je data echt liggen.
+
+::: {.callout-tip title="Opdracht 4"}
+Maak deze figuur voor je eigen data. Welke behandeling heeft de meeste kolonies? Overlappen de boxen van je behandelingen?
+:::
+
+## De $\chi^2$-toets
+
+Tel per behandeling alle kolonies bij elkaar op. Onder $H_0$ verwacht je in elke behandeling evenveel: het totaal gedeeld door het aantal behandelingen.
+
+```{r}
+Totaal <- tapply(Mijn$Kolonies, Mijn$Behandeling, sum)
+Totaal
+chisq.test(Totaal)
+```
+
+In het voorbeeld is $p = 0{,}028$. Dat is kleiner dan $\alpha = 0{,}05$, dus je verwerpt $H_0$.
+
+Let op: deze code klopt alleen als elke behandeling evenveel platen heeft.
+
+::: {.callout-tip title="Opdracht 5"}
+Voer de toets uit op je eigen tellingen met $\alpha = 0{,}05$. Schrijf in één zin je conclusie op.
+:::
+
+## Gemiddelde en spreiding per behandeling
+
+De $\chi^2$-toets kijkt alleen naar de totalen. Hoeveel platen binnen één behandeling van elkaar verschillen, zie je aan de variantie.
+
+```{r}
+tapply(Mijn$Kolonies, Mijn$Behandeling, mean)
+tapply(Mijn$Kolonies, Mijn$Behandeling, var)
+```
+
+::: {.callout-tip title="Opdracht 6"}
+a. Als kolonies puur toevallig en onafhankelijk van elkaar op een plaat terechtkomen, is de variantie tussen platen ongeveer gelijk aan het gemiddelde. Is dat bij jou zo?
+
+b. Met één plaat per behandeling geeft `var()` de uitkomst `NA`. Waarom?
+:::
+
+Bewaar je figuur en je uitkomsten. Je gebruikt ze bij de vragen in @sec-eigen-experiment-theorie.

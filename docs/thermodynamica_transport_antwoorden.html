@@ -1,0 +1,2169 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="September 2026 – Februari 2027">
+
+<title>4&nbsp; Toeval, entropie en transport over membranen – Portfolio Computationele Biologie</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Differentiaalvergelijkingen_theorie.html" rel="next">
+<link href="./antwoorden/ANT_Regressie_theorie.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-12eeb4b20e9f5a2b0bfc604bfaf942bb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./thermodynamica_transport_antwoorden.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Toeval, entropie en transport over membranen</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Portfolio Computationele Biologie</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Het portfolio</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANT_stochastische_var.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Stochastische variabelen, kansverdelingen en entropie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./antwoorden/ANT_log_theorie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Logaritmes en exponenten</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./antwoorden/ANT_Regressie_theorie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lineaire regressie: vectoren en projectie.</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./thermodynamica_transport_antwoorden.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Toeval, entropie en transport over membranen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Differentiaalvergelijkingen_theorie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Eigen_experiment_theorie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Eigen experiment: theorie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sepia_standaardfout_theorie.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sepia: de wiskunde achter de standaardfout</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./genetic_drift.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Genetic Drift</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./meta-populaties.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Metapopulaties: drift, migratie en kolonisatie</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANT_mais_pract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Maiszaden practicum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./antwoorden/ANT_log_pract.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">pH-berekeningen: logaritmen en exponenten</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./antwoorden/ANT_bradford_statistiek.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Bradford-test: statistiek, vectoren en lineaire modellen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eigen_experiment_practicum.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Eigen experiment: practicum</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Sepia_Mantel.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Sepia Mantel en de t-test.</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#waarom-verspreiden-moleculen-zich" id="toc-waarom-verspreiden-moleculen-zich" class="nav-link active" data-scroll-target="#waarom-verspreiden-moleculen-zich"><span class="header-section-number">4.1</span> Waarom verspreiden moleculen zich?</a>
+  <ul class="collapse">
+  <li><a href="#wat-je-ziet" id="toc-wat-je-ziet" class="nav-link" data-scroll-target="#wat-je-ziet"><span class="header-section-number">4.1.1</span> Wat je ziet</a></li>
+  <li><a href="#waarom-het-gebeurt" id="toc-waarom-het-gebeurt" class="nav-link" data-scroll-target="#waarom-het-gebeurt"><span class="header-section-number">4.1.2</span> Waarom het gebeurt</a></li>
+  <li><a href="#hoe-snel-groeit-de-spreiding" id="toc-hoe-snel-groeit-de-spreiding" class="nav-link" data-scroll-target="#hoe-snel-groeit-de-spreiding"><span class="header-section-number">4.1.3</span> Hoe snel groeit de spreiding?</a></li>
+  <li><a href="#van-stappen-naar-tijd-de-diffusiecoëfficiënt" id="toc-van-stappen-naar-tijd-de-diffusiecoëfficiënt" class="nav-link" data-scroll-target="#van-stappen-naar-tijd-de-diffusiecoëfficiënt"><span class="header-section-number">4.1.4</span> Van stappen naar tijd: de diffusiecoëfficiënt</a></li>
+  <li><a href="#twee-keer-zo-ver-duurt-vier-keer-zo-lang" id="toc-twee-keer-zo-ver-duurt-vier-keer-zo-lang" class="nav-link" data-scroll-target="#twee-keer-zo-ver-duurt-vier-keer-zo-lang"><span class="header-section-number">4.1.5</span> Twee keer zo ver duurt vier keer zo lang</a></li>
+  <li><a href="#hoe-groot-is-d" id="toc-hoe-groot-is-d" class="nav-link" data-scroll-target="#hoe-groot-is-d"><span class="header-section-number">4.1.6</span> Hoe groot is <span class="math inline">\(D\)</span>?</a></li>
+  <li><a href="#getallen" id="toc-getallen" class="nav-link" data-scroll-target="#getallen"><span class="header-section-number">4.1.7</span> Getallen</a></li>
+  <li><a href="#wat-het-betekent-voor-de-biologie" id="toc-wat-het-betekent-voor-de-biologie" class="nav-link" data-scroll-target="#wat-het-betekent-voor-de-biologie"><span class="header-section-number">4.1.8</span> Wat het betekent voor de biologie</a></li>
+  <li><a href="#van-toeval-naar-stroom-de-wet-van-fick" id="toc-van-toeval-naar-stroom-de-wet-van-fick" class="nav-link" data-scroll-target="#van-toeval-naar-stroom-de-wet-van-fick"><span class="header-section-number">4.1.9</span> Van toeval naar stroom: de wet van Fick</a></li>
+  </ul></li>
+  <li><a href="#waarom-stopt-het-bij-een-gelijke-verdeling-en-is-dat-evenwicht-statisch" id="toc-waarom-stopt-het-bij-een-gelijke-verdeling-en-is-dat-evenwicht-statisch" class="nav-link" data-scroll-target="#waarom-stopt-het-bij-een-gelijke-verdeling-en-is-dat-evenwicht-statisch"><span class="header-section-number">4.2</span> Waarom stopt het bij een gelijke verdeling, en is dat evenwicht statisch?</a>
+  <ul class="collapse">
+  <li><a href="#wat-je-ziet-1" id="toc-wat-je-ziet-1" class="nav-link" data-scroll-target="#wat-je-ziet-1"><span class="header-section-number">4.2.1</span> Wat je ziet</a></li>
+  <li><a href="#waarom-het-gebeurt-1" id="toc-waarom-het-gebeurt-1" class="nav-link" data-scroll-target="#waarom-het-gebeurt-1"><span class="header-section-number">4.2.2</span> Waarom het gebeurt</a></li>
+  <li><a href="#de-formule" id="toc-de-formule" class="nav-link" data-scroll-target="#de-formule"><span class="header-section-number">4.2.3</span> De formule</a></li>
+  <li><a href="#van-shannon-naar-boltzmann" id="toc-van-shannon-naar-boltzmann" class="nav-link" data-scroll-target="#van-shannon-naar-boltzmann"><span class="header-section-number">4.2.4</span> Van Shannon naar Boltzmann</a></li>
+  <li><a href="#evenwicht-is-niet-statisch-maar-statistisch" id="toc-evenwicht-is-niet-statisch-maar-statistisch" class="nav-link" data-scroll-target="#evenwicht-is-niet-statisch-maar-statistisch"><span class="header-section-number">4.2.5</span> Evenwicht is niet statisch, maar statistisch</a></li>
+  <li><a href="#en-bij-ionen" id="toc-en-bij-ionen" class="nav-link" data-scroll-target="#en-bij-ionen"><span class="header-section-number">4.2.6</span> En bij ionen?</a></li>
+  </ul></li>
+  <li><a href="#wat-als-de-opgeloste-stof-niet-door-het-membraan-kan" id="toc-wat-als-de-opgeloste-stof-niet-door-het-membraan-kan" class="nav-link" data-scroll-target="#wat-als-de-opgeloste-stof-niet-door-het-membraan-kan"><span class="header-section-number">4.3</span> Wat als de opgeloste stof niet door het membraan kan?</a>
+  <ul class="collapse">
+  <li><a href="#wat-je-ziet-2" id="toc-wat-je-ziet-2" class="nav-link" data-scroll-target="#wat-je-ziet-2"><span class="header-section-number">4.3.1</span> Wat je ziet</a></li>
+  <li><a href="#waarom-het-gebeurt-tellen" id="toc-waarom-het-gebeurt-tellen" class="nav-link" data-scroll-target="#waarom-het-gebeurt-tellen"><span class="header-section-number">4.3.2</span> Waarom het gebeurt: tellen</a></li>
+  <li><a href="#waarom-het-gebeurt-entropie" id="toc-waarom-het-gebeurt-entropie" class="nav-link" data-scroll-target="#waarom-het-gebeurt-entropie"><span class="header-section-number">4.3.3</span> Waarom het gebeurt: entropie</a></li>
+  <li><a href="#hoeveel-entropie-wint-één-watermolecuul" id="toc-hoeveel-entropie-wint-één-watermolecuul" class="nav-link" data-scroll-target="#hoeveel-entropie-wint-één-watermolecuul"><span class="header-section-number">4.3.4</span> Hoeveel entropie wint één watermolecuul?</a></li>
+  <li><a href="#wanneer-stopt-het" id="toc-wanneer-stopt-het" class="nav-link" data-scroll-target="#wanneer-stopt-het"><span class="header-section-number">4.3.5</span> Wanneer stopt het?</a></li>
+  <li><a href="#entropie-tegen-druk" id="toc-entropie-tegen-druk" class="nav-link" data-scroll-target="#entropie-tegen-druk"><span class="header-section-number">4.3.6</span> Entropie tegen druk</a></li>
+  <li><a href="#osmolariteit-is-entropie" id="toc-osmolariteit-is-entropie" class="nav-link" data-scroll-target="#osmolariteit-is-entropie"><span class="header-section-number">4.3.7</span> Osmolariteit is entropie</a></li>
+  <li><a href="#r-k-en-de-eenheden" id="toc-r-k-en-de-eenheden" class="nav-link" data-scroll-target="#r-k-en-de-eenheden"><span class="header-section-number">4.3.8</span> <span class="math inline">\(R\)</span>, <span class="math inline">\(k\)</span> en de eenheden</a></li>
+  <li><a href="#waterpotentiaal-en-de-cel" id="toc-waterpotentiaal-en-de-cel" class="nav-link" data-scroll-target="#waterpotentiaal-en-de-cel"><span class="header-section-number">4.3.9</span> Waterpotentiaal en de cel</a></li>
+  <li><a href="#getallen-1" id="toc-getallen-1" class="nav-link" data-scroll-target="#getallen-1"><span class="header-section-number">4.3.10</span> Getallen</a></li>
+  <li><a href="#denkvraag" id="toc-denkvraag" class="nav-link" data-scroll-target="#denkvraag"><span class="header-section-number">4.3.11</span> Denkvraag</a></li>
+  </ul></li>
+  <li><a href="#wanneer-kost-transport-energie" id="toc-wanneer-kost-transport-energie" class="nav-link" data-scroll-target="#wanneer-kost-transport-energie"><span class="header-section-number">4.4</span> Wanneer kost transport energie?</a>
+  <ul class="collapse">
+  <li><a href="#wat-je-ziet-3" id="toc-wat-je-ziet-3" class="nav-link" data-scroll-target="#wat-je-ziet-3"><span class="header-section-number">4.4.1</span> Wat je ziet</a></li>
+  <li><a href="#waarom-bergaf-en-bergop" id="toc-waarom-bergaf-en-bergop" class="nav-link" data-scroll-target="#waarom-bergaf-en-bergop"><span class="header-section-number">4.4.2</span> Waarom: bergaf en bergop</a></li>
+  <li><a href="#de-formule-1" id="toc-de-formule-1" class="nav-link" data-scroll-target="#de-formule-1"><span class="header-section-number">4.4.3</span> De formule</a></li>
+  <li><a href="#getallen-wat-kan-één-atp-betalen" id="toc-getallen-wat-kan-één-atp-betalen" class="nav-link" data-scroll-target="#getallen-wat-kan-één-atp-betalen"><span class="header-section-number">4.4.4</span> Getallen: wat kan één ATP betalen?</a></li>
+  <li><a href="#kanalen-zijn-tunnels" id="toc-kanalen-zijn-tunnels" class="nav-link" data-scroll-target="#kanalen-zijn-tunnels"><span class="header-section-number">4.4.5</span> Kanalen zijn tunnels</a></li>
+  <li><a href="#een-levende-cel-is-een-lekke-boot" id="toc-een-levende-cel-is-een-lekke-boot" class="nav-link" data-scroll-target="#een-levende-cel-is-een-lekke-boot"><span class="header-section-number">4.4.6</span> Een levende cel is een lekke boot</a></li>
+  </ul></li>
+  <li><a href="#verdieping" id="toc-verdieping" class="nav-link" data-scroll-target="#verdieping"><span class="header-section-number">4.5</span> Verdieping</a></li>
+  <li><a href="#opdracht-het-embryo-pompt-zichzelf-op" id="toc-opdracht-het-embryo-pompt-zichzelf-op" class="nav-link" data-scroll-target="#opdracht-het-embryo-pompt-zichzelf-op"><span class="header-section-number">4.6</span> Opdracht: het embryo pompt zichzelf op</a></li>
+  <li><a href="#literatuur" id="toc-literatuur" class="nav-link" data-scroll-target="#literatuur"><span class="header-section-number">4.7</span> Literatuur</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-thermo-transport" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Toeval, entropie en transport over membranen</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Over dit hoofdstuk
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dit hoofdstuk is geen tentamenstof. Het is een nieuw onderdeel van het portfolio. Het laat zien hoe we waarnemingen, intuïtie en begrippen stap voor stap omzetten in een wiskundige formule. Lees het om te volgen hoe die vertaling werkt: van een druppel inkt naar de diffusiecoëfficiënt, van een membraan naar osmotische druk, van een pomp naar vrije energie. Je hoeft aan het eind niet alles zelf te kunnen afleiden. De formules die je nodig hebt, staan in de tekst; waar ze vandaan komen, staat voor wie dat wil in de Verdiepingen aan het eind. De opdracht aan het eind hoort bij je portfolio.</p>
+</div>
+</div>
+<p>Een bevruchte eicel heeft geen bloedvaten, geen hart en geen longen. Alles wat er in de eerste dagen van de ontwikkeling beweegt (zuurstof, glucose, ionen en signaalmoleculen) beweegt door diffusie en door transport over membranen. Toch bouwt een muizenembryo binnen een paar dagen een holte vol vocht, het <em>blastocoel</em>, die het embryo letterlijk opblaast.</p>
+<p>In de colleges over membranen hebben jullie gezien <em>wat</em> er gebeurt: diffusie, osmose, passief en actief transport. In dit hoofdstuk gaat het om de vraag <em>waarom</em> het gebeurt, aan de hand van vier vragen:</p>
+<ol type="1">
+<li>Waarom verspreiden moleculen zich?</li>
+<li>Waarom stopt dat bij een gelijke verdeling, en is dat evenwicht een statische toestand?</li>
+<li>Wat als de opgeloste stof niet door het membraan kan: hoe ontstaat dan een evenwicht met een drukverschil?</li>
+<li>Wanneer kost transport energie?</li>
+</ol>
+<p>Het antwoord op alle vier is verrassend eenvoudig: <strong>toeval en tellen</strong>. Er bestaat geen kracht die moleculen <strong>gericht</strong> naar de lage concentratie duwt.</p>
+<section id="waarom-verspreiden-moleculen-zich" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="waarom-verspreiden-moleculen-zich"><span class="header-section-number">4.1</span> Waarom verspreiden moleculen zich?</h2>
+<section id="wat-je-ziet" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="wat-je-ziet"><span class="header-section-number">4.1.1</span> Wat je ziet</h3>
+<p>Doe een druppel inkt in een glas water, en de inkt verspreidt zich langzaam, ook als je niet roert. De simulatie hieronder laat dat zien. Elk molecuul zet daarin per tijdstap één stapje in een willekeurige richting (hier in twee dimensies: naar links of rechts én naar boven of beneden). Niemand stuurt de moleculen, en toch wordt de wolk steeds breder.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-inkt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-inkt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-inkt-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inkt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.1: Een druppel inkt als 400 moleculen die elk willekeurige stapjes zetten. De wolk als geheel verspreidt zich.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="waarom-het-gebeurt" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="waarom-het-gebeurt"><span class="header-section-number">4.1.2</span> Waarom het gebeurt</h3>
+<p>Een opgelost molecuul wordt voortdurend gebotst door watermoleculen en verandert daardoor biljoenen keren per seconde van richting. Het heeft geen idee waar de andere moleculen zijn, en het heeft <strong>geen geheugen</strong>: elke stap is onafhankelijk van de vorige. Het eenvoudigste model hiervoor is munt opgooien. Elke tijdstap <span class="math inline">\(\tau\)</span> zet het molecuul een stap <span class="math inline">\(\ell\)</span>: bij kop naar rechts (<span class="math inline">\(+\ell\)</span>), bij munt naar links (<span class="math inline">\(-\ell\)</span>). Dit heet een <em>random walk</em> in één dimensie.</p>
+<p>In de simulatie hieronder gooien 1000 moleculen elk 10 keer een munt. Links zie je de paden van 20 moleculen, rechts waar alle 1000 na 10 stappen uitkomen.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-munt10" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-munt10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-munt10-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-munt10-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.2: Tien keer een munt opgooien. Links: de paden van 20 moleculen. Rechts: waar 1000 moleculen na 10 stappen uitkomen, met in rood de verwachting volgens de binomiale verdeling.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Ongeveer een kwart van de moleculen staat na 10 stappen weer op het beginpunt (in deze simulatie 23 %). Een paar zetten alle 10 stappen naar dezelfde kant, net zoals je 10 keer achter elkaar kop kunt gooien. De kans daarop is <span class="math inline">\((\tfrac{1}{2})^{10} + (\tfrac{1}{2})^{10} \approx 0{,}2\,\%\)</span>: alles links of alles rechts. In de simulatie overkomt dat 1 van de 1000 moleculen.</p>
+<p>Wat gebeurt er als de moleculen langer doorgaan? De figuur hieronder vergelijkt 10 en 40 stappen. Elke stap is één worp met de munt. Gemiddeld staan de moleculen nog steeds op hun beginpunt, maar de spreiding groeit: na vier keer zoveel stappen is de wolk ongeveer twee keer zo breed.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-muntworpen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-muntworpen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-muntworpen-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-muntworpen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.3: Positie van 300 moleculen na 10 en na 40 stappen (worpen).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hoe-snel-groeit-de-spreiding" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="hoe-snel-groeit-de-spreiding"><span class="header-section-number">4.1.3</span> Hoe snel groeit de spreiding?</h3>
+<p>Na <span class="math inline">\(n\)</span> stappen staat een molecuul op</p>
+<p><span class="math display">\[
+x = s_1 + s_2 + \dots + s_n, \qquad \text{waarbij elke stap } s_i = +\ell \text{ of } -\ell .
+\]</span></p>
+<p>De <strong>afgelegde weg</strong> is voor elk molecuul hetzelfde, namelijk <span class="math inline">\(n\ell\)</span>. De <strong>verplaatsing</strong> <span class="math inline">\(x\)</span> verschilt per molecuul, omdat stappen naar links en naar rechts elkaar deels opheffen. Gemiddeld over veel moleculen is <span class="math inline">\(x = 0\)</span>: eindpunten links (<span class="math inline">\(x &lt; 0\)</span>) en rechts (<span class="math inline">\(x &gt; 0\)</span>) heffen elkaar op. Om de spreiding te meten, kwadrateren we eerst. Een molecuul op <span class="math inline">\(-4\)</span> telt dan even zwaar als een op <span class="math inline">\(+4\)</span>, want <span class="math inline">\((-4)^2 = (+4)^2 = 16\)</span>. Daarna middelen we over alle moleculen. Dat gemiddelde schrijven we met hoekhaken: <span class="math inline">\(\langle x^2 \rangle\)</span>.</p>
+<p>Dit kennen jullie uit de statistiek. De <strong>variantie</strong> is het gemiddelde van de gekwadrateerde afwijkingen ten opzichte van het gemiddelde. Hier is het gemiddelde nul, dus de afwijking is gewoon de positie zelf:</p>
+<p><span class="math display">\[
+\langle x^2 \rangle = \frac{1}{N} \sum_{i=1}^{N} x_i^2 = \text{variantie van de posities},
+\]</span></p>
+<p>met <span class="math inline">\(N\)</span> het aantal moleculen. Omdat het gemiddelde van <span class="math inline">\(x\)</span> nul is, is het gemiddelde van <span class="math inline">\(x^2\)</span> dus gelijk aan de variantie van <span class="math inline">\(x\)</span>. De wortel <span class="math inline">\(\sqrt{\langle x^2 \rangle}\)</span> is de standaarddeviatie: de typische afstand tot het beginpunt.</p>
+<p>De figuur hieronder laat zien wat kwadrateren en worteltrekken doen. Per molecuul is <span class="math inline">\(\sqrt{x^2} = |x|\)</span>: de negatieve posities worden naar boven gespiegeld, en je houdt de afstand tot het beginpunt over, ongeacht de kant. Let op de volgorde. Eerst middelen en dan de wortel nemen geeft <span class="math inline">\(\sqrt{\langle x^2 \rangle}\)</span>; eerst de wortel per molecuul en dan middelen geeft de gemiddelde afstand <span class="math inline">\(\langle |x| \rangle\)</span>. Die twee zijn net niet gelijk: <span class="math inline">\(\sqrt{\langle x^2 \rangle}\)</span> is iets groter, omdat het kwadrateren de verre moleculen zwaarder laat meetellen. We gebruiken <span class="math inline">\(\langle x^2 \rangle\)</span> omdat de kwadraten netjes optellen, zoals we zo zien.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-kwadraat" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-kwadraat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-kwadraat-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-kwadraat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.4: Dezelfde 20 moleculen als in de munt-simulatie. Links: de positie <span class="math inline">\(x\)</span>. Midden: het kwadraat <span class="math inline">\(x^2\)</span>; het gemiddelde over 1000 moleculen (rood) groeit lineair en volgt de lijn <span class="math inline">\(n\ell^2\)</span>. Rechts: de wortel van het kwadraat, <span class="math inline">\(\sqrt{x^2} = |x|\)</span>, spiegelt de negatieve posities naar boven; de rode lijn is <span class="math inline">\(\sqrt{\langle x^2 \rangle}\)</span>, de oranje lijn het gemiddelde van <span class="math inline">\(|x|\)</span>.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Na 10 stappen is in deze simulatie <span class="math inline">\(\langle x^2 \rangle = 9{,}84\)</span> (theorie: 10), <span class="math inline">\(\sqrt{\langle x^2 \rangle} = 3{,}14\)</span> en de gemiddelde <span class="math inline">\(|x|\)</span> is <span class="math inline">\(2{,}47\)</span>. De middelste plot is het belangrijkst: de afzonderlijke kwadraten schieten alle kanten op, maar hun gemiddelde groeit <strong>lineair</strong> met het aantal stappen.</p>
+<p><strong>Twee stappen.</strong> De simulatie laat zien dat <span class="math inline">\(\langle x^2 \rangle\)</span> lineair groeit met het aantal stappen. Maar waarom, en met hoeveel per stap? Dat bepaalt hoe snel de wolk breder wordt, en daarmee de diffusiecoëfficiënt <span class="math inline">\(D\)</span>. We beginnen met het kleinste geval. Neem veel moleculen die elk twee stappen zetten. Er zijn <span class="math inline">\(2 \times 2 = 4\)</span> paden, en elk pad wordt door ongeveer een kwart van de moleculen gevolgd. Het gemiddelde over de moleculen is dus het gemiddelde over de vier paden. Om te zien waar het resultaat vandaan komt, werken we het kwadraat uit, net als <span class="math inline">\((a+b)^2 = a^2 + b^2 + 2ab\)</span>:</p>
+<p><span class="math display">\[
+x^2 = (s_1 + s_2)^2 = \underbrace{s_1^2 + s_2^2}_{\text{altijd } 2\ell^2} + \underbrace{2\, s_1 s_2}_{\text{kruisterm: } \pm 2\ell^2}
+\]</span></p>
+<div class="cell">
+<div id="tbl-kruisterm" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kruisterm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: De vier paden van twee stappen. De kwadraten van de stappen zijn altijd samen <span class="math inline">\(2\ell^2\)</span>; de kruisterm is gemiddeld nul.
+</figcaption>
+<div aria-describedby="tbl-kruisterm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 22%">
+<col style="width: 18%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">pad</th>
+<th style="text-align: center;"><span class="math inline">\(s_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(s_1^2 + s_2^2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(2\,s_1 s_2\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(x^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">rechts, rechts</td>
+<td style="text-align: center;"><span class="math inline">\(+\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4\ell^2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rechts, links</td>
+<td style="text-align: center;"><span class="math inline">\(+\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">links, rechts</td>
+<td style="text-align: center;"><span class="math inline">\(-\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">links, links</td>
+<td style="text-align: center;"><span class="math inline">\(-\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(-\ell\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(+2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(4\ell^2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>gemiddeld</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(2\ell^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(2\ell^2\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Geen enkel molecuul heeft precies <span class="math inline">\(x^2 = 2\ell^2\)</span> (het is <span class="math inline">\(4\ell^2\)</span> of <span class="math inline">\(0\)</span>), maar gemiddeld wel. De kruisterm laat zien of twee stappen elkaar versterken of opheffen. Gaan ze dezelfde kant op, dan versterken ze elkaar en is de kruisterm <span class="math inline">\(+2\ell^2\)</span>; gaan ze tegengesteld, dan heffen ze elkaar op en is hij <span class="math inline">\(-2\ell^2\)</span>. Omdat het molecuul zijn vorige stap niet onthoudt, komen beide even vaak voor: gemiddeld is de kruisterm nul.</p>
+<p><strong>Bij</strong> <span class="math inline">\(n\)</span> stappen werkt het precies zo: <span class="math inline">\(n\)</span> kwadraten van elk <span class="math inline">\(\ell^2\)</span>, en alle kruistermen zijn gemiddeld nul. Elke stap voegt dus gemiddeld <span class="math inline">\(\ell^2\)</span> toe:</p>
+<p><span class="math display">\[
+\langle x^2 \rangle = n\,\ell^2 .
+\]</span></p>
+</section>
+<section id="van-stappen-naar-tijd-de-diffusiecoëfficiënt" class="level3" data-number="4.1.4">
+<h3 data-number="4.1.4" class="anchored" data-anchor-id="van-stappen-naar-tijd-de-diffusiecoëfficiënt"><span class="header-section-number">4.1.4</span> Van stappen naar tijd: de diffusiecoëfficiënt</h3>
+<p>In een tijd <span class="math inline">\(t\)</span> zet een molecuul <span class="math inline">\(n = t/\tau\)</span> stappen. Dan wordt</p>
+<p><span class="math display">\[
+\langle x^2 \rangle = n\,\ell^2 = \frac{\ell^2}{\tau}\, t = 2Dt, \qquad \text{met} \quad \boxed{D = \frac{\ell^2}{2\tau}} .
+\]</span></p>
+<p><span class="math inline">\(D\)</span> heet de <strong>diffusiecoëfficiënt</strong> (eenheid m²/s). Het is één getal dat het toeval samenvat: de stapgrootte <span class="math inline">\(\ell\)</span> en de staptijd <span class="math inline">\(\tau\)</span>. De factor 2 is een afspraak; daardoor verschijnt straks precies dezelfde <span class="math inline">\(D\)</span> in de wet van Fick.</p>
+<p>Wat zijn <span class="math inline">\(\ell\)</span> en <span class="math inline">\(\tau\)</span> voor een echt molecuul? Een molecuul draait niet ineens om, maar verliest zijn richting geleidelijk door de botsingen. <span class="math inline">\(\tau\)</span> is de tijd waarin het zijn richting <em>vergeet</em>, en <span class="math inline">\(\ell\)</span> de afstand die het in die tijd aflegt. Voor glucose in water bij 37 °C is <span class="math inline">\(\tau\)</span> ongeveer <span class="math inline">\(10^{-13}\)</span> s (tien biljoen onafhankelijke stappen per seconde) en <span class="math inline">\(\ell\)</span> ongeveer 0,01 nm, een tiende van de diameter van een atoom. Piepkleine, razendsnelle stapjes; toch komt het molecuul in één seconde zo’n 30 µm ver, want <span class="math inline">\(n\ell^2 \approx 10^{13} \times (10^{-11}\ \text{m})^2 = 10^{-9}\)</span> m². De details van <span class="math inline">\(\ell\)</span> en <span class="math inline">\(\tau\)</span> doen er niet toe; alleen de combinatie <span class="math inline">\(D = \ell^2/2\tau\)</span> telt.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-randomwalk" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-randomwalk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-randomwalk-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-randomwalk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.5: Links: tien moleculen, elk onvoorspelbaar. Rechts: het gemiddelde van <span class="math inline">\(x^2\)</span> over 500 moleculen volgt precies <span class="math inline">\(\langle x^2 \rangle = n\ell^2\)</span> (hier met <span class="math inline">\(\ell = 1\)</span>).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Toeval geeft hier dus een vaste wet. Elk molecuul afzonderlijk is onvoorspelbaar, maar het gemiddelde over veel moleculen volgt precies <span class="math inline">\(\langle x^2 \rangle = 2Dt\)</span>.</p>
+</section>
+<section id="twee-keer-zo-ver-duurt-vier-keer-zo-lang" class="level3" data-number="4.1.5">
+<h3 data-number="4.1.5" class="anchored" data-anchor-id="twee-keer-zo-ver-duurt-vier-keer-zo-lang"><span class="header-section-number">4.1.5</span> Twee keer zo ver duurt vier keer zo lang</h3>
+<p>De typische afstand <span class="math inline">\(L\)</span> tot het beginpunt is <span class="math inline">\(\sqrt{\langle x^2 \rangle}\)</span>, dus</p>
+<p><span class="math display">\[
+L^2 \approx 2Dt
+\qquad\Longleftrightarrow\qquad
+t \approx \frac{L^2}{2D}.
+\]</span></p>
+<p>De tijd groeit met het <em>kwadraat</em> van de afstand:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">afstand</th>
+<th style="text-align: center;">tijd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1×</td>
+<td style="text-align: center;">1×</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2×</td>
+<td style="text-align: center;">4×</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10×</td>
+<td style="text-align: center;">100×</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1000×</td>
+<td style="text-align: center;">1 000 000×</td>
+</tr>
+</tbody>
+</table>
+<p>Deze formule geldt voor de afstand in één richting, bijvoorbeeld dwars door een membraan of door een kanaal, waarin een molecuul maar één kant op kan. In twee en drie dimensies wordt de factor 2 een 4 en een 6 (<span class="math inline">\(L^2 \approx 4Dt\)</span> en <span class="math inline">\(L^2 \approx 6Dt\)</span>), omdat er per richting <span class="math inline">\(2Dt\)</span> bijkomt. De diffusiecoëfficiënt <span class="math inline">\(D\)</span> blijft dezelfde, en twee keer zo ver blijft vier keer zo lang.</p>
+</section>
+<section id="hoe-groot-is-d" class="level3" data-number="4.1.6">
+<h3 data-number="4.1.6" class="anchored" data-anchor-id="hoe-groot-is-d"><span class="header-section-number">4.1.6</span> Hoe groot is <span class="math inline">\(D\)</span>?</h3>
+<p>De stapjes worden bepaald door warmte en wrijving. Voor een bolvormig molecuul in een vloeistof geldt de <strong>Stokes–Einstein-relatie</strong>:</p>
+<p><span class="math display">\[
+D = \frac{\ell^2}{2\tau} = \frac{kT}{6\pi\eta r}.
+\]</span></p>
+<ul>
+<li><strong>Boven de streep:</strong> <span class="math inline">\(kT\)</span>, de thermische energie van een molecuul. <span class="math inline">\(T\)</span> is de temperatuur in kelvin en <span class="math inline">\(k\)</span> de constante van Boltzmann. Warmte zorgt voor de botsingen en drijft de beweging aan.</li>
+<li><strong>Onder de streep:</strong> <span class="math inline">\(6\pi\eta r\)</span>, de wrijving met de vloeistof. <span class="math inline">\(\eta\)</span> is de viscositeit (stroperigheid) en <span class="math inline">\(r\)</span> de straal van het molecuul. Wrijving remt de beweging af.</li>
+</ul>
+<p>Een groter molecuul diffundeert dus langzamer, maar minder dan je misschien zou denken. Eiwitten hebben ongeveer allemaal dezelfde dichtheid, dus een eiwit met een duizend keer zo groot volume (en dus ook ongeveer duizend keer zo zwaar) heeft een straal die maar <span class="math inline">\(\sqrt[3]{1000} = 10\)</span> keer zo groot is. Het diffundeert dan tien keer zo langzaam. Waar de Stokes–Einstein-relatie vandaan komt, staat in Verdieping A.</p>
+</section>
+<section id="getallen" class="level3" data-number="4.1.7">
+<h3 data-number="4.1.7" class="anchored" data-anchor-id="getallen"><span class="header-section-number">4.1.7</span> Getallen</h3>
+<div class="cell">
+<div id="tbl-diffusietijden" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-diffusietijden-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Diffusiecoëfficiënt (Stokes–Einstein, in water bij 37 °C) en de tijd <span class="math inline">\(t \approx L^2/2D\)</span> om een afstand <span class="math inline">\(L\)</span> in één richting te overbruggen.
+</figcaption>
+<div aria-describedby="tbl-diffusietijden-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 14%">
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 15%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Molecuul</th>
+<th style="text-align: right;">D (µm²/s)</th>
+<th style="text-align: center;">10 µm (cel)</th>
+<th style="text-align: center;">1 mm</th>
+<th style="text-align: center;">1 cm</th>
+<th style="text-align: center;">1 m</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">zuurstof (O2)</td>
+<td style="text-align: right;">1900</td>
+<td style="text-align: center;">0,026 s</td>
+<td style="text-align: center;">4,3 min</td>
+<td style="text-align: center;">7,2 uur</td>
+<td style="text-align: center;">8,2 jaar</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glucose</td>
+<td style="text-align: right;">870</td>
+<td style="text-align: center;">0,058 s</td>
+<td style="text-align: center;">9,6 min</td>
+<td style="text-align: center;">16 uur</td>
+<td style="text-align: center;">18 jaar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">eiwit (~50 kDa)</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: center;">0,38 s</td>
+<td style="text-align: center;">1,1 uur</td>
+<td style="text-align: center;">4,4 dagen</td>
+<td style="text-align: center;">120 jaar</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Binnen een cel is diffusie snel: een fractie van een seconde. Over millimeters wordt ze traag en over centimeters onbruikbaar. <strong>Diffusie verloopt niet lineair met de afstand.</strong> Voor glucose is 1 meter 100 000 keer zo ver als 10 µm, maar het duurt ongeveer 10 miljard keer zo lang: 18 jaar tegenover een twintigste seconde. Een lineaire schatting zou voor 10 µm ruim anderhalf uur geven; dat geldt voor iets dat met constante snelheid rechtdoor gaat, niet voor diffusie.</p>
+<p>(In cytoplasma, dat voller en stroperiger is dan water, gaat diffusie nog enkele malen langzamer. Voor kleine moleculen zoals zuurstof is Stokes–Einstein maar een benadering: gemeten is <span class="math inline">\(D\)</span> daar ongeveer anderhalf keer zo groot.)</p>
+<p>Omdat <span class="math inline">\(t \approx L^2/2D\)</span> een machtsfunctie is, geeft een figuur met logaritmische assen een rechte lijn met helling 2, net als bij de allometrische schaalrelaties.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-diffusietijd" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-diffusietijd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-diffusietijd-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-diffusietijd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.6: Diffusietijd tegen afstand op logaritmische assen. Elke lijn heeft helling 2.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="wat-het-betekent-voor-de-biologie" class="level3" data-number="4.1.8">
+<h3 data-number="4.1.8" class="anchored" data-anchor-id="wat-het-betekent-voor-de-biologie"><span class="header-section-number">4.1.8</span> Wat het betekent voor de biologie</h3>
+<p>Organismen die het zonder transportsysteem doen, zijn klein of plat, zoals eencelligen en platwormen. Een embryo van een gewerveld dier loopt tegen dezelfde grens aan zodra het een paar millimeter groot wordt: het hart is het eerste orgaan dat gaat werken. Planten lossen hetzelfde probleem op met stroming (<em>bulk flow</em>) in xyleem en floëem. Bij stroming groeit de transporttijd evenredig met de afstand, niet met het kwadraat ervan.</p>
+</section>
+<section id="van-toeval-naar-stroom-de-wet-van-fick" class="level3" data-number="4.1.9">
+<h3 data-number="4.1.9" class="anchored" data-anchor-id="van-toeval-naar-stroom-de-wet-van-fick"><span class="header-section-number">4.1.9</span> Van toeval naar stroom: de wet van Fick</h3>
+<p>Waarom gaat er netto meer stof van hoge naar lage concentratie? Neem twee aangrenzende compartimenten met links 8 en rechts 2 moleculen. Elk molecuul heeft dezelfde kans, zeg 50 %, om naar de andere kant te springen. Van links gaan er dan ongeveer 4 naar rechts, van rechts ongeveer 1 naar links. Netto gaan er 3 naar rechts, alleen omdat er links meer moleculen zijn.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fick-8-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fick-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-fick-8-2-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fick-8-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.7: Links 8, rechts 2 moleculen. Elk molecuul heeft dezelfde kans om over te steken, maar omdat er links meer zijn, gaan er netto ongeveer 3 naar rechts.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Dit idee kunnen we precies maken met dezelfde stapjes als in de random walk. Neem twee aangrenzende laagjes, elk met dikte <span class="math inline">\(\ell\)</span> (één stap) en oppervlak <span class="math inline">\(A\)</span>, met <span class="math inline">\(N_L\)</span> en <span class="math inline">\(N_R\)</span> moleculen. De dikte is precies één stap, omdat alleen moleculen binnen afstand <span class="math inline">\(\ell\)</span> van de grens er in één stap overheen kunnen.</p>
+<ol type="1">
+<li><strong>Netto aantal per stap.</strong> In een tijdstap <span class="math inline">\(\tau\)</span> springt de helft van de moleculen in elk laagje naar de andere kant. Netto gaan er <span class="math inline">\(\tfrac{1}{2}(N_L - N_R)\)</span> van links naar rechts.</li>
+<li><strong>Flux.</strong> De flux <span class="math inline">\(J\)</span> is het aantal per oppervlak en per tijd: <span class="math inline">\(J = \dfrac{N_L - N_R}{2A\tau}\)</span>.</li>
+<li><strong>Van aantallen naar concentraties.</strong> Een laagje heeft volume <span class="math inline">\(A\ell\)</span>, dus <span class="math inline">\(N = C \cdot A\ell\)</span> en <span class="math inline">\(N_L - N_R = A\ell\,(C_L - C_R)\)</span>.</li>
+<li><strong>Concentratieverschil als helling.</strong> <span class="math inline">\(C_L\)</span> en <span class="math inline">\(C_R\)</span> zijn de gemiddelde concentraties in de laagjes, ongeveer de concentratie in hun midden. De <strong>middens</strong> van de laagjes liggen een afstand <span class="math inline">\(\ell\)</span> uit elkaar, dus <span class="math inline">\(C_L - C_R \approx -\ell\, \dfrac{\partial C}{\partial x}\)</span>.</li>
+</ol>
+<p><strong>De formule in beweging.</strong> In de animatie beginnen 20 000 moleculen bijna allemaal links. Elk molecuul springt per stap met kans ½ naar links of naar rechts. Het onderste paneel vergelijkt de netto stroom die in de simulatie is geteld (oranje) met wat de wet van Fick voorspelt (zwarte lijn).</p>
+<div id="fig-fick-animatie" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fick-animatie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="fick_animatie.gif" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fick-animatie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.8: De wet van Fick ontstaat uit willekeurige stapjes. Boven: de moleculen. Midden: het aantal per laagje. Onder: de netto stroom over elke grens, geteld (oranje) en voorspeld met ½(N_L − N_R) (zwart).
+</figcaption>
+</figure>
+</div>
+<p>Let op drie dingen. De stroom is het grootst waar het profiel het steilst is. Naarmate het profiel vlakker wordt, neemt de stroom af. En de getelde stroom schommelt rond de voorspelling: de wet van Fick geldt voor het gemiddelde, niet voor elke stap afzonderlijk.</p>
+<p>Invullen geeft de <strong>wet van Fick</strong>:</p>
+<p><span class="math display">\[
+J = \frac{A\ell \cdot \left(-\ell\,\frac{\partial C}{\partial x}\right)}{2A\tau}
+= -\frac{\ell^2}{2\tau}\,\frac{\partial C}{\partial x}
+= -D\,\frac{\partial C}{\partial x}.
+\]</span></p>
+<p>Dit is <strong>dezelfde</strong> <span class="math inline">\(D\)</span> als in de random walk. <span class="math inline">\(J\)</span> is de stroom (hoeveel stof per seconde door een oppervlak van 1 m² gaat). <span class="math inline">\(C\)</span> is de concentratie van de stof die diffundeert, als hoeveelheid per volume, bijvoorbeeld in mol/m³ (1 mM = 1 mol/m³); dan is <span class="math inline">\(J\)</span> in mol per m² per seconde. Elke stof heeft zijn eigen gradiënt en zijn eigen stroom. <span class="math inline">\(\partial C/\partial x\)</span> zegt hoe steil de concentratie verandert met de plaats. Het kromme <span class="math inline">\(\partial\)</span> betekent: kijk alleen naar de verandering met de plaats <span class="math inline">\(x\)</span> en houd de tijd vast; de concentratie hangt namelijk af van plaats én tijd. Het minteken zegt dat de stroom van hoog naar laag gaat.</p>
+<p>De historische volgorde is omgekeerd aan die in dit hoofdstuk. Adolf Fick, een fysioloog, vond deze wet in 1855 als beschrijving van wat hij mat, naar analogie van de warmtewet van Fourier; <span class="math inline">\(D\)</span> was voor hem een gemeten constante. Pas in 1905 lieten Einstein (en onafhankelijk Smoluchowski in 1906) zien dat de wet volgt uit willekeurige moleculaire stappen, toen nog niet iedereen geloofde dat moleculen bestaan. Jean Perrin bevestigde dat in 1908–1909 met metingen aan Brownse beweging.</p>
+<p>Als de concentratie overal gelijk is, is <span class="math inline">\(\partial C/\partial x = 0\)</span> en dus <span class="math inline">\(J = 0\)</span>: er is geen netto stroom meer. Dat is <strong>evenwicht</strong>, en dat klopt met je intuïtie: als het overal even vol is, is er geen reden om ergens heen te stromen.</p>
+<p>Bij een dun membraan kennen we niet hoe de concentratie <em>in</em> het membraan verloopt, alleen de concentraties aan beide kanten. Daarom vervangen we de helling door het verschil tussen beide kanten: <span class="math inline">\(J = P\,(C_1 - C_2)\)</span>, met <span class="math inline">\(P\)</span> de <em>permeabiliteit</em> van het membraan. Kanalen en carriers maken <span class="math inline">\(P\)</span> groter.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Geen enkel molecuul “weet” waar de lage concentratie is
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>De kans per molecuul om naar links of naar rechts te springen is <em>altijd</em> gelijk. Er is alleen een netto stroom omdat er aan één kant meer moleculen zijn die die kans krijgen.</p>
+</div>
+</div>
+<p>De wet van Fick beschrijft de stroom, maar zegt niet <em>waarom</em> een systeem altijd bij de gelijke verdeling uitkomt en nooit vanzelf terug naar alles aan één kant. Om dat te begrijpen, kijken we naar de <strong>kans</strong> op elke mogelijke verdeling. Zo kunnen we toestanden van een systeem met elkaar vergelijken: welke is het waarschijnlijkst?</p>
+</section>
+</section>
+<section id="waarom-stopt-het-bij-een-gelijke-verdeling-en-is-dat-evenwicht-statisch" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="waarom-stopt-het-bij-een-gelijke-verdeling-en-is-dat-evenwicht-statisch"><span class="header-section-number">4.2</span> Waarom stopt het bij een gelijke verdeling, en is dat evenwicht statisch?</h2>
+<section id="wat-je-ziet-1" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="wat-je-ziet-1"><span class="header-section-number">4.2.1</span> Wat je ziet</h3>
+<p>In de simulatie hieronder beginnen 100 moleculen allemaal in het linker compartiment. Elke tijdstap wisselt één willekeurig gekozen molecuul van kant. Het systeem loopt naar 50 links en 50 rechts, en blijft daar rond schommelen. Er zit geen kracht in dit model, alleen toeval.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ehrenfest" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ehrenfest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-ehrenfest-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ehrenfest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.9: Honderd moleculen die allemaal links beginnen. Elke stap wisselt één willekeurig molecuul van kant. Het aantal links loopt naar 50 en schommelt daarna rond die waarde.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="waarom-het-gebeurt-1" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="waarom-het-gebeurt-1"><span class="header-section-number">4.2.2</span> Waarom het gebeurt</h3>
+<p>De verklaring is tellen. Neem vier moleculen, A, B, C en D. Er zijn 16 manieren om ze over twee compartimenten te verdelen, en die zijn allemaal even waarschijnlijk. Maar ze leiden niet allemaal tot hetzelfde <em>aantal</em> links: alles links kan maar op één manier, twee links en twee rechts op zes manieren.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-vier-moleculen" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-vier-moleculen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-vier-moleculen-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-vier-moleculen-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.10: Alle 16 manieren om vier moleculen (A–D) over twee compartimenten te verdelen. De gelijke verdeling (2 links, 2 rechts) komt het vaakst voor: 1, 4, 6, 4, 1.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="de-formule" class="level3" data-number="4.2.3">
+<h3 data-number="4.2.3" class="anchored" data-anchor-id="de-formule"><span class="header-section-number">4.2.3</span> De formule</h3>
+<p>Het aantal manieren om <span class="math inline">\(n_L\)</span> van de <span class="math inline">\(N\)</span> moleculen links te hebben, heet de <em>binomiaalcoëfficiënt</em>:</p>
+<p><span class="math display">\[
+W(n_L) = \frac{N!}{n_L!\,(N - n_L)!}.
+\]</span></p>
+<p>Controleer het voor vier moleculen met twee links: <span class="math inline">\(W = \frac{4!}{2!\,2!} = \frac{24}{4} = 6\)</span>.</p>
+<p>Hoe meer moleculen, hoe sterker de gelijke verdeling wint. Een druppel (0,05 mL) van een oplossing van 1 mM bevat al ongeveer <span class="math inline">\(3 \cdot 10^{16}\)</span> opgeloste moleculen. Bij zulke aantallen zijn de schommelingen rond de gelijke verdeling onzichtbaar klein.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-binomiaalpiek" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binomiaalpiek-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-binomiaalpiek-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binomiaalpiek-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.11: Kans op een bepaalde fractie moleculen links, voor N = 10, 100 en 1000. Hoe meer moleculen, hoe scherper de piek bij de gelijke verdeling.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Boltzmann noemde het logaritme van het aantal manieren de <strong>entropie</strong>:</p>
+<p><span class="math display">\[
+S = k \ln W.
+\]</span></p>
+<p>Hier is <span class="math inline">\(W\)</span> het aantal <strong>microtoestanden</strong> (rangschikkingen van de afzonderlijke moleculen) dat bij één <strong>macrotoestand</strong> (zoveel links, zoveel rechts) hoort. Alle microtoestanden zijn even waarschijnlijk, maar de macrotoestanden dus niet: de kans op een macrotoestand is <span class="math inline">\(W\)</span> gedeeld door het totale aantal microtoestanden. Bij vier moleculen heeft “2 links, 2 rechts” kans <span class="math inline">\(\tfrac{6}{16}\)</span> en “alles links” maar <span class="math inline">\(\tfrac{1}{16}\)</span>. De letter <span class="math inline">\(W\)</span> komt van het Duitse <em>Wahrscheinlichkeit</em>; de formule staat op de grafsteen van Boltzmann in Wenen.</p>
+<p>Entropie meet dus hoeveel microscopische rangschikkingen bij dezelfde toestand horen. “Alles links” heeft entropie <span class="math inline">\(k \ln 1 = 0\)</span>, omdat het maar op één manier kan. <strong>Evenwicht is de toestand met de meeste rangschikkingen: maximale entropie.</strong> De tweede hoofdwet is hier geen mysterie. Een systeem belandt vanzelf in de toestand die op verreweg de meeste manieren kan, zoals een geschud pak kaarten nooit vanzelf terug in de keurige volgorde komt.</p>
+</section>
+<section id="van-shannon-naar-boltzmann" class="level3" data-number="4.2.4">
+<h3 data-number="4.2.4" class="anchored" data-anchor-id="van-shannon-naar-boltzmann"><span class="header-section-number">4.2.4</span> Van Shannon naar Boltzmann</h3>
+<p>In het maïshoofdstuk zagen jullie de Shannon-entropie <span class="math inline">\(H = -\sum_i p_i \log_2 p_i\)</span>. In de natuurkunde heet dezelfde formule, met <span class="math inline">\(\ln\)</span> en de constante <span class="math inline">\(k\)</span>, de Gibbs-entropie: <span class="math inline">\(S = -k \sum_i p_i \ln p_i\)</span>. Als alle <span class="math inline">\(W\)</span> rangschikkingen even waarschijnlijk zijn, is elke kans <span class="math inline">\(p_i = 1/W\)</span>. Alle <span class="math inline">\(W\)</span> termen van de som zijn dan gelijk:</p>
+<p><span class="math display">\[
+S = -k \sum_{i=1}^{W} \frac{1}{W} \ln \frac{1}{W}
+= -k \cdot W \cdot \frac{1}{W} \ln \frac{1}{W}
+= -k \ln \frac{1}{W}
+= k \ln W .
+\]</span></p>
+<p>De formule van Boltzmann is dus het speciale geval waarin alle mogelijkheden even waarschijnlijk zijn; de formule van Gibbs en Shannon werkt ook als dat niet zo is. Het verschil tussen bits en <span class="math inline">\(k\)</span> is alleen een eenheid: met gelijke kansen is <span class="math inline">\(H = \log_2 W\)</span>, en <span class="math inline">\(S = k \ln W = (k \ln 2)\,H\)</span>. Elke bit is dus <span class="math inline">\(k \ln 2\)</span> entropie. Bij de vier moleculen zijn er 16 rangschikkingen: <span class="math inline">\(H = \log_2 16 = 4\)</span> bits, één bit per molecuul (links of rechts?).</p>
+</section>
+<section id="evenwicht-is-niet-statisch-maar-statistisch" class="level3" data-number="4.2.5">
+<h3 data-number="4.2.5" class="anchored" data-anchor-id="evenwicht-is-niet-statisch-maar-statistisch"><span class="header-section-number">4.2.5</span> Evenwicht is niet statisch, maar statistisch</h3>
+<p>In evenwicht staan de moleculen niet stil. Door warmte blijven ze bewegen, met biljoenen botsingen per seconde. Bij 50 links en 50 rechts gaan er voortdurend moleculen heen en weer, evenveel in beide richtingen. Alleen de <strong>gemiddelden</strong> liggen vast: de stromen in beide richtingen zijn gelijk, dus er is geen netto stroom. Dit heet een <em>dynamisch evenwicht</em>. Daarom schommelt de lijn in de simulatie rond 50. Bij <span class="math inline">\(10^{16}\)</span> moleculen zijn die schommelingen onzichtbaar klein, maar de beweging gaat gewoon door.</p>
+<p>Wat is er in evenwicht dan veranderd ten opzichte van het begin? Niet de kansen: elk molecuul heeft nog steeds 50 % kans om over te steken. Wel de aantallen: links en rechts zitten nu evenveel moleculen. Met dezelfde kans van 50 % gaan er dan evenveel naar links als naar rechts.</p>
+</section>
+<section id="en-bij-ionen" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="en-bij-ionen"><span class="header-section-number">4.2.6</span> En bij ionen?</h3>
+<p>Voor een ion telt ook de <strong>lading</strong>. De binnenkant van een cel is negatief (ongeveer <span class="math inline">\(-70\)</span> mV) en trekt positieve ionen aan. Een Na⁺-ion heeft daardoor een grotere kans om naar binnen te springen dan naar buiten: bij <span class="math inline">\(-70\)</span> mV ongeveer 14 keer zo groot. Het evenwicht ligt dan niet meer bij gelijke concentraties, maar waar het effect van de concentratie en het effect van de lading elkaar precies opheffen. Dat geeft de Nernst-vergelijking (Verdieping D). Bij vraag 4 komt de lading terug als tweede helling: de <em>elektrochemische gradiënt</em>.</p>
+</section>
+</section>
+<section id="wat-als-de-opgeloste-stof-niet-door-het-membraan-kan" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="wat-als-de-opgeloste-stof-niet-door-het-membraan-kan"><span class="header-section-number">4.3</span> Wat als de opgeloste stof niet door het membraan kan?</h2>
+<p>Hoe ontstaat dan een evenwicht, en waarom hoort daar een drukverschil bij?</p>
+<section id="wat-je-ziet-2" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="wat-je-ziet-2"><span class="header-section-number">4.3.1</span> Wat je ziet</h3>
+<p>Neem een membraan dat water doorlaat, maar een opgeloste stof niet. Aan beide kanten zit opgeloste stof, links weinig en rechts veel. Water stroomt dan netto naar rechts.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-osmose-start" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-osmose-start-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-osmose-start-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osmose-start-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.12: Begin: links weinig, rechts veel opgeloste stof. Rechts zijn per volume minder watermoleculen, dus er gaan per seconde meer watermoleculen naar rechts dan terug.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="waarom-het-gebeurt-tellen" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="waarom-het-gebeurt-tellen"><span class="header-section-number">4.3.2</span> Waarom het gebeurt: tellen</h3>
+<p>Elk watermolecuul heeft aan beide kanten dezelfde kans om door het membraan te gaan. Maar rechts zijn meer plekken bezet door opgeloste deeltjes, dus per volume zijn er rechts minder watermoleculen. Er gaan per seconde daarom meer watermoleculen naar rechts dan terug. Het is hetzelfde argument als bij de 8 en 2 moleculen, maar nu voor water.</p>
+</section>
+<section id="waarom-het-gebeurt-entropie" class="level3" data-number="4.3.3">
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="waarom-het-gebeurt-entropie"><span class="header-section-number">4.3.3</span> Waarom het gebeurt: entropie</h3>
+<p>Een klein rekenvoorbeeld maakt zichtbaar wat er met de entropie gebeurt. Denk aan een rooster van plekken die elk door één water- of één opgelost deeltje worden ingenomen. Het aantal rangschikkingen is het aantal manieren om de opgeloste deeltjes over de plekken te verdelen: de binomiaalcoëfficiënt. We verplaatsen één watermolecuul van links naar rechts:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">begin</th>
+<th style="text-align: center;">rangschikkingen</th>
+<th style="text-align: left;">na verplaatsen</th>
+<th style="text-align: center;">rangschikkingen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">links</td>
+<td style="text-align: left;">6 plekken: 1 opgelost, 5 water</td>
+<td style="text-align: center;"><span class="math inline">\(\binom{6}{1} = 6\)</span></td>
+<td style="text-align: left;">5 plekken: 1 opgelost, 4 water</td>
+<td style="text-align: center;"><span class="math inline">\(\binom{5}{1} = 5\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">rechts</td>
+<td style="text-align: left;">6 plekken: 2 opgelost, 4 water</td>
+<td style="text-align: center;"><span class="math inline">\(\binom{6}{2} = 15\)</span></td>
+<td style="text-align: left;">7 plekken: 2 opgelost, 5 water</td>
+<td style="text-align: center;"><span class="math inline">\(\binom{7}{2} = 21\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Elke rangschikking links kan met elke rangschikking rechts samengaan, dus het aantal voor het hele systeem is het <strong>product</strong> van beide kanten, zoals twee dobbelstenen samen <span class="math inline">\(6 \times 6 = 36\)</span> uitkomsten hebben. Het is dezelfde productregel als bij de <span class="math inline">\(2 \times 2 = 4\)</span> paden van de random walk. In het begin zijn er dus <span class="math inline">\(6 \times 15 = 90\)</span> rangschikkingen. Omdat de logaritme van een product de som van de logaritmes is, tellen entropieën daardoor op: <span class="math inline">\(S = k \ln(W_L W_R) = S_L + S_R\)</span>, de additiviteit van entropie uit het maïshoofdstuk.</p>
+<p>Een watermolecuul kan vanuit deze begintoestand twee kanten op. Welke richting is waarschijnlijker?</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">één watermolecuul gaat</th>
+<th style="text-align: center;">links</th>
+<th style="text-align: center;">rechts</th>
+<th style="text-align: center;">hele systeem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">naar rechts</td>
+<td style="text-align: center;">1 opgelost, 4 water: <span class="math inline">\(\binom{5}{1} = 5\)</span></td>
+<td style="text-align: center;">2 opgelost, 5 water: <span class="math inline">\(\binom{7}{2} = 21\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(5 \times 21 = 105\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">naar links</td>
+<td style="text-align: center;">1 opgelost, 6 water: <span class="math inline">\(\binom{7}{1} = 7\)</span></td>
+<td style="text-align: center;">2 opgelost, 3 water: <span class="math inline">\(\binom{5}{2} = 10\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(7 \times 10 = 70\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Naar rechts levert <strong>meer</strong> rangschikkingen op (105 &gt; 90), naar links <strong>minder</strong> (70 &lt; 90). Daarom gaat water netto naar de kant met meer opgeloste stof.</p>
+<p>Links neemt de entropie iets af, want daar verdwijnt water. Rechts neemt ze meer toe, want daar wordt de oplossing verdund. Een extra watermolecuul levert vooral nieuwe rangschikkingen op als er veel opgeloste deeltjes zijn om mee te mengen; in zuiver water maakt het niet uit waar een extra watermolecuul komt, want alle watermoleculen zijn gelijk. Netto neemt de entropie van het hele systeem toe.</p>
+<p><strong>Water wordt dus niet aangetrokken door de opgeloste stof; het water lost de ongelijkheid op die de opgeloste stof zelf niet kan oplossen.</strong></p>
+</section>
+<section id="hoeveel-entropie-wint-één-watermolecuul" class="level3" data-number="4.3.4">
+<h3 data-number="4.3.4" class="anchored" data-anchor-id="hoeveel-entropie-wint-één-watermolecuul"><span class="header-section-number">4.3.4</span> Hoeveel entropie wint één watermolecuul?</h3>
+<p>Met <span class="math inline">\(N_w\)</span> watermoleculen en <span class="math inline">\(N_s\)</span> opgeloste deeltjes is het aantal rangschikkingen <span class="math inline">\(W = \dfrac{(N_w + N_s)!}{N_w!\,N_s!}\)</span>. Komt er één watermolecuul bij, dan wordt dat</p>
+<p><span class="math display">\[
+\frac{W_\text{na}}{W_\text{voor}} = \frac{N_w + N_s + 1}{N_w + 1} \approx 1 + \frac{N_s}{N_w} \approx 1 + x_s ,
+\]</span></p>
+<p>waarin <span class="math inline">\(x_s\)</span> het aandeel opgeloste deeltjes is. (In het rooster rechts: <span class="math inline">\(\tfrac{7}{5} = 1{,}4\)</span>.) Met <span class="math inline">\(S = k \ln W\)</span> en de benadering <span class="math inline">\(\ln(1 + x) \approx x\)</span> voor kleine <span class="math inline">\(x\)</span> wordt de entropiewinst</p>
+<p><span class="math display">\[
+\Delta S \approx k \ln(1 + x_s) \approx k\,x_s .
+\]</span></p>
+<p>De benadering <span class="math inline">\(\ln(1+x) \approx x\)</span> werkt omdat de logaritme vlak bij <span class="math inline">\(x = 0\)</span> bijna een rechte lijn met helling 1 is; de fout is ongeveer <span class="math inline">\(x/2\)</span>. In een biologische oplossing is <span class="math inline">\(x_s\)</span> heel klein: zuiver water is 55 mol/L, dus cytoplasma met 0,3 osmol/L heeft <span class="math inline">\(x_s \approx 0{,}3/55 \approx 0{,}005\)</span>. De benadering is daar bijna exact.</p>
+<p>Eén watermolecuul van links naar rechts verplaatsen levert dus netto</p>
+<p><span class="math display">\[
+\Delta S \approx k\,(x_{s,\text{rechts}} - x_{s,\text{links}}) .
+\]</span></p>
+<p><strong>De entropiewinst is evenredig met het verschil in opgeloste deeltjes: de osmolariteit.</strong> (In het rooster is <span class="math inline">\(x_s\)</span> helemaal niet klein, daarom klopt het daar maar ongeveer: <span class="math inline">\(\ln(105/90) \approx 0{,}15\)</span> tegenover <span class="math inline">\(\tfrac{2}{6} - \tfrac{1}{6} \approx 0{,}17\)</span>.)</p>
+</section>
+<section id="wanneer-stopt-het" class="level3" data-number="4.3.5">
+<h3 data-number="4.3.5" class="anchored" data-anchor-id="wanneer-stopt-het"><span class="header-section-number">4.3.5</span> Wanneer stopt het?</h3>
+<p>In een bak met een open bovenkant stijgt het water rechts. De hogere waterkolom duwt water terug. Zodra die druk het effect van de opgeloste stof precies opheft, gaan er evenveel watermoleculen heen als terug: <strong>osmotisch evenwicht</strong>. Let op: de concentraties zijn dan nog steeds niet gelijk.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-osmose-evenwicht" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-osmose-evenwicht-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-osmose-evenwicht-1.png" class="img-fluid figure-img" width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-osmose-evenwicht-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.13: Osmotisch evenwicht: rechts is het waterniveau gestegen. De hogere waterkolom duwt water terug, zodat er evenveel watermoleculen heen als terug gaan. Het hoogteverschil <span class="math inline">\(\Delta h\)</span> is een maat voor de osmotische druk. De concentraties zijn nog steeds niet gelijk.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Ook dit evenwicht is niet statisch: door één aquaporine gaan tot wel miljarden watermoleculen per seconde, in evenwicht evenveel heen als terug.</p>
+</section>
+<section id="entropie-tegen-druk" class="level3" data-number="4.3.6">
+<h3 data-number="4.3.6" class="anchored" data-anchor-id="entropie-tegen-druk"><span class="header-section-number">4.3.6</span> Entropie tegen druk</h3>
+<p>Elk watermolecuul dat naar rechts gaat, <strong>wint entropie</strong>: <span class="math inline">\(\Delta S \approx k\,(x_{s,\text{rechts}} - x_{s,\text{links}})\)</span>. Maar het moet ook <strong>omhoog tegen de druk</strong> in, en dat kost een energie <span class="math inline">\(\Pi \cdot v\)</span>, met <span class="math inline">\(v\)</span> het volume van één watermolecuul. Bij temperatuur <span class="math inline">\(T\)</span> is een entropiewinst <span class="math inline">\(\Delta S\)</span> evenveel waard als een energie <span class="math inline">\(T\,\Delta S\)</span>. In evenwicht zijn winst en kosten precies gelijk:</p>
+<p><span class="math display">\[
+T\,\Delta S = \Pi\, v
+\quad\Longrightarrow\quad
+\Pi = kT\,\frac{x_{s,\text{rechts}} - x_{s,\text{links}}}{v} .
+\]</span></p>
+<p><span class="math inline">\(x_s / v\)</span> is het aantal opgeloste deeltjes per volume. Per mol in plaats van per molecuul geeft dat de wet van <strong>van ’t Hoff</strong>:</p>
+<p><span class="math display">\[
+\boxed{\Pi = \Delta C\, R\, T} .
+\]</span></p>
+<p>De nette afleiding met de chemische potentiaal staat in Verdieping C.</p>
+</section>
+<section id="osmolariteit-is-entropie" class="level3" data-number="4.3.7">
+<h3 data-number="4.3.7" class="anchored" data-anchor-id="osmolariteit-is-entropie"><span class="header-section-number">4.3.7</span> Osmolariteit is entropie</h3>
+<p>Deel de evenwichtsvoorwaarde <span class="math inline">\(T\,\Delta S = \Pi\,v\)</span> door <span class="math inline">\(T\,v\)</span>:</p>
+<p><span class="math display">\[
+\underbrace{\frac{\Pi}{T}}_{\text{druk / temperatuur}}
+= \underbrace{\frac{\Delta S}{v}}_{\text{entropiewinst per volume verplaatst water}}
+= R\,\Delta C .
+\]</span></p>
+<p>Kijk naar de eenheden: <span class="math inline">\(\dfrac{\text{Pa}}{\text{K}} = \dfrac{\text{J}}{\text{K} \cdot \text{m}^3}\)</span>, entropie per volume. Het osmolariteitsverschil <span class="math inline">\(\Delta C\)</span> zegt dus hoeveel entropie het systeem wint per m³ water dat naar de geconcentreerde kant gaat. De temperatuur <span class="math inline">\(T\)</span> zet die entropiewinst om in een druk: <span class="math inline">\(\Pi = T \cdot R\,\Delta C\)</span>.</p>
+<p>Een voorbeeld: bij <span class="math inline">\(\Delta C = 300\)</span> mOsm/L <span class="math inline">\(= 300\)</span> mol/m³ is de entropiewinst <span class="math inline">\(R\,\Delta C = 8{,}314 \times 300 \approx 2500\)</span> J/(K·m³), ongeveer 2,5 J/K per liter verplaatst water. Maal <span class="math inline">\(T = 310\)</span> K geeft dat <span class="math inline">\(\Pi \approx 0{,}77\)</span> MPa.</p>
+<p>Opvallend is wat er <em>niet</em> in staat: welke stof het is. Alleen het <strong>aantal</strong> opgeloste deeltjes telt. Een glucosemolecuul en een groot eiwit leveren per deeltje dezelfde bijdrage. Dat past bij tellen, niet bij aantrekken. Bij zouten tellen alle deeltjes: NaCl levert er twee per formule-eenheid. Daarom rekenen we in <em>osmol</em>, en de osmolariteit in osmol/L.</p>
+<p>Let op het verschil tussen <span class="math inline">\(C\)</span> en <span class="math inline">\(\Delta C\)</span>. <span class="math inline">\(\Pi = C\,RT\)</span> is de osmotische druk van één oplossing ten opzichte van zuiver water. Zit er aan beide kanten opgeloste stof, dan telt alleen het verschil. Een cel van 300 mOsm/L in een oplossing van 250 mOsm/L heeft <span class="math inline">\(\Delta C = 50\)</span> mOsm/L, en dan is de druk maar een zesde van die tegen zuiver water.</p>
+</section>
+<section id="r-k-en-de-eenheden" class="level3" data-number="4.3.8">
+<h3 data-number="4.3.8" class="anchored" data-anchor-id="r-k-en-de-eenheden"><span class="header-section-number">4.3.8</span> <span class="math inline">\(R\)</span>, <span class="math inline">\(k\)</span> en de eenheden</h3>
+<p><span class="math inline">\(R = 8{,}314\)</span> J/(mol·K) is de <strong>gasconstante</strong>: de constante van Boltzmann, maar dan per mol in plaats van per molecuul. Er geldt <span class="math inline">\(R = N_A\,k\)</span>, met <span class="math inline">\(N_A = 6{,}022 \cdot 10^{23}\)</span> per mol het getal van Avogadro. <span class="math inline">\(kT\)</span> is de thermische energie van één molecuul en <span class="math inline">\(RT\)</span> die van een mol moleculen; bij 37 °C is <span class="math inline">\(RT = 2{,}58\)</span> kJ/mol.</p>
+<p>De eenheden leveren precies een druk op:</p>
+<p><span class="math display">\[
+\Pi = \underbrace{\Delta C}_{\text{mol/m}^3} \cdot \underbrace{R}_{\text{J/(mol·K)}} \cdot \underbrace{T}_{\text{K}}
+\quad\rightarrow\quad
+\frac{\text{J}}{\text{m}^3} = \frac{\text{N·m}}{\text{m}^3} = \frac{\text{N}}{\text{m}^2} = \text{Pa}.
+\]</span></p>
+<p>Druk is dus energie per volume. Gebruik <span class="math inline">\(C\)</span> in mol/m³: 1 mOsm/L is 1 mol/m³, anders zit je er een factor 1000 naast. De formule lijkt niet toevallig op de gaswet <span class="math inline">\(PV = nRT\)</span>: van ’t Hoff zag al dat opgeloste deeltjes zich gedragen als de deeltjes van een gas.</p>
+<p><span class="math inline">\(\Pi\)</span> is een drukverschil. De luchtdruk (ongeveer 0,1 MPa) drukt aan beide kanten even hard en valt dus weg; alleen het verschil tussen beide kanten telt.</p>
+</section>
+<section id="waterpotentiaal-en-de-cel" class="level3" data-number="4.3.9">
+<h3 data-number="4.3.9" class="anchored" data-anchor-id="waterpotentiaal-en-de-cel"><span class="header-section-number">4.3.9</span> Waterpotentiaal en de cel</h3>
+<p>De <strong>waterpotentiaal</strong> uit het college over transport in planten zegt hetzelfde in één getal:</p>
+<p><span class="math display">\[
+\Psi = \Psi_S + \Psi_P , \qquad \Psi_S = -C\,R\,T .
+\]</span></p>
+<p><span class="math inline">\(\Psi_S\)</span> is het “trekken” van de opgeloste stof (negatief), <span class="math inline">\(\Psi_P\)</span> het “duwen” van de druk. Water stroomt van hoge naar lage <span class="math inline">\(\Psi\)</span>, tot <span class="math inline">\(\Psi\)</span> aan beide kanten gelijk is.</p>
+<p>In een cel werkt het net zo:</p>
+<ul>
+<li>Een <strong>cel zonder wand</strong> (een dierlijke cel) zwelt op tot de concentraties binnen en buiten gelijk zijn, of tot ze barst.</li>
+<li>Een <strong>cel met wand</strong> (een plantencel) zwelt op tot de wand terugduwt. Die tegendruk is de <strong>turgordruk</strong>. De concentraties blijven verschillend.</li>
+</ul>
+</section>
+<section id="getallen-1" class="level3" data-number="4.3.10">
+<h3 data-number="4.3.10" class="anchored" data-anchor-id="getallen-1"><span class="header-section-number">4.3.10</span> Getallen</h3>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 45%">
+<col style="width: 18%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Situatie</th>
+<th style="text-align: center;">Osmotische druk</th>
+<th style="text-align: center;">Even hoog als een waterkolom van</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">cytoplasma (300 mOsm/L) tegen zuiver water</td>
+<td style="text-align: center;">0,77 MPa</td>
+<td style="text-align: center;">79 m</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">verschil van 1 mOsm/L</td>
+<td style="text-align: center;">2,6 kPa</td>
+<td style="text-align: center;">26 cm</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Osmose is een krachtige motor. Een cel van 300 mOsm/L in zuiver water ontwikkelt in principe evenveel druk als een waterkolom van bijna 80 meter, zo’n 8 keer de luchtdruk. Dat is dezelfde orde van grootte als de turgordruk in plantencellen, ongeveer 0,5 MPa. Al 1 mOsm/L verschil is genoeg voor een waterkolom van 26 cm.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Twee veelgehoorde formuleringen, nauwkeuriger
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><em>“Opgeloste stoffen binden water, zodat er minder vrij water is.”</em> Dat water zich om opgeloste deeltjes heen nestelt, klopt, maar het verklaart niet waarom alleen het <em>aantal</em> deeltjes telt. De fundamentele oorzaak is tellen: de mengentropie.</li>
+<li><em>“Water stroomt tot de concentraties aan beide kanten gelijk zijn.”</em> Dat geldt alleen als het volume vrij kan veranderen. In het algemeen stroomt water tot <span class="math inline">\(\Psi\)</span> aan beide kanten gelijk is.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="denkvraag" class="level3" data-number="4.3.11">
+<h3 data-number="4.3.11" class="anchored" data-anchor-id="denkvraag"><span class="header-section-number">4.3.11</span> Denkvraag</h3>
+<p>Een rode bloedcel in gedestilleerd water zwelt op en barst. Leg uit waarom, zonder het woord “aantrekken” te gebruiken. Gebruik in je uitleg: <em>kans</em>, <em>aantal watermoleculen</em>, <em>rangschikkingen</em>, <em>volume</em> en <em>druk</em>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Antwoord
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Binnen zijn per volume <strong>minder watermoleculen</strong> dan in het zuivere water buiten.</li>
+<li>Elk watermolecuul heeft dezelfde <strong>kans</strong> om door het membraan te gaan, dus er gaan er <strong>meer naar binnen dan naar buiten</strong>. Het systeem wint daarbij <strong>rangschikkingen</strong>: water mengt binnen met de opgeloste deeltjes, buiten valt niets te mengen.</li>
+<li>Het <strong>volume</strong> van de cel neemt toe en de inhoud verdunt, maar de concentraties worden nooit gelijk: buiten blijft het zuiver water.</li>
+<li>Stoppen kan alleen door <strong>tegendruk</strong>: <span class="math inline">\(\Pi = \Delta C\,RT\)</span> met <span class="math inline">\(\Delta C = 300 - 0 = 300\)</span> mOsm/L, ongeveer 0,8 MPa, zo’n 8 keer de luchtdruk. Een cel zonder wand kan die druk niet leveren: hij zwelt op van een platte schijf tot een bol, daarna kan het membraan nauwelijks verder rekken, en hij <strong>barst</strong> (hemolyse). Een plantencel overleeft dit wel: de celwand levert de tegendruk (<strong>turgor</strong>).</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="wanneer-kost-transport-energie" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="wanneer-kost-transport-energie"><span class="header-section-number">4.4</span> Wanneer kost transport energie?</h2>
+<section id="wat-je-ziet-3" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="wat-je-ziet-3"><span class="header-section-number">4.4.1</span> Wat je ziet</h3>
+<p>Cellen houden concentratieverschillen in stand die vanzelf zouden verdwijnen. Een dierlijke cel bevat bijvoorbeeld ongeveer 12 mM Na⁺, terwijl er buiten ongeveer 145 mM is. Na⁺ lekt dus voortdurend naar binnen, en de cel pompt het voortdurend weer naar buiten.</p>
+</section>
+<section id="waarom-bergaf-en-bergop" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="waarom-bergaf-en-bergop"><span class="header-section-number">4.4.2</span> Waarom: bergaf en bergop</h3>
+<p>Je kunt <strong>vrije energie</strong> <span class="math inline">\(G\)</span> zien als een hoogte. Een stof die van hoge naar lage concentratie gaat, gaat bergaf: dat gebeurt vanzelf (<strong>passief transport</strong>). Van lage naar hoge concentratie is bergop: dat gebeurt alleen als er energie wordt geleverd, meestal door ATP (<strong>actief transport</strong>).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bergaf-bergop" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bergaf-bergop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-bergaf-bergop-1.png" class="img-fluid figure-img" width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bergaf-bergop-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.14: Vrije energie als hoogte. Passief transport gaat bergaf en verloopt vanzelf; actief transport gaat bergop en kan alleen gekoppeld aan ATP.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Waarom is “bergaf” de richting van hoge naar lage concentratie? Omdat dat de richting is waarin het aantal rangschikkingen, en dus de entropie, toeneemt. De vrije energie <span class="math inline">\(G = H - TS\)</span> combineert energie (<span class="math inline">\(H\)</span>) en entropie (<span class="math inline">\(S\)</span>). Bij het verplaatsen van opgeloste stof verandert vooral de entropie, en dan is de hoogte van de berg <span class="math inline">\(-T\)</span> maal de entropieverandering. De temperatuur bepaalt hoeveel een entropieverschil “waard” is.</p>
+</section>
+<section id="de-formule-1" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="de-formule-1"><span class="header-section-number">4.4.3</span> De formule</h3>
+<p>De hoogte van de berg (de verandering in vrije energie per mol) voor transport van compartiment 1 naar compartiment 2 is</p>
+<p><span class="math display">\[
+\Delta G = RT \ln \frac{C_2}{C_1} .
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\Delta G &lt; 0\)</span>: bergaf, passief transport, gebeurt vanzelf.</li>
+<li><span class="math inline">\(\Delta G &gt; 0\)</span>: bergop, actief transport, kost energie.</li>
+<li><span class="math inline">\(\Delta G = 0\)</span>: evenwicht.</li>
+</ul>
+<p>Bij 37 °C is <span class="math inline">\(RT = 2{,}58\)</span> kJ/mol. Elke factor 10 in concentratie is dus <span class="math inline">\(RT \ln 10 \approx 5{,}9\)</span> kJ/mol hoogteverschil.</p>
+<p>Voor een ion komt er een tweede helling bij: de lading. De binnenkant van een cel is negatief (ongeveer <span class="math inline">\(-70\)</span> mV). Een positief ion als Na⁺ wil daarom om twee redenen naar binnen: buiten is de concentratie hoger, en binnen trekt de negatieve lading. Samen heet dat de <em>elektrochemische gradiënt</em>:</p>
+<p><span class="math display">\[
+\Delta G = RT \ln \frac{C_2}{C_1} + zF\,\Delta\psi .
+\]</span></p>
+<p>Hier is <span class="math inline">\(z\)</span> de lading van het ion (+1 voor Na⁺, +2 voor Ca²⁺), <span class="math inline">\(F = 96\,485\)</span> C/mol de constante van Faraday en <span class="math inline">\(\Delta\psi = \psi_2 - \psi_1\)</span> het verschil in elektrische potentiaal. Waar de eerste term vandaan komt, staat in Verdieping B.</p>
+</section>
+<section id="getallen-wat-kan-één-atp-betalen" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="getallen-wat-kan-één-atp-betalen"><span class="header-section-number">4.4.4</span> Getallen: wat kan één ATP betalen?</h3>
+<p>Eén ATP levert in de cel ongeveer 55 kJ/mol. (De standaardwaarde is <span class="math inline">\(-30{,}5\)</span> kJ/mol, maar de cel houdt ATP en ADP zelf ver uit evenwicht.) Als voorbeeld nemen we calcium, een belangrijk signaal: bij de bevruchting start een Ca²⁺-golf door de eicel de ontwikkeling. De cel houdt Ca²⁺ binnen rond 0,1 µM, terwijl het buiten ongeveer 1 mM is.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Deel</th>
+<th style="text-align: center;">Delta G (kJ/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">chemisch (concentratie 10 000 keer hoger buiten)</td>
+<td style="text-align: center;">23,7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">elektrisch (ion gaat van -70 mV naar 0 mV)</td>
+<td style="text-align: center;">13,5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">totaal per mol Ca²⁺</td>
+<td style="text-align: center;">37,2</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Eén Ca²⁺ naar buiten pompen kost ongeveer 37 kJ/mol. Dat past binnen één ATP; twee Ca²⁺ (ongeveer 74 kJ/mol) niet. De calciumpomp in het plasmamembraan verplaatst inderdaad één Ca²⁺ per ATP.</p>
+</section>
+<section id="kanalen-zijn-tunnels" class="level3" data-number="4.4.5">
+<h3 data-number="4.4.5" class="anchored" data-anchor-id="kanalen-zijn-tunnels"><span class="header-section-number">4.4.5</span> Kanalen zijn tunnels</h3>
+<p><span class="math inline">\(\Delta G\)</span> zegt welke kant een proces op gaat, niet hoe snel. Om door het membraan te komen, moet een ion door de vettige kern van de lipide dubbellaag: een hoge berg, de <em>activeringsenergie</em>. Een kanaal of carrier is een tunnel door die berg. Daardoor gaat oversteken veel sneller: een berg die 20 kJ/mol lager is, maakt het transport ongeveer 2000 keer sneller.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-activeringsenergie" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-activeringsenergie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-activeringsenergie-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-activeringsenergie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.15: Vrije-energieprofiel van een ion dat het membraan passeert, zonder en met kanaal. Het kanaal verlaagt de berg, maar begin- en eindniveau blijven gelijk.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Een tunnel verandert de hoogte van de dalen niet. <strong>Door een tunnel kom je nooit bergop.</strong> Een transporteiwit is dus een katalysator, net als een enzym: het verandert de snelheid, niet de richting. Een kanaal of een gewone carrier kan daarom nooit tegen een gradiënt in transporteren. Daarvoor is koppeling nodig: aan ATP (een pomp) of aan een andere gradiënt (cotransport).</p>
+</section>
+<section id="een-levende-cel-is-een-lekke-boot" class="level3" data-number="4.4.6">
+<h3 data-number="4.4.6" class="anchored" data-anchor-id="een-levende-cel-is-een-lekke-boot"><span class="header-section-number">4.4.6</span> Een levende cel is een lekke boot</h3>
+<p>Passieve processen lopen naar evenwicht: maximale entropie, <span class="math inline">\(\Delta G = 0\)</span>, geen netto stromen. Een levende cel is níet in evenwicht. Na⁺ lekt voortdurend naar binnen, en pompen werken het voortdurend weer naar buiten. Het aantal Na⁺ binnen blijft gelijk, maar alleen zolang er ATP is. Zo’n toestand, constant in de tijd maar met voortdurende stromen en energieverbruik, heet een <strong>stationaire toestand</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-lek-pomp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lek-pomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-lek-pomp-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lek-pomp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.16: Stationaire toestand: Na⁺ lekt voortdurend passief de cel in (bergaf), pompen werken het met ATP weer naar buiten (bergop).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Vergelijk het met een lekke boot. Een volgelopen boot is in evenwicht: er stroomt niets meer. Een lekke boot die je blijft leeghozen, houdt een constant niveau, maar alleen zolang je hoost. Voor een cel betekent evenwicht de dood. <strong>Leven is hozen.</strong></p>
+<p>Ontwikkeling maakt gebruik van precies deze gradiënten. In de opdracht reken je uit hoe een vroeg embryo met pompen en osmose een holte opblaast, en wat dat kost.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Vier vragen, vier antwoorden
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><strong>Waarom verspreiden moleculen zich?</strong> Door toeval. Elke stap voegt gemiddeld <span class="math inline">\(\ell^2\)</span> toe aan <span class="math inline">\(\langle x^2 \rangle\)</span>, dus <span class="math inline">\(\langle x^2 \rangle = 2Dt\)</span> met <span class="math inline">\(D = \ell^2/2\tau = kT/6\pi\eta r\)</span>. De tijd groeit met het kwadraat van de afstand, <span class="math inline">\(t \approx L^2/2D\)</span>, en dezelfde <span class="math inline">\(D\)</span> staat in de wet van Fick.</li>
+<li><strong>Waarom stopt het bij een gelijke verdeling, en is dat evenwicht statisch?</strong> Die toestand kan op de meeste manieren: maximale entropie <span class="math inline">\(S = k \ln W\)</span>. Het evenwicht is niet statisch, maar statistisch: door warmte blijven de moleculen bewegen, alleen de stromen in beide richtingen zijn gelijk.</li>
+<li><strong>Hoe ontstaat een evenwicht met een drukverschil?</strong> De opgeloste stof kan zich niet verdelen, dus water stroomt naar de opgeloste stof: het hele systeem wint daarbij rangschikkingen, evenredig met het verschil in opgeloste deeltjes. De druk loopt op tot die entropiewinst precies is opgeheven: <span class="math inline">\(\Pi = \Delta C\,RT\)</span>.</li>
+<li><strong>Wanneer kost transport energie?</strong> Als het bergop gaat: <span class="math inline">\(\Delta G = RT\ln(C_2/C_1) + zF\Delta\psi &gt; 0\)</span>. Kanalen zijn tunnels, geen liften; pompen betalen met ATP.</li>
+</ol>
+</div>
+</div>
+</section>
+</section>
+<section id="verdieping" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="verdieping"><span class="header-section-number">4.5</span> Verdieping</h2>
+<p>Hier staat voor wie dat wil waar de formules uit dit hoofdstuk vandaan komen.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Verdieping A: de Stokes–Einstein-relatie afgeleid
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Einstein gebruikte een evenwichtsargument. Stel dat er een constante kracht <span class="math inline">\(F\)</span> op de deeltjes werkt, bijvoorbeeld de zwaartekracht. Dan krijgen de deeltjes een driftsnelheid <span class="math inline">\(v = F/\gamma\)</span> en een driftstroom <span class="math inline">\(J_\text{drift} = C F/\gamma\)</span>. Tegelijk zorgt diffusie voor een stroom <span class="math inline">\(J_\text{diff} = -D\, \partial C/\partial x\)</span>. In evenwicht verandert <span class="math inline">\(C\)</span> niet meer met de tijd en hangt het alleen van <span class="math inline">\(x\)</span> af; daarom schrijven we hieronder de gewone <span class="math inline">\(d\)</span>.</p>
+<p>In evenwicht is de totale stroom nul:</p>
+<p><span class="math display">\[
+D \frac{dC}{dx} = \frac{C F}{\gamma}.
+\]</span></p>
+<p>Volgens de statistische fysica is de verdeling in evenwicht een Boltzmannverdeling. Met potentiële energie <span class="math inline">\(U = -Fx\)</span> geldt <span class="math inline">\(C(x) = C_0\, e^{-U/kT} = C_0\, e^{Fx/kT}\)</span>, dus <span class="math inline">\(dC/dx = C F/kT\)</span>. Invullen:</p>
+<p><span class="math display">\[
+D \frac{CF}{kT} = \frac{CF}{\gamma} \quad\Longrightarrow\quad D = \frac{kT}{\gamma} = \frac{kT}{6\pi\eta r}.
+\]</span></p>
+<p>Dit is een vroeg voorbeeld van het <em>fluctuatie-dissipatietheorema</em>: dezelfde botsingen die het deeltje willekeurig laten bewegen (fluctuatie), remmen het ook af (dissipatie). Jean Perrin gebruikte deze relatie om met Brownse beweging het getal van Avogadro te bepalen, en leverde daarmee overtuigend bewijs dat atomen bestaan (Nobelprijs 1926).</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Verdieping B: van tellen naar vrije energie
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Hoeveel verandert de entropie als één molecuul van links naar rechts gaat? Met <span class="math inline">\(W(n_L) = N!/(n_L!\,n_R!)\)</span> is</p>
+<p><span class="math display">\[
+\frac{W(n_L - 1)}{W(n_L)} = \frac{n_L}{n_R + 1} \approx \frac{n_L}{n_R},
+\qquad\text{dus}\qquad
+\Delta S = k \ln \frac{n_L}{n_R} = k \ln \frac{C_L}{C_R}
+\]</span></p>
+<p>(bij gelijke volumes). Per mol, voor transport van compartiment 1 naar 2, is dat <span class="math inline">\(\Delta S = R \ln (C_1/C_2)\)</span>: positief als <span class="math inline">\(C_1 &gt; C_2\)</span>.</p>
+<p>In een verdunde oplossing verandert de energie <span class="math inline">\(H\)</span> bij het verplaatsen van een opgelost molecuul nauwelijks (<span class="math inline">\(\Delta H \approx 0\)</span>). Met <span class="math inline">\(G = H - TS\)</span> volgt dan</p>
+<p><span class="math display">\[
+\Delta G = -T\,\Delta S = RT \ln \frac{C_2}{C_1}.
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Verdieping C: osmotische druk en waterpotentiaal afgeleid
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>De <em>chemische potentiaal</em> <span class="math inline">\(\mu\)</span> is de vrije energie per mol van een stof; een stof stroomt van hoge naar lage <span class="math inline">\(\mu\)</span>. Voor water in een oplossing geldt</p>
+<p><span class="math display">\[
+\mu_w = \mu_w^\circ + RT \ln x_w + \bar{V}_w P,
+\]</span></p>
+<p>met <span class="math inline">\(x_w\)</span> de molfractie water, <span class="math inline">\(\bar{V}_w\)</span> het molaire volume van water en <span class="math inline">\(P\)</span> de druk. De term <span class="math inline">\(RT\ln x_w\)</span> is het entropie-effect: met opgeloste stof is <span class="math inline">\(x_w &lt; 1\)</span> en ligt <span class="math inline">\(\mu_w\)</span> lager. De term <span class="math inline">\(\bar{V}_w P\)</span> is het drukeffect.</p>
+<p>Neem links zuiver water (<span class="math inline">\(x_w = 1\)</span>) en rechts een oplossing met molfractie opgeloste stof <span class="math inline">\(x_s\)</span> onder extra druk <span class="math inline">\(\Pi\)</span>. In evenwicht is <span class="math inline">\(\mu_w\)</span> aan beide kanten gelijk:</p>
+<p><span class="math display">\[
+RT \ln(1 - x_s) + \bar{V}_w \Pi = 0 .
+\]</span></p>
+<p>Voor kleine <span class="math inline">\(x\)</span> is <span class="math inline">\(\ln(1-x) \approx -x\)</span>, dus <span class="math inline">\(\Pi \approx RT\, x_s/\bar{V}_w\)</span>. In een verdunde oplossing is <span class="math inline">\(x_s/\bar{V}_w \approx C_s\)</span>, het aantal mol opgeloste stof per volume. Dat geeft <span class="math inline">\(\Pi = C_s RT\)</span>. Zitten aan beide kanten opgeloste stoffen, dan telt het verschil: <span class="math inline">\(\Pi = \Delta C\, RT\)</span>.</p>
+<p>De waterpotentiaal is de chemische potentiaal van water, uitgedrukt in drukeenheden:</p>
+<p><span class="math display">\[
+\Psi = \frac{\mu_w - \mu_w^\circ}{\bar{V}_w} \approx -C_s RT + P = \Psi_S + \Psi_P .
+\]</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Verdieping D: de Nernst-vergelijking
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Hetzelfde argument werkt voor een ion in een elektrische potentiaal <span class="math inline">\(\psi\)</span>. De potentiële energie per ion is <span class="math inline">\(U = ze\psi\)</span>, dus in evenwicht geldt <span class="math inline">\(C \propto e^{-ze\psi/kT}\)</span>. De verhouding tussen binnen en buiten is</p>
+<p><span class="math display">\[
+\frac{C_\text{binnen}}{C_\text{buiten}} = e^{-ze(\psi_\text{binnen} - \psi_\text{buiten})/kT}.
+\]</span></p>
+<p>Per mol wordt <span class="math inline">\(e/k\)</span> gelijk aan <span class="math inline">\(F/R\)</span>. Logaritme nemen en omschrijven geeft de <strong>Nernst-potentiaal</strong>:</p>
+<p><span class="math display">\[
+E = \psi_\text{binnen} - \psi_\text{buiten} = \frac{RT}{zF} \ln \frac{C_\text{buiten}}{C_\text{binnen}} .
+\]</span></p>
+<p>Dit is precies de situatie waarin <span class="math inline">\(\Delta G = RT\ln(C_\text{binnen}/C_\text{buiten}) + zF(\psi_\text{binnen} - \psi_\text{buiten}) = 0\)</span>: het chemische en het elektrische deel heffen elkaar op.</p>
+<p>Voor K⁺ (buiten 4 mM, binnen 140 mM) bij 37 °C is <span class="math inline">\(RT/F = 26{,}7\)</span> mV en <span class="math inline">\(E_\text{K} = 26{,}7 \cdot \ln(4/140) \approx -95\)</span> mV. De rustpotentiaal van ongeveer <span class="math inline">\(-70\)</span> mV ligt daar dichtbij, omdat het membraan in rust vooral voor K⁺ doorlaatbaar is.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Verdieping E: morfogeengradiënten en positionele informatie
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In het <em>Drosophila</em>-ei (ongeveer 500 µm lang) wordt het eiwit Bicoid aan de voorkant gemaakt. Het diffundeert naar achteren en wordt onderweg afgebroken met snelheidsconstante <span class="math inline">\(k\)</span>. In de stationaire toestand geldt</p>
+<p><span class="math display">\[
+\frac{\partial C}{\partial t} = D \frac{\partial^2 C}{\partial x^2} - kC = 0
+\quad\Longrightarrow\quad
+C(x) = C_0\, e^{-x/\lambda}, \qquad \lambda = \sqrt{D/k}.
+\]</span></p>
+<p>De lengteschaal <span class="math inline">\(\lambda\)</span> is gemeten op ongeveer 100 µm, zo’n 20 % van de eilengte. Opvallend is dat de gemeten <span class="math inline">\(D\)</span> sterk afhangt van de methode: ongeveer 0,3 µm²/s met FRAP (Gregor et al., 2007) tegenover ongeveer 7 µm²/s met FCS (Abu-Arish et al., 2010). Met de lage waarde is het lastig te verklaren hoe de gradiënt snel genoeg ontstaat. Vergelijk beide met de Stokes–Einstein-schatting voor een eiwit van deze grootte in water (ruim 100 µm²/s).</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bicoid" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bicoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-bicoid-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bicoid-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.17: Exponentiële morfogeengradiënt <span class="math inline">\(C(x) = C_0 e^{-x/\lambda}\)</span> voor drie lengteschalen in een ei van 500 µm.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Een celkern “leest” zijn positie af uit de lokale concentratie. Door ruis is die aflezing onnauwkeurig. Hoeveel posities kan het embryo daardoor betrouwbaar onderscheiden? Dat is een vraag over <em>wederzijdse informatie</em> tussen positie en genexpressie, gemeten in bits. Dubuis et al.&nbsp;(2013) vonden dat elk gap-gen bijna 2 bits positionele informatie draagt, en dat vier gap-genen samen de positie van een cel bepalen tot op ongeveer 1 % van de lengte van het embryo. Diffusie, entropie en ontwikkeling komen hier samen.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="opdracht-het-embryo-pompt-zichzelf-op" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="opdracht-het-embryo-pompt-zichzelf-op"><span class="header-section-number">4.6</span> Opdracht: het embryo pompt zichzelf op</h2>
+<p>Ongeveer drie dagen na de bevruchting ontstaat in een muizenembryo een vochtgevulde holte, het <em>blastocoel</em>. De buitenste cellaag, het trofectoderm, pompt met Na⁺/K⁺-ATPase natriumionen vanuit het cytoplasma richting de holte. Water volgt via aquaporines. De druk die zo in de holte ontstaat, bepaalt mee hoe groot het embryo wordt en welk lot de cellen krijgen (Chan et al., 2019).</p>
+<p>Gebruik bij alle berekeningen <span class="math inline">\(T = 310\)</span> K, <span class="math inline">\(k = 1{,}381 \cdot 10^{-23}\)</span> J/K, <span class="math inline">\(R = 8{,}314\)</span> J/(mol·K) en <span class="math inline">\(F = 96\,485\)</span> C/mol. Werk in R en zet constanten bovenaan je code als variabelen. Noem de temperatuur niet <code>T</code>, want dat betekent <code>TRUE</code> in R. Let op eenheden: 1 mM = 1 mOsm/L (voor één soort deeltjes) = 1 mol/m³.</p>
+<p>Neem voor de concentraties de volgende typische waarden aan:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ion</th>
+<th>Cytoplasma (mM)</th>
+<th>Holte (mM)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Na⁺</td>
+<td>12</td>
+<td>145</td>
+</tr>
+<tr class="even">
+<td>K⁺</td>
+<td>140</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>De membraanpotentiaal is <span class="math inline">\(-70\)</span> mV (binnenkant negatief ten opzichte van de holte).</p>
+<p><strong>1. Diffusie in het vroege embryo</strong></p>
+<ol type="a">
+<li>Bereken met de Stokes–Einstein-relatie de diffusiecoëfficiënt in water bij 37 °C (<span class="math inline">\(\eta = 0{,}69\)</span> mPa·s) van zuurstof (<span class="math inline">\(r = 0{,}17\)</span> nm), glucose (<span class="math inline">\(r = 0{,}38\)</span> nm) en een signaaleiwit (<span class="math inline">\(r = 2{,}5\)</span> nm).</li>
+<li>Bereken voor elk molecuul hoe lang diffusie duurt over 100 µm (ongeveer de doorsnede van een blastocyst) en over 500 µm (de lengte van een <em>Drosophila</em>-ei).</li>
+<li>Maak in R een log–log-figuur van de diffusietijd tegen de afstand (1 µm tot 1 cm) voor de drie moleculen. Wat is de helling van de lijnen, en waarom?</li>
+<li>In cytoplasma is <span class="math inline">\(D\)</span> voor eiwitten ongeveer vier keer kleiner dan in water. Wat betekent dat voor je antwoorden bij b? Leg uit waarom een gewerveld embryo van enkele millimeters een bloedsomloop nodig heeft.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Uitwerking vraag 1
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>kB   <span class="ot">&lt;-</span> <span class="fl">1.380649e-23</span>   <span class="co"># J/K</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Temp <span class="ot">&lt;-</span> <span class="dv">310</span>            <span class="co"># K</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Eta  <span class="ot">&lt;-</span> <span class="fl">0.69e-3</span>        <span class="co"># Pa s</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Molecuul <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"zuurstof"</span>, <span class="st">"glucose"</span>, <span class="st">"signaaleiwit"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>Straal   <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.17e-9</span>, <span class="fl">0.38e-9</span>, <span class="fl">2.5e-9</span>)          <span class="co"># m</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>D        <span class="ot">&lt;-</span> kB <span class="sc">*</span> Temp <span class="sc">/</span> (<span class="dv">6</span> <span class="sc">*</span> pi <span class="sc">*</span> Eta <span class="sc">*</span> Straal)  <span class="co"># m^2/s</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>Tijd     <span class="ot">&lt;-</span> <span class="cf">function</span>(L, D) L<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> D)         <span class="co"># s</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  Molecuul,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">D (um2/s)</span><span class="st">`</span>     <span class="ot">=</span> <span class="fu">signif</span>(D <span class="sc">*</span> <span class="fl">1e12</span>, <span class="dv">2</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">t 100 um (s)</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">signif</span>(<span class="fu">Tijd</span>(<span class="fl">100e-6</span>, D), <span class="dv">2</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">t 500 um (s)</span><span class="st">`</span>  <span class="ot">=</span> <span class="fu">signif</span>(<span class="fu">Tijd</span>(<span class="fl">500e-6</span>, D), <span class="dv">2</span>),</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div id="tbl-uitwerking-diffusie" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-uitwerking-diffusie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.3: Diffusiecoëfficiënt en diffusietijd <span class="math inline">\(t = L^2/2D\)</span> in water bij 37 °C.
+</figcaption>
+<div aria-describedby="tbl-uitwerking-diffusie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Molecuul</th>
+<th style="text-align: right;">D (um2/s)</th>
+<th style="text-align: right;">t 100 um (s)</th>
+<th style="text-align: right;">t 500 um (s)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">zuurstof</td>
+<td style="text-align: right;">1900</td>
+<td style="text-align: right;">2,6</td>
+<td style="text-align: right;">65</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">glucose</td>
+<td style="text-align: right;">870</td>
+<td style="text-align: right;">5,8</td>
+<td style="text-align: right;">140</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">signaaleiwit</td>
+<td style="text-align: right;">130</td>
+<td style="text-align: right;">38,0</td>
+<td style="text-align: right;">950</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p><strong>a.</strong> Met <span class="math inline">\(D = kT/(6\pi\eta r)\)</span> vind je voor zuurstof <span class="math inline">\(D \approx 1{,}9 \cdot 10^{-9}\)</span> m²/s, voor glucose <span class="math inline">\(8{,}7 \cdot 10^{-10}\)</span> m²/s en voor het signaaleiwit <span class="math inline">\(1{,}3 \cdot 10^{-10}\)</span> m²/s. Het eiwit is ongeveer 15 keer zo groot als zuurstof en diffundeert dus ongeveer 15 keer zo langzaam.</p>
+<p><strong>b.</strong> Over 100 µm duurt diffusie voor zuurstof ongeveer 2,6 s, voor glucose 5,8 s en voor het eiwit 38 s. Over 500 µm (5 keer zo ver) duurt het 25 keer zo lang: 65 s, 2,4 min en 16 min.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">^</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">6</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="at">length.out =</span> <span class="dv">100</span>)    <span class="co"># 1 um tot 1 cm</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>Kleuren <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"darkorange"</span>, <span class="st">"darkred"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NA</span>, <span class="at">xlim =</span> <span class="fu">range</span>(L), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fl">1e-4</span>, <span class="fl">1e6</span>), <span class="at">log =</span> <span class="st">"xy"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Afstand L (m)"</span>, <span class="at">ylab =</span> <span class="st">"Diffusietijd t (s)"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) <span class="fu">lines</span>(L, <span class="fu">Tijd</span>(L, D[i]), <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> Kleuren[i])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, Molecuul, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> Kleuren, <span class="at">bty =</span> <span class="st">"n"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-uitwerking-loglog" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-uitwerking-loglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="thermodynamica_transport_antwoorden_files/figure-html/fig-uitwerking-loglog-1.png" class="img-fluid figure-img" width="576">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-uitwerking-loglog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4.18: Diffusietijd tegen afstand op log–log-assen. Drie evenwijdige lijnen met helling 2.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>c.</strong> De helling is 2. Neem je de logaritme van <span class="math inline">\(t = L^2/2D\)</span>, dan krijg je <span class="math inline">\(\log t = 2 \log L - \log(2D)\)</span>: een rechte lijn met helling 2. De moleculen verschillen alleen in <span class="math inline">\(D\)</span>, dus alleen in het intercept. Daarom lopen de lijnen evenwijdig.</p>
+<p><strong>d.</strong> Als <span class="math inline">\(D\)</span> vier keer kleiner is, duurt alles vier keer zo lang. Voor het eiwit wordt dat ongeveer 2,5 min over 100 µm en ongeveer 1 uur over 500 µm. Binnen een blastocyst is diffusie dus nog snel genoeg. Over enkele millimeters wordt het te traag, omdat de tijd met het <em>kwadraat</em> van de afstand groeit. 3 mm is 30 keer zo ver als 100 µm en duurt dus 900 keer zo lang. Voor het eiwit in cytoplasma is dat ongeveer 38 uur, en zelfs zuurstof in water doet er ongeveer 40 minuten over. De cellen verbruiken zuurstof veel sneller dan diffusie het over die afstand kan aanvoeren. Een bloedsomloop lost dat op met stroming (bulk flow): daarbij groeit de transporttijd evenredig met de afstand (<span class="math inline">\(t = L/v\)</span>) in plaats van met het kwadraat ervan.</p>
+</div>
+</div>
+</div>
+<p><strong>2. Osmose</strong></p>
+<ol type="a">
+<li>Bereken de osmotische druk bij een osmolariteitsverschil van 1 mOsm/L en van 0,1 mOsm/L.</li>
+<li>Neem aan dat de druk in het blastocoel 300 Pa boven die van de omgeving ligt. Welk osmolariteitsverschil is daarvoor nodig? Vergelijk dat met de totale osmolariteit van ongeveer 300 mOsm/L en geef je conclusie in één zin.</li>
+<li>Leg in termen van entropie uit waarom water de holte in stroomt, terwijl geen enkel watermolecuul “weet” waar de natriumionen zijn.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Uitwerking vraag 2
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>R    <span class="ot">&lt;-</span> <span class="fl">8.314</span>   <span class="co"># J/(mol K)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>Temp <span class="ot">&lt;-</span> <span class="dv">310</span>     <span class="co"># K</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>OsmotischeDruk <span class="ot">&lt;-</span> <span class="cf">function</span>(mOsmL) mOsmL <span class="sc">*</span> R <span class="sc">*</span> Temp   <span class="co"># 1 mOsm/L = 1 mol/m^3; resultaat in Pa</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Pi bij 1 mOsm/L:  "</span>, <span class="fu">round</span>(<span class="fu">OsmotischeDruk</span>(<span class="dv">1</span>)), <span class="st">"Pa</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Pi bij 1 mOsm/L:   2577 Pa</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Pi bij 0,1 mOsm/L:"</span>, <span class="fu">round</span>(<span class="fu">OsmotischeDruk</span>(<span class="fl">0.1</span>)), <span class="st">"Pa</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Pi bij 0,1 mOsm/L: 258 Pa</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Druk <span class="ot">&lt;-</span> <span class="dv">300</span>                                 <span class="co"># Pa</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>Verschil <span class="ot">&lt;-</span> Druk <span class="sc">/</span> (R <span class="sc">*</span> Temp)               <span class="co"># mol/m^3 = mOsm/L</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Nodig verschil voor 300 Pa:"</span>, <span class="fu">signif</span>(Verschil, <span class="dv">2</span>), <span class="st">"mOsm/L</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Nodig verschil voor 300 Pa: 0,12 mOsm/L</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Als fractie van 300 mOsm/L:"</span>, <span class="fu">signif</span>(<span class="dv">100</span> <span class="sc">*</span> Verschil <span class="sc">/</span> <span class="dv">300</span>, <span class="dv">2</span>), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Als fractie van 300 mOsm/L: 0,039 %</code></pre>
+</div>
+</div>
+<p><strong>a.</strong> Met <span class="math inline">\(\Pi = \Delta C\, RT\)</span> en 1 mOsm/L = 1 mol/m³ geldt <span class="math inline">\(\Pi = 1 \cdot 8{,}314 \cdot 310 \approx 2{,}6\)</span> kPa. Bij 0,1 mOsm/L is dat 258 Pa.</p>
+<p><strong>b.</strong> <span class="math inline">\(\Delta C = \Pi/RT = 300/2577 \approx 0{,}12\)</span> mOsm/L. Dat is ongeveer 0,04 % van de totale osmolariteit van 300 mOsm/L. Conclusie: een minuscuul osmotisch verschil volstaat om de holte onder druk te zetten, dus het embryo hoeft geen grote concentratieverschillen op te bouwen.</p>
+<p><strong>c.</strong> Watermoleculen bewegen willekeurig door de aquaporines, beide kanten op, en elk afzonderlijk molecuul heeft daarbij dezelfde kans. In de holte zijn een paar plaatsen ingenomen door Na⁺ (en de bijbehorende Cl⁻), dus per volume zitten er iets minder watermoleculen. Daardoor gaan er per seconde meer watermoleculen de holte in dan eruit. In termen van entropie: als water zich mengt met de opgeloste deeltjes, neemt het aantal microtoestanden toe. De netto stroom is dus de beweging naar de meest waarschijnlijke verdeling, net als bij gewone diffusie. Die stroom stopt pas als de oplopende druk in de holte de chemische potentiaal van water aan beide kanten gelijk maakt (<span class="math inline">\(\Delta\mu_w = 0\)</span>). In evenwicht zijn dus niet de concentraties gelijk, maar <span class="math inline">\(\Psi\)</span>.</p>
+</div>
+</div>
+</div>
+<p><strong>3. De prijs van het pompen</strong></p>
+<ol type="a">
+<li>Bereken <span class="math inline">\(\Delta G\)</span> (kJ/mol) voor het transport van Na⁺ van het cytoplasma naar de holte. Splits je antwoord in een chemisch en een elektrisch deel.</li>
+<li>Doe hetzelfde voor K⁺ van de holte naar het cytoplasma. Welk deel werkt hier mee en welk deel tegen?</li>
+<li>De pomp verplaatst per cyclus 3 Na⁺ naar buiten en 2 K⁺ naar binnen, en verbruikt daarbij 1 ATP. Bereken <span class="math inline">\(\Delta G\)</span> per cyclus en vergelijk die met de vrije energie van ATP-hydrolyse in de cel (neem <span class="math inline">\(-55\)</span> kJ/mol). Welk deel van de energie uit ATP wordt in de gradiënten opgeslagen?</li>
+<li>Zou een pomp die per ATP 4 Na⁺ en 2 K⁺ verplaatst thermodynamisch mogelijk zijn? Onderbouw met een berekening.</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Uitwerking vraag 3
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>R    <span class="ot">&lt;-</span> <span class="fl">8.314</span>; Temp <span class="ot">&lt;-</span> <span class="dv">310</span>; Fa <span class="ot">&lt;-</span> <span class="dv">96485</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>RT   <span class="ot">&lt;-</span> R <span class="sc">*</span> Temp <span class="sc">/</span> <span class="dv">1000</span>                      <span class="co"># kJ/mol</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>PsiCyto <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">0.070</span>; PsiHolte <span class="ot">&lt;-</span> <span class="dv">0</span>             <span class="co"># V</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>DeltaG_ATP <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">55</span>                            <span class="co"># kJ/mol</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># a. Na+ van cytoplasma (12 mM) naar holte (145 mM), z = +1</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>NaChem <span class="ot">&lt;-</span> RT <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">145</span> <span class="sc">/</span> <span class="dv">12</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>NaElek <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> Fa <span class="sc">*</span> (PsiHolte <span class="sc">-</span> PsiCyto) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>Na     <span class="ot">&lt;-</span> NaChem <span class="sc">+</span> NaElek</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># b. K+ van holte (4 mM) naar cytoplasma (140 mM), z = +1</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>KChem <span class="ot">&lt;-</span> RT <span class="sc">*</span> <span class="fu">log</span>(<span class="dv">140</span> <span class="sc">/</span> <span class="dv">4</span>)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>KElek <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> Fa <span class="sc">*</span> (PsiCyto <span class="sc">-</span> PsiHolte) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>K     <span class="ot">&lt;-</span> KChem <span class="sc">+</span> KElek</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># c. en d. per cyclus</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>Cyclus3 <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> Na <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> K</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>Cyclus4 <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">*</span> Na <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> K</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">data.frame</span>(</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">Grootheid =</span> <span class="fu">c</span>(<span class="st">"Na+ chemisch"</span>, <span class="st">"Na+ elektrisch"</span>, <span class="st">"Na+ totaal"</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>                <span class="st">"K+ chemisch"</span>, <span class="st">"K+ elektrisch"</span>, <span class="st">"K+ totaal"</span>,</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Cyclus 3 Na+ / 2 K+"</span>, <span class="st">"Cyclus 4 Na+ / 2 K+"</span>),</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Delta G (kJ/mol)</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">c</span>(NaChem, NaElek, Na, KChem, KElek, K, Cyclus3, Cyclus4), <span class="dv">1</span>),</span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a>  <span class="at">check.names =</span> <span class="cn">FALSE</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Grootheid</th>
+<th style="text-align: right;">Delta G (kJ/mol)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Na+ chemisch</td>
+<td style="text-align: right;">6,4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Na+ elektrisch</td>
+<td style="text-align: right;">6,8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Na+ totaal</td>
+<td style="text-align: right;">13,2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K+ chemisch</td>
+<td style="text-align: right;">9,2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">K+ elektrisch</td>
+<td style="text-align: right;">-6,8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">K+ totaal</td>
+<td style="text-align: right;">2,4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cyclus 3 Na+ / 2 K+</td>
+<td style="text-align: right;">44,3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cyclus 4 Na+ / 2 K+</td>
+<td style="text-align: right;">57,5</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"Rendement 3:2-pomp:"</span>, <span class="fu">round</span>(<span class="dv">100</span> <span class="sc">*</span> Cyclus3 <span class="sc">/</span> <span class="sc">-</span>DeltaG_ATP), <span class="st">"%</span><span class="sc">\n</span><span class="st">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rendement 3:2-pomp: 81 %</code></pre>
+</div>
+</div>
+<p><strong>a.</strong> Chemisch deel: <span class="math inline">\(RT\ln(145/12) = 2{,}58 \cdot \ln 12{,}1 \approx 6{,}4\)</span> kJ/mol. Elektrisch deel: <span class="math inline">\(zF\Delta\psi = 96\,485 \cdot 0{,}070 \approx 6{,}8\)</span> kJ/mol, want het positieve ion gaat van <span class="math inline">\(-70\)</span> mV naar 0 mV. Totaal ongeveer <span class="math inline">\(+13{,}2\)</span> kJ/mol. Beide delen werken tegen: Na⁺ gaat naar de kant met de hogere concentratie én de hogere potentiaal.</p>
+<p><strong>b.</strong> Chemisch deel: <span class="math inline">\(RT\ln(140/4) \approx +9{,}2\)</span> kJ/mol, dat werkt tegen. Elektrisch deel: <span class="math inline">\(F \cdot (-0{,}070) \approx -6{,}8\)</span> kJ/mol, dat werkt mee, want de negatieve binnenkant trekt het positieve ion aan. Totaal ongeveer <span class="math inline">\(+2{,}4\)</span> kJ/mol. K⁺ naar binnen pompen is dus veel goedkoper dan Na⁺ naar buiten.</p>
+<p><strong>c.</strong> Per cyclus: <span class="math inline">\(3 \cdot 13{,}2 + 2 \cdot 2{,}4 \approx 44\)</span> kJ/mol. ATP levert 55 kJ/mol, de som is <span class="math inline">\(-11\)</span> kJ/mol, dus de cyclus kan verlopen. Ongeveer 80 % van de vrije energie van ATP wordt opgeslagen in de gradiënten; de rest verdwijnt als warmte.</p>
+<p><strong>d.</strong> <span class="math inline">\(4 \cdot 13{,}2 + 2 \cdot 2{,}4 \approx 57{,}5\)</span> kJ/mol. Dat is meer dan de 55 kJ/mol die ATP levert, dus <span class="math inline">\(\Delta G_\text{totaal} \approx +2{,}5\)</span> kJ/mol <span class="math inline">\(&gt; 0\)</span>. Bij deze gradiënten is zo’n pomp thermodynamisch onmogelijk. Bij kleinere gradiënten zou het wel kunnen. De stoichiometrie 3 : 2 bepaalt dus hoe steil de gradiënten maximaal kunnen worden.</p>
+</div>
+</div>
+</div>
+<p><strong>4. Evenwicht of stationaire toestand?</strong></p>
+<ol type="a">
+<li>Ouabaïne blokkeert de Na⁺/K⁺-ATPase. Voorspel wat er met de holte gebeurt als je een blastocyst met ouabaïne behandelt. Formuleer je voorspelling zo dat een experiment haar kan weerleggen.</li>
+<li>Leg uit waarom het blastocoel in een stationaire toestand verkeert en niet in evenwicht. Gebruik de begrippen <span class="math inline">\(\Delta G\)</span>, entropie en ATP.</li>
+<li>Bij vrije diffusie is de kans per molecuul om naar links of naar rechts te springen altijd gelijk. Hoe kan er dan toch een netto stroom ontstaan? En waarom zijn die kansen voor een Na⁺-ion in de membraanpotentiaal níet meer gelijk?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Uitwerking vraag 4
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>a.</strong> Voorspelling: zonder werkende Na⁺/K⁺-ATPase wordt er geen Na⁺ meer naar de holte gepompt. Er ontstaat dus geen osmotisch verschil, en er stroomt geen water meer in. Wordt de blastocyst behandeld voordat de holte er is, dan vormt die zich niet. Is de holte er al, dan lekken ionen en water langzaam terug en krimpt ze. Een weerlegbare formulering: <em>“Als de holte zich vult doordat Na⁺/K⁺-pompen een osmotisch verschil maken, dan neemt het volume van de holte in blastocysten met ouabaïne niet toe, terwijl het in onbehandelde controles wel toeneemt.”</em> Groeit de holte met ouabaïne net zo hard als in de controles, dan is de hypothese weerlegd.</p>
+<p><strong>b.</strong> In evenwicht zou <span class="math inline">\(\Delta G = 0\)</span> zijn voor elk ion en voor water, en zouden er geen netto stromen zijn. In het embryo is <span class="math inline">\(\Delta G\)</span> voor Na⁺ ongeveer 13 kJ/mol: ionen lekken voortdurend passief terug langs hun gradiënt, en dat verhoogt de entropie. Dat de holte toch constant blijft (of groeit), komt doordat de pompen die lekstroom steeds compenseren met energie uit ATP (<span class="math inline">\(\Delta G \approx -55\)</span> kJ/mol). Het is een stationaire toestand: constant in de tijd, maar met voortdurende stromen en energieverbruik. De entropie die daarbij ontstaat, gaat als warmte naar de omgeving. Stopt de ATP-aanvoer, dan glijdt het systeem af naar evenwicht en klapt de holte in.</p>
+<p><strong>c.</strong> Er is netto stroom omdat er aan de ene kant meer moleculen zijn die de kans krijgen om over te steken. De stroom is evenredig met <span class="math inline">\(p\,(n_L - n_R)\)</span>: de kans <span class="math inline">\(p\)</span> is aan beide kanten gelijk, de aantallen niet. Voor een Na⁺-ion in de membraanpotentiaal verschilt de potentiële energie per kant (<span class="math inline">\(ze\psi\)</span>). Dan worden de springkansen per molecuul ongelijk, met een verhouding die gelijk is aan de Boltzmannfactor <span class="math inline">\(e^{-\Delta U/kT}\)</span>. Bij <span class="math inline">\(-70\)</span> mV aan de binnenkant is dat <span class="math inline">\(e^{F \cdot 0{,}070/RT} = e^{6{,}75/2{,}58} \approx 14\)</span>. Bij gelijke concentraties is een Na⁺-ion dus ongeveer 14 keer zo waarschijnlijk om naar binnen te springen als naar buiten. Dit is het elektrische deel van de elektrochemische gradiënt, nu als kans uitgedrukt.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="literatuur" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="literatuur"><span class="header-section-number">4.7</span> Literatuur</h2>
+<ul>
+<li>Abu-Arish, A., Porcher, A., Czerwonka, A., Dostatni, N., &amp; Fradin, C. (2010). High mobility of Bicoid captured by fluorescence correlation spectroscopy: implication for the rapid establishment of its gradient. <em>Biophysical Journal</em>, 99, L33–L35.</li>
+<li>Berg, H. C. (1993). <em>Random Walks in Biology</em> (uitgebreide editie). Princeton University Press.</li>
+<li>Chan, C. J., Costanzo, M., Ruiz-Herrero, T., Mönke, G., Petrie, R. J., Bergert, M., Diz-Muñoz, A., Mahadevan, L., &amp; Hiiragi, T. (2019). Hydraulic control of mammalian embryo size and cell fate. <em>Nature</em>, 571, 112–116.</li>
+<li>Dubuis, J. O., Tkačik, G., Wieschaus, E. F., Gregor, T., &amp; Bialek, W. (2013). Positional information, in bits. <em>PNAS</em>, 110, 16301–16308.</li>
+<li>Einstein, A. (1905). Über die von der molekularkinetischen Theorie der Wärme geforderte Bewegung von in ruhenden Flüssigkeiten suspendierten Teilchen. <em>Annalen der Physik</em>, 17, 549–560.</li>
+<li>Gregor, T., Wieschaus, E. F., McGregor, A. P., Bialek, W., &amp; Tank, D. W. (2007). Stability and nuclear dynamics of the Bicoid morphogen gradient. <em>Cell</em>, 130, 141–152.</li>
+<li>Phillips, R., Kondev, J., Theriot, J., &amp; Garcia, H. (2013). <em>Physical Biology of the Cell</em> (2e ed.). Garland Science.</li>
+<li>Urry, L. A., et al.&nbsp;<em>Campbell Biology: A Global Approach</em> (12e ed.). Pearson. Hoofdstuk 8 en 36.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./antwoorden/ANT_Regressie_theorie.html" class="pagination-link" aria-label="Lineaire regressie: vectoren en projectie.">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lineaire regressie: vectoren en projectie.</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Differentiaalvergelijkingen_theorie.html" class="pagination-link" aria-label="Differentiaalvergelijkingen">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Differentiaalvergelijkingen</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

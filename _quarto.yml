@@ -11,8 +11,10 @@ book:
     - index.qmd
     - ANT_stochastische_var.qmd
     - antwoorden/ANT_log_theorie.qmd
-    - Regressie_theorie.qmd
+    - antwoorden/ANT_Regressie_theorie.qmd
+    - thermodynamica_transport_antwoorden.qmd
     - Differentiaalvergelijkingen_theorie.qmd
+    - Eigen_experiment_theorie.qmd
     - sepia_standaardfout_theorie.qmd
     - genetic_drift.qmd
     - meta-populaties.qmd
@@ -20,7 +22,8 @@ book:
   appendices:
     - ANT_mais_pract.qmd
     - antwoorden/ANT_log_pract.qmd
-    - Bradford_statistiek.qmd
+    - antwoorden/ANT_bradford_statistiek.qmd
+    - eigen_experiment_practicum.qmd
     - Sepia_Mantel.qmd  
 
 bibliography: references.bib

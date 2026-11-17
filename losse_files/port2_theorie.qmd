@@ -12,7 +12,7 @@ In deze opdracht bekijken we een tweede voorbeeld van zo'n terugkerende vorm: de
 
 ## Eigenschappen van de logaritme
 
-De logartitme heeft een handige eigenschap voor het werken met concentraties en dus met de pH: hij comprimeert een enorm bereik (14 ordes van grootte in $[\text{H}^+]$\$\[\\text{H}\^+\]\$) tot een overzichtelijke schaal. Diezelfde eigenschap zit achter de schaal van Richter (aardbevingen) en decibel (geluid): elke stap van 1 staat voor een factor 10 in de onderliggende grootheid.
+De logartitme heeft een handige eigenschap voor het werken met concentraties en dus met de pH: hij comprimeert een enorm bereik (14 ordes van grootte in $[\text{H}^+]$\$\[\\text{H}\^+\]\$\$\[\\text{H}\^+\]\$) tot een overzichtelijke schaal. Diezelfde eigenschap zit achter de schaal van Richter (aardbevingen) en decibel (geluid): elke stap van 1 staat voor een factor 10 in de onderliggende grootheid.
 
 Maar de logaritme heeft nog een tweede, andere eigenschap, die je eerder bij de rekenregels al hebt gezien: hij zet een *machtsverband* om in een *lineair* verband. Die eigenschap staat nu centraal, in een heel andere context dan pH: hoe lichaamsgrootte samenhangt met de rest van de biologie van een dier.
 
